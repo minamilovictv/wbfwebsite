@@ -1,11 +1,27 @@
-import { format, formatDistanceToNow, parseISO, isValid } from "date-fns";
 import type { CountryCode } from "@/types";
 
-export function formatDate(dateString: string, pattern = "d MMMM yyyy"): string {
+export function formatDate(dateString: string, pattern?: string): string {
   try {
-    const date = parseISO(dateString);
-    if (!isValid(date)) return dateString;
-    return format(date, pattern);
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString;
+    if (pattern === "dd MMM yyyy" || pattern === "d MMM yyyy") {
+      return date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+    }
+    if (pattern === "MMM") {
+      return date.toLocaleDateString("en-GB", { month: "short" });
+    }
+    if (pattern === "d") {
+      return String(date.getDate());
+    }
+    if (pattern === "d MMM yyyy, HH:mm") {
+      return (
+        date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) +
+        ", " +
+        date.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })
+      );
+    }
+    // default: "d MMMM yyyy"
+    return date.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
   } catch {
     return dateString;
   }
@@ -21,21 +37,28 @@ export function formatDatetime(dateString: string): string {
 
 export function formatRelativeDate(dateString: string): string {
   try {
-    const date = parseISO(dateString);
-    if (!isValid(date)) return dateString;
-    return formatDistanceToNow(date, { addSuffix: true });
+    const date = new Date(dateString);
+    const now = new Date();
+    const diff = now.getTime() - date.getTime();
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    if (days === 0) return "Today";
+    if (days === 1) return "Yesterday";
+    if (days < 30) return `${days} days ago`;
+    if (days < 365) return `${Math.floor(days / 30)} months ago`;
+    return `${Math.floor(days / 365)} years ago`;
   } catch {
     return dateString;
   }
 }
 
 export function formatCurrency(amount: number, currency: "EUR" | "USD" = "EUR"): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency,
-    maximumFractionDigits: 0,
-    notation: amount >= 1_000_000 ? "compact" : "standard",
-  }).format(amount);
+  if (amount >= 1_000_000) {
+    return `${currency === "EUR" ? "€" : "$"}${(amount / 1_000_000).toFixed(1)}M`;
+  }
+  if (amount >= 1_000) {
+    return `${currency === "EUR" ? "€" : "$"}${(amount / 1_000).toFixed(0)}K`;
+  }
+  return new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 0 }).format(amount);
 }
 
 export function formatNumber(n: number): string {
@@ -43,10 +66,9 @@ export function formatNumber(n: number): string {
 }
 
 export function formatCompact(n: number): string {
-  return new Intl.NumberFormat("en-US", {
-    notation: "compact",
-    compactDisplay: "short",
-  }).format(n);
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(0)}K`;
+  return String(n);
 }
 
 export const COUNTRY_NAMES: Record<CountryCode, string> = {
@@ -90,7 +112,7 @@ export function slugify(text: string): string {
 }
 
 export function daysUntil(dateString: string): number {
-  const target = parseISO(dateString);
+  const target = new Date(dateString);
   const now = new Date();
   const diff = target.getTime() - now.getTime();
   return Math.ceil(diff / (1000 * 60 * 60 * 24));

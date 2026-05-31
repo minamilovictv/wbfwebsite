@@ -1,27 +1,14 @@
-import { groq } from "next-sanity";
+// GROQ queries for all content types
+
+const groq = String.raw;
 
 // ─── Shared fragments ──────────────────────────────────────────────────────
 
-const imageFragment = groq`
-  _type, asset, alt, caption, hotspot
-`;
-
-const slugFragment = groq`
-  _type, current
-`;
-
-const seoFragment = groq`
-  title, description, ogImage { ${imageFragment} }, noIndex
-`;
-
-const programMinFragment = groq`
-  _id, title, slug { ${slugFragment} }, pillar, status
-`;
-
-const grantMinFragment = groq`
-  _id, title, slug { ${slugFragment} }, status, type,
-  minGrantAmount, maxGrantAmount, currency, deadline
-`;
+const imageFragment = `_type, asset, alt, caption, hotspot`;
+const slugFragment = `_type, current`;
+const seoFragment = `title, description, ogImage { ${imageFragment} }, noIndex`;
+const programMinFragment = `_id, title, slug { ${slugFragment} }, pillar, status`;
+const grantMinFragment = `_id, title, slug { ${slugFragment} }, status, type, minGrantAmount, maxGrantAmount, currency, deadline`;
 
 // ─── Programs ──────────────────────────────────────────────────────────────
 
