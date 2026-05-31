@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Google Fonts Import ─────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* ─── CSS Custom Properties ──────────────────────────────────────── */
+:root {
+  --font-inter: "Inter", system-ui, sans-serif;
+  --font-playfair: "Playfair Display", Georgia, serif;
+  --font-jetbrains-mono: "JetBrains Mono", Consolas, monospace;
+
+  /* Semantic color tokens */
+  --color-primary: #003366;
+  --color-primary-light: #2070b0;
+  --color-secondary: #00756a;
+  --color-accent: #f4a41a;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-subtle: #94a3b8;
+
+  /* Layout */
+  --header-height: 4.5rem;
+  --topbar-height: 2.25rem;
+  --total-header: calc(var(--header-height) + var(--topbar-height));
+  --container-max: 88rem;
+  --container-padding: 1.5rem;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* ─── Base Resets ────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply font-sans text-slate-900 bg-white;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold tracking-tight;
+  }
+
+  h1 { @apply text-4xl lg:text-5xl; }
+  h2 { @apply text-3xl lg:text-4xl; }
+  h3 { @apply text-2xl lg:text-3xl; }
+  h4 { @apply text-xl lg:text-2xl; }
+  h5 { @apply text-lg lg:text-xl; }
+  h6 { @apply text-base lg:text-lg; }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  a {
+    @apply transition-colors duration-150;
+  }
+
+  * {
+    @apply border-slate-200;
+  }
+}
+
+/* ─── Component Utilities ────────────────────────────────────────── */
+@layer components {
+  .container-institutional {
+    @apply max-w-8xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+
+  .section-padding-sm {
+    @apply py-10 lg:py-16;
+  }
+
+  /* Typography */
+  .text-hero {
+    @apply font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+
+  .text-section-title {
+    @apply font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight;
+  }
+
+  .text-card-title {
+    @apply font-sans text-lg font-semibold text-slate-900;
+  }
+
+  .text-overline {
+    @apply text-xs font-semibold uppercase tracking-widest;
+  }
+
+  .text-body-lead {
+    @apply text-lg text-slate-600 leading-relaxed;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-semibold
+           transition-all duration-200 focus-visible:outline-none
+           focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50
+           disabled:pointer-events-none rounded-sm;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-500 text-white hover:bg-brand-600 active:bg-brand-700
+           focus-visible:ring-brand-500 px-6 py-3 text-sm;
+  }
+
+  .btn-secondary {
+    @apply btn bg-teal-500 text-white hover:bg-teal-600 active:bg-teal-700
+           focus-visible:ring-teal-500 px-6 py-3 text-sm;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-brand-500 text-brand-500 hover:bg-brand-500
+           hover:text-white focus-visible:ring-brand-500 px-6 py-3 text-sm;
+  }
+
+  .btn-ghost {
+    @apply btn text-brand-500 hover:bg-brand-50 focus-visible:ring-brand-500
+           px-4 py-2 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-8 py-4 text-base;
+  }
+
+  .btn-sm {
+    @apply px-4 py-2 text-xs;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-lg shadow-card border border-slate-100
+           transition-shadow duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-card-hover hover:-translate-y-0.5;
+  }
+
+  .card-institutional {
+    @apply card border-l-4 border-l-brand-500;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-brand-50 text-brand-700 border border-brand-200;
+  }
+
+  .badge-teal {
+    @apply badge bg-teal-50 text-teal-700 border border-teal-200;
+  }
+
+  .badge-gold {
+    @apply badge bg-gold-50 text-gold-700 border border-gold-200;
+  }
+
+  .badge-neutral {
+    @apply badge bg-slate-100 text-slate-600;
+  }
+
+  .badge-success {
+    @apply badge bg-emerald-50 text-emerald-700 border border-emerald-200;
+  }
+
+  .badge-warning {
+    @apply badge bg-amber-50 text-amber-700 border border-amber-200;
+  }
+
+  .badge-danger {
+    @apply badge bg-red-50 text-red-700 border border-red-200;
+  }
+
+  /* Form elements */
+  .input {
+    @apply w-full px-4 py-2.5 text-sm border border-slate-300 rounded-sm
+           bg-white text-slate-900 placeholder-slate-400
+           focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500
+           transition-colors duration-150;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-slate-700 mb-1.5;
+  }
+
+  /* Navigation */
+  .nav-link {
+    @apply text-sm font-medium text-slate-700 hover:text-brand-500
+           transition-colors duration-150 relative;
+  }
+
+  .nav-link-active {
+    @apply text-brand-500;
+  }
+
+  /* Dividers */
+  .divider-brand {
+    @apply w-12 h-1 bg-teal-500 rounded-full;
+  }
+
+  .divider-gold {
+    @apply w-12 h-1 bg-gold-500 rounded-full;
+  }
+
+  /* Section backgrounds */
+  .bg-section-alt {
+    @apply bg-slate-50;
+  }
+
+  .bg-section-dark {
+    @apply bg-brand-900 text-white;
+  }
+
+  .bg-section-brand {
+    background: linear-gradient(135deg, #003366 0%, #00756a 100%);
+    @apply text-white;
+  }
+
+  /* Status indicators */
+  .status-dot {
+    @apply w-2 h-2 rounded-full inline-block;
+  }
+
+  .status-open {
+    @apply status-dot bg-emerald-500;
+  }
+
+  .status-closed {
+    @apply status-dot bg-red-500;
+  }
+
+  .status-upcoming {
+    @apply status-dot bg-gold-500;
+  }
+}
+
+/* ─── Custom Utilities ───────────────────────────────────────────── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: #CBD5E1 transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #CBD5E1;
+    border-radius: 3px;
+  }
+
+  .clip-hero {
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  }
+
+  .clip-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+  }
+
+  .underline-brand {
+    @apply underline decoration-teal-500 underline-offset-4 decoration-2;
+  }
+}
+
+/* ─── Print Styles ───────────────────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+  body { color: black; background: white; }
+  a[href]::after { content: " (" attr(href) ")"; }
+}
+
+/* ─── Focus Styles (Accessibility) ──────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ─── Skip Navigation ────────────────────────────────────────────── */
+.skip-nav {
+  position: absolute;
+  top: -999px;
+  left: 0;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.skip-nav:focus {
+  top: 0;
+}
