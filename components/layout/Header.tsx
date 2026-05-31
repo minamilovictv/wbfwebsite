@@ -1,14 +1,9 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { Menu, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Navigation } from "./Navigation";
-import { MobileMenu } from "./MobileMenu";
+import { MobileMenuToggle } from "./MobileMenuToggle";
 
 export function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-
   return (
     <div className="sticky top-0 z-30 w-full bg-white border-b border-slate-200 shadow-[0_2px_12px_rgba(26,54,104,0.08)]">
       <div className="container-institutional">
@@ -37,7 +32,7 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop nav (client component) */}
           <Navigation />
 
           {/* Actions */}
@@ -60,19 +55,11 @@ export function Header() {
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
 
-            {/* Mobile hamburger */}
-            <button
-              onClick={() => setMobileOpen(true)}
-              className="p-2 text-slate-600 hover:text-brand-700 hover:bg-slate-50 rounded-sm transition-colors lg:hidden"
-              aria-label="Open navigation menu"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
+            {/* Mobile toggle + drawer (client component) */}
+            <MobileMenuToggle />
           </div>
         </div>
       </div>
-
-      <MobileMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
     </div>
   );
 }
