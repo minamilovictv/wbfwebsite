@@ -122,9 +122,12 @@ export const projectBySlugQuery = groq`
 export const newsListQuery = groq`
   *[_type == "news" && !(_id in path("drafts.**"))]
   | order(publishedAt desc) {
-    _id, _updatedAt, title, slug { ${slugFragment} }, category,
-    excerpt, publishedAt, featured, countries, tags,
+    _id, _updatedAt, title, subtitle, slug { ${slugFragment} }, category,
+    excerpt, body, publishedAt, featured, countries, tags,
     coverImage { ${imageFragment} },
+    gallery[]{ ${imageFragment} },
+    videos[]{ _key, title, url },
+    links[]{ _key, label, url },
     author->{ _id, fullName, role, photo { ${imageFragment} } },
     program->{ ${programMinFragment} }
   }

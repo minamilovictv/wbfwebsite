@@ -200,16 +200,32 @@ export type NewsCategory =
   | "event-recap"
   | "call-for-applications";
 
+export interface NewsVideo {
+  _key: string;
+  title?: string;
+  url: string;
+}
+
+export interface NewsLink {
+  _key: string;
+  label: string;
+  url: string;
+}
+
 export interface NewsArticle {
   _id: string;
   _createdAt: string;
   _updatedAt: string;
   title: string;
+  subtitle?: string;
   slug: Slug;
   category: NewsCategory;
   excerpt: string;
-  body: string; // portable text / rich text
+  body?: string;
   coverImage?: SanityImage;
+  gallery?: SanityImage[];
+  videos?: NewsVideo[];
+  links?: NewsLink[];
   author?: Author;
   publishedAt: string;
   program?: Program;
