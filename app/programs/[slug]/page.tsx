@@ -9,7 +9,11 @@ import { GrantStatusBadge, StatusBadge } from "@/components/ui/Badge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { formatCurrency, formatDate, getCountryFlag, getCountryName } from "@/lib/utils/formatters";
 import { ArrowRight, Download, ExternalLink } from "lucide-react";
-import type { Program } from "@/types";
+import type { Program, Grant } from "@/types";
+
+type ProgramWithGrants = Program & {
+  openGrants?: Pick<Grant, "_id" | "title" | "slug">[];
+};
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -31,7 +35,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const program = await sanityFetch<Program | null>(programBySlugQuery, { slug }, { revalidate: 3600 });
+    const program = await sanityFetch<ProgramWithGrants | null>(programBySlugQuery, { slug }, { revalidate: 3600 });
     if (!program) return {};
     return {
       title: program.title,
@@ -45,10 +49,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ProgramPage({ params }: PageProps) {
   const { slug } = await params;
-  let program: Program | null = null;
+  let program: ProgramWithGrants | null = null;
 
   try {
-    program = await sanityFetch<Program | null>(programBySlugQuery, { slug }, {
+    program = await sanityFetch<ProgramWithGrants | null>(programBySlugQuery, { slug }, {
       revalidate: 3600,
       tags: [`program:${slug}`],
     });
