@@ -1,66 +1,60 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { Phone, Mail, Globe } from "lucide-react";
 
-const languages = [
-  { code: "en", label: "EN" },
-  { code: "sr", label: "SR" },
-  { code: "mk", label: "MK" },
-  { code: "al", label: "AL" },
-  { code: "bs", label: "BS" },
+const announcements = [
+  {
+    dot: "amber",
+    text: "GGI Grants Call No. 8 — Evaluation underway · Results expected June 2026",
+    href: "/programs/ggi",
+  },
+  {
+    dot: "green",
+    text: "Visegrad Fellowship 3rd Edition — Open until 30 June 2026",
+    href: "/programs/visegrad-fellowship",
+  },
+  {
+    dot: "green",
+    text: "ERC Grants — Opening Autumn 2026 · Register for notification",
+    href: "/programs/erc-grants",
+  },
 ];
 
 export function TopBar() {
+  const [visible, setVisible] = useState(true);
+
+  if (!visible) return null;
+
   return (
-    <div className="bg-brand-900 text-slate-300 text-xs h-9 hidden md:flex items-center">
-      <div className="container-institutional flex items-center justify-between w-full">
-        {/* Left — contact info */}
-        <div className="flex items-center gap-5">
-          <a
-            href="mailto:info@westernbalkansfund.org"
-            className="flex items-center gap-1.5 hover:text-white transition-colors"
-          >
-            <Mail className="w-3 h-3" />
-            info@westernbalkansfund.org
-          </a>
-          <a
-            href="tel:+381112222333"
-            className="flex items-center gap-1.5 hover:text-white transition-colors"
-          >
-            <Phone className="w-3 h-3" />
-            +381 11 222 2333
-          </a>
-        </div>
-
-        {/* Right — language + quick links */}
-        <div className="flex items-center gap-4">
-          <Link
-            href="/grants/open-calls"
-            className="text-gold-400 hover:text-gold-300 font-semibold transition-colors"
-          >
-            Open Calls
-          </Link>
-          <span className="text-slate-600">|</span>
-          <Link href="/apply" className="hover:text-white transition-colors">
-            Apply Now
-          </Link>
-          <span className="text-slate-600">|</span>
-
-          {/* Language selector */}
-          <div className="flex items-center gap-0.5">
-            <Globe className="w-3 h-3 mr-1" />
-            {languages.map((lang, i) => (
-              <span key={lang.code} className="flex items-center">
-                <button className="hover:text-white transition-colors px-1 font-medium">
-                  {lang.label}
-                </button>
-                {i < languages.length - 1 && (
-                  <span className="text-slate-600 text-xs">/</span>
-                )}
-              </span>
+    <div className="bg-brand-950 text-white/85 text-[13px] border-b border-white/6">
+      <div className="container-institutional py-[9px]">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-8 overflow-hidden">
+            {announcements.map(({ dot, text, href }) => (
+              <Link
+                key={text}
+                href={href}
+                className="flex items-center gap-2 whitespace-nowrap hover:text-white transition-colors shrink-0"
+              >
+                <span
+                  className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                    dot === "green"
+                      ? "bg-emerald-400 animate-pulse"
+                      : "bg-amber-400"
+                  }`}
+                />
+                {text}
+              </Link>
             ))}
           </div>
+          <button
+            onClick={() => setVisible(false)}
+            className="text-white/35 hover:text-white transition-colors text-xl leading-none shrink-0"
+            aria-label="Dismiss announcements"
+          >
+            ×
+          </button>
         </div>
       </div>
     </div>

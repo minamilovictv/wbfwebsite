@@ -1,213 +1,163 @@
 import Link from "next/link";
-import {
-  Twitter,
-  Facebook,
-  Linkedin,
-  Youtube,
-  Instagram,
-  Mail,
-  Phone,
-  MapPin,
-  ExternalLink,
-} from "lucide-react";
-
-const footerLinks = {
-  about: {
-    title: "About WBF",
-    links: [
-      { label: "About the Fund", href: "/about" },
-      { label: "Governance", href: "/about/governance" },
-      { label: "Team", href: "/about/team" },
-      { label: "Member States", href: "/about/member-states" },
-      { label: "Strategic Plan", href: "/about/strategic-plan" },
-    ],
-  },
-  programs: {
-    title: "Programs",
-    links: [
-      { label: "All Programs", href: "/programs" },
-      { label: "Regional Cooperation", href: "/programs?pillar=regional-cooperation" },
-      { label: "Youth Mobility", href: "/programs?pillar=youth-mobility" },
-      { label: "Civil Society", href: "/programs?pillar=civil-society" },
-      { label: "Environment", href: "/programs?pillar=environment" },
-    ],
-  },
-  grants: {
-    title: "Grants",
-    links: [
-      { label: "Open Calls", href: "/grants/open-calls" },
-      { label: "How to Apply", href: "/grants/how-to-apply" },
-      { label: "Eligibility", href: "/grants/eligibility" },
-      { label: "Grant Database", href: "/grants/database" },
-      { label: "Apply Now", href: "/apply" },
-    ],
-  },
-  media: {
-    title: "News & Media",
-    links: [
-      { label: "News", href: "/news" },
-      { label: "Press Releases", href: "/news/press" },
-      { label: "Publications", href: "/news/publications" },
-      { label: "Events", href: "/events" },
-      { label: "Partners", href: "/partners" },
-    ],
-  },
-};
-
-const socials = [
-  { label: "Twitter / X", href: "https://twitter.com/westernbalkansfund", Icon: Twitter },
-  { label: "Facebook", href: "https://facebook.com/westernbalkansfund", Icon: Facebook },
-  { label: "LinkedIn", href: "https://linkedin.com/company/westernbalkansfund", Icon: Linkedin },
-  { label: "YouTube", href: "https://youtube.com/westernbalkansfund", Icon: Youtube },
-  { label: "Instagram", href: "https://instagram.com/westernbalkansfund", Icon: Instagram },
-];
-
-const memberStates = [
-  { code: "AL", name: "Albania", flag: "🇦🇱" },
-  { code: "BA", name: "Bosnia and Herzegovina", flag: "🇧🇦" },
-  { code: "XK", name: "Kosovo*", flag: "🇽🇰" },
-  { code: "MK", name: "North Macedonia", flag: "🇲🇰" },
-  { code: "ME", name: "Montenegro", flag: "🇲🇪" },
-  { code: "RS", name: "Serbia", flag: "🇷🇸" },
-];
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-brand-900 text-slate-300" role="contentinfo">
-      {/* Member States Band */}
-      <div className="border-b border-brand-800">
-        <div className="container-institutional py-4">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider shrink-0">
-              Member States
-            </span>
-            <div className="flex flex-wrap gap-4">
-              {memberStates.map((s) => (
-                <span key={s.code} className="flex items-center gap-1.5 text-xs text-slate-400">
-                  <span>{s.flag}</span>
-                  <span>{s.name}</span>
-                </span>
-              ))}
+    <footer className="bg-brand-950 text-white/55" role="contentinfo">
+      <div className="container-institutional">
+
+        {/* ── Main grid ── */}
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-10 py-14 border-b border-white/7">
+
+          {/* Brand */}
+          <div>
+            <div className="font-display text-[17px] font-semibold text-white mb-3">
+              Western Balkans Fund
             </div>
-            <span className="text-2xs text-slate-600 ml-auto hidden lg:block">
-              *This designation is without prejudice to positions on status, and is in line with UNSC 1244/1999 and the ICJ Opinion on the Kosovo declaration of independence.
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Footer */}
-      <div className="container-institutional py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10">
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 bg-white/10 rounded-sm flex items-center justify-center">
-                <span className="text-white font-display font-bold text-base">WBF</span>
-              </div>
-              <div>
-                <div className="text-white font-display font-bold text-sm leading-tight">
-                  Western Balkans Fund
-                </div>
-                <div className="text-teal-400 text-xs font-semibold tracking-wider uppercase">
-                  Regional Cooperation
-                </div>
-              </div>
-            </Link>
-
-            <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-xs">
-              The Western Balkans Fund promotes regional cooperation and people-to-people
-              connectivity across the six Western Balkans economies.
+            <p className="text-[13px] leading-relaxed mb-5 max-w-[30ch]">
+              Dedicated to promoting reconciliation, strengthening regional cooperation, and
+              fostering closer ties among the Contracting Parties of the Western Balkans.
             </p>
-
-            {/* Contact */}
-            <div className="space-y-2 text-sm mb-6">
-              <a href="mailto:info@westernbalkansfund.org" className="flex items-start gap-2 hover:text-white transition-colors">
-                <Mail className="w-4 h-4 mt-0.5 shrink-0 text-teal-500" />
-                info@westernbalkansfund.org
-              </a>
-              <a href="tel:+381112222333" className="flex items-center gap-2 hover:text-white transition-colors">
-                <Phone className="w-4 h-4 shrink-0 text-teal-500" />
-                +381 11 222 2333
-              </a>
-              <span className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-teal-500" />
-                <span>Vladimira Popovića 6, Belgrade 11070, Serbia</span>
-              </span>
-            </div>
-
-            {/* Social */}
             <div className="flex gap-2">
-              {socials.map(({ label, href, Icon }) => (
+              {[
+                { label: "Instagram",  char: "in" },
+                { label: "Facebook",   char: "fb" },
+                { label: "LinkedIn",   char: "li" },
+                { label: "X / Twitter", char: "𝕏" },
+              ].map(({ label, char }) => (
                 <a
                   key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#"
                   aria-label={label}
-                  className="w-9 h-9 bg-white/5 hover:bg-white/15 rounded-sm flex items-center justify-center transition-colors"
+                  className="w-8 h-8 bg-white/6 hover:bg-white/12 rounded-sm flex items-center justify-center text-[12px] text-white/45 hover:text-white transition-all"
                 >
-                  <Icon className="w-4 h-4" />
+                  {char}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Link Columns */}
-          {Object.entries(footerLinks).map(([key, section]) => (
-            <div key={key} className="lg:col-span-1">
-              <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
-                {section.title}
-              </h3>
-              <ul className="space-y-2.5">
-                {section.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-slate-400 hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="border-t border-brand-800">
-        <div className="container-institutional py-5">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-              <span>© {currentYear} Western Balkans Fund. All rights reserved.</span>
-            </div>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-              <Link href="/legal/privacy-policy" className="hover:text-slate-300 transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/legal/terms-of-use" className="hover:text-slate-300 transition-colors">
-                Terms of Use
-              </Link>
-              <Link href="/legal/cookie-policy" className="hover:text-slate-300 transition-colors">
-                Cookie Policy
-              </Link>
-              <Link href="/accessibility" className="hover:text-slate-300 transition-colors">
-                Accessibility
-              </Link>
-              <a
-                href="https://studio.westernbalkansfund.org"
-                className="hover:text-slate-300 transition-colors flex items-center gap-1"
-                target="_blank"
-                rel="noopener noreferrer"
+          {/* Programs */}
+          <div>
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/30 mb-3.5">
+              Programs
+            </h4>
+            {[
+              { label: "GGI Grants",           href: "/programs/ggi" },
+              { label: "Matching Grants",      href: "/programs/matching-grants" },
+              { label: "Move Grants",          href: "/programs/move-grants" },
+              { label: "ERC Grants",           href: "/programs/erc-grants" },
+              { label: "Gender Equality Fund", href: "/programs/gender-equality-fund" },
+              { label: "Visegrad Fellowship",  href: "/programs/visegrad-fellowship" },
+              { label: "Summer School",        href: "/programs/summer-school" },
+            ].map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                className="block text-[13px] text-white/55 hover:text-white mb-2 transition-colors"
               >
-                CMS Admin <ExternalLink className="w-3 h-3" />
-              </a>
-            </div>
+                {label}
+              </Link>
+            ))}
           </div>
+
+          {/* About WBF */}
+          <div>
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/30 mb-3.5">
+              About WBF
+            </h4>
+            {[
+              { label: "Who We Are",       href: "/about" },
+              { label: "Governance",       href: "/about/governance" },
+              { label: "Our Team",         href: "/about/team" },
+              { label: "Donors & Partners",href: "/about/donors-partners" },
+              { label: "Accountability",   href: "/about/accountability" },
+              { label: "Careers",          href: "/about/careers" },
+            ].map(({ label, href }) => (
+              <Link
+                key={href}
+                href={href}
+                className="block text-[13px] text-white/55 hover:text-white mb-2 transition-colors"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/30 mb-3.5">
+              Resources
+            </h4>
+            {[
+              { label: "Application Guidelines", href: "/grants/how-to-apply" },
+              { label: "Annual Reports",         href: "/about/accountability" },
+              { label: "Newsletters",            href: "/news" },
+              { label: "WBF Statutes",           href: "/about/governance" },
+              { label: "Financial Statements",   href: "/about/accountability" },
+              { label: "FAQ",                    href: "/grants/how-to-apply#faq" },
+            ].map(({ label, href }) => (
+              <Link
+                key={label}
+                href={href}
+                className="block text-[13px] text-white/55 hover:text-white mb-2 transition-colors"
+              >
+                {label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Platforms + Contact */}
+          <div>
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/30 mb-3.5">
+              Platforms
+            </h4>
+            <a
+              href="https://wbfportal.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-[13px] text-white/55 hover:text-white mb-2 transition-colors"
+            >
+              OGMS — Apply Online ↗
+            </a>
+            <a
+              href="https://wbfpartnership.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-[13px] text-white/55 hover:text-white mb-2 transition-colors"
+            >
+              Partnership Platform ↗
+            </a>
+            <Link href="/projects" className="block text-[13px] text-white/55 hover:text-white mb-2 transition-colors">
+              Projects Database ↗
+            </Link>
+            <Link href="/impact" className="block text-[13px] text-white/55 hover:text-white mb-2 transition-colors">
+              Data Portal ↗
+            </Link>
+
+            <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/30 mb-3.5 mt-4">
+              Contact
+            </h4>
+            <a
+              href="mailto:info@westernbalkansfund.org"
+              className="block text-[13px] text-white/55 hover:text-white mb-2 transition-colors"
+            >
+              info@westernbalkansfund.org
+            </a>
+            <span className="block text-[13px] text-white/55">
+              Skopje, North Macedonia
+            </span>
+          </div>
+        </div>
+
+        {/* ── Bottom bar ── */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-[18px] text-[12px] text-white/28">
+          <div className="flex items-center gap-2.5">
+            <span className="bg-[#003399] text-[#FFCC00] text-[11px] font-bold px-2.5 py-0.5 rounded-sm tracking-[0.03em]">
+              EU ★
+            </span>
+            <span>Co-funded by the European Union · EU/WBF Joint Action Phase III</span>
+          </div>
+          <span>© {new Date().getFullYear()} Western Balkans Fund · All rights reserved</span>
         </div>
       </div>
     </footer>

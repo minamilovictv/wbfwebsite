@@ -1,92 +1,78 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { Menu, Search } from "lucide-react";
-import { cn } from "@/lib/utils/cn";
+import { Menu, ExternalLink } from "lucide-react";
 import { Navigation } from "./Navigation";
 import { MobileMenu } from "./MobileMenu";
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 12);
-    }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-30 w-full transition-all duration-300",
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-institutional border-b border-slate-100"
-          : "bg-white border-b border-slate-100"
-      )}
-    >
-      <div className="container-institutional flex items-center justify-between h-[4.5rem]">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-3 shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 rounded-sm"
-          aria-label="Western Balkans Fund — Home"
-        >
-          {/* Logo mark */}
-          <div className="flex items-center gap-2">
-            <div className="relative w-10 h-10">
-              <div className="absolute inset-0 bg-gradient-brand rounded-sm" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white font-display font-bold text-lg leading-none">
-                  WBF
-                </span>
-              </div>
+    <div className="sticky top-0 z-30 w-full bg-white border-b border-slate-200 shadow-[0_2px_12px_rgba(26,54,104,0.08)]">
+      <div className="container-institutional">
+        <div className="flex items-center h-[68px] gap-0">
+
+          {/* Logo */}
+          <Link
+            href="/"
+            className="flex items-center gap-3 shrink-0 mr-8 focus-visible:outline-none"
+            aria-label="Western Balkans Fund — Home"
+          >
+            <div className="w-9 h-9 bg-brand-800 rounded-sm flex items-center justify-center shrink-0">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M5 20L12 4L19 20" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M8 14H16" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                <circle cx="12" cy="4" r="2" fill="rgba(255,255,255,0.5)"/>
+              </svg>
             </div>
             <div className="hidden sm:block">
-              <div className="text-brand-900 font-display font-bold text-base leading-tight">
-                Western Balkans
+              <div className="text-[14px] font-semibold text-brand-800 leading-tight">
+                Western Balkans Fund
               </div>
-              <div className="text-teal-600 font-sans text-xs font-semibold tracking-widest uppercase leading-tight">
-                Fund
+              <div className="text-[11px] text-slate-500 leading-tight">
+                Building Regional Cooperation
               </div>
             </div>
-          </div>
-        </Link>
-
-        {/* Center — Desktop Navigation */}
-        <Navigation />
-
-        {/* Right — Actions */}
-        <div className="flex items-center gap-2">
-          <button
-            className="p-2 text-slate-500 hover:text-brand-600 hover:bg-slate-50 rounded-sm transition-colors hidden lg:flex"
-            aria-label="Search"
-          >
-            <Search className="w-5 h-5" />
-          </button>
-
-          <Link
-            href="/apply"
-            className="btn-primary btn-sm hidden lg:inline-flex"
-          >
-            Apply for Grants
           </Link>
 
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="p-2 text-slate-600 hover:text-brand-600 hover:bg-slate-50 rounded-sm transition-colors lg:hidden"
-            aria-label="Open navigation menu"
-            aria-expanded={mobileOpen}
-          >
-            <Menu className="w-6 h-6" />
-          </button>
+          {/* Desktop nav */}
+          <Navigation />
+
+          {/* Actions */}
+          <div className="flex items-center gap-2.5 ml-auto shrink-0">
+            <a
+              href="https://wbfpartnership.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-[7px] text-[13px] font-semibold border border-slate-200 rounded-sm text-slate-600 hover:border-brand-800 hover:text-brand-800 transition-all"
+            >
+              Find Partners
+            </a>
+            <a
+              href="https://wbfportal.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:inline-flex items-center gap-1.5 px-4 py-2 text-[13px] font-semibold bg-brand-800 text-white rounded-sm hover:bg-brand-700 transition-colors"
+            >
+              Apply Now
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="p-2 text-slate-600 hover:text-brand-700 hover:bg-slate-50 rounded-sm transition-colors lg:hidden"
+              aria-label="Open navigation menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </div>
 
       <MobileMenu isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
-    </header>
+    </div>
   );
 }

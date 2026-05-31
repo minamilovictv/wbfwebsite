@@ -1,173 +1,249 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
-import type { NavItem } from "@/types";
 
+// ── Types ──────────────────────────────────────────────────────────────────
+interface DropdownItem {
+  label: string;
+  href: string;
+  sub?: string;
+  external?: boolean;
+  status?: "open" | "review" | "soon" | "results";
+}
+
+interface NavItem {
+  label: string;
+  href: string;
+  dropdown?: DropdownItem[];
+  mega?: boolean;
+}
+
+// ── Status dot colours ─────────────────────────────────────────────────────
+const statusDot: Record<string, string> = {
+  open:    "bg-emerald-500",
+  review:  "bg-amber-400",
+  soon:    "bg-slate-400",
+  results: "bg-brand-600",
+};
+
+// ── Nav data matching the HTML exactly ────────────────────────────────────
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   {
-    label: "About",
+    label: "About WBF",
     href: "/about",
-    children: [
-      { label: "About WBF", href: "/about", description: "Our mandate, vision and history" },
-      { label: "Governance", href: "/about/governance", description: "Board, Council and bodies" },
-      { label: "Team", href: "/about/team", description: "Secretariat and leadership" },
-      { label: "Member States", href: "/about/member-states", description: "Six Western Balkans economies" },
-      { label: "Strategic Plan", href: "/about/strategic-plan", description: "2024–2028 strategy" },
+    dropdown: [
+      { label: "Who We Are",          href: "/about",                  sub: "Mission, mandate and history" },
+      { label: "Structure & Governance", href: "/about/governance",    sub: "Board, secretariat, statutes" },
+      { label: "Our Team",            href: "/about/team",             sub: "Secretariat and contacts" },
+      { label: "Donors & Partners",   href: "/about/donors-partners",  sub: "EU, Switzerland, Japan, Germany…" },
+      { label: "Accountability",      href: "/about/accountability",   sub: "Reports and financial statements" },
     ],
   },
   {
-    label: "Programs",
+    label: "Our Programs",
     href: "/programs",
-    children: [
-      { label: "All Programs", href: "/programs", description: "Full program portfolio" },
-      { label: "Regional Cooperation", href: "/programs?pillar=regional-cooperation" },
-      { label: "Youth Mobility", href: "/programs?pillar=youth-mobility" },
-      { label: "Civil Society", href: "/programs?pillar=civil-society" },
-      { label: "Environment", href: "/programs?pillar=environment" },
-    ],
+    mega: true,
+    dropdown: [], // mega uses custom render
   },
   {
-    label: "Grants",
-    href: "/grants",
-    badge: "Open",
-    children: [
-      { label: "Open Calls", href: "/grants/open-calls", description: "Currently accepting applications" },
-      { label: "How to Apply", href: "/grants/how-to-apply", description: "Step-by-step guidance" },
-      { label: "Eligibility", href: "/grants/eligibility", description: "Who can apply" },
-      { label: "Grant Database", href: "/grants/database", description: "Search all past grants" },
+    label: "Our Impact",
+    href: "/impact",
+    dropdown: [
+      { label: "Impact Overview",     href: "/impact",          sub: "Numbers, geography, reach" },
+      { label: "Grantee Stories",     href: "/impact/stories",  sub: "In-depth project highlights" },
+      { label: "WBF Champion Awards", href: "/impact/awards",   sub: "Annual recognition program" },
     ],
   },
-  {
-    label: "Projects",
-    href: "/projects",
-    children: [
-      { label: "All Projects", href: "/projects" },
-      { label: "Success Stories", href: "/projects?featured=true" },
-    ],
-  },
+  { label: "Our Grantees", href: "/grantees" },
   {
     label: "News & Events",
     href: "/news",
-    children: [
-      { label: "News", href: "/news", description: "Latest announcements" },
-      { label: "Press Releases", href: "/news/press", description: "Official communications" },
-      { label: "Publications", href: "/news/publications", description: "Reports and research" },
-      { label: "Events", href: "/events", description: "Upcoming events" },
+    dropdown: [
+      { label: "News",   href: "/news",   sub: "Stories, announcements, updates" },
+      { label: "Events", href: "/events", sub: "Info sessions, ceremonies, networking" },
     ],
   },
-  { label: "Partners", href: "/partners" },
   { label: "Contact", href: "/contact" },
 ];
 
-function DropdownMenu({
-  items,
-  isOpen,
-}: {
-  items: NavItem[];
-  isOpen: boolean;
-}) {
+export { NAV_ITEMS };
+
+// ── Funding programs for mega menu ─────────────────────────────────────────
+const FUNDING_PROGRAMS: DropdownItem[] = [
+  { label: "GGI Grants",           href: "/programs/ggi",                  status: "review" },
+  { label: "Matching Grants",      href: "/programs/matching-grants",       status: "open" },
+  { label: "Move Grants",          href: "/programs/move-grants",           status: "soon" },
+  { label: "ERC Grants",           href: "/programs/erc-grants",            status: "soon" },
+  { label: "Gender Equality Fund", href: "/programs/gender-equality-fund",  status: "soon" },
+  { label: "Visegrad Fellowship",  href: "/programs/visegrad-fellowship",   status: "open" },
+];
+
+const CAPACITY_PROGRAMS: DropdownItem[] = [
+  { label: "Peer to Peer",                href: "/programs/peer-to-peer",        status: "results" },
+  { label: "Advocacy & Networking Events",href: "/programs/advocacy-networking", status: "open" },
+  { label: "Summer School",               href: "/programs/summer-school",       status: "soon" },
+];
+
+// ── Simple dropdown ────────────────────────────────────────────────────────
+function SimpleDropdown({ items }: { items: DropdownItem[] }) {
   return (
-    <div
-      className={cn(
-        "absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-white rounded-lg shadow-institutional-lg border border-slate-100 overflow-hidden transition-all duration-200 origin-top",
-        isOpen ? "opacity-100 scale-y-100 pointer-events-auto" : "opacity-0 scale-y-95 pointer-events-none"
-      )}
-    >
-      <div className="py-2">
-        {items.map((item) => (
+    <div className="absolute top-full left-0 mt-1.5 w-60 bg-white border border-slate-200 rounded-lg shadow-lg py-2 z-50">
+      {items.map((item, i) => {
+        // insert separator before "Donors & Partners" (index 3)
+        const showSep = item.href === "/about/donors-partners";
+        return (
+          <div key={item.href}>
+            {showSep && <div className="my-1.5 mx-1 border-t border-slate-100" />}
+            <Link
+              href={item.href}
+              className="flex items-start gap-2.5 px-3 py-2 hover:bg-slate-50 hover:text-brand-800 transition-colors"
+            >
+              <div className="w-7 h-7 bg-slate-100 rounded-sm flex items-center justify-center shrink-0 mt-0.5">
+                <span className="w-3 h-3 text-brand-700">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                    <circle cx="12" cy="12" r="9" />
+                  </svg>
+                </span>
+              </div>
+              <div>
+                <span className="block text-[13px] font-semibold text-slate-800">{item.label}</span>
+                {item.sub && <span className="block text-[11px] text-slate-500 mt-0.5">{item.sub}</span>}
+              </div>
+            </Link>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── Mega dropdown ──────────────────────────────────────────────────────────
+function MegaDropdown() {
+  return (
+    <div className="absolute top-full left-0 mt-1.5 w-[560px] bg-white border border-slate-200 rounded-lg shadow-lg z-50 grid grid-cols-2 p-3.5">
+      {/* Left — programs */}
+      <div className="pr-4">
+        <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-2 mb-1.5 border-b border-slate-100">
+          Funding Opportunities
+        </div>
+        {FUNDING_PROGRAMS.map(({ label, href, status }) => (
           <Link
-            key={item.href}
-            href={item.href}
-            className="flex flex-col px-4 py-2.5 hover:bg-slate-50 transition-colors group"
+            key={href}
+            href={href}
+            className="flex items-center gap-2 px-2 py-1.5 rounded-sm text-[13px] text-slate-600 hover:bg-slate-50 hover:text-brand-700 transition-colors"
           >
-            <span className="text-sm font-medium text-slate-800 group-hover:text-brand-600">
-              {item.label}
-            </span>
-            {item.description && (
-              <span className="text-xs text-slate-500 mt-0.5">{item.description}</span>
-            )}
+            <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot[status ?? "soon"]}`} />
+            {label}
           </Link>
         ))}
+        <div className="h-3" />
+        <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-2 mb-1.5 border-b border-slate-100">
+          Capacity & Networking
+        </div>
+        {CAPACITY_PROGRAMS.map(({ label, href, status }) => (
+          <Link
+            key={href}
+            href={href}
+            className="flex items-center gap-2 px-2 py-1.5 rounded-sm text-[13px] text-slate-600 hover:bg-slate-50 hover:text-brand-700 transition-colors"
+          >
+            <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot[status ?? "soon"]}`} />
+            {label}
+          </Link>
+        ))}
+      </div>
+
+      {/* Right — quick access */}
+      <div className="border-l border-slate-100 pl-4">
+        <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-2 mb-2 border-b border-slate-100">
+          Quick Access
+        </div>
+        <a
+          href="https://wbfportal.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col gap-0.5 p-2.5 bg-slate-50 rounded-lg mb-2 hover:bg-slate-100 transition-colors"
+        >
+          <span className="text-[13px] font-semibold text-brand-800">Apply Now via OGMS →</span>
+          <span className="text-[11px] text-slate-500">Online Grant Management System</span>
+        </a>
+        <a
+          href="https://wbfpartnership.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col gap-0.5 p-2.5 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors"
+        >
+          <span className="text-[13px] font-semibold text-brand-800">Find Partners →</span>
+          <span className="text-[11px] text-slate-500">WBF Partnership Platform</span>
+        </a>
+
+        <div className="mt-3.5 pt-3.5 border-t border-slate-100">
+          <div className="text-[10px] font-bold uppercase tracking-[0.12em] text-slate-400 mb-2">
+            Status Guide
+          </div>
+          <div className="flex flex-col gap-1.5 text-[12px] text-slate-500">
+            {[
+              ["open",    "Open — accepting applications"],
+              ["review",  "Under Review"],
+              ["results", "Results Announced"],
+              ["soon",    "Coming Soon"],
+            ].map(([s, label]) => (
+              <span key={s} className="flex items-center gap-2">
+                <span className={`w-1.5 h-1.5 rounded-full inline-block shrink-0 ${statusDot[s]}`} />
+                {label}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
+// ── Main Navigation ────────────────────────────────────────────────────────
 export function Navigation() {
   const pathname = usePathname();
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
-  const navRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    setOpenMenu(null);
-  }, [pathname]);
-
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (navRef.current && !navRef.current.contains(e.target as Node)) {
-        setOpenMenu(null);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  function isActive(item: NavItem): boolean {
-    if (item.href === "/" ) return pathname === "/";
-    return pathname.startsWith(item.href);
+  function isActive(href: string) {
+    return href === "/" ? pathname === "/" : pathname.startsWith(href);
   }
 
   return (
-    <nav ref={navRef} className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+    <nav className="hidden lg:flex items-center flex-1" aria-label="Main navigation">
       {NAV_ITEMS.map((item) => {
-        const active = isActive(item);
-        const hasChildren = item.children && item.children.length > 0;
-        const isOpen = openMenu === item.label;
+        const hasDropdown = item.dropdown && item.dropdown.length > 0;
+        const isMega = item.mega;
+        const active = isActive(item.href);
 
         return (
-          <div key={item.label} className="relative">
-            {hasChildren ? (
-              <button
-                onClick={() => setOpenMenu(isOpen ? null : item.label)}
-                onMouseEnter={() => setOpenMenu(item.label)}
-                className={cn(
-                  "nav-link flex items-center gap-1 px-3 py-2 rounded-sm",
-                  active && "nav-link-active"
-                )}
-                aria-expanded={isOpen}
-                aria-haspopup="true"
-              >
-                {item.label}
-                {item.badge && (
-                  <span className="ml-1 badge badge-teal text-2xs">{item.badge}</span>
-                )}
-                <ChevronDown
-                  className={cn(
-                    "w-3.5 h-3.5 transition-transform duration-200",
-                    isOpen && "rotate-180"
-                  )}
-                />
-              </button>
-            ) : (
-              <Link
-                href={item.href}
-                className={cn(
-                  "nav-link flex items-center gap-1 px-3 py-2 rounded-sm",
-                  active && "nav-link-active"
-                )}
-              >
-                {item.label}
-              </Link>
+          <div key={item.label} className="relative group">
+            <Link
+              href={item.href}
+              className={cn(
+                "flex items-center gap-1 px-3.5 py-2 text-[14px] font-medium rounded-sm transition-colors whitespace-nowrap",
+                active
+                  ? "text-brand-800 bg-slate-100"
+                  : "text-slate-600 hover:text-brand-800 hover:bg-slate-50"
+              )}
+            >
+              {item.label}
+              {(hasDropdown || isMega) && (
+                <ChevronDown className="w-3 h-3 transition-transform duration-150 group-hover:rotate-180" />
+              )}
+            </Link>
+
+            {hasDropdown && !isMega && (
+              <div className="hidden group-hover:block">
+                <SimpleDropdown items={item.dropdown!} />
+              </div>
             )}
 
-            {hasChildren && item.children && (
-              <div onMouseLeave={() => setOpenMenu(null)}>
-                <DropdownMenu items={item.children} isOpen={isOpen} />
+            {isMega && (
+              <div className="hidden group-hover:block">
+                <MegaDropdown />
               </div>
             )}
           </div>
@@ -176,5 +252,3 @@ export function Navigation() {
     </nav>
   );
 }
-
-export { NAV_ITEMS };
