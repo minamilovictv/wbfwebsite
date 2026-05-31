@@ -27,7 +27,7 @@ const steps = [
     n: "3",
     title: "Register on OGMS",
     desc: "Create an account on the Online Grant Management System to submit your application.",
-    href: process.env.NEXT_PUBLIC_SITE_URL + "/ogms" ?? "#",
+    href: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.westernbalkansfund.org") + "/ogms",
     cta: "Go to OGMS Portal",
     external: true,
   },
