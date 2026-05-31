@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import { sanityFetch } from "@/lib/sanity/client";
 import { homePageQuery } from "@/lib/sanity/queries";
 import { HeroSection } from "@/components/sections/Hero";
-import { ImpactStats } from "@/components/sections/ImpactStats";
-import { GrantCTA } from "@/components/sections/GrantCTA";
-import { NewsGrid } from "@/components/sections/NewsGrid";
-import { PartnersStrip } from "@/components/sections/PartnersStrip";
+import { AboutSection } from "@/components/sections/AboutSection";
 import { ProgramsOverview } from "@/components/sections/ProgramsOverview";
+import { ImpactStats } from "@/components/sections/ImpactStats";
+import { NewsGrid } from "@/components/sections/NewsGrid";
 import { EventsPreview } from "@/components/sections/EventsPreview";
+import { PartnersStrip } from "@/components/sections/PartnersStrip";
 import type { Program, Grant, NewsArticle, WBFEvent, Partner } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Western Balkans Fund — Regional Cooperation & Grants",
+  title: "Western Balkans Fund — Building Regional Cooperation",
   description:
-    "The Western Balkans Fund promotes regional cooperation and people-to-people connectivity across Albania, Bosnia and Herzegovina, Kosovo, North Macedonia, Montenegro, and Serbia.",
+    "The Western Balkans Fund supports civil society, institutions, and communities across all six Contracting Parties — funding projects that strengthen reconciliation, EU integration, and people-to-people ties.",
 };
 
 interface HomeData {
@@ -35,16 +35,14 @@ export default async function HomePage() {
 
   try {
     data = await sanityFetch<HomeData>(homePageQuery, {}, { revalidate: 3600, tags: ["home"] });
-  } catch {
-    // Fallback to empty state when Sanity is not configured
-  }
+  } catch {}
 
   return (
     <>
       <HeroSection />
-      <ImpactStats />
+      <AboutSection />
       <ProgramsOverview programs={data.featuredPrograms} />
-      <GrantCTA grants={data.openGrants} />
+      <ImpactStats />
       <NewsGrid articles={data.latestNews} />
       <EventsPreview events={data.upcomingEvents} />
       <PartnersStrip partners={data.partners} />

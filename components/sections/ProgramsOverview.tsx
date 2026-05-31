@@ -1,95 +1,78 @@
 import Link from "next/link";
-import Image from "next/image";
-import {
-  Users, Globe2, Leaf, Cpu, BookOpen, Building2, HeartHandshake, ArrowRight
-} from "lucide-react";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Badge } from "@/components/ui/Badge";
+import { ArrowRight } from "lucide-react";
 import { getImageUrl } from "@/lib/sanity/client";
-import type { Program, ProgramPillar } from "@/types";
-import { cn } from "@/lib/utils/cn";
+import { Badge, GrantStatusBadge } from "@/components/ui/Badge";
+import type { Program } from "@/types";
 
-const pillarConfig: Record<ProgramPillar, { label: string; icon: React.ElementType; color: string; bg: string }> = {
-  "regional-cooperation": { label: "Regional Cooperation", icon: Globe2, color: "text-brand-600", bg: "bg-brand-50" },
-  "youth-mobility": { label: "Youth Mobility", icon: Users, color: "text-teal-600", bg: "bg-teal-50" },
-  "cultural-heritage": { label: "Cultural Heritage", icon: BookOpen, color: "text-gold-600", bg: "bg-gold-50" },
-  "economic-development": { label: "Economic Development", icon: Building2, color: "text-emerald-600", bg: "bg-emerald-50" },
-  "civil-society": { label: "Civil Society", icon: HeartHandshake, color: "text-violet-600", bg: "bg-violet-50" },
-  environment: { label: "Environment", icon: Leaf, color: "text-green-600", bg: "bg-green-50" },
-  digitalization: { label: "Digitalization", icon: Cpu, color: "text-sky-600", bg: "bg-sky-50" },
-  "science-research": { label: "Science & Research", icon: BookOpen, color: "text-rose-600", bg: "bg-rose-50" },
-};
-
-const FALLBACK_PILLARS: ProgramPillar[] = [
-  "regional-cooperation",
-  "youth-mobility",
-  "civil-society",
-  "environment",
-  "cultural-heritage",
-  "economic-development",
+const FALLBACK_PROGRAMS = [
+  {
+    slug: "ggi-grants",
+    name: "GGI Grants — Grassroots & Civil Society",
+    desc: "Funds regional cooperation projects led by CSOs, cultural institutions, education bodies, and grassroots organizations across WB6. Call No. 8 under evaluation.",
+    status: "review" as const,
+    badge: "Under Review",
+    grant: "€15,000",
+    grantSub: "max grant",
+    date: "Results: June 2026",
+  },
+  {
+    slug: "matching-grants",
+    name: "Matching Grants",
+    desc: "Supports organizations that have secured co-funding from another source, amplifying their impact through matched WBF support. Rolling basis, no deadline.",
+    status: "open" as const,
+    badge: "Always Open",
+    grant: "€10,000",
+    grantSub: "max grant",
+    date: "No deadline — rolling basis",
+  },
+  {
+    slug: "visegrad-fellowship",
+    name: "Visegrad Fellowship — 3rd Edition",
+    desc: "Supports doctoral students and graduates from WB6 connecting with V4 countries — Czech Republic, Hungary, Poland, Slovakia. In partnership with the International Visegrad Fund.",
+    status: "open" as const,
+    badge: "Open",
+    grant: "Fellowship",
+    grantSub: "mobility grant",
+    date: "Deadline: 30 June 2026",
+  },
+  {
+    slug: "erc-grants",
+    name: "ERC Grants — EU Co-funded",
+    desc: "Larger EU co-funded grants for established organizations. Autumn 2026 opening — register your organization to be notified.",
+    status: "upcoming" as const,
+    badge: "Coming Soon",
+    grant: "€30,000",
+    grantSub: "max grant",
+    date: "Opening: Autumn 2026",
+  },
+  {
+    slug: "move-grants",
+    name: "Move Grants",
+    desc: "Supports individuals creating new regional connections — framed around purpose and output, not travel. Open to individuals. New call anticipated.",
+    status: "upcoming" as const,
+    badge: "Coming Soon",
+    grant: "Travel grant",
+    grantSub: "for individuals",
+    date: "Next call: TBC",
+  },
+  {
+    slug: "advocacy-networking",
+    name: "Advocacy & Networking Events",
+    desc: "Seven annual events connecting CSOs, governmental instances, and LeadBalkans platform participants. Japan-funded, focused on regional advocacy.",
+    status: "open" as const,
+    badge: "Open",
+    grant: "7 events",
+    grantSub: "annual",
+    date: "LeadBalkans Platform →",
+  },
 ];
 
-function ProgramCard({ program }: { program: Program }) {
-  const config = pillarConfig[program.pillar];
-  const Icon = config?.icon ?? Globe2;
-  const imageUrl = getImageUrl(program.coverImage, { width: 600, height: 360 });
-
-  return (
-    <Link
-      href={`/programs/${program.slug.current}`}
-      className="group card-hover overflow-hidden flex flex-col"
-    >
-      <div className="relative h-44 bg-slate-100 overflow-hidden">
-        {imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt={program.coverImage?.alt ?? program.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-        ) : (
-          <div className="absolute inset-0 bg-gradient-brand opacity-80 flex items-center justify-center">
-            <Icon className="w-12 h-12 text-white/50" />
-          </div>
-        )}
-        <div className="absolute top-3 left-3">
-          <Badge variant="primary" size="sm">{config?.label ?? program.pillar}</Badge>
-        </div>
-      </div>
-      <div className="p-5 flex flex-col flex-1">
-        <div className={cn("w-8 h-8 rounded-md flex items-center justify-center mb-3", config?.bg ?? "bg-slate-50")}>
-          <Icon className={cn("w-4 h-4", config?.color ?? "text-slate-600")} />
-        </div>
-        <h3 className="text-card-title group-hover:text-brand-600 transition-colors mb-2 flex-1">
-          {program.title}
-        </h3>
-        <p className="text-sm text-slate-500 line-clamp-2 mb-4">{program.shortDescription}</p>
-        <div className="flex items-center gap-1 text-sm text-brand-500 font-medium group-hover:gap-2 transition-all">
-          Learn more <ArrowRight className="w-4 h-4" />
-        </div>
-      </div>
-    </Link>
-  );
-}
-
-function PillarCard({ pillar }: { pillar: ProgramPillar }) {
-  const config = pillarConfig[pillar];
-  const Icon = config.icon;
-  return (
-    <Link
-      href={`/programs?pillar=${pillar}`}
-      className="group flex flex-col items-center text-center p-6 card-hover"
-    >
-      <div className={cn("w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-colors", config.bg, "group-hover:scale-110 transition-transform duration-200")}>
-        <Icon className={cn("w-7 h-7", config.color)} />
-      </div>
-      <h3 className="text-sm font-semibold text-slate-800 group-hover:text-brand-600 transition-colors">
-        {config.label}
-      </h3>
-    </Link>
-  );
-}
+const statusColors: Record<string, string> = {
+  open: "bg-emerald-500/18 text-emerald-400",
+  review: "bg-amber-500/18 text-amber-400",
+  upcoming: "bg-slate-500/13 text-slate-400",
+  closed: "bg-white/8 text-white/60",
+};
 
 interface ProgramsOverviewProps {
   programs?: Program[];
@@ -97,33 +80,58 @@ interface ProgramsOverviewProps {
 
 export function ProgramsOverview({ programs = [] }: ProgramsOverviewProps) {
   return (
-    <section className="section-padding bg-white">
-      <div className="container-institutional">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-          <SectionHeader
-            overline="Our Programs"
-            title="Program Portfolio"
-            description="From youth exchanges to environmental initiatives, our programs advance cooperation across the Western Balkans."
-          />
-          <Link href="/programs" className="shrink-0 btn-outline btn-sm">
-            All Programs <ArrowRight className="w-4 h-4" />
+    <section className="section-padding bg-brand-950 relative overflow-hidden" id="programs">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-radial-[circle,rgba(75,101,132,0.18)_0%,transparent_70%] pointer-events-none" />
+
+      <div className="container-institutional relative z-10">
+        <div className="flex items-end justify-between mb-11">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/35 mb-2">
+              Funding Opportunities
+            </p>
+            <h2 className="font-display text-3xl font-semibold text-white">Our Programs</h2>
+          </div>
+          <Link
+            href="/programs"
+            className="text-sm font-semibold text-white/65 border border-white/18 rounded-sm px-4 py-2 hover:border-white/40 hover:text-white transition-colors"
+          >
+            View All Programs →
           </Link>
         </div>
 
-        {programs.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {programs.map((p) => (
-              <ProgramCard key={p._id} program={p} />
-            ))}
-          </div>
-        ) : (
-          /* Fallback — pillars only when no CMS data */
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {FALLBACK_PILLARS.map((pillar) => (
-              <PillarCard key={pillar} pillar={pillar} />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          {FALLBACK_PROGRAMS.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/programs/${p.slug}`}
+              className="group flex flex-col bg-white/4 border border-white/7 rounded-lg p-5 hover:bg-white/8 hover:border-white/14 transition-all hover:-translate-y-0.5"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <span
+                  className={`text-[10px] font-bold uppercase tracking-[0.05em] px-2.5 py-1 rounded-full ${statusColors[p.status]}`}
+                >
+                  {p.badge}
+                </span>
+                <div className="text-right">
+                  <div className="text-sm font-semibold text-white/75">{p.grant}</div>
+                  <div className="text-[11px] text-white/35">{p.grantSub}</div>
+                </div>
+              </div>
+
+              <h3 className="text-base font-semibold text-white mb-2 leading-snug flex-1">
+                {p.name}
+              </h3>
+              <p className="text-[13px] text-white/45 leading-relaxed mb-4">{p.desc}</p>
+
+              <div className="flex items-center justify-between pt-3 border-t border-white/7">
+                <span className="text-xs text-white/30">{p.date}</span>
+                <div className="w-6 h-6 rounded-full bg-white/7 flex items-center justify-center text-[13px] text-white/40 group-hover:bg-white/14 group-hover:text-white transition-all">
+                  →
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );

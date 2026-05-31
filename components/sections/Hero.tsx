@@ -1,112 +1,142 @@
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Users, Globe2, Building2 } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { ArrowRight, FileText, Users, BarChart3 } from "lucide-react";
 
-const quickStats = [
-  { value: "6", label: "Member States", icon: Globe2 },
-  { value: "€40M+", label: "Grants Awarded", icon: Building2 },
-  { value: "2,400+", label: "Projects Funded", icon: Users },
+const stats = [
+  { value: "500+", label: "Projects funded across the region" },
+  { value: "€8M+", label: "Total funding disbursed" },
+  { value: "6", label: "Contracting Parties covered" },
+  { value: "9", label: "Active funding programs" },
+];
+
+const audienceCards = [
+  {
+    icon: FileText,
+    title: "Apply for Funding",
+    sub: "CSOs, NGOs, institutions — explore open calls",
+    href: "/grants/open-calls",
+    color: "bg-white/10",
+  },
+  {
+    icon: Users,
+    title: "Build a Partnership",
+    sub: "Find organizations across WB6 to collaborate",
+    href: "https://wbfpartnership.com",
+    color: "bg-white/10",
+    external: true,
+  },
+  {
+    icon: BarChart3,
+    title: "Explore Our Impact",
+    sub: "Donors and governments — see what we fund",
+    href: "/projects",
+    color: "bg-white/10",
+  },
 ];
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-hero min-h-[80vh] flex items-center">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 0)`,
-            backgroundSize: "32px 32px",
-          }}
-        />
-      </div>
+    <section className="relative overflow-hidden bg-gradient-hero">
+      {/* Subtle grid */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.018]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(0deg,transparent,transparent 60px,white 60px,white 61px),repeating-linear-gradient(90deg,transparent,transparent 60px,white 60px,white 61px)",
+        }}
+      />
+      {/* Orbs */}
+      <div className="absolute -top-40 -right-24 w-[560px] h-[560px] rounded-full bg-radial-[circle,rgba(75,101,132,0.28)_0%,transparent_70%] pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-[360px] h-[360px] rounded-full bg-radial-[circle,rgba(26,54,104,0.4)_0%,transparent_70%] pointer-events-none" />
 
-      {/* Decorative shape */}
-      <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20 hidden xl:block">
-        <svg viewBox="0 0 600 800" fill="none" className="h-full w-full">
-          <circle cx="500" cy="200" r="300" fill="url(#heroGrad)" />
-          <circle cx="200" cy="600" r="200" fill="url(#heroGrad2)" />
-          <defs>
-            <radialGradient id="heroGrad">
-              <stop stopColor="#00756A" />
-              <stop offset="1" stopColor="#003366" stopOpacity="0" />
-            </radialGradient>
-            <radialGradient id="heroGrad2">
-              <stop stopColor="#F4A41A" />
-              <stop offset="1" stopColor="#F4A41A" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-        </svg>
-      </div>
+      <div className="relative container-institutional pt-24 pb-0">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-16 items-end">
+          {/* Left */}
+          <div className="pb-16">
+            <div className="inline-flex items-center gap-2 bg-white/7 border border-white/10 rounded-full px-4 py-1.5 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+              <span className="text-xs font-medium text-white/65 tracking-wide">
+                Co-funded by the European Union · IPA III · WB6 Region
+              </span>
+            </div>
 
-      <div className="relative container-institutional py-24 lg:py-32">
-        <div className="max-w-3xl">
-          {/* Overline tag */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-8">
-            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-            <span className="text-teal-300 text-xs font-semibold uppercase tracking-wider">
-              Open Calls Available
-            </span>
+            <h1 className="font-display text-5xl lg:text-6xl font-bold text-white leading-[1.08] tracking-tight mb-6">
+              Building{" "}
+              <em className="not-italic font-light text-white/65">lasting</em>
+              <br />
+              regional cooperation
+              <br />
+              across the Western Balkans
+            </h1>
+
+            <p className="text-lg text-white/60 leading-relaxed max-w-[50ch] mb-10">
+              The Western Balkans Fund supports civil society, institutions, and communities across
+              all six Contracting Parties — funding projects that strengthen reconciliation, EU
+              integration, and people-to-people ties.
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/grants/open-calls"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-900 font-semibold text-sm rounded-sm hover:bg-slate-100 transition-colors"
+              >
+                Explore Funding Programs <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 px-6 py-3 text-white/75 border border-white/20 rounded-sm hover:border-white/45 hover:text-white transition-colors text-sm font-semibold"
+              >
+                About WBF
+              </Link>
+            </div>
           </div>
 
-          {/* Headline */}
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.05] tracking-tight mb-6 text-balance">
-            Connecting the
-            <span className="block text-teal-400">Western Balkans</span>
-          </h1>
-
-          <p className="text-xl text-slate-300 leading-relaxed mb-10 max-w-xl text-pretty">
-            The Western Balkans Fund supports regional cooperation through grants, mobility
-            programmes, and partnerships across six economies.
-          </p>
-
-          {/* CTA row */}
-          <div className="flex flex-wrap gap-4 mb-16">
-            <Button href="/grants/open-calls" size="lg" variant="secondary">
-              View Open Calls
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-            <Button href="/about" size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 hover:text-white">
-              About the Fund
-            </Button>
-          </div>
-
-          {/* Quick stats */}
-          <div className="flex flex-wrap gap-8">
-            {quickStats.map(({ value, label, icon: Icon }) => (
-              <div key={label} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-sm bg-white/10 flex items-center justify-center shrink-0">
-                  <Icon className="w-5 h-5 text-teal-400" />
-                </div>
-                <div>
-                  <div className="text-2xl font-display font-bold text-white leading-none">
-                    {value}
+          {/* Right — audience cards */}
+          <div className="pb-16">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/30 mb-4">
+              I am looking to…
+            </p>
+            <div className="flex flex-col gap-3">
+              {audienceCards.map(({ icon: Icon, title, sub, href, external }) => {
+                const inner = (
+                  <div className="flex items-center gap-4 bg-white/5 border border-white/9 rounded-lg px-5 py-4 hover:bg-white/9 hover:border-white/18 transition-all group cursor-pointer">
+                    <div className="w-10 h-10 rounded-sm bg-white/10 flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5 text-white" strokeWidth={1.8} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm font-semibold text-white mb-0.5">{title}</div>
+                      <div className="text-xs text-white/50">{sub}</div>
+                    </div>
+                    <span className="text-white/25 group-hover:text-white/60 transition-colors text-base">→</span>
                   </div>
-                  <div className="text-xs text-slate-400 mt-0.5">{label}</div>
-                </div>
-              </div>
-            ))}
+                );
+                return external ? (
+                  <a key={title} href={href} target="_blank" rel="noopener noreferrer">
+                    {inner}
+                  </a>
+                ) : (
+                  <Link key={title} href={href}>
+                    {inner}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Member states ribbon */}
-        <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-black/20 backdrop-blur-sm">
-          <div className="container-institutional py-3 flex items-center gap-6 overflow-x-auto scrollbar-thin">
-            <span className="text-xs text-slate-500 font-semibold uppercase tracking-wider shrink-0">
-              Member States
-            </span>
-            {[
-              ["🇦🇱", "Albania"],
-              ["🇧🇦", "Bosnia & Herz."],
-              ["🇽🇰", "Kosovo*"],
-              ["🇲🇰", "North Macedonia"],
-              ["🇲🇪", "Montenegro"],
-              ["🇷🇸", "Serbia"],
-            ].map(([flag, name]) => (
-              <div key={name} className="flex items-center gap-2 text-sm text-slate-300 shrink-0">
-                <span className="text-lg">{flag}</span>
-                <span>{name}</span>
+      {/* Stats bar */}
+      <div className="relative border-t border-white/7 bg-black/20">
+        <div className="container-institutional">
+          <div className="grid grid-cols-2 lg:grid-cols-4">
+            {stats.map(({ value, label }, i) => (
+              <div
+                key={label}
+                className={`py-6 px-6 ${i < stats.length - 1 ? "border-r border-white/7" : ""}`}
+              >
+                <div className="font-display text-3xl font-bold text-white leading-none mb-1">
+                  {value}
+                </div>
+                <div className="text-sm text-white/45">{label}</div>
               </div>
             ))}
           </div>
