@@ -191,7 +191,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   <div>
                     <div className="text-xs text-slate-400 mb-0.5">Countries</div>
                     <div className="font-medium text-slate-800">
-                      {project.countries.map((c) => (
+                      {(project.countries ?? []).map((c) => (
                         <span key={c} className="mr-2">
                           {getCountryFlag(c)} {getCountryName(c)}
                         </span>

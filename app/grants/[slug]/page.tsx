@@ -114,7 +114,7 @@ export default async function GrantPage({ params }: PageProps) {
               <div>
                 <h2 className="text-xl font-display font-bold text-slate-900 mb-4">Eligible Applicants</h2>
                 <div className="flex flex-wrap gap-2">
-                  {grant.eligibleApplicants.map((a) => (
+                  {(grant.eligibleApplicants ?? []).map((a) => (
                     <Badge key={a} variant="teal">{applicantLabels[a] ?? a}</Badge>
                   ))}
                 </div>
@@ -124,7 +124,7 @@ export default async function GrantPage({ params }: PageProps) {
               <div>
                 <h2 className="text-xl font-display font-bold text-slate-900 mb-4">Eligible Countries</h2>
                 <div className="flex flex-wrap gap-3">
-                  {grant.eligibleCountries.map((c) => (
+                  {(grant.eligibleCountries ?? []).map((c) => (
                     <span key={c} className="flex items-center gap-1.5 text-sm text-slate-700">
                       <span className="text-lg">{getCountryFlag(c)}</span>
                       {getCountryName(c)}
