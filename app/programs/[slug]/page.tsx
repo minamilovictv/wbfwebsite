@@ -95,19 +95,21 @@ export default async function ProgramPage({ params }: PageProps) {
             {/* Sidebar */}
             <aside className="space-y-6">
               {/* Countries */}
-              <div className="card p-5">
-                <h3 className="font-semibold text-slate-800 mb-3 text-sm uppercase tracking-wide">
-                  Eligible Countries
-                </h3>
-                <div className="space-y-2">
-                  {program.countries.map((c) => (
-                    <div key={c} className="flex items-center gap-2 text-sm">
-                      <span>{getCountryFlag(c)}</span>
-                      <span className="text-slate-700">{getCountryName(c)}</span>
-                    </div>
-                  ))}
+              {program.countries && program.countries.length > 0 && (
+                <div className="card p-5">
+                  <h3 className="font-semibold text-slate-800 mb-3 text-sm uppercase tracking-wide">
+                    Eligible Countries
+                  </h3>
+                  <div className="space-y-2">
+                    {program.countries.map((c) => (
+                      <div key={c} className="flex items-center gap-2 text-sm">
+                        <span>{getCountryFlag(c)}</span>
+                        <span className="text-slate-700">{getCountryName(c)}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Dates */}
               {(program.startDate || program.endDate) && (
