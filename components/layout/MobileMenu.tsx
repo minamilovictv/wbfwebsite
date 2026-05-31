@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { X, ChevronDown, ExternalLink } from "lucide-react";
+import { X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { NAV_ITEMS } from "./Navigation";
 
@@ -79,7 +79,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         {/* Nav items */}
         <nav className="px-3 py-4 space-y-0.5" aria-label="Mobile navigation">
           {NAV_ITEMS.map((item) => {
-            const hasChildren = item.children && item.children.length > 0;
+            const hasChildren = item.dropdown && item.dropdown.length > 0;
             const isExpanded = expandedItem === item.label;
             const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
 
@@ -104,18 +104,18 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         )}
                       />
                     </button>
-                    {isExpanded && item.children && (
+                    {isExpanded && item.dropdown && (
                       <div className="ml-3 mt-0.5 space-y-0.5 border-l-2 border-slate-100 pl-3">
-                        {item.children.map((child) => (
+                        {item.dropdown.map((child) => (
                           <Link
                             key={child.href}
                             href={child.href}
                             className="flex flex-col px-3 py-2 rounded-md text-sm transition-colors hover:bg-slate-50"
                           >
                             <span className="font-medium text-slate-700">{child.label}</span>
-                            {child.description && (
+                            {child.sub && (
                               <span className="text-xs text-slate-500 mt-0.5">
-                                {child.description}
+                                {child.sub}
                               </span>
                             )}
                           </Link>
@@ -134,7 +134,6 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     )}
                   >
                     {item.label}
-                    {item.external && <ExternalLink className="w-3.5 h-3.5" />}
                   </Link>
                 )}
               </div>
