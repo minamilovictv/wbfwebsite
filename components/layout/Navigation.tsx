@@ -5,22 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
-
-// ── Types ──────────────────────────────────────────────────────────────────
-interface DropdownItem {
-  label: string;
-  href: string;
-  sub?: string;
-  external?: boolean;
-  status?: "open" | "review" | "soon" | "results";
-}
-
-interface NavItem {
-  label: string;
-  href: string;
-  dropdown?: DropdownItem[];
-  mega?: boolean;
-}
+import { NAV_ITEMS } from "@/lib/nav-items";
+import type { NavItem, DropdownItem } from "@/lib/nav-items";
 
 // ── Status dot colours ─────────────────────────────────────────────────────
 const statusDot: Record<string, string> = {
@@ -29,49 +15,6 @@ const statusDot: Record<string, string> = {
   soon:    "bg-slate-400",
   results: "bg-brand-600",
 };
-
-// ── Nav data ───────────────────────────────────────────────────────────────
-const NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/" },
-  {
-    label: "About WBF",
-    href: "/about",
-    dropdown: [
-      { label: "Who We Are",             href: "/about",                  sub: "Mission, mandate and history" },
-      { label: "Structure & Governance", href: "/about/governance",       sub: "Board, secretariat, statutes" },
-      { label: "Our Team",               href: "/about/team",             sub: "Secretariat and contacts" },
-      { label: "Donors & Partners",      href: "/about/donors-partners",  sub: "EU, Switzerland, Japan, Germany…" },
-      { label: "Accountability",         href: "/about/accountability",   sub: "Reports and financial statements" },
-    ],
-  },
-  {
-    label: "Our Programs",
-    href: "/programs",
-    mega: true,
-    dropdown: [],
-  },
-  {
-    label: "Our Impact",
-    href: "/impact",
-    dropdown: [
-      { label: "Impact Overview",      href: "/impact",          sub: "Numbers, geography, reach" },
-      { label: "Grantee Stories",      href: "/impact/stories",  sub: "In-depth project highlights" },
-      { label: "WBF Champion Awards",  href: "/impact/awards",   sub: "Annual recognition program" },
-    ],
-  },
-  { label: "Our Grantees", href: "/grantees" },
-  {
-    label: "News & Events",
-    href: "/news",
-    dropdown: [
-      { label: "News",   href: "/news",   sub: "Stories, announcements, updates" },
-      { label: "Events", href: "/events", sub: "Info sessions, ceremonies, networking" },
-    ],
-  },
-  { label: "Contact", href: "/contact" },
-];
-
-export { NAV_ITEMS };
 
 // ── Funding programs for mega menu ─────────────────────────────────────────
 const FUNDING_PROGRAMS: DropdownItem[] = [
@@ -128,7 +71,6 @@ function MegaDropdown() {
   return (
     <div className="absolute top-full left-0 pt-2 z-50">
       <div className="w-[560px] bg-white border border-slate-200 rounded-lg shadow-lg grid grid-cols-2 p-3.5">
-        {/* Left — programs */}
         <div className="pr-4">
           <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-2 mb-1.5 border-b border-slate-100">
             Funding Opportunities
@@ -159,7 +101,6 @@ function MegaDropdown() {
           ))}
         </div>
 
-        {/* Right — quick access */}
         <div className="border-l border-slate-100 pl-4">
           <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-2 mb-2 border-b border-slate-100">
             Quick Access
@@ -207,7 +148,7 @@ function MegaDropdown() {
   );
 }
 
-// ── Nav Item with hover delay ──────────────────────────────────────────────
+// ── Nav item with hover delay ──────────────────────────────────────────────
 function NavItemWithDropdown({ item, active }: { item: NavItem; active: boolean }) {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -224,8 +165,6 @@ function NavItemWithDropdown({ item, active }: { item: NavItem; active: boolean 
     closeTimer.current = setTimeout(() => setOpen(false), 120);
   }, [cancelClose]);
 
-  const hasDropdown = (item.dropdown && item.dropdown.length > 0) || item.mega;
-
   return (
     <div
       className="relative"
@@ -236,15 +175,11 @@ function NavItemWithDropdown({ item, active }: { item: NavItem; active: boolean 
         href={item.href}
         className={cn(
           "flex items-center gap-1 px-3.5 py-2 text-[14px] font-medium rounded-sm transition-colors whitespace-nowrap",
-          active
-            ? "text-brand-800 bg-slate-100"
-            : "text-slate-600 hover:text-brand-800 hover:bg-slate-50"
+          active ? "text-brand-800 bg-slate-100" : "text-slate-600 hover:text-brand-800 hover:bg-slate-50"
         )}
       >
         {item.label}
-        {hasDropdown && (
-          <ChevronDown className={cn("w-3 h-3 transition-transform duration-150", open && "rotate-180")} />
-        )}
+        <ChevronDown className={cn("w-3 h-3 transition-transform duration-150", open && "rotate-180")} />
       </Link>
 
       {open && !item.mega && item.dropdown && item.dropdown.length > 0 && (
@@ -279,9 +214,7 @@ export function Navigation() {
             href={item.href}
             className={cn(
               "flex items-center gap-1 px-3.5 py-2 text-[14px] font-medium rounded-sm transition-colors whitespace-nowrap",
-              active
-                ? "text-brand-800 bg-slate-100"
-                : "text-slate-600 hover:text-brand-800 hover:bg-slate-50"
+              active ? "text-brand-800 bg-slate-100" : "text-slate-600 hover:text-brand-800 hover:bg-slate-50"
             )}
           >
             {item.label}
