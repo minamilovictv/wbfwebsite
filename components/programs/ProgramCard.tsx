@@ -22,6 +22,8 @@ interface ProgramCardProps {
 }
 
 export function ProgramCard({ program }: ProgramCardProps) {
+  if (!program.slug?.current) return null;
+
   const imageUrl = getImageUrl(program.coverImage, { width: 600, height: 340 });
 
   return (

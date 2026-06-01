@@ -17,6 +17,8 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  if (!project.slug?.current) return null;
+
   const imageUrl = getImageUrl(project.coverImage, { width: 600, height: 340 });
   const status = statusConfig[project.status] ?? { label: project.status, variant: "neutral" as const };
 

@@ -11,6 +11,8 @@ interface GrantCTAProps {
 }
 
 function GrantCard({ grant }: { grant: Grant }) {
+  if (!grant.slug?.current) return null;
+
   const days = grant.deadline ? daysUntil(grant.deadline) : null;
   const urgent = days !== null && days <= 14 && days > 0;
 

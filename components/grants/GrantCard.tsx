@@ -22,6 +22,8 @@ interface GrantCardProps {
 }
 
 export function GrantCard({ grant, variant = "default" }: GrantCardProps) {
+  if (!grant.slug?.current) return null;
+
   const days = grant.deadline ? daysUntil(grant.deadline) : null;
   const urgent = days !== null && days <= 14 && days > 0;
   const expired = days !== null && days <= 0;

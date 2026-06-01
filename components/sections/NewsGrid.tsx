@@ -17,6 +17,8 @@ const categoryConfig: Record<NewsCategory, { label: string }> = {
 };
 
 function NewsCard({ article, featured = false }: { article: NewsArticle; featured?: boolean }) {
+  if (!article.slug?.current) return null;
+
   const imageUrl = getImageUrl(article.coverImage, { width: featured ? 900 : 600, height: featured ? 500 : 340 });
   const { label } = categoryConfig[article.category] ?? { label: article.category };
 

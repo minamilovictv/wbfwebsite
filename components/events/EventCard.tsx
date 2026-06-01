@@ -17,6 +17,8 @@ const typeLabels: Record<EventType, string> = {
 };
 
 export function EventCard({ event }: { event: WBFEvent }) {
+  if (!event.slug?.current) return null;
+
   const imageUrl = getImageUrl(event.coverImage, { width: 600, height: 340 });
   const isOnline = event.mode === "online";
   const location = isOnline ? "Online" : [event.city, event.country].filter(Boolean).join(", ");

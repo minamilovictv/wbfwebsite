@@ -17,6 +17,8 @@ const typeLabels: Record<EventType, string> = {
 };
 
 function EventItem({ event }: { event: WBFEvent }) {
+  if (!event.slug?.current) return null;
+
   const isOnline = event.mode === "online";
   const location = isOnline ? "Online" : [event.city, event.country].filter(Boolean).join(", ");
 
