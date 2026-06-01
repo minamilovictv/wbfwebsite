@@ -5,7 +5,7 @@ import Image from "next/image";
 import { X, ChevronLeft, ChevronRight, ExternalLink, Calendar, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { getImageUrl } from "@/lib/sanity/client";
-import { formatDate } from "@/lib/utils/formatters";
+import { formatDate, toPlainText } from "@/lib/utils/formatters";
 import { cn } from "@/lib/utils/cn";
 import type { NewsArticle, NewsCategory } from "@/types";
 
@@ -184,7 +184,7 @@ export function NewsModal({ article, onClose }: Props) {
           {/* Body */}
           {article.body ? (
             <div className="text-slate-600 leading-relaxed text-[15px] whitespace-pre-line">
-              {article.body}
+              {toPlainText(article.body)}
             </div>
           ) : (
             <p className="text-slate-600 leading-relaxed text-[15px]">{article.excerpt}</p>

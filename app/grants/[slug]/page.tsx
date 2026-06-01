@@ -6,7 +6,7 @@ import { grantBySlugQuery } from "@/lib/sanity/queries";
 import { PageHero } from "@/components/ui/PageHero";
 import { GrantStatusBadge, Badge } from "@/components/ui/Badge";
 import {
-  formatCurrency, formatDate, daysUntil, getCountryName, getCountryFlag
+  formatCurrency, formatDate, daysUntil, getCountryName, getCountryFlag, toPlainText
 } from "@/lib/utils/formatters";
 import {
   ArrowRight, Calendar, Clock, Download, ExternalLink, Mail,
@@ -92,7 +92,7 @@ export default async function GrantPage({ params }: PageProps) {
               {/* Description */}
               <div>
                 <h2 className="text-xl font-display font-bold text-slate-900 mb-4">About this Grant</h2>
-                <p className="text-slate-600 leading-relaxed">{grant.description}</p>
+                <p className="text-slate-600 leading-relaxed">{toPlainText(grant.description)}</p>
               </div>
 
               {/* Objectives */}

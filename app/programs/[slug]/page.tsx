@@ -7,7 +7,7 @@ import { programBySlugQuery, programsListQuery } from "@/lib/sanity/queries";
 import { PageHero } from "@/components/ui/PageHero";
 import { GrantStatusBadge, StatusBadge } from "@/components/ui/Badge";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { formatCurrency, formatDate, getCountryFlag, getCountryName } from "@/lib/utils/formatters";
+import { formatCurrency, formatDate, getCountryFlag, getCountryName, toPlainText } from "@/lib/utils/formatters";
 import { ArrowRight, Download, ExternalLink } from "lucide-react";
 import type { Program, Grant } from "@/types";
 
@@ -89,7 +89,7 @@ export default async function ProgramPage({ params }: PageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main content */}
             <div className="lg:col-span-2 prose prose-slate max-w-none">
-              <p className="text-body-lead">{program.description}</p>
+              <p className="text-body-lead">{toPlainText(program.description)}</p>
             </div>
 
             {/* Sidebar */}

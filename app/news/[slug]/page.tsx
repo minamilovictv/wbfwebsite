@@ -6,7 +6,7 @@ import { sanityFetch, getImageUrl } from "@/lib/sanity/client";
 import { newsBySlugQuery } from "@/lib/sanity/queries";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Badge } from "@/components/ui/Badge";
-import { formatDate } from "@/lib/utils/formatters";
+import { formatDate, toPlainText } from "@/lib/utils/formatters";
 import { Calendar, User, ArrowLeft } from "lucide-react";
 import type { NewsArticle } from "@/types";
 
@@ -113,7 +113,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
 
         {/* Body — in production this would be rendered PortableText */}
         <div className="prose prose-slate prose-lg max-w-none">
-          <p>{article.body}</p>
+          <p style={{ whiteSpace: "pre-wrap" }}>{toPlainText(article.body)}</p>
         </div>
 
         {/* Related links */}

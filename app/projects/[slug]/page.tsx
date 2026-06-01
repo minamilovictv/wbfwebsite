@@ -6,7 +6,7 @@ import { sanityFetch, getImageUrl } from "@/lib/sanity/client";
 import { projectBySlugQuery } from "@/lib/sanity/queries";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Badge } from "@/components/ui/Badge";
-import { formatCurrency, formatDate, getCountryFlag, getCountryName } from "@/lib/utils/formatters";
+import { formatCurrency, formatDate, getCountryFlag, getCountryName, toPlainText } from "@/lib/utils/formatters";
 import { MapPin, Calendar, Users, Building2, CheckCircle2, ArrowLeft, Download } from "lucide-react";
 import type { Project } from "@/types";
 
@@ -98,7 +98,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
             {project.description && (
               <div className="prose prose-slate max-w-none mb-8">
-                <p>{project.description}</p>
+                <p>{toPlainText(project.description)}</p>
               </div>
             )}
 

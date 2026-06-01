@@ -1,5 +1,24 @@
 import type { CountryCode } from "@/types";
 
+type PortableTextSpan = { _type?: string; text?: string };
+type PortableTextBlock = { _type?: string; children?: PortableTextSpan[]; style?: string };
+
+export function toPlainText(value: unknown): string {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  if (Array.isArray(value)) {
+    return value
+      .map((block: PortableTextBlock) => {
+        if (!block || typeof block !== "object") return "";
+        if (!Array.isArray(block.children)) return "";
+        return block.children.map((c) => c?.text ?? "").join("");
+      })
+      .filter(Boolean)
+      .join("\n\n");
+  }
+  return "";
+}
+
 export function formatDate(dateString: string, pattern?: string): string {
   try {
     const date = new Date(dateString);

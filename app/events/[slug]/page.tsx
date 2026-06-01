@@ -6,7 +6,7 @@ import { sanityFetch, getImageUrl } from "@/lib/sanity/client";
 import { eventBySlugQuery } from "@/lib/sanity/queries";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Badge } from "@/components/ui/Badge";
-import { formatDate, formatDatetime } from "@/lib/utils/formatters";
+import { formatDate, formatDatetime, toPlainText } from "@/lib/utils/formatters";
 import {
   Calendar, MapPin, Video, Users, Clock, ExternalLink,
   ArrowLeft, Download, ChevronRight,
@@ -98,7 +98,7 @@ export default async function EventPage({ params }: PageProps) {
 
             {event.description && (
               <div className="prose prose-slate max-w-none mb-8">
-                <p>{event.description}</p>
+                <p>{toPlainText(event.description)}</p>
               </div>
             )}
 
