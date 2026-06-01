@@ -70,11 +70,11 @@ export function ProgramCard({ program }: ProgramCardProps) {
         {/* Meta */}
         <div className="flex items-center justify-between text-xs text-slate-400 border-t border-slate-100 pt-4 mt-auto">
           <div className="flex gap-1">
-            {program.countries.slice(0, 4).map((c) => (
+            {(program.countries ?? []).slice(0, 4).map((c) => (
               <span key={c} title={c}>{getCountryFlag(c)}</span>
             ))}
-            {program.countries.length > 4 && (
-              <span>+{program.countries.length - 4}</span>
+            {(program.countries?.length ?? 0) > 4 && (
+              <span>+{(program.countries?.length ?? 0) - 4}</span>
             )}
           </div>
           {program.totalBudget && (

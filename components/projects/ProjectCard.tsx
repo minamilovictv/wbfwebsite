@@ -59,7 +59,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <div className="flex items-center gap-1">
             <MapPin className="w-3.5 h-3.5" />
             <span className="flex gap-0.5">
-              {project.countries.slice(0, 3).map((c) => (
+              {(project.countries ?? []).slice(0, 3).map((c) => (
                 <span key={c}>{getCountryFlag(c)}</span>
               ))}
             </span>

@@ -58,7 +58,7 @@ export function GrantCard({ grant, variant = "default" }: GrantCardProps) {
           )}
 
           <div className="flex flex-wrap gap-1">
-            {grant.eligibleCountries.slice(0, 6).map((c) => (
+            {(grant.eligibleCountries ?? []).slice(0, 6).map((c) => (
               <span key={c} title={c} className="text-base">{getCountryFlag(c)}</span>
             ))}
           </div>

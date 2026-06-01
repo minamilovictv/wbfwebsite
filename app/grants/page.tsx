@@ -32,10 +32,11 @@ export default async function GrantsPage({ searchParams }: PageProps) {
     grants = await sanityFetch<Grant[]>(grantsListQuery, {}, { revalidate: 300, tags: ["grants"] });
   } catch {}
 
-  const filtered = grants.filter((g) => {
+  const filtered = (grants ?? []).filter((g) => {
+    if (!g) return false;
     if (params.type && g.type !== params.type) return false;
     if (params.status && g.status !== params.status) return false;
-    if (params.country && !g.eligibleCountries.includes(params.country as any)) return false;
+    if (params.country && !(g.eligibleCountries ?? []).includes(params.country as any)) return false;
     return true;
   });
 

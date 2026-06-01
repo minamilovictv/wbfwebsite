@@ -131,7 +131,7 @@ export default async function ProgramPage({ params }: PageProps) {
                     Documents
                   </h3>
                   <div className="space-y-2">
-                    {program.documents.map((doc) => (
+                    {program.documents.filter((d) => d?.file?.asset?.url).map((doc) => (
                       <a
                         key={doc._key}
                         href={doc.file.asset.url}

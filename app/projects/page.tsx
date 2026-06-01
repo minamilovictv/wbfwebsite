@@ -32,12 +32,15 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
     });
   } catch {}
 
-  const filtered = projects.filter((p) => {
+  const filtered = (projects ?? []).filter((p) => {
+    if (!p) return false;
     if (params.status && p.status !== params.status) return false;
-    if (params.country && !p.countries.includes(params.country as any)) return false;
+    if (params.country && !(p.countries ?? []).includes(params.country as any)) return false;
     if (params.search) {
       const q = params.search.toLowerCase();
-      if (!p.title.toLowerCase().includes(q) && !p.implementingOrganization.toLowerCase().includes(q)) {
+      const title = (p.title ?? "").toLowerCase();
+      const org = (p.implementingOrganization ?? "").toLowerCase();
+      if (!title.includes(q) && !org.includes(q)) {
         return false;
       }
     }

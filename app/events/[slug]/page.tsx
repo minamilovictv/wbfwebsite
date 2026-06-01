@@ -58,7 +58,7 @@ export default async function EventPage({ params }: PageProps) {
 
   const coverUrl = getImageUrl(event.coverImage, { width: 1200, height: 500 });
   const isOnline = event.mode === "online";
-  const isPast = new Date(event.startDate) < new Date();
+  const isPast = event.startDate ? new Date(event.startDate) < new Date() : false;
   const location = isOnline ? "Online" : [event.location, event.city, event.country].filter(Boolean).join(", ");
 
   return (
