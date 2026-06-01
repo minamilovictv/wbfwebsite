@@ -227,7 +227,7 @@ export default async function ProjectPage({ params }: PageProps) {
               <div className="text-2xl font-display font-bold text-teal-800">
                 {formatCurrency(project.grantAmount, project.currency)}
               </div>
-              {project.grant && (
+              {project.grant?.slug?.current && (
                 <Link
                   href={`/grants/${project.grant.slug.current}`}
                   className="text-xs text-teal-600 hover:text-teal-800 mt-2 block"

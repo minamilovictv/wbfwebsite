@@ -252,7 +252,7 @@ export default async function EventPage({ params }: PageProps) {
               </div>
             </div>
 
-            {event.program && (
+            {event.program?.slug?.current && (
               <Link
                 href={`/programs/${event.program.slug.current}`}
                 className="flex items-center justify-between p-4 bg-brand-50 border border-brand-100 rounded-lg group"

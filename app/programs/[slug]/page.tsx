@@ -26,7 +26,7 @@ export async function generateStaticParams() {
       {},
       { revalidate: false }
     );
-    return programs.map((p) => ({ slug: p.slug.current }));
+    return programs.filter((p) => p.slug?.current).map((p) => ({ slug: p.slug.current }));
   } catch {
     return [];
   }
@@ -154,7 +154,7 @@ export default async function ProgramPage({ params }: PageProps) {
                     Open Grant Calls ({program.openGrants.length})
                   </h3>
                   <div className="space-y-2">
-                    {program.openGrants.map((g) => (
+                    {program.openGrants.filter((g) => g.slug?.current).map((g) => (
                       <Link
                         key={g._id}
                         href={`/grants/${g.slug.current}`}

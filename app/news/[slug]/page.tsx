@@ -122,7 +122,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
             <ArrowLeft className="w-4 h-4" />
             Back to News
           </Link>
-          {article.program && (
+          {article.program?.slug?.current && (
             <Link
               href={`/programs/${article.program.slug.current}`}
               className="text-sm text-teal-600 hover:text-teal-700 font-medium"

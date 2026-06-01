@@ -67,7 +67,7 @@ export default async function GrantsDatabasePage() {
                     <span className="text-sm font-normal text-slate-400">({items.length})</span>
                   </h2>
                   <div className="space-y-3">
-                    {items.map((grant) => (
+                    {items.filter((g) => g.slug?.current).map((grant) => (
                       <Link
                         key={grant._id}
                         href={`/grants/${grant.slug.current}`}
