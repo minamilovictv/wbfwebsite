@@ -36,7 +36,7 @@ export async function sanityFetch<T>(
   params: Record<string, unknown> = {},
   options: { revalidate?: number | false; tags?: string[] } = {}
 ): Promise<T> {
-  const { revalidate = 3600, tags } = options;
+  const { revalidate = 60, tags } = options;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return sanityClient.fetch<T>(query, params, {
     next: {
