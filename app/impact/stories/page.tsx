@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
+import { sanityFetch } from "@/lib/sanity/client";
+import { storiesQuery } from "@/lib/sanity/queries";
+import { storyGradientMap } from "@/components/programs/sections/iconMap";
+import type { Story } from "@/types";
+
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Grantee Stories",
   description: "In-depth stories from Western Balkans Fund grantees — projects that are changing the region.",
 };
 
-const stories = [
+const fallbackStories = [
   {
     emoji: "🏛️",
     area: "Cultural Cooperation",
@@ -36,7 +42,25 @@ const stories = [
   },
 ];
 
-export default function StoriesPage() {
+export default async function StoriesPage() {
+  let cms: Story[] = [];
+  try {
+    cms = await sanityFetch<Story[]>(storiesQuery, {}, { revalidate: 0 });
+  } catch {}
+
+  const stories =
+    cms.length > 0
+      ? cms.map((s) => ({
+          emoji: s.emoji ?? "✨",
+          area: s.area ?? "",
+          call: s.callTag ?? "",
+          title: s.title,
+          desc: s.summary ?? "",
+          meta: s.meta ?? "",
+          gradient: storyGradientMap[s.gradient ?? "brand"],
+        }))
+      : fallbackStories;
+
   return (
     <>
       <PageHero
