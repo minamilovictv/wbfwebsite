@@ -89,6 +89,8 @@ export interface Program {
   relatedGrants?: Grant[];
   impactStats?: ImpactStat[];
   documents?: Document[];
+  news?: NewsArticle[];
+  newsTotal?: number;
   seo?: SEOMeta;
   featured?: boolean;
   order?: number;
@@ -228,7 +230,9 @@ export interface NewsArticle {
   links?: NewsLink[];
   author?: Author;
   publishedAt: string;
+  /** @deprecated Use `programs` (array). Will be removed in Phase B. */
   program?: Program;
+  programs?: Program[];
   grant?: Grant;
   project?: Project;
   countries?: CountryCode[];

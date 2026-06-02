@@ -40,7 +40,22 @@ export const programBySlugQuery = groq`
         _id, title, slug { ${slugFragment} }, status, countries,
         implementingOrganization, grantAmount, currency,
         coverImage { ${imageFragment} }
-      }
+      },
+    "news": *[_type == "news"
+        && references(^._id)
+        && !(_id in path("drafts.**"))]
+      | order(publishedAt desc)[0..5] {
+        _id, title, subtitle, slug { ${slugFragment} }, category,
+        excerpt, body, publishedAt, countries, tags,
+        coverImage { ${imageFragment} },
+        gallery[]{ ${imageFragment} },
+        videos[]{ _key, title, url },
+        links[]{ _key, label, url },
+        author->{ _id, fullName, role, photo { ${imageFragment} } }
+      },
+    "newsTotal": count(*[_type == "news"
+        && references(^._id)
+        && !(_id in path("drafts.**"))])
   }
 `;
 
@@ -129,7 +144,8 @@ export const newsListQuery = groq`
     videos[]{ _key, title, url },
     links[]{ _key, label, url },
     author->{ _id, fullName, role, photo { ${imageFragment} } },
-    program->{ ${programMinFragment} }
+    program->{ ${programMinFragment} },
+    programs[]->{ ${programMinFragment} }
   }
 `;
 
@@ -140,6 +156,7 @@ export const newsBySlugQuery = groq`
     coverImage { ${imageFragment} },
     author->{ _id, fullName, role, bio, photo { ${imageFragment} } },
     program->{ _id, title, slug { ${slugFragment} } },
+    programs[]->{ _id, title, slug { ${slugFragment} } },
     grant->{ _id, title, slug { ${slugFragment} } },
     project->{ _id, title, slug { ${slugFragment} } },
     seo { ${seoFragment} }
