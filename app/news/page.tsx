@@ -6,6 +6,9 @@ import { PageHero } from "@/components/ui/PageHero";
 import { NewsGridClient } from "@/components/news/NewsGridClient";
 import type { NewsArticle } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "News",
   description: "Latest news, announcements, press releases, and publications from the Western Balkans Fund.",
@@ -16,7 +19,7 @@ export default async function NewsPage() {
 
   try {
     articles = await sanityFetch<NewsArticle[]>(newsListQuery, {}, {
-      revalidate: 1800,
+      revalidate: 0,
       tags: ["news"],
     });
   } catch {}

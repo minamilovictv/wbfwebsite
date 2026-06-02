@@ -10,6 +10,9 @@ import { EventsPreview } from "@/components/sections/EventsPreview";
 import { PartnersStrip } from "@/components/sections/PartnersStrip";
 import type { Program, Grant, NewsArticle, WBFEvent, Partner } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Western Balkans Fund — Building Regional Cooperation",
   description:
@@ -34,7 +37,7 @@ export default async function HomePage() {
   };
 
   try {
-    data = await sanityFetch<HomeData>(homePageQuery, {}, { revalidate: 3600, tags: ["home"] });
+    data = await sanityFetch<HomeData>(homePageQuery, {}, { revalidate: 0, tags: ["home"] });
   } catch {}
 
   return (

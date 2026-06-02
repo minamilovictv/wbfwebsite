@@ -13,6 +13,9 @@ import { ProgramDocuments } from "@/components/programs/sections/ProgramDocument
 import { SubscribeCta } from "@/components/programs/sections/SubscribeCta";
 import type { Program } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -33,7 +36,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const program = await sanityFetch<Program | null>(programBySlugQuery, { slug }, { revalidate: 3600 });
+    const program = await sanityFetch<Program | null>(programBySlugQuery, { slug }, { revalidate: 0 });
     if (!program) return {};
     return {
       title: program.seo?.title ?? program.title,
@@ -54,7 +57,7 @@ export default async function ProgramPage({ params }: PageProps) {
 
   try {
     program = await sanityFetch<Program | null>(programBySlugQuery, { slug }, {
-      revalidate: 3600,
+      revalidate: 0,
       tags: [`program:${slug}`, "programs", "news"],
     });
   } catch {

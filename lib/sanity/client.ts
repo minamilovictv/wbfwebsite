@@ -10,7 +10,9 @@ export const sanityClient = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: process.env.NODE_ENV === "production",
+  // Bypass Sanity CDN so changes in Studio appear immediately. The CDN
+  // can serve stale responses for several minutes after a publish.
+  useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN,
 });
 
@@ -36,7 +38,9 @@ export async function sanityFetch<T>(
   params: Record<string, unknown> = {},
   options: { revalidate?: number | false; tags?: string[] } = {}
 ): Promise<T> {
-  const { revalidate = 3600, tags } = options;
+  // Default to 0 → every request hits Sanity. Pages can still opt into
+  // longer caching by passing an explicit value.
+  const { revalidate = 0, tags } = options;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return sanityClient.fetch<T>(query, params, {
     next: {

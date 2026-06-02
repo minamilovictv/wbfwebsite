@@ -6,6 +6,9 @@ import { ProgramCard } from "@/components/programs/ProgramCard";
 import { ProgramFilters } from "@/components/programs/ProgramFilters";
 import type { Program } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Programs",
   description:
@@ -22,7 +25,7 @@ export default async function ProgramsPage({ searchParams }: PageProps) {
 
   try {
     programs = await sanityFetch<Program[]>(programsListQuery, {}, {
-      revalidate: 3600,
+      revalidate: 0,
       tags: ["programs"],
     });
   } catch {

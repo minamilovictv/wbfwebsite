@@ -6,6 +6,9 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ProjectFilters } from "@/components/projects/ProjectFilters";
 import type { Project } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Projects",
   description: "Browse projects funded by the Western Balkans Fund across all six member states.",
@@ -27,7 +30,7 @@ export default async function ProjectsPage({ searchParams }: PageProps) {
 
   try {
     projects = await sanityFetch<Project[]>(projectsListQuery, {}, {
-      revalidate: 3600,
+      revalidate: 0,
       tags: ["projects"],
     });
   } catch {}

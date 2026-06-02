@@ -7,6 +7,9 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
 import type { Partner, PartnerType } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Partners & Donors",
   description: "Partners, donors, and strategic allies of the Western Balkans Fund.",
@@ -31,7 +34,7 @@ const typeVariants: Record<PartnerType, "primary" | "teal" | "gold" | "neutral">
 export default async function PartnersPage() {
   let partners: Partner[] = [];
   try {
-    partners = await sanityFetch<Partner[]>(partnersQuery, {}, { revalidate: 3600, tags: ["partners"] });
+    partners = await sanityFetch<Partner[]>(partnersQuery, {}, { revalidate: 0, tags: ["partners"] });
   } catch {}
 
   const donors = partners.filter((p) => p.type === "donor");

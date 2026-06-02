@@ -10,6 +10,9 @@ import { formatDate, toPlainText } from "@/lib/utils/formatters";
 import { Calendar, User, ArrowLeft } from "lucide-react";
 import type { NewsArticle } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -17,7 +20,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const article = await sanityFetch<NewsArticle | null>(newsBySlugQuery, { slug }, { revalidate: 1800 });
+    const article = await sanityFetch<NewsArticle | null>(newsBySlugQuery, { slug }, { revalidate: 0 });
     if (!article) return {};
     return {
       title: article.seo?.title ?? article.title,
@@ -49,7 +52,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
 
   try {
     article = await sanityFetch<NewsArticle | null>(newsBySlugQuery, { slug }, {
-      revalidate: 1800,
+      revalidate: 0,
       tags: [`news:${slug}`],
     });
   } catch {

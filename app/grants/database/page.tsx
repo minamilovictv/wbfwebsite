@@ -8,6 +8,9 @@ import { formatCurrency, formatDate, getCountryFlag } from "@/lib/utils/formatte
 import { Calendar, Euro, ArrowRight } from "lucide-react";
 import type { Grant } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Grants Database",
   description: "Full searchable database of all Western Balkans Fund grants — open, upcoming, and closed.",
@@ -20,7 +23,7 @@ export default async function GrantsDatabasePage() {
 
   try {
     grants = await sanityFetch<Grant[]>(grantsListQuery, {}, {
-      revalidate: 600,
+      revalidate: 0,
       tags: ["grants"],
     });
   } catch {}

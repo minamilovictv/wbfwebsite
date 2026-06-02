@@ -13,6 +13,9 @@ import {
 } from "lucide-react";
 import type { WBFEvent, EventType } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -30,7 +33,7 @@ const typeLabels: Record<EventType, string> = {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const event = await sanityFetch<WBFEvent | null>(eventBySlugQuery, { slug }, { revalidate: 1800 });
+    const event = await sanityFetch<WBFEvent | null>(eventBySlugQuery, { slug }, { revalidate: 0 });
     if (!event) return {};
     return {
       title: event.title,
@@ -47,7 +50,7 @@ export default async function EventPage({ params }: PageProps) {
 
   try {
     event = await sanityFetch<WBFEvent | null>(eventBySlugQuery, { slug }, {
-      revalidate: 1800,
+      revalidate: 0,
       tags: [`event:${slug}`],
     });
   } catch {

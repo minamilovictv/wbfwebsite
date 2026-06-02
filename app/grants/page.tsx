@@ -8,6 +8,9 @@ import { GrantFiltersPanel } from "@/components/grants/GrantFilters";
 import type { Grant, GrantFilters } from "@/types";
 import { FileText, HelpCircle, List } from "lucide-react";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Grants",
   description:
@@ -29,7 +32,7 @@ export default async function GrantsPage({ searchParams }: PageProps) {
   let grants: Grant[] = [];
 
   try {
-    grants = await sanityFetch<Grant[]>(grantsListQuery, {}, { revalidate: 300, tags: ["grants"] });
+    grants = await sanityFetch<Grant[]>(grantsListQuery, {}, { revalidate: 0, tags: ["grants"] });
   } catch {}
 
   const filtered = (grants ?? []).filter((g) => {

@@ -5,6 +5,9 @@ import { PageHero } from "@/components/ui/PageHero";
 import { EventCard } from "@/components/events/EventCard";
 import type { WBFEvent } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Events",
   description: "Upcoming and past events from the Western Balkans Fund.",
@@ -15,7 +18,7 @@ export default async function EventsPage() {
 
   try {
     events = await sanityFetch<WBFEvent[]>(eventsListQuery, {}, {
-      revalidate: 1800,
+      revalidate: 0,
       tags: ["events"],
     });
   } catch {}

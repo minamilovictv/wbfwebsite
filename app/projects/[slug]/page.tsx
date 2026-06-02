@@ -10,6 +10,9 @@ import { formatCurrency, formatDate, getCountryFlag, getCountryName, toPlainText
 import { MapPin, Calendar, Users, Building2, CheckCircle2, ArrowLeft, Download } from "lucide-react";
 import type { Project } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -17,7 +20,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const project = await sanityFetch<Project | null>(projectBySlugQuery, { slug }, { revalidate: 3600 });
+    const project = await sanityFetch<Project | null>(projectBySlugQuery, { slug }, { revalidate: 0 });
     if (!project) return {};
     return {
       title: project.title,
@@ -40,7 +43,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
   try {
     project = await sanityFetch<Project | null>(projectBySlugQuery, { slug }, {
-      revalidate: 3600,
+      revalidate: 0,
       tags: [`project:${slug}`],
     });
   } catch {
