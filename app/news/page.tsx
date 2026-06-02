@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { sanityFetch } from "@/lib/sanity/client";
 import { newsListQuery } from "@/lib/sanity/queries";
@@ -32,7 +33,9 @@ export default async function NewsPage() {
 
       <section className="section-padding bg-white">
         <div className="container-institutional">
-          <NewsGridClient articles={articles} />
+          <Suspense fallback={null}>
+            <NewsGridClient articles={articles} />
+          </Suspense>
         </div>
       </section>
     </>

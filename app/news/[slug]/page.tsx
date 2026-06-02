@@ -117,19 +117,34 @@ export default async function NewsArticlePage({ params }: PageProps) {
         </div>
 
         {/* Related links */}
-        <div className="mt-12 pt-8 border-t border-slate-100 flex justify-between">
+        <div className="mt-12 pt-8 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
           <Link href="/news" className="flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium">
             <ArrowLeft className="w-4 h-4" />
             Back to News
           </Link>
-          {article.program?.slug?.current && (
-            <Link
-              href={`/programs/${article.program.slug.current}`}
-              className="text-sm text-teal-600 hover:text-teal-700 font-medium"
-            >
-              {article.program.title} →
-            </Link>
-          )}
+          {(() => {
+            const progs =
+              (article.programs?.length ?? 0) > 0
+                ? article.programs!
+                : article.program
+                  ? [article.program]
+                  : [];
+            const valid = progs.filter((p) => p.slug?.current);
+            if (valid.length === 0) return null;
+            return (
+              <div className="flex flex-wrap gap-2">
+                {valid.map((p) => (
+                  <Link
+                    key={p._id}
+                    href={`/programs/${p.slug.current}`}
+                    className="text-sm text-teal-600 hover:text-teal-700 font-medium"
+                  >
+                    {p.title} →
+                  </Link>
+                ))}
+              </div>
+            );
+          })()}
         </div>
       </div>
     </article>

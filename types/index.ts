@@ -65,7 +65,131 @@ export type ProgramPillar =
   | "civil-society"
   | "environment"
   | "digitalization"
-  | "science-research";
+  | "science-research"
+  | "governance";
+
+export type ProgramIcon =
+  | "globe"
+  | "book"
+  | "leaf"
+  | "users"
+  | "scale"
+  | "lightbulb"
+  | "heart"
+  | "briefcase"
+  | "graduation-cap"
+  | "shield";
+
+export type ProgramColor =
+  | "brand"
+  | "emerald"
+  | "green"
+  | "teal"
+  | "amber"
+  | "rose"
+  | "slate";
+
+export type TimelineStepStatus = "done" | "active" | "pending";
+export type CtaVariant = "primary" | "secondary";
+export type StoryGradient = "brand" | "slate-brand" | "emerald" | "teal" | "amber";
+export type StatusDotColor = "amber" | "emerald" | "rose" | "teal" | "slate";
+
+export interface ProgramHero {
+  statusPill?: { text?: string; dotColor?: StatusDotColor };
+  tagline?: string;
+  footnote?: string;
+  ctas?: { _key?: string; label: string; url: string; variant?: CtaVariant; external?: boolean }[];
+  metaFacts?: { _key?: string; key: string; value: string }[];
+}
+
+export interface ProgramKeyFacts {
+  heading?: string;
+  items?: { _key?: string; label: string; value: string }[];
+}
+
+export interface ProgramTimeline {
+  heading?: string;
+  steps?: { _key?: string; date: string; description: string; status?: TimelineStepStatus }[];
+}
+
+export interface ProgramNotifySignup {
+  enabled?: boolean;
+  overline?: string;
+  title?: string;
+  description?: string;
+  organizationPlaceholder?: string;
+  emailPlaceholder?: string;
+  buttonLabel?: string;
+}
+
+export interface ProgramAbout {
+  overline?: string;
+  title?: string;
+  paragraphs?: string[];
+  outcomesHeading?: string;
+  outcomes?: string[];
+  annualCycle?: {
+    enabled?: boolean;
+    label?: string;
+    sublabel?: string;
+    leftText?: string;
+    rightText?: string;
+  };
+  showWb6Coverage?: boolean;
+}
+
+export interface ProgramInterventionAreas {
+  overline?: string;
+  title?: string;
+  intro?: string;
+  areas?: {
+    _key?: string;
+    icon?: ProgramIcon;
+    title: string;
+    description: string;
+    color?: ProgramColor;
+  }[];
+  crossCuttingTags?: string[];
+  crossCuttingHeading?: string;
+  activityRulesHeading?: string;
+  activityRules?: string[];
+}
+
+export interface ProgramEligibility {
+  overline?: string;
+  title?: string;
+  intro?: string;
+  organizations?: { _key?: string; title: string; description: string }[];
+  partnershipNote?: string;
+  partnershipSubnote?: string;
+  partnershipCtaLabel?: string;
+  partnershipCtaUrl?: string;
+}
+
+export interface ProgramFeaturedStories {
+  overline?: string;
+  title?: string;
+  intro?: string;
+  stories?: {
+    _key?: string;
+    emoji?: string;
+    area?: string;
+    callTag?: string;
+    title: string;
+    description: string;
+    meta?: string;
+    link?: string;
+    gradient?: StoryGradient;
+  }[];
+}
+
+export interface ProgramSubscribeCta {
+  enabled?: boolean;
+  title?: string;
+  description?: string;
+  emailPlaceholder?: string;
+  buttonLabel?: string;
+}
 
 export interface Program {
   _id: string;
@@ -89,6 +213,16 @@ export interface Program {
   relatedGrants?: Grant[];
   impactStats?: ImpactStat[];
   documents?: Document[];
+  documentsHeading?: string;
+  hero?: ProgramHero;
+  keyFacts?: ProgramKeyFacts;
+  timeline?: ProgramTimeline;
+  notifySignup?: ProgramNotifySignup;
+  about?: ProgramAbout;
+  interventionAreas?: ProgramInterventionAreas;
+  eligibility?: ProgramEligibility;
+  featuredStories?: ProgramFeaturedStories;
+  subscribeCta?: ProgramSubscribeCta;
   news?: NewsArticle[];
   newsTotal?: number;
   seo?: SEOMeta;
@@ -339,6 +473,7 @@ export type ContactPerson = Pick<Person, "_id" | "fullName" | "photo" | "role" |
 export interface Document {
   _key: string;
   title: string;
+  subtitle?: string;
   file: { asset: { _ref: string; url?: string } };
   type?: "guidelines" | "form" | "report" | "budget-template" | "policy" | "other";
   language?: Language;

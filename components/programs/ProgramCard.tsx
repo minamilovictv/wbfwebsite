@@ -15,6 +15,7 @@ const pillarLabels: Record<string, string> = {
   environment: "Environment",
   digitalization: "Digitalization",
   "science-research": "Science & Research",
+  governance: "Governance",
 };
 
 interface ProgramCardProps {
