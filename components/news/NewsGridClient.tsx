@@ -21,12 +21,6 @@ interface Props {
   articles: NewsArticle[];
 }
 
-function articlePrograms(a: NewsArticle): Program[] {
-  if ((a.programs?.length ?? 0) > 0) return a.programs!;
-  if (a.program) return [a.program];
-  return [];
-}
-
 export function NewsGridClient({ articles }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -44,7 +38,7 @@ export function NewsGridClient({ articles }: Props) {
   const programOptions = useMemo(() => {
     const map = new Map<string, Program>();
     for (const a of articles) {
-      for (const p of articlePrograms(a)) {
+      for (const p of a.programs ?? []) {
         if (p.slug?.current && !map.has(p.slug.current)) map.set(p.slug.current, p);
       }
     }
@@ -55,7 +49,7 @@ export function NewsGridClient({ articles }: Props) {
     return articles.filter((a) => {
       if (activeCategory !== "all" && a.category !== activeCategory) return false;
       if (activeProgramSlug !== "all") {
-        const slugs = articlePrograms(a).map((p) => p.slug?.current);
+        const slugs = (a.programs ?? []).map((p) => p.slug?.current);
         if (!slugs.includes(activeProgramSlug)) return false;
       }
       return true;

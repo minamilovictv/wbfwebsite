@@ -122,18 +122,11 @@ export default async function NewsArticlePage({ params }: PageProps) {
             <ArrowLeft className="w-4 h-4" />
             Back to News
           </Link>
-          {(() => {
-            const progs =
-              (article.programs?.length ?? 0) > 0
-                ? article.programs!
-                : article.program
-                  ? [article.program]
-                  : [];
-            const valid = progs.filter((p) => p.slug?.current);
-            if (valid.length === 0) return null;
-            return (
-              <div className="flex flex-wrap gap-2">
-                {valid.map((p) => (
+          {(article.programs?.length ?? 0) > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {article
+                .programs!.filter((p) => p.slug?.current)
+                .map((p) => (
                   <Link
                     key={p._id}
                     href={`/programs/${p.slug.current}`}
@@ -142,9 +135,8 @@ export default async function NewsArticlePage({ params }: PageProps) {
                     {p.title} →
                   </Link>
                 ))}
-              </div>
-            );
-          })()}
+            </div>
+          )}
         </div>
       </div>
     </article>

@@ -154,7 +154,6 @@ export const newsListQuery = groq`
     videos[]{ _key, title, url },
     links[]{ _key, label, url },
     author->{ _id, fullName, role, photo { ${imageFragment} } },
-    program->{ ${programMinFragment} },
     programs[]->{ ${programMinFragment} }
   }
 `;
@@ -165,7 +164,6 @@ export const newsBySlugQuery = groq`
     category, excerpt, body, publishedAt, countries, tags,
     coverImage { ${imageFragment} },
     author->{ _id, fullName, role, bio, photo { ${imageFragment} } },
-    program->{ _id, title, slug { ${slugFragment} } },
     programs[]->{ _id, title, slug { ${slugFragment} } },
     grant->{ _id, title, slug { ${slugFragment} } },
     project->{ _id, title, slug { ${slugFragment} } },

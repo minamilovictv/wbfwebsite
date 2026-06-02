@@ -70,16 +70,6 @@ export const newsSchema = defineType({
         "Programs this article belongs to. The article will appear in the News & Updates section of every linked program.",
       validation: (r) => r.unique(),
     }),
-    defineField({
-      name: "program",
-      type: "reference",
-      to: [{ type: "program" }],
-      hidden: true,
-      readOnly: true,
-      deprecated: {
-        reason: "Use 'programs' (array) instead. This field will be removed after Phase B.",
-      },
-    }),
     defineField({ name: "grant", type: "reference", to: [{ type: "grant" }] }),
     defineField({ name: "project", type: "reference", to: [{ type: "project" }] }),
     defineField({

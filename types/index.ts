@@ -364,8 +364,6 @@ export interface NewsArticle {
   links?: NewsLink[];
   author?: Author;
   publishedAt: string;
-  /** @deprecated Use `programs` (array). Will be removed in Phase B. */
-  program?: Program;
   programs?: Program[];
   grant?: Grant;
   project?: Project;

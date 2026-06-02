@@ -169,30 +169,21 @@ export function NewsModal({ article, onClose }: Props) {
           </div>
 
           {/* Program chips */}
-          {(() => {
-            const progs =
-              (article.programs?.length ?? 0) > 0
-                ? article.programs!
-                : article.program
-                  ? [article.program]
-                  : [];
-            if (progs.length === 0) return null;
-            return (
-              <div className="flex flex-wrap gap-1.5">
-                {progs
-                  .filter((p) => p.slug?.current)
-                  .map((p) => (
-                    <a
-                      key={p._id}
-                      href={`/programs/${p.slug.current}`}
-                      className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-50 text-brand-700 border border-brand-200 hover:bg-brand-100 transition-colors"
-                    >
-                      {p.title}
-                    </a>
-                  ))}
-              </div>
-            );
-          })()}
+          {(article.programs?.length ?? 0) > 0 && (
+            <div className="flex flex-wrap gap-1.5">
+              {article
+                .programs!.filter((p) => p.slug?.current)
+                .map((p) => (
+                  <a
+                    key={p._id}
+                    href={`/programs/${p.slug.current}`}
+                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-50 text-brand-700 border border-brand-200 hover:bg-brand-100 transition-colors"
+                  >
+                    {p.title}
+                  </a>
+                ))}
+            </div>
+          )}
 
           {/* Title */}
           <div>
