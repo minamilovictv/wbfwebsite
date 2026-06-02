@@ -2,14 +2,30 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Download, ArrowRight, Target, Globe2, Users, Leaf, BookOpen, Cpu } from "lucide-react";
+import { Download, ArrowRight, Target, Globe2, Users, Leaf, BookOpen, Cpu, Shield, Lightbulb } from "lucide-react";
+import { sanityFetch } from "@/lib/sanity/client";
+import { strategicPillarsQuery } from "@/lib/sanity/queries";
+import type { StrategicPillar } from "@/types";
+
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Strategic Plan 2024–2028",
   description: "Western Balkans Fund Strategic Plan 2024–2028 — priorities, goals and expected results.",
 };
 
-const pillars = [
+const iconMap: Record<string, typeof Globe2> = {
+  globe: Globe2,
+  users: Users,
+  book: BookOpen,
+  leaf: Leaf,
+  cpu: Cpu,
+  target: Target,
+  shield: Shield,
+  lightbulb: Lightbulb,
+};
+
+const fallbackPillars = [
   {
     icon: Globe2,
     number: "01",
@@ -68,7 +84,23 @@ const timeline = [
   { year: "2028", label: "Legacy", desc: "Final evaluation, next strategy development" },
 ];
 
-export default function StrategicPlanPage() {
+export default async function StrategicPlanPage() {
+  let cmsPillars: StrategicPillar[] = [];
+  try {
+    cmsPillars = await sanityFetch<StrategicPillar[]>(strategicPillarsQuery, {}, { revalidate: 0 });
+  } catch {}
+
+  const pillars =
+    cmsPillars.length > 0
+      ? cmsPillars.map((p, i) => ({
+          icon: iconMap[p.icon ?? "globe"] ?? Globe2,
+          number: p.number ?? String(i + 1).padStart(2, "0"),
+          title: p.title,
+          description: p.description ?? "",
+          targets: p.targets ?? [],
+        }))
+      : fallbackPillars;
+
   return (
     <>
       <PageHero

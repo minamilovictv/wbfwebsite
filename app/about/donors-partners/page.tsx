@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
+import { sanityFetch, getImageUrl } from "@/lib/sanity/client";
+import { donorsQuery } from "@/lib/sanity/queries";
+import type { Donor } from "@/types";
+
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Donors & Partners",
   description: "The Western Balkans Fund is supported by the European Union, Switzerland, Japan, Germany, the Visegrad Fund, and Open Society Foundations.",
 };
 
-const donors = [
+const fallbackDonors = [
   {
     flag: "🇪🇺",
     name: "European Union — IPA III",
@@ -39,7 +45,23 @@ const donors = [
   },
 ];
 
-export default function DonorsPartnersPage() {
+export default async function DonorsPartnersPage() {
+  let cmsDonors: Donor[] = [];
+  try {
+    cmsDonors = await sanityFetch<Donor[]>(donorsQuery, {}, { revalidate: 0 });
+  } catch {}
+
+  const donors =
+    cmsDonors.length > 0
+      ? cmsDonors.map((d) => ({
+          flag: d.country ?? "",
+          name: d.name,
+          desc: d.description ?? "",
+          logoUrl: getImageUrl(d.logo, { width: 240, height: 120 }),
+          website: d.website,
+        }))
+      : fallbackDonors.map((d) => ({ ...d, logoUrl: null, website: undefined }));
+
   return (
     <>
       <PageHero
@@ -56,13 +78,28 @@ export default function DonorsPartnersPage() {
       <section className="section-padding bg-white">
         <div className="container-institutional">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {donors.map(({ flag, name, desc }) => (
-              <div key={name} className="card p-6">
-                <div className="text-4xl mb-4">{flag}</div>
-                <h3 className="font-semibold text-slate-900 mb-2">{name}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
-              </div>
-            ))}
+            {donors.map(({ flag, name, desc, logoUrl, website }) => {
+              const Wrapper = website ? "a" : "div";
+              return (
+                <Wrapper
+                  key={name}
+                  {...(website
+                    ? { href: website, target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
+                  className="card p-6 block"
+                >
+                  {logoUrl ? (
+                    <div className="relative h-12 mb-4 flex items-start">
+                      <Image src={logoUrl} alt={name} width={180} height={48} className="h-12 w-auto object-contain" />
+                    </div>
+                  ) : flag ? (
+                    <div className="text-4xl mb-4">{flag}</div>
+                  ) : null}
+                  <h3 className="font-semibold text-slate-900 mb-2">{name}</h3>
+                  <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
+                </Wrapper>
+              );
+            })}
           </div>
         </div>
       </section>

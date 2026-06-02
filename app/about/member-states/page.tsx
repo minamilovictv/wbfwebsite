@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { sanityFetch } from "@/lib/sanity/client";
+import { memberStatesQuery } from "@/lib/sanity/queries";
+import type { MemberState } from "@/types";
+
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Member States",
   description: "The six Western Balkans economies that established and support the Western Balkans Fund.",
 };
 
-const members = [
+const fallbackMembers = [
   {
     code: "AL",
     name: "Albania",
@@ -82,7 +87,27 @@ const members = [
   },
 ];
 
-export default function MemberStatesPage() {
+export default async function MemberStatesPage() {
+  let cms: MemberState[] = [];
+  try {
+    cms = await sanityFetch<MemberState[]>(memberStatesQuery, {}, { revalidate: 0 });
+  } catch {}
+
+  const members =
+    cms.length > 0
+      ? cms.map((m) => ({
+          code: m.code,
+          name: m.name,
+          flag: m.flag ?? "",
+          capital: m.capital ?? "",
+          population: m.population ?? "",
+          languages: m.languages ?? "",
+          memberSince: m.memberSince ?? "",
+          focalPoint: m.focalPoint ?? "",
+          description: m.description ?? "",
+        }))
+      : fallbackMembers;
+
   return (
     <>
       <PageHero

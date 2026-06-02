@@ -474,6 +474,42 @@ export const programSchema = defineType({
     defineField({ name: "featured", type: "boolean", initialValue: false, group: "settings" }),
     defineField({ name: "order", type: "number", group: "settings" }),
     defineField({
+      name: "showInNav",
+      title: "Show in mega menu",
+      type: "boolean",
+      initialValue: true,
+      group: "settings",
+    }),
+    defineField({
+      name: "navGroup",
+      title: "Mega menu group",
+      type: "string",
+      group: "settings",
+      options: {
+        list: [
+          { value: "funding", title: "Funding Opportunities" },
+          { value: "capacity", title: "Capacity & Networking" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "funding",
+    }),
+    defineField({
+      name: "navStatus",
+      title: "Mega menu status dot",
+      type: "string",
+      group: "settings",
+      description: "Color of the dot next to the program name in the dropdown. Defaults to status when empty.",
+      options: {
+        list: [
+          { value: "open", title: "Open — accepting applications" },
+          { value: "review", title: "Under Review" },
+          { value: "results", title: "Results Announced" },
+          { value: "soon", title: "Coming Soon" },
+        ],
+      },
+    }),
+    defineField({
       name: "seo",
       type: "object",
       group: "seo",

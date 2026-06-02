@@ -253,3 +253,95 @@ export const homePageQuery = groq`
       }
   }
 `;
+
+// ─── Mega Menu (programs grouped by navGroup) ─────────────────────────────
+export const navProgramsQuery = groq`
+  *[_type == "program"
+      && !(_id in path("drafts.**"))
+      && showInNav != false]
+    | order(navGroup asc, order asc, title asc) {
+      _id, title, "slug": slug.current, navGroup, status, navStatus
+    }
+`;
+
+// ─── Generic pages ────────────────────────────────────────────────────────
+export const pageBySlugQuery = groq`
+  *[_type == "page" && slug.current == $slug && !(_id in path("drafts.**"))][0] {
+    _id, title, slug { ${slugFragment} },
+    hero { overline, title, description, variant, coverImage { ${imageFragment} } },
+    body,
+    seo { ${seoFragment} }
+  }
+`;
+
+// ─── About / Impact supporting collections ────────────────────────────────
+export const memberStatesQuery = groq`
+  *[_type == "memberState" && !(_id in path("drafts.**"))]
+    | order(order asc, name asc) {
+      _id, name, code, flag, capital, population, languages,
+      memberSince, focalPoint, focalPointEmail, description
+    }
+`;
+
+export const milestonesQuery = groq`
+  *[_type == "milestone" && !(_id in path("drafts.**"))]
+    | order(order asc, year asc) { _id, year, event }
+`;
+
+export const strategicPillarsQuery = groq`
+  *[_type == "strategicPillar" && !(_id in path("drafts.**"))]
+    | order(order asc) { _id, title, number, icon, description, targets }
+`;
+
+export const reportsQuery = groq`
+  *[_type == "report" && !(_id in path("drafts.**"))]
+    | order(coalesce(publishedAt, year) desc) {
+      _id, title, year, type, language, summary,
+      file { asset->{ url, size, mimeType } }, externalUrl
+    }
+`;
+
+export const openJobsQuery = groq`
+  *[_type == "jobOpening" && status == "open" && !(_id in path("drafts.**"))]
+    | order(publishedAt desc) {
+      _id, title, slug { ${slugFragment} }, type, location,
+      deadline, summary, applicationUrl
+    }
+`;
+
+export const awardsQuery = groq`
+  *[_type == "award" && !(_id in path("drafts.**"))]
+    | order(order asc, year desc) {
+      _id, title, edition, category, winner, country, citation, year,
+      photo { ${imageFragment} },
+      relatedProgram->{ _id, title, slug { ${slugFragment} } }
+    }
+`;
+
+export const storiesQuery = groq`
+  *[_type == "story" && !(_id in path("drafts.**"))]
+    | order(order asc, _createdAt desc) {
+      _id, title, slug { ${slugFragment} }, area, callTag, emoji,
+      summary, meta, link, gradient,
+      coverImage { ${imageFragment} },
+      countries,
+      program->{ _id, title, slug { ${slugFragment} } }
+    }
+`;
+
+// ─── Site settings singleton ──────────────────────────────────────────────
+export const siteSettingsQuery = groq`
+  *[_type == "siteSettings"][0] {
+    title, tagline, missionStatement,
+    contact, social, footerColumns, euCoFundingNote
+  }
+`;
+
+// ─── Donors (partners filtered by type) ───────────────────────────────────
+export const donorsQuery = groq`
+  *[_type == "partner" && type == "donor" && !(_id in path("drafts.**"))]
+    | order(order asc, name asc) {
+      _id, name, slug { ${slugFragment} }, country, website,
+      description, logo { ${imageFragment} }
+    }
+`;

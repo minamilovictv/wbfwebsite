@@ -3,6 +3,11 @@ import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ArrowRight, Shield, Target, Globe2, Users, Calendar, BookOpen } from "lucide-react";
+import { sanityFetch } from "@/lib/sanity/client";
+import { milestonesQuery } from "@/lib/sanity/queries";
+import type { Milestone } from "@/types";
+
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "About the Western Balkans Fund",
@@ -10,7 +15,7 @@ export const metadata: Metadata = {
     "Learn about the Western Balkans Fund — its mandate, governance, history and vision for regional cooperation.",
 };
 
-const milestones = [
+const fallbackMilestones = [
   { year: "2015", event: "WBF established by the Western Balkans Six governments" },
   { year: "2016", event: "First grant cycle launched with 6 pilot programmes" },
   { year: "2017", event: "Secretariat fully operational in Belgrade" },
@@ -33,7 +38,16 @@ const quickLinks = [
   { label: "Strategic Plan", href: "/about/strategic-plan", icon: BookOpen },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  let cmsMilestones: Milestone[] = [];
+  try {
+    cmsMilestones = await sanityFetch<Milestone[]>(milestonesQuery, {}, { revalidate: 0 });
+  } catch {}
+  const milestones =
+    cmsMilestones.length > 0
+      ? cmsMilestones.map((m) => ({ year: m.year, event: m.event }))
+      : fallbackMilestones;
+
   return (
     <>
       <PageHero

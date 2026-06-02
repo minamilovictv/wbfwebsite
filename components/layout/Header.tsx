@@ -2,8 +2,18 @@ import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import { Navigation } from "./Navigation";
 import { MobileMenuToggle } from "./MobileMenuToggle";
+import { sanityFetch } from "@/lib/sanity/client";
+import { navProgramsQuery } from "@/lib/sanity/queries";
+import type { NavProgram } from "@/types";
 
-export function Header() {
+export async function Header() {
+  let navPrograms: NavProgram[] = [];
+  try {
+    navPrograms = await sanityFetch<NavProgram[]>(navProgramsQuery, {}, { revalidate: 0 });
+  } catch {
+    // Sanity not reachable — fall back to no programs in mega menu
+  }
+
   return (
     <div className="sticky top-0 z-30 w-full bg-white border-b border-slate-200 shadow-[0_2px_12px_rgba(26,54,104,0.08)]">
       <div className="container-institutional">
@@ -33,7 +43,7 @@ export function Header() {
           </Link>
 
           {/* Desktop nav (client component) */}
-          <Navigation />
+          <Navigation navPrograms={navPrograms} />
 
           {/* Actions */}
           <div className="flex items-center gap-2.5 ml-auto shrink-0">

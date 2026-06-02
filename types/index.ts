@@ -613,3 +613,173 @@ export interface NewsFilters {
   page?: number;
   perPage?: number;
 }
+
+// ─── Mega menu ─────────────────────────────────────────────────────────────
+
+export type NavGroup = "funding" | "capacity";
+export type NavStatusKey = "open" | "review" | "results" | "soon";
+
+export interface NavProgram {
+  _id: string;
+  title: string;
+  slug: string;
+  navGroup?: NavGroup;
+  status?: Status;
+  navStatus?: NavStatusKey;
+}
+
+// ─── Generic CMS page ──────────────────────────────────────────────────────
+
+export interface PageHeroBlock {
+  overline?: string;
+  title?: string;
+  description?: string;
+  variant?: "default" | "compact";
+  coverImage?: SanityImage;
+}
+
+export type PageBodyBlock =
+  | { _type: "block"; _key: string; children?: { text?: string }[]; style?: string }
+  | {
+      _type: "statsGrid";
+      _key: string;
+      heading?: string;
+      stats?: { _key?: string; value: string; label: string; sub?: string }[];
+    }
+  | {
+      _type: "cardsGrid";
+      _key: string;
+      heading?: string;
+      intro?: string;
+      cards?: { _key?: string; icon?: string; title: string; description?: string; href?: string }[];
+    }
+  | {
+      _type: "callout";
+      _key: string;
+      title?: string;
+      description?: string;
+      ctaLabel?: string;
+      ctaHref?: string;
+      variant?: "dark" | "light";
+    };
+
+export interface CMSPage {
+  _id: string;
+  title: string;
+  slug: Slug;
+  hero?: PageHeroBlock;
+  body?: PageBodyBlock[];
+  seo?: SEOMeta;
+}
+
+// ─── About / Impact supporting types ───────────────────────────────────────
+
+export interface MemberState {
+  _id: string;
+  name: string;
+  code: CountryCode;
+  flag?: string;
+  capital?: string;
+  population?: string;
+  languages?: string;
+  memberSince?: string;
+  focalPoint?: string;
+  focalPointEmail?: string;
+  description?: string;
+}
+
+export interface Milestone {
+  _id: string;
+  year: string;
+  event: string;
+}
+
+export interface StrategicPillar {
+  _id: string;
+  title: string;
+  number?: string;
+  icon?: string;
+  description?: string;
+  targets?: string[];
+}
+
+export interface Report {
+  _id: string;
+  title: string;
+  year: string;
+  type:
+    | "annual-report"
+    | "financial-statement"
+    | "audit"
+    | "joint-action"
+    | "statute"
+    | "other";
+  language?: Language;
+  summary?: string;
+  file?: { asset?: { url?: string; size?: number; mimeType?: string } };
+  externalUrl?: string;
+}
+
+export interface JobOpening {
+  _id: string;
+  title: string;
+  slug: Slug;
+  type?: "full-time" | "part-time" | "consultant" | "internship";
+  location?: string;
+  deadline?: string;
+  summary?: string;
+  applicationUrl?: string;
+}
+
+export interface Award {
+  _id: string;
+  title: string;
+  edition?: string;
+  category?: string;
+  winner?: string;
+  country?: CountryCode;
+  citation?: string;
+  year?: string;
+  photo?: SanityImage;
+  relatedProgram?: { _id: string; title: string; slug: Slug };
+}
+
+export interface Story {
+  _id: string;
+  title: string;
+  slug: Slug;
+  area?: string;
+  callTag?: string;
+  emoji?: string;
+  summary?: string;
+  meta?: string;
+  link?: string;
+  gradient?: "brand" | "slate-brand" | "emerald" | "teal" | "amber";
+  coverImage?: SanityImage;
+  countries?: string[];
+  program?: { _id: string; title: string; slug: Slug };
+}
+
+// Donor type is declared earlier in this file (extends Partner).
+
+// ─── Site settings singleton ──────────────────────────────────────────────
+
+export interface SiteSettings {
+  title?: string;
+  tagline?: string;
+  missionStatement?: string;
+  contact?: { address?: string; email?: string; phone?: string };
+  social?: {
+    facebook?: string;
+    instagram?: string;
+    linkedin?: string;
+    twitter?: string;
+    youtube?: string;
+  };
+  footerColumns?: {
+    _key?: string;
+    heading?: string;
+    links?: { _key?: string; label: string; href: string; external?: boolean }[];
+  }[];
+  euCoFundingNote?: string;
+}

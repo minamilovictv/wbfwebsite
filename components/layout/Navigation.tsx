@@ -7,6 +7,7 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { NAV_ITEMS } from "@/lib/nav-items";
 import type { NavItem, DropdownItem } from "@/lib/nav-items";
+import type { NavProgram, NavStatusKey } from "@/types";
 
 // ── Status dot colours ─────────────────────────────────────────────────────
 const statusDot: Record<string, string> = {
@@ -16,21 +17,19 @@ const statusDot: Record<string, string> = {
   results: "bg-brand-600",
 };
 
-// ── Funding programs for mega menu ─────────────────────────────────────────
-const FUNDING_PROGRAMS: DropdownItem[] = [
-  { label: "GGI Grants",           href: "/programs/ggi",                  status: "review" },
-  { label: "Matching Grants",      href: "/programs/matching-grants",       status: "open" },
-  { label: "Move Grants",          href: "/programs/move-grants",           status: "soon" },
-  { label: "ERC Grants",           href: "/programs/erc-grants",            status: "soon" },
-  { label: "Gender Equality Fund", href: "/programs/gender-equality-fund",  status: "soon" },
-  { label: "Visegrad Fellowship",  href: "/programs/visegrad-fellowship",   status: "open" },
-];
+// Map Sanity status → mega-menu status-dot key
+function deriveNavStatus(p: NavProgram): NavStatusKey {
+  if (p.navStatus) return p.navStatus;
+  switch (p.status) {
+    case "active":   return "open";
+    case "upcoming": return "soon";
+    case "closed":   return "results";
+    case "archived": return "soon";
+    default:         return "soon";
+  }
+}
 
-const CAPACITY_PROGRAMS: DropdownItem[] = [
-  { label: "Peer to Peer",                 href: "/programs/peer-to-peer",        status: "results" },
-  { label: "Advocacy & Networking Events", href: "/programs/advocacy-networking", status: "open" },
-  { label: "Summer School",                href: "/programs/summer-school",       status: "soon" },
-];
+// Programs are loaded from Sanity and passed via props.
 
 // ── Simple dropdown ────────────────────────────────────────────────────────
 function SimpleDropdown({ items }: { items: DropdownItem[] }) {
@@ -67,7 +66,10 @@ function SimpleDropdown({ items }: { items: DropdownItem[] }) {
 }
 
 // ── Mega dropdown ──────────────────────────────────────────────────────────
-function MegaDropdown() {
+function MegaDropdown({ navPrograms }: { navPrograms: NavProgram[] }) {
+  const funding = navPrograms.filter((p) => (p.navGroup ?? "funding") === "funding");
+  const capacity = navPrograms.filter((p) => p.navGroup === "capacity");
+
   return (
     <div className="absolute top-full left-0 pt-2 z-50">
       <div className="w-[560px] bg-white border border-slate-200 rounded-lg shadow-lg grid grid-cols-2 p-3.5">
@@ -75,30 +77,34 @@ function MegaDropdown() {
           <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-2 mb-1.5 border-b border-slate-100">
             Funding Opportunities
           </div>
-          {FUNDING_PROGRAMS.map(({ label, href, status }) => (
+          {funding.map((p) => (
             <Link
-              key={href}
-              href={href}
+              key={p._id}
+              href={`/programs/${p.slug}`}
               className="flex items-center gap-2 px-2 py-1.5 rounded-sm text-[13px] text-slate-600 hover:bg-slate-50 hover:text-brand-700 transition-colors"
             >
-              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot[status ?? "soon"]}`} />
-              {label}
+              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot[deriveNavStatus(p)]}`} />
+              {p.title}
             </Link>
           ))}
-          <div className="h-3" />
-          <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-2 mb-1.5 border-b border-slate-100">
-            Capacity & Networking
-          </div>
-          {CAPACITY_PROGRAMS.map(({ label, href, status }) => (
-            <Link
-              key={href}
-              href={href}
-              className="flex items-center gap-2 px-2 py-1.5 rounded-sm text-[13px] text-slate-600 hover:bg-slate-50 hover:text-brand-700 transition-colors"
-            >
-              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot[status ?? "soon"]}`} />
-              {label}
-            </Link>
-          ))}
+          {capacity.length > 0 && (
+            <>
+              <div className="h-3" />
+              <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-2 mb-1.5 border-b border-slate-100">
+                Capacity & Networking
+              </div>
+              {capacity.map((p) => (
+                <Link
+                  key={p._id}
+                  href={`/programs/${p.slug}`}
+                  className="flex items-center gap-2 px-2 py-1.5 rounded-sm text-[13px] text-slate-600 hover:bg-slate-50 hover:text-brand-700 transition-colors"
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot[deriveNavStatus(p)]}`} />
+                  {p.title}
+                </Link>
+              ))}
+            </>
+          )}
         </div>
 
         <div className="border-l border-slate-100 pl-4">
@@ -149,7 +155,15 @@ function MegaDropdown() {
 }
 
 // ── Nav item with hover delay ──────────────────────────────────────────────
-function NavItemWithDropdown({ item, active }: { item: NavItem; active: boolean }) {
+function NavItemWithDropdown({
+  item,
+  active,
+  navPrograms,
+}: {
+  item: NavItem;
+  active: boolean;
+  navPrograms: NavProgram[];
+}) {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -185,13 +199,13 @@ function NavItemWithDropdown({ item, active }: { item: NavItem; active: boolean 
       {open && !item.mega && item.dropdown && item.dropdown.length > 0 && (
         <SimpleDropdown items={item.dropdown} />
       )}
-      {open && item.mega && <MegaDropdown />}
+      {open && item.mega && <MegaDropdown navPrograms={navPrograms} />}
     </div>
   );
 }
 
 // ── Main Navigation ────────────────────────────────────────────────────────
-export function Navigation() {
+export function Navigation({ navPrograms = [] }: { navPrograms?: NavProgram[] }) {
   const pathname = usePathname();
 
   function isActive(href: string) {
@@ -205,7 +219,14 @@ export function Navigation() {
         const active = isActive(item.href);
 
         if (hasDropdown) {
-          return <NavItemWithDropdown key={item.label} item={item} active={active} />;
+          return (
+            <NavItemWithDropdown
+              key={item.label}
+              item={item}
+              active={active}
+              navPrograms={navPrograms}
+            />
+          );
         }
 
         return (
