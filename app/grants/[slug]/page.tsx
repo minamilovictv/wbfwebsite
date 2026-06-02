@@ -14,6 +14,9 @@ import {
 } from "lucide-react";
 import type { Grant, EligibleApplicant } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 const applicantLabels: Record<EligibleApplicant, string> = {
   ngo: "NGO / CSO",
   university: "University",
@@ -32,7 +35,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const grant = await sanityFetch<Grant | null>(grantBySlugQuery, { slug }, { revalidate: 300 });
+    const grant = await sanityFetch<Grant | null>(grantBySlugQuery, { slug }, { revalidate: 0 });
     if (!grant) return {};
     return {
       title: grant.title,
@@ -49,7 +52,7 @@ export default async function GrantPage({ params }: PageProps) {
 
   try {
     grant = await sanityFetch<Grant | null>(grantBySlugQuery, { slug }, {
-      revalidate: 300,
+      revalidate: 0,
       tags: [`grant:${slug}`],
     });
   } catch {

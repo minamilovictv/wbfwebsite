@@ -1,9 +1,13 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { sanityFetch } from "@/lib/sanity/client";
 import { newsListQuery } from "@/lib/sanity/queries";
 import { PageHero } from "@/components/ui/PageHero";
 import { NewsGridClient } from "@/components/news/NewsGridClient";
 import type { NewsArticle } from "@/types";
+
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "News",
@@ -15,7 +19,7 @@ export default async function NewsPage() {
 
   try {
     articles = await sanityFetch<NewsArticle[]>(newsListQuery, {}, {
-      revalidate: 1800,
+      revalidate: 0,
       tags: ["news"],
     });
   } catch {}
@@ -32,7 +36,9 @@ export default async function NewsPage() {
 
       <section className="section-padding bg-white">
         <div className="container-institutional">
-          <NewsGridClient articles={articles} />
+          <Suspense fallback={null}>
+            <NewsGridClient articles={articles} />
+          </Suspense>
         </div>
       </section>
     </>

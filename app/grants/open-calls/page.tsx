@@ -6,6 +6,9 @@ import { GrantCard } from "@/components/grants/GrantCard";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import type { Grant } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Open Calls",
   description: "Currently open grant calls from the Western Balkans Fund. Apply before the deadline.",
@@ -15,7 +18,7 @@ export default async function OpenCallsPage() {
   let grants: Grant[] = [];
 
   try {
-    grants = await sanityFetch<Grant[]>(openGrantsQuery, {}, { revalidate: 300, tags: ["grants"] });
+    grants = await sanityFetch<Grant[]>(openGrantsQuery, {}, { revalidate: 0, tags: ["grants"] });
   } catch {}
 
   const open = grants.filter((g) => g.status === "open");

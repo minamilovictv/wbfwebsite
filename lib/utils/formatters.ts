@@ -108,12 +108,34 @@ export const COUNTRY_FLAGS: Record<CountryCode, string> = {
   RS: "🇷🇸",
 };
 
-export function getCountryName(code: CountryCode): string {
-  return COUNTRY_NAMES[code] ?? code;
+// Legacy long-form country codes used by some Sanity documents.
+const COUNTRY_ALIASES: Record<string, CountryCode> = {
+  albania: "AL",
+  bih: "BA",
+  "bosnia-and-herzegovina": "BA",
+  "bosnia-herzegovina": "BA",
+  kosovo: "XK",
+  "north-macedonia": "MK",
+  macedonia: "MK",
+  montenegro: "ME",
+  serbia: "RS",
+};
+
+export function normalizeCountryCode(value: string | undefined | null): CountryCode | null {
+  if (!value) return null;
+  if (value in COUNTRY_NAMES) return value as CountryCode;
+  const mapped = COUNTRY_ALIASES[value.toLowerCase()];
+  return mapped ?? null;
 }
 
-export function getCountryFlag(code: CountryCode): string {
-  return COUNTRY_FLAGS[code] ?? "";
+export function getCountryName(code: string): string {
+  const iso = normalizeCountryCode(code);
+  return iso ? COUNTRY_NAMES[iso] : code;
+}
+
+export function getCountryFlag(code: string): string {
+  const iso = normalizeCountryCode(code);
+  return iso ? COUNTRY_FLAGS[iso] : "";
 }
 
 export function truncate(text: string, maxLength: number): string {

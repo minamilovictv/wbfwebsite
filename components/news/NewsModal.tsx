@@ -166,10 +166,24 @@ export function NewsModal({ article, onClose }: Props) {
             {article.author && (
               <span className="flex items-center gap-1">· {article.author.fullName}</span>
             )}
-            {article.program && (
-              <span className="flex items-center gap-1 text-brand-600">· {article.program.title}</span>
-            )}
           </div>
+
+          {/* Program chips */}
+          {(article.programs?.length ?? 0) > 0 && (
+            <div className="flex flex-wrap gap-1.5">
+              {article
+                .programs!.filter((p) => p.slug?.current)
+                .map((p) => (
+                  <a
+                    key={p._id}
+                    href={`/programs/${p.slug.current}`}
+                    className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-50 text-brand-700 border border-brand-200 hover:bg-brand-100 transition-colors"
+                  >
+                    {p.title}
+                  </a>
+                ))}
+            </div>
+          )}
 
           {/* Title */}
           <div>

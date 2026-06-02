@@ -10,6 +10,9 @@ import { formatDate, toPlainText } from "@/lib/utils/formatters";
 import { Calendar, User, ArrowLeft } from "lucide-react";
 import type { NewsArticle } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -17,7 +20,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const article = await sanityFetch<NewsArticle | null>(newsBySlugQuery, { slug }, { revalidate: 1800 });
+    const article = await sanityFetch<NewsArticle | null>(newsBySlugQuery, { slug }, { revalidate: 0 });
     if (!article) return {};
     return {
       title: article.seo?.title ?? article.title,
@@ -49,7 +52,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
 
   try {
     article = await sanityFetch<NewsArticle | null>(newsBySlugQuery, { slug }, {
-      revalidate: 1800,
+      revalidate: 0,
       tags: [`news:${slug}`],
     });
   } catch {
@@ -117,18 +120,25 @@ export default async function NewsArticlePage({ params }: PageProps) {
         </div>
 
         {/* Related links */}
-        <div className="mt-12 pt-8 border-t border-slate-100 flex justify-between">
+        <div className="mt-12 pt-8 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
           <Link href="/news" className="flex items-center gap-2 text-sm text-brand-600 hover:text-brand-700 font-medium">
             <ArrowLeft className="w-4 h-4" />
             Back to News
           </Link>
-          {article.program?.slug?.current && (
-            <Link
-              href={`/programs/${article.program.slug.current}`}
-              className="text-sm text-teal-600 hover:text-teal-700 font-medium"
-            >
-              {article.program.title} →
-            </Link>
+          {(article.programs?.length ?? 0) > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {article
+                .programs!.filter((p) => p.slug?.current)
+                .map((p) => (
+                  <Link
+                    key={p._id}
+                    href={`/programs/${p.slug.current}`}
+                    className="text-sm text-teal-600 hover:text-teal-700 font-medium"
+                  >
+                    {p.title} →
+                  </Link>
+                ))}
+            </div>
           )}
         </div>
       </div>

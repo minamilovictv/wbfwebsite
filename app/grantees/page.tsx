@@ -6,6 +6,9 @@ import { projectsListQuery } from "@/lib/sanity/queries";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import type { Project } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Our Grantees",
   description: "Browse all projects and organisations funded by the Western Balkans Fund across the WB6 region.",
@@ -16,7 +19,7 @@ export default async function GranteesPage() {
 
   try {
     projects = await sanityFetch<Project[]>(projectsListQuery, {}, {
-      revalidate: 3600,
+      revalidate: 0,
       tags: ["projects"],
     });
   } catch {}

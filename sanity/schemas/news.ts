@@ -61,10 +61,32 @@ export const newsSchema = defineType({
     }),
     defineField({ name: "author", type: "reference", to: [{ type: "person" }] }),
     defineField({ name: "publishedAt", type: "datetime", validation: (r) => r.required() }),
-    defineField({ name: "program", type: "reference", to: [{ type: "program" }] }),
+    defineField({
+      name: "programs",
+      title: "Related Programs",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "program" }] }],
+      description:
+        "Programs this article belongs to. The article will appear in the News & Updates section of every linked program.",
+      validation: (r) => r.unique(),
+    }),
     defineField({ name: "grant", type: "reference", to: [{ type: "grant" }] }),
     defineField({ name: "project", type: "reference", to: [{ type: "project" }] }),
-    defineField({ name: "countries", type: "array", of: [{ type: "string" }] }),
+    defineField({
+      name: "countries",
+      type: "array",
+      of: [{ type: "string" }],
+      options: {
+        list: [
+          { value: "AL", title: "Albania" },
+          { value: "BA", title: "Bosnia and Herzegovina" },
+          { value: "XK", title: "Kosovo*" },
+          { value: "MK", title: "North Macedonia" },
+          { value: "ME", title: "Montenegro" },
+          { value: "RS", title: "Serbia" },
+        ],
+      },
+    }),
     defineField({ name: "tags", type: "array", of: [{ type: "string" }] }),
     defineField({ name: "featured", type: "boolean", initialValue: false }),
     defineField({ name: "seo", type: "object", fields: [

@@ -10,6 +10,7 @@ const pillars: { value: ProgramPillar | "all"; label: string }[] = [
   { value: "regional-cooperation", label: "Regional Cooperation" },
   { value: "youth-mobility", label: "Youth Mobility" },
   { value: "civil-society", label: "Civil Society" },
+  { value: "governance", label: "Governance" },
   { value: "cultural-heritage", label: "Cultural Heritage" },
   { value: "economic-development", label: "Economic Development" },
   { value: "environment", label: "Environment" },

@@ -7,6 +7,9 @@ import { teamQuery } from "@/lib/sanity/queries";
 import { Mail, Linkedin } from "lucide-react";
 import type { Person } from "@/types";
 
+// Always render this page from fresh Sanity data (no static cache).
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Team",
   description: "The Western Balkans Fund Secretariat team based in Belgrade, Serbia.",
@@ -94,7 +97,7 @@ export default async function TeamPage() {
 
   try {
     team = await sanityFetch<Person[]>(teamQuery, {}, {
-      revalidate: 3600,
+      revalidate: 0,
       tags: ["team"],
     });
   } catch {}
