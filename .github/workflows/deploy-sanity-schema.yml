@@ -1,0 +1,74 @@
+name: Deploy Sanity schema
+
+# Whenever the schema source changes on `main`, redeploy it to the
+# Sanity-hosted Studio so the sidebar and editor UI pick up the new
+# document types and field changes automatically.
+#
+# Required GitHub secrets:
+#   SANITY_AUTH_TOKEN  – a Sanity "Deploy Studio" (or higher) token
+#                        from https://www.sanity.io/manage → Project
+#                        → API → Tokens.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sanity/**'
+      - '.github/workflows/deploy-sanity-schema.yml'
+  workflow_dispatch: {}
+
+concurrency:
+  group: sanity-schema-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy-schema:
+    name: Deploy schema to workspace `default`
+    runs-on: ubuntu-latest
+
+    env:
+      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+      SANITY_STUDIO_PROJECT_ID: x1vbhp4a
+      SANITY_STUDIO_DATASET: production
+      # Keep the Next.js env names in sync so the same sanity.config.ts
+      # works in CI and locally without changes.
+      NEXT_PUBLIC_SANITY_PROJECT_ID: x1vbhp4a
+      NEXT_PUBLIC_SANITY_DATASET: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Sanity CLI + studio runtime
+        working-directory: sanity
+        run: |
+          # The /sanity folder holds only the schema and config; create
+          # a transient package.json so the CLI has a project to anchor
+          # to, then install just what's needed to bundle the schema.
+          if [ ! -f package.json ]; then
+            npm init -y > /dev/null
+          fi
+          npm install --no-save --no-audit --no-fund \
+            sanity@^3 \
+            @sanity/vision@^3 \
+            react@^18 react-dom@^18 \
+            styled-components@^6
+
+      - name: Verify auth token is configured
+        run: |
+          if [ -z "$SANITY_AUTH_TOKEN" ]; then
+            echo "::error::SANITY_AUTH_TOKEN secret is not set on this repository."
+            echo "Create one at https://www.sanity.io/manage → Project → API → Tokens"
+            echo "with at least 'Deploy Studio' permissions, then add it as a"
+            echo "GitHub Actions secret named SANITY_AUTH_TOKEN."
+            exit 1
+          fi
+
+      - name: Deploy schema
+        working-directory: sanity
+        run: npx --yes sanity@latest schema deploy --workspace default
