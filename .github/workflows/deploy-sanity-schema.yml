@@ -23,7 +23,7 @@ concurrency:
 
 jobs:
   deploy-schema:
-    name: Deploy schema to workspace `default`
+    name: Deploy schema to workspace `wbf-studio`
     runs-on: ubuntu-latest
 
     env:
@@ -71,4 +71,5 @@ jobs:
 
       - name: Deploy schema
         working-directory: sanity
-        run: npx --yes sanity@latest schema deploy --workspace default
+        # The workspace name must match `name` in sanity/sanity.config.ts.
+        run: npx --yes sanity@latest schema deploy --workspace wbf-studio
