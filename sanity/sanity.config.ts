@@ -6,8 +6,19 @@ import { schemaTypes } from "./schemas";
 export default defineConfig({
   name: "wbf-studio",
   title: "WBF Content Studio",
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
+  // The Studio bundle is built by Vite, which only inlines env vars with
+  // the SANITY_STUDIO_ prefix. NEXT_PUBLIC_* is read by the Next.js app
+  // locally; fall back to it so a single .env.local works for both, and
+  // hardcode the WBF project ID as a last resort so the deployed Studio
+  // can never end up without a projectId.
+  projectId:
+    process.env.SANITY_STUDIO_PROJECT_ID ??
+    process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ??
+    "x1vbhp4a",
+  dataset:
+    process.env.SANITY_STUDIO_DATASET ??
+    process.env.NEXT_PUBLIC_SANITY_DATASET ??
+    "production",
   plugins: [
     structureTool({
       structure: (S) =>
