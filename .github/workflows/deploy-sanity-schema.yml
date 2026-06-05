@@ -49,20 +49,27 @@ jobs:
       - name: Install Sanity CLI + studio runtime
         working-directory: sanity
         run: |
-          # The /sanity folder holds only the schema and config; create
-          # a transient package.json so the CLI has a project to anchor
-          # to, then install what's needed to bundle the schema and to
-          # build the Studio for `sanity deploy`. Versions are pinned to
-          # the same major that `npx sanity@latest` uses, so the local
-          # build and the CLI don't disagree on peer dependencies.
-          if [ ! -f package.json ]; then
-            npm init -y > /dev/null
-          fi
-          npm install --no-save --no-audit --no-fund \
-            sanity@latest \
-            @sanity/vision@latest \
-            react@^19 react-dom@^19 \
-            styled-components@^6
+          # The /sanity folder holds only the schema and config. Write a
+          # real package.json that DECLARES the Studio runtime deps so
+          # `sanity deploy` passes its dependency check ("Declared
+          # dependency X is not installed" otherwise — it parses
+          # package.json, not just node_modules). Versions match
+          # sanity@latest's expected peer deps.
+          cat > package.json <<'JSON'
+          {
+            "name": "wbf-studio",
+            "private": true,
+            "version": "0.0.0",
+            "dependencies": {
+              "sanity": "latest",
+              "@sanity/vision": "latest",
+              "react": "^19",
+              "react-dom": "^19",
+              "styled-components": "^6"
+            }
+          }
+          JSON
+          npm install --no-audit --no-fund
 
       - name: Verify auth token is configured
         run: |
