@@ -1,8 +1,10 @@
-name: Deploy Sanity schema
+name: Deploy Sanity schema + Studio
 
-# Whenever the schema source changes on `main`, redeploy it to the
-# Sanity-hosted Studio so the sidebar and editor UI pick up the new
-# document types and field changes automatically.
+# Whenever the schema or Studio source changes on `main`, redeploy the
+# schema manifest AND rebuild + push the Studio bundle to the existing
+# Sanity-managed Studio, so editors see new document types, sidebar
+# entries, and field changes without anyone running `sanity deploy`
+# locally.
 #
 # Required GitHub secrets:
 #   SANITY_AUTH_TOKEN  – a Sanity "Deploy Studio" (or higher) token
@@ -22,8 +24,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy-schema:
-    name: Deploy schema to workspace `wbf-studio`
+  deploy:
+    name: Deploy schema + Studio bundle
     runs-on: ubuntu-latest
 
     env:
@@ -49,13 +51,16 @@ jobs:
         run: |
           # The /sanity folder holds only the schema and config; create
           # a transient package.json so the CLI has a project to anchor
-          # to, then install just what's needed to bundle the schema.
+          # to, then install what's needed to bundle the schema and to
+          # build the Studio for `sanity deploy`. Versions are pinned to
+          # the same major that `npx sanity@latest` uses, so the local
+          # build and the CLI don't disagree on peer dependencies.
           if [ ! -f package.json ]; then
             npm init -y > /dev/null
           fi
           npm install --no-save --no-audit --no-fund \
-            sanity@^3 \
-            @sanity/vision@^3 \
+            sanity@latest \
+            @sanity/vision@latest \
             react@^18 react-dom@^18 \
             styled-components@^6
 
@@ -73,3 +78,11 @@ jobs:
         working-directory: sanity
         # The workspace name must match `name` in sanity/sanity.config.ts.
         run: npx --yes sanity@latest schema deploy --workspace wbf-studio
+
+      - name: Deploy Studio bundle
+        working-directory: sanity
+        # Builds the Studio from sanity.config.ts and pushes the bundle to
+        # the existing Sanity-managed Studio (appId in sanity.cli.ts), so
+        # editors see new document types, sidebar entries, and field
+        # changes without anyone running `sanity deploy` locally.
+        run: npx --yes sanity@latest deploy --yes
