@@ -61,7 +61,7 @@ jobs:
           npm install --no-save --no-audit --no-fund \
             sanity@latest \
             @sanity/vision@latest \
-            react@^18 react-dom@^18 \
+            react@^19 react-dom@^19 \
             styled-components@^6
 
       - name: Verify auth token is configured
