@@ -68,10 +68,10 @@ const FALLBACK_PROGRAMS = [
 ];
 
 const statusColors: Record<string, string> = {
-  open: "bg-emerald-500/18 text-emerald-400",
-  review: "bg-amber-500/18 text-amber-400",
-  upcoming: "bg-slate-500/13 text-slate-400",
-  closed: "bg-white/8 text-white/60",
+  open: "bg-emerald-400/20 text-emerald-300",
+  review: "bg-amber-400/20 text-amber-300",
+  upcoming: "bg-white/12 text-white/75",
+  closed: "bg-white/10 text-white/70",
 };
 
 interface ProgramsOverviewProps {
@@ -80,20 +80,20 @@ interface ProgramsOverviewProps {
 
 export function ProgramsOverview({ programs = [] }: ProgramsOverviewProps) {
   return (
-    <section className="section-padding bg-brand-950 relative overflow-hidden" id="programs">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-radial-[circle,rgba(75,101,132,0.18)_0%,transparent_70%] pointer-events-none" />
+    <section className="section-padding bg-gradient-to-br from-brand-700 via-brand-500 to-brand-400 relative overflow-hidden" id="programs">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-radial-[circle,rgba(255,255,255,0.08)_0%,transparent_70%] pointer-events-none" />
 
       <div className="container-institutional relative z-10">
         <div className="flex items-end justify-between mb-11">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/35 mb-2">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60 mb-2">
               Funding Opportunities
             </p>
             <h2 className="font-display text-3xl font-semibold text-white">Our Programs</h2>
           </div>
           <Link
             href="/programs"
-            className="text-sm font-semibold text-white/65 border border-white/18 rounded-sm px-4 py-2 hover:border-white/40 hover:text-white transition-colors"
+            className="text-sm font-semibold text-white/80 border border-white/30 rounded-sm px-4 py-2 hover:border-white/60 hover:text-white transition-colors"
           >
             View All Programs →
           </Link>
@@ -104,7 +104,7 @@ export function ProgramsOverview({ programs = [] }: ProgramsOverviewProps) {
             <Link
               key={p.slug}
               href={`/programs/${p.slug}`}
-              className="group flex flex-col bg-white/4 border border-white/7 rounded-lg p-5 hover:bg-white/8 hover:border-white/14 transition-all hover:-translate-y-0.5"
+              className="group flex flex-col bg-white/8 border border-white/15 rounded-lg p-5 hover:bg-white/14 hover:border-white/25 transition-all hover:-translate-y-0.5"
             >
               <div className="flex items-start justify-between mb-3">
                 <span
@@ -113,19 +113,19 @@ export function ProgramsOverview({ programs = [] }: ProgramsOverviewProps) {
                   {p.badge}
                 </span>
                 <div className="text-right">
-                  <div className="text-sm font-semibold text-white/75">{p.grant}</div>
-                  <div className="text-[11px] text-white/35">{p.grantSub}</div>
+                  <div className="text-sm font-semibold text-white/90">{p.grant}</div>
+                  <div className="text-[11px] text-white/60">{p.grantSub}</div>
                 </div>
               </div>
 
               <h3 className="text-base font-semibold text-white mb-2 leading-snug flex-1">
                 {p.name}
               </h3>
-              <p className="text-[13px] text-white/45 leading-relaxed mb-4">{p.desc}</p>
+              <p className="text-[13px] text-white/70 leading-relaxed mb-4">{p.desc}</p>
 
-              <div className="flex items-center justify-between pt-3 border-t border-white/7">
-                <span className="text-xs text-white/30">{p.date}</span>
-                <div className="w-6 h-6 rounded-full bg-white/7 flex items-center justify-center text-[13px] text-white/40 group-hover:bg-white/14 group-hover:text-white transition-all">
+              <div className="flex items-center justify-between pt-3 border-t border-white/15">
+                <span className="text-xs text-white/55">{p.date}</span>
+                <div className="w-6 h-6 rounded-full bg-white/12 flex items-center justify-center text-[13px] text-white/60 group-hover:bg-white/22 group-hover:text-white transition-all">
                   →
                 </div>
               </div>

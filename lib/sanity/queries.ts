@@ -249,7 +249,7 @@ export const homePageQuery = groq`
       },
     "partners": *[_type == "partner" && featured == true && !(_id in path("drafts.**"))]
       | order(order asc) {
-        _id, name, logo { ${imageFragment} }, website
+        _id, name, slug { ${slugFragment} }, logo { ${imageFragment} }, website
       }
   }
 `;
