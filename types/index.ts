@@ -446,6 +446,28 @@ export interface Donor extends Partner {
 
 // ─── People ────────────────────────────────────────────────────────────────
 
+export interface BioSpan {
+  _key?: string;
+  text?: string;
+  marks?: string[];
+}
+
+export interface BioMarkDef {
+  _key: string;
+  _type: string;
+  href?: string;
+}
+
+export interface BioBlock {
+  _key?: string;
+  _type: string;
+  style?: string;
+  listItem?: string;
+  level?: number;
+  children?: BioSpan[];
+  markDefs?: BioMarkDef[];
+}
+
 export interface Person {
   _id: string;
   fullName: string;
@@ -454,6 +476,7 @@ export interface Person {
   role: string;
   department?: string;
   bio?: string;
+  biography?: BioBlock[];
   photo?: SanityImage;
   email?: string;
   linkedin?: string;
