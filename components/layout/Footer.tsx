@@ -150,13 +150,7 @@ export function Footer() {
         </div>
 
         {/* ── Bottom bar ── */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 py-[18px] text-[12px] text-white/28">
-          <div className="flex items-center gap-2.5">
-            <span className="bg-[#003399] text-[#FFCC00] text-[11px] font-bold px-2.5 py-0.5 rounded-sm tracking-[0.03em]">
-              EU ★
-            </span>
-            <span>Co-funded by the European Union · EU/WBF Joint Action Phase III</span>
-          </div>
+        <div className="flex items-center justify-center sm:justify-end py-[18px] text-[12px] text-white/28">
           <span>© {new Date().getFullYear()} Western Balkans Fund · All rights reserved</span>
         </div>
       </div>

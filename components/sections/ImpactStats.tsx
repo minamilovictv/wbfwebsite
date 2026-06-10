@@ -7,15 +7,6 @@ const stats = [
   { value: "263", label: "Applications — GGI Call 8", sub: "Record for the GGI scheme" },
 ];
 
-const countries = [
-  { flag: "🇦🇱", name: "Albania", projects: "82 projects" },
-  { flag: "🇧🇦", name: "Bosnia & Herzegovina", projects: "76 projects" },
-  { flag: "🇽🇰", name: "Kosovo*", projects: "68 projects" },
-  { flag: "🇲🇰", name: "North Macedonia", projects: "71 projects" },
-  { flag: "🇲🇪", name: "Montenegro", projects: "74 projects" },
-  { flag: "🇷🇸", name: "Serbia", projects: "79 projects" },
-];
-
 export function ImpactStats() {
   return (
     <section className="section-padding bg-white" id="impact">
@@ -48,51 +39,25 @@ export function ImpactStats() {
           ))}
         </div>
 
-        {/* Country coverage */}
-        <div className="card p-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 className="font-display text-xl font-bold text-slate-900 mb-3">
-              Six Contracting Parties, one region
-            </h3>
-            <p className="text-sm text-slate-500 leading-relaxed mb-6">
-              Every WBF project must cross at least three of the six Western Balkans territories.
-              Projects covering all six are given priority in evaluation.
+        {/* Regional coverage */}
+        <div className="card px-8 py-12 lg:px-16 lg:py-16 text-center">
+          <h3 className="font-display text-2xl lg:text-3xl font-bold text-slate-900 mb-6">
+            Six Contracting Parties, One Region
+          </h3>
+          <div className="max-w-[68ch] mx-auto space-y-4 mb-8">
+            <p className="text-base text-slate-600 leading-relaxed">
+              The Western Balkans Fund supports regional cooperation and people-to-people
+              connections across the entire Western Balkans region. Through grants, partnerships,
+              and joint initiatives, we work to strengthen collaboration among civil society
+              organizations, institutions, and communities throughout the region.
             </p>
-            <div className="flex flex-col gap-2">
-              {countries.map(({ flag, name, projects }) => (
-                <div
-                  key={name}
-                  className="flex items-center gap-3 px-4 py-2.5 bg-white border border-slate-100 rounded-sm text-sm"
-                >
-                  <span className="text-base">{flag}</span>
-                  <span className="font-medium text-slate-800 flex-1">{name}</span>
-                  <span className="text-xs text-slate-400">{projects}</span>
-                </div>
-              ))}
-              <p className="text-[11px] text-slate-400 mt-2 leading-relaxed">
-                * Without prejudice to positions on status, in line with UNSCR 1244/1999 and the
-                ICJ Opinion on the Kosovo declaration of independence.
-              </p>
-            </div>
           </div>
-          <div className="flex flex-col items-center justify-center text-center gap-6">
-            <div className="text-7xl">🗺️</div>
-            <div>
-              <p className="font-display text-lg font-semibold text-slate-800 mb-2">
-                Funding that crosses borders
-              </p>
-              <p className="text-sm text-slate-500 max-w-[32ch] mx-auto leading-relaxed">
-                Every project connects at least 3 contracting parties, building regional ties from
-                the ground up.
-              </p>
-            </div>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors"
-            >
-              Browse all projects →
-            </Link>
-          </div>
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors"
+          >
+            Browse all projects →
+          </Link>
         </div>
       </div>
     </section>

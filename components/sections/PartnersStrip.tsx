@@ -4,13 +4,23 @@ import { getImageUrl } from "@/lib/sanity/client";
 import type { Partner } from "@/types";
 
 const FALLBACK_DONORS = [
-  { name: "🇪🇺 European Union — IPA III" },
-  { name: "🇨🇭 Switzerland" },
-  { name: "🇯🇵 Japan" },
-  { name: "🇩🇪 Germany" },
-  { name: "🔷 Visegrad Fund" },
-  { name: "◆ Open Society Foundations" },
+  { name: "🇪🇺 European Union", slug: "european-union" },
+  { name: "🇨🇭 Switzerland", slug: "switzerland" },
+  { name: "🇯🇵 Japan", slug: "japan" },
+  { name: "🇩🇪 Germany", slug: "germany" },
+  { name: "🔷 Visegrad Fund", slug: "visegrad-fund" },
+  { name: "◆ Open Society Foundations", slug: "open-society-foundations" },
 ];
+
+function donorSlug(partner: Partner): string {
+  return (
+    partner.slug?.current ??
+    partner.name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+  );
+}
 
 interface PartnersStripProps {
   partners?: Partner[];
@@ -28,36 +38,41 @@ export function PartnersStrip({ partners = [], title = "Supported By" }: Partner
         {partners.length > 0 ? (
           <div className="flex flex-wrap items-center justify-center gap-8">
             {partners.map((partner) => {
-              const logoUrl = getImageUrl(partner.logo, { width: 160, height: 80 });
+              const logoUrl = getImageUrl(partner.logo, { width: 320, height: 160 });
               const inner = logoUrl ? (
                 <Image
                   src={logoUrl}
                   alt={partner.name}
-                  width={120}
-                  height={60}
-                  className="object-contain max-h-10 opacity-55 hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
+                  width={160}
+                  height={80}
+                  className="object-contain max-h-12 w-auto hover:scale-105 transition-transform"
                 />
               ) : (
-                <span className="text-sm font-semibold text-slate-400 hover:text-slate-700 transition-colors">
+                <span className="text-sm font-semibold text-slate-600 hover:text-brand-700 transition-colors">
                   {partner.name}
                 </span>
               );
-              return partner.website ? (
-                <a key={partner._id} href={partner.website} target="_blank" rel="noopener noreferrer">
+              return (
+                <Link
+                  key={partner._id}
+                  href={`/donors/${donorSlug(partner)}`}
+                  aria-label={`Learn more about ${partner.name}`}
+                >
                   {inner}
-                </a>
-              ) : (
-                <div key={partner._id}>{inner}</div>
+                </Link>
               );
             })}
           </div>
         ) : (
           <div className="flex flex-wrap items-center justify-center divide-x divide-slate-200">
-            {FALLBACK_DONORS.map(({ name }) => (
+            {FALLBACK_DONORS.map(({ name, slug }) => (
               <div key={name} className="px-7 py-3">
-                <span className="text-sm font-semibold text-slate-400 hover:text-slate-700 transition-colors cursor-default">
+                <Link
+                  href={`/donors/${slug}`}
+                  className="text-sm font-semibold text-slate-600 hover:text-brand-700 transition-colors"
+                >
                   {name}
-                </span>
+                </Link>
               </div>
             ))}
           </div>

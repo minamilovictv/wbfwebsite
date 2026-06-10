@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/sections/Hero";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ProgramsOverview } from "@/components/sections/ProgramsOverview";
 import { ImpactStats } from "@/components/sections/ImpactStats";
+import { PartnershipPlatform } from "@/components/sections/PartnershipPlatform";
 import { NewsGrid } from "@/components/sections/NewsGrid";
 import { EventsPreview } from "@/components/sections/EventsPreview";
 import { PartnersStrip } from "@/components/sections/PartnersStrip";
@@ -46,6 +47,7 @@ export default async function HomePage() {
       <AboutSection />
       <ProgramsOverview programs={data.featuredPrograms} />
       <ImpactStats />
+      <PartnershipPlatform />
       <NewsGrid articles={data.latestNews} />
       <EventsPreview events={data.upcomingEvents} />
       <PartnersStrip partners={data.partners} />
