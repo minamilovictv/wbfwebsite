@@ -22,6 +22,24 @@ function donorSlug(partner: Partner): string {
   );
 }
 
+// The CMS contains near-duplicate partner entries (e.g. "European Union" and
+// "European Union — IPA III"); keep one per organization, preferring the
+// entry that has a logo.
+function dedupePartners(partners: Partner[]): Partner[] {
+  const byKey = new Map<string, Partner>();
+  for (const partner of partners) {
+    const key = partner.name
+      .toLowerCase()
+      .split(/[—–-]/)[0]
+      .trim();
+    const existing = byKey.get(key);
+    if (!existing || (!existing.logo && partner.logo)) {
+      byKey.set(key, partner);
+    }
+  }
+  return [...byKey.values()];
+}
+
 interface PartnersStripProps {
   partners?: Partner[];
   title?: string;
@@ -37,7 +55,7 @@ export function PartnersStrip({ partners = [], title = "Supported By" }: Partner
 
         {partners.length > 0 ? (
           <div className="flex flex-wrap items-center justify-center gap-8">
-            {partners.map((partner) => {
+            {dedupePartners(partners).map((partner) => {
               const logoUrl = getImageUrl(partner.logo, { width: 320, height: 160 });
               const inner = logoUrl ? (
                 <Image

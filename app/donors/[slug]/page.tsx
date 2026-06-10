@@ -51,6 +51,13 @@ const DONORS: Record<string, DonorInfo> = {
   },
 };
 
+// Slugs used by existing CMS partner documents that map to the same donors.
+const SLUG_ALIASES: Record<string, string> = {
+  europeanunion: "european-union",
+  "european-union-ipa-iii": "european-union",
+  "switzerland-seco-sdc": "switzerland",
+};
+
 const upcomingTopics = [
   {
     title: "Our Cooperation",
@@ -71,7 +78,7 @@ const upcomingTopics = [
 ];
 
 function donorFromSlug(slug: string): DonorInfo {
-  const known = DONORS[slug];
+  const known = DONORS[SLUG_ALIASES[slug] ?? slug];
   if (known) return known;
   const name = slug
     .split("-")
