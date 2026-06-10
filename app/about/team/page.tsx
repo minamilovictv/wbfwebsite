@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { sanityFetch, getImageUrl } from "@/lib/sanity/client";
+import { sanityFetch } from "@/lib/sanity/client";
 import { teamQuery } from "@/lib/sanity/queries";
-import { Mail, Linkedin } from "lucide-react";
+import { TeamMemberCard } from "@/components/team/TeamMemberCard";
 import type { Person } from "@/types";
 
 // Always render this page from fresh Sanity data (no static cache).
@@ -22,65 +20,6 @@ const placeholderTeam = [
   { department: "Finance & Administration", members: ["Head of Finance", "Finance Officer", "Administrative Officer"] },
   { department: "Communications", members: ["Head of Communications", "Communications Officer"] },
 ];
-
-function PersonCard({ person }: { person: Person }) {
-  const photoUrl = getImageUrl(person.photo, { width: 300, height: 300 });
-
-  return (
-    <div className="card p-5 flex flex-col items-center text-center group">
-      <div className="relative w-24 h-24 rounded-full overflow-hidden bg-slate-100 mb-4 shrink-0">
-        {photoUrl ? (
-          <Image
-            src={photoUrl}
-            alt={person.fullName}
-            fill
-            className="object-cover"
-            sizes="96px"
-          />
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-100 to-brand-200 flex items-center justify-center">
-            <span className="text-brand-600 font-display font-bold text-2xl">
-              {person.fullName.split(" ").map((n) => n[0]).join("").slice(0, 2)}
-            </span>
-          </div>
-        )}
-      </div>
-
-      <div>
-        <h3 className="font-semibold text-slate-900 text-sm">
-          {person.title ? `${person.title} ` : ""}{person.fullName}
-        </h3>
-        <p className="text-xs text-teal-600 font-medium mt-0.5">{person.role}</p>
-        {person.country && (
-          <p className="text-xs text-slate-400 mt-0.5">{person.country}</p>
-        )}
-      </div>
-
-      <div className="flex gap-2 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-        {person.email && (
-          <a
-            href={`mailto:${person.email}`}
-            className="w-8 h-8 bg-brand-50 rounded-full flex items-center justify-center hover:bg-brand-100 transition-colors"
-            aria-label={`Email ${person.fullName}`}
-          >
-            <Mail className="w-3.5 h-3.5 text-brand-600" />
-          </a>
-        )}
-        {person.linkedin && (
-          <a
-            href={person.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-8 h-8 bg-brand-50 rounded-full flex items-center justify-center hover:bg-brand-100 transition-colors"
-            aria-label={`LinkedIn profile of ${person.fullName}`}
-          >
-            <Linkedin className="w-3.5 h-3.5 text-brand-600" />
-          </a>
-        )}
-      </div>
-    </div>
-  );
-}
 
 function PlaceholderCard({ title }: { title: string }) {
   return (
@@ -136,7 +75,7 @@ export default async function TeamPage() {
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                   {members.map((person) => (
-                    <PersonCard key={person._id} person={person} />
+                    <TeamMemberCard key={person._id} person={person} />
                   ))}
                 </div>
               </div>

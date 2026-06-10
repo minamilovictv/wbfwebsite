@@ -217,7 +217,7 @@ export const teamQuery = groq`
   *[_type == "person" && !(_id in path("drafts.**"))]
   | order(order asc, fullName asc) {
     _id, fullName, slug { ${slugFragment} }, title, role, department,
-    bio, country, email, linkedin, featured, order,
+    bio, biography, country, email, linkedin, featured, order,
     photo { ${imageFragment} }
   }
 `;
