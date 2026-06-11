@@ -745,6 +745,37 @@ export interface Objective {
   order?: number;
 }
 
+export interface GovernanceBody {
+  _id: string;
+  title: string;
+  role?: string;
+  description?: string;
+  responsibilitiesHeading?: string;
+  responsibilities?: string[];
+  icon?: string;
+  image?: SanityImage;
+  order?: number;
+}
+
+export interface GovernanceDocument {
+  _id: string;
+  title: string;
+  description?: string;
+  fileUrl?: string;
+  externalUrl?: string;
+  publicationDate?: string;
+  category?: string;
+  order?: number;
+}
+
+export interface GovernancePrinciple {
+  _id: string;
+  title: string;
+  description?: string;
+  icon?: string;
+  order?: number;
+}
+
 export interface AboutPageContent {
   mandateBody?: string;
   mandateFootnote?: string;

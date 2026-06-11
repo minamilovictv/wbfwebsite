@@ -18,6 +18,9 @@ import { aboutPageSchema } from "./aboutPage";
 import { grantProgrammeSchema } from "./grantProgramme";
 import { beneficiaryCategorySchema } from "./beneficiaryCategory";
 import { objectiveSchema } from "./objective";
+import { governanceBodySchema } from "./governanceBody";
+import { governanceDocumentSchema } from "./governanceDocument";
+import { governancePrincipleSchema } from "./governancePrinciple";
 
 export const schemaTypes = [
   programSchema,
@@ -40,4 +43,7 @@ export const schemaTypes = [
   grantProgrammeSchema,
   beneficiaryCategorySchema,
   objectiveSchema,
+  governanceBodySchema,
+  governanceDocumentSchema,
+  governancePrincipleSchema,
 ];

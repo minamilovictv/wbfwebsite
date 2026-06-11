@@ -291,6 +291,24 @@ export const milestonesQuery = groq`
     }
 `;
 
+// ─── Governance page ───────────────────────────────────────────────────────
+export const governancePageQuery = groq`
+{
+  "bodies": *[_type == "governanceBody" && !(_id in path("drafts.**"))]
+    | order(order asc, title asc) {
+      _id, title, role, description, responsibilitiesHeading,
+      responsibilities, icon, order, image { ${imageFragment} }
+    },
+  "principles": *[_type == "governancePrinciple" && !(_id in path("drafts.**"))]
+    | order(order asc, title asc) { _id, title, description, icon, order },
+  "documents": *[_type == "governanceDocument" && !(_id in path("drafts.**"))]
+    | order(order asc, title asc) {
+      _id, title, description, "fileUrl": file.asset->url,
+      externalUrl, publicationDate, category, order
+    }
+}
+`;
+
 // ─── About page (singleton + supporting collections) ──────────────────────
 export const aboutPageQuery = groq`
 {
