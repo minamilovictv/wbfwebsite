@@ -53,7 +53,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <h3 className="text-card-title group-hover:text-brand-600 transition-colors mb-2 text-balance flex-1">
           {project.title}
         </h3>
-        <p className="text-xs text-slate-500 mb-3 line-clamp-2">{project.shortDescription}</p>
+        <p className="text-[13px] text-slate-500 leading-relaxed mb-3 line-clamp-3">{project.shortDescription}</p>
 
         <div className="flex items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-3 mt-auto">
           <div className="flex items-center gap-1">

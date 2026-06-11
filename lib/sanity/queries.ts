@@ -115,10 +115,11 @@ export const grantBySlugQuery = groq`
 
 export const projectsListQuery = groq`
   *[_type == "project" && !(_id in path("drafts.**"))]
-  | order(_createdAt desc) {
-    _id, _updatedAt, title, slug { ${slugFragment} }, status,
+  | order(coalesce(endDate, startDate) desc, startDate desc) {
+    _id, _updatedAt, title, slug { ${slugFragment} }, status, granteeType,
     shortDescription, countries, implementingOrganization,
     grantAmount, currency, startDate, endDate, featured,
+    areasOfIntervention,
     coverImage { ${imageFragment} },
     program->{ ${programMinFragment} },
     grant->{ _id, title, slug { ${slugFragment} } },
@@ -126,19 +127,38 @@ export const projectsListQuery = groq`
   }
 `;
 
+const newsCardFragment = `
+  _id, title, subtitle, slug { ${slugFragment} }, category,
+  excerpt, body, publishedAt, tags,
+  coverImage { ${imageFragment} },
+  gallery[]{ ${imageFragment} },
+  videos[]{ _key, title, url },
+  links[]{ _key, label, url },
+  author->{ _id, fullName, role, photo { ${imageFragment} } },
+  programs[]->{ ${programMinFragment} }
+`;
+
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug && !(_id in path("drafts.**"))][0] {
     _id, _createdAt, _updatedAt, title, slug { ${slugFragment} },
-    status, shortDescription, description,
+    status, granteeType, shortDescription, description,
     coverImage { ${imageFragment} }, gallery[]{ ${imageFragment} },
     implementingOrganization, partnerOrganizations,
     countries, location, grantAmount, currency,
-    startDate, endDate, beneficiaries, outcomes,
+    startDate, endDate, areasOfIntervention, beneficiaries, outcomes,
+    deliverables[]{
+      _key, _type, title, url,
+      "fileUrl": file.asset->url,
+      image { ${imageFragment} }
+    },
     documents[]{..., file{asset->{url}}}, videos,
     program->{ _id, title, slug { ${slugFragment} }, pillar },
     grant->{ _id, title, slug { ${slugFragment} }, type },
     ogmsProjectId, tags,
-    seo { ${seoFragment} }
+    seo { ${seoFragment} },
+    "manualNews": relatedNews[]->{ ${newsCardFragment} },
+    "taggedNews": *[_type == "news" && project._ref == ^._id && !(_id in path("drafts.**"))]
+      | order(publishedAt desc) { ${newsCardFragment} }
   }
 `;
 

@@ -295,6 +295,15 @@ export interface Grant {
 
 export type ProjectStatus = "ongoing" | "completed" | "suspended";
 
+export interface Deliverable {
+  _key: string;
+  _type: "deliverableDocument" | "deliverableImage" | "deliverableVideo";
+  title?: string;
+  fileUrl?: string;
+  image?: SanityImage;
+  url?: string;
+}
+
 export interface Project {
   _id: string;
   _createdAt: string;
@@ -302,6 +311,7 @@ export interface Project {
   title: string;
   slug: Slug;
   status: ProjectStatus;
+  granteeType?: "organization" | "individual";
   grant?: Grant;
   program?: Program;
   shortDescription: string;
@@ -316,8 +326,11 @@ export interface Project {
   currency: "EUR" | "USD";
   startDate: string;
   endDate?: string;
+  areasOfIntervention?: string[];
   beneficiaries?: number;
   outcomes?: string[];
+  deliverables?: Deliverable[];
+  relatedNews?: NewsArticle[];
   documents?: Document[];
   videos?: { title: string; url: string }[];
   ogmsProjectId?: string;

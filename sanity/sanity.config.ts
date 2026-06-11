@@ -39,7 +39,7 @@ export default defineConfig({
             // ── Funding programmes ─────────────────────────────────────────
             S.listItem().title("Programs").schemaType("program").child(S.documentTypeList("program")),
             S.listItem().title("Grants").schemaType("grant").child(S.documentTypeList("grant")),
-            S.listItem().title("Projects").schemaType("project").child(S.documentTypeList("project")),
+            S.listItem().title("Grantees / Projects").schemaType("project").child(S.documentTypeList("project")),
             S.divider(),
 
             // ── Editorial ──────────────────────────────────────────────────
