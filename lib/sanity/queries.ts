@@ -201,13 +201,42 @@ export const eventBySlugQuery = groq`
   }
 `;
 
-// ─── Partners ──────────────────────────────────────────────────────────────
+// ─── Partners (single source of truth) ─────────────────────────────────────
+// Every partner-related surface (homepage strip, About page section,
+// Donors & Partners page, partner profile pages) reads through these
+// fragments so names, logos, links and descriptions always match.
+
+const partnerCardFragment = `
+  _id, name, shortName, slug { ${slugFragment} }, type, website,
+  partnershipPageUrl, partnerColor, country, description,
+  startYear, status, isFundingPartner, isImplementingPartner,
+  isStrategicPartner, featured, featuredOnHomepage, featuredOnAboutPage,
+  order, logo { ${imageFragment} }
+`;
+
+const partnerProfileFragment = `
+  ${partnerCardFragment},
+  longDescription, partnershipOverview, keyAchievements, supportedCalls,
+  beneficiaryInfo, fundingInfo, impactMetrics[]{ _key, value, label },
+  externalResources[]{ _key, label, url },
+  publications[]{ _key, title, url },
+  downloads[]{ _key, title, "fileUrl": file.asset->url },
+  supportedProgrammes[]->{ _id, title, slug { ${slugFragment} } },
+  supportedEvents[]->{ _id, title, slug { ${slugFragment} } },
+  successStories[]->{ _id, title, slug { ${slugFragment} } },
+  altLogo { ${imageFragment} }
+`;
 
 export const partnersQuery = groq`
   *[_type == "partner" && !(_id in path("drafts.**"))]
   | order(order asc, name asc) {
-    _id, name, slug { ${slugFragment} }, type, website, country,
-    logo { ${imageFragment} }, description, featured, order
+    ${partnerProfileFragment}
+  }
+`;
+
+export const partnerBySlugQuery = groq`
+  *[_type == "partner" && slug.current == $slug && !(_id in path("drafts.**"))][0] {
+    ${partnerProfileFragment}
   }
 `;
 
@@ -247,9 +276,9 @@ export const homePageQuery = groq`
         _id, title, slug { ${slugFragment} }, type, mode,
         startDate, city, country, coverImage { ${imageFragment} }
       },
-    "partners": *[_type == "partner" && featured == true && !(_id in path("drafts.**"))]
-      | order(order asc) {
-        _id, name, slug { ${slugFragment} }, logo { ${imageFragment} }, website
+    "partners": *[_type == "partner" && coalesce(featuredOnHomepage, featured, false) && !(_id in path("drafts.**"))]
+      | order(order asc, name asc) {
+        ${partnerCardFragment}
       }
   }
 `;
@@ -328,10 +357,9 @@ export const aboutPageQuery = groq`
     | order(order asc, title asc) { _id, title, description, icon, order },
   "grantProgrammes": *[_type == "grantProgramme" && !(_id in path("drafts.**"))]
     | order(order asc, name asc) { _id, name, description, url, order },
-  "partners": *[_type == "partner" && !(_id in path("drafts.**"))]
+  "partners": *[_type == "partner" && coalesce(featuredOnAboutPage, featured, false) && !(_id in path("drafts.**"))]
     | order(order asc, name asc) {
-      _id, name, slug { ${slugFragment} }, type, website, description,
-      featured, order, logo { ${imageFragment} }
+      ${partnerCardFragment}
     }
 }
 `;
@@ -385,11 +413,3 @@ export const siteSettingsQuery = groq`
   }
 `;
 
-// ─── Donors (partners filtered by type) ───────────────────────────────────
-export const donorsQuery = groq`
-  *[_type == "partner" && type == "donor" && !(_id in path("drafts.**"))]
-    | order(order asc, name asc) {
-      _id, name, slug { ${slugFragment} }, country, website,
-      description, logo { ${imageFragment} }
-    }
-`;

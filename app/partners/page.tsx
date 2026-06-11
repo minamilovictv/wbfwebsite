@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { sanityFetch, getImageUrl } from "@/lib/sanity/client";
+import { sanityFetch, getLogoUrl } from "@/lib/sanity/client";
 import { partnersQuery } from "@/lib/sanity/queries";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Badge } from "@/components/ui/Badge";
-import type { Partner, PartnerType } from "@/types";
+import type { Partner } from "@/types";
 
 // Always render this page from fresh Sanity data (no static cache).
 export const revalidate = 0;
@@ -15,18 +15,24 @@ export const metadata: Metadata = {
   description: "Partners, donors, and strategic allies of the Western Balkans Fund.",
 };
 
-const typeLabels: Record<PartnerType, string> = {
+const typeLabels: Record<string, string> = {
   donor: "Donor",
   "implementing-partner": "Implementing Partner",
   "strategic-partner": "Strategic Partner",
+  "institutional-partner": "Institutional Partner",
+  "programme-partner": "Programme Partner",
+  "regional-partner": "Regional Partner",
   "network-member": "Network Member",
   observer: "Observer",
 };
 
-const typeVariants: Record<PartnerType, "primary" | "teal" | "gold" | "neutral"> = {
+const typeVariants: Record<string, "primary" | "teal" | "gold" | "neutral"> = {
   donor: "gold",
   "implementing-partner": "teal",
   "strategic-partner": "primary",
+  "institutional-partner": "primary",
+  "programme-partner": "teal",
+  "regional-partner": "primary",
   "network-member": "neutral",
   observer: "neutral",
 };
@@ -98,17 +104,19 @@ export default async function PartnersPage() {
 }
 
 function PartnerCard({ partner, compact = false }: { partner: Partner; compact?: boolean }) {
-  const logoUrl = getImageUrl(partner.logo, { width: 200, height: 100 });
+  const logoUrl = getLogoUrl(partner.logo, 240);
   const inner = (
     <div className={`card p-4 text-center flex flex-col items-center gap-3 hover:shadow-card-hover transition-shadow ${compact ? "h-24 justify-center" : "h-36 justify-center"}`}>
       {logoUrl ? (
-        <Image
-          src={logoUrl}
-          alt={partner.name}
-          width={compact ? 80 : 120}
-          height={compact ? 40 : 60}
-          className="object-contain max-h-12 opacity-70 hover:opacity-100 transition-opacity"
-        />
+        <div className={`flex items-center justify-center w-full ${compact ? "h-10" : "h-12"}`}>
+          <Image
+            src={logoUrl}
+            alt={partner.name}
+            width={compact ? 96 : 132}
+            height={compact ? 40 : 48}
+            className="max-h-full max-w-full w-auto h-auto object-contain"
+          />
+        </div>
       ) : (
         <span className="text-sm font-semibold text-slate-600">{partner.name}</span>
       )}

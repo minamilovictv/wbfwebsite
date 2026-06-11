@@ -33,6 +33,16 @@ export function getImageUrl(
   return img.url();
 }
 
+// Logos must never be cropped: constrain by width only and use fit("max"),
+// which scales the image down while preserving its original aspect ratio.
+export function getLogoUrl(
+  source: SanityImageSource | undefined | null,
+  width = 400
+): string | null {
+  if (!source) return null;
+  return builder.image(source).width(width).fit("max").quality(90).format("webp").url();
+}
+
 export async function sanityFetch<T>(
   query: string,
   params: Record<string, unknown> = {},
