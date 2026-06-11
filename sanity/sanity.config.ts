@@ -51,12 +51,8 @@ export default defineConfig({
             // ── About WBF supporting content ───────────────────────────────
             S.listItem()
               .title("About Page")
-              .child(
-                S.editor()
-                  .id("aboutPage")
-                  .schemaType("aboutPage")
-                  .documentId("aboutPage"),
-              ),
+              .schemaType("aboutPage")
+              .child(S.documentTypeList("aboutPage").title("About Page")),
             S.listItem().title("Member States").schemaType("memberState").child(S.documentTypeList("memberState")),
             S.listItem().title("Milestones").schemaType("milestone").child(S.documentTypeList("milestone")),
             S.listItem().title("Grant Programmes (About)").schemaType("grantProgramme").child(S.documentTypeList("grantProgramme")),

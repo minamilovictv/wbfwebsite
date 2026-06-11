@@ -294,7 +294,7 @@ export const milestonesQuery = groq`
 // ─── About page (singleton + supporting collections) ──────────────────────
 export const aboutPageQuery = groq`
 {
-  "content": *[_type == "aboutPage" && _id == "aboutPage"][0] {
+  "content": *[_type == "aboutPage" && !(_id in path("drafts.**"))] | order(_createdAt asc) [0] {
     mandateBody, mandateFootnote, missionBody, valuesBody, objectivesIntro,
     grantsCtaLabel, grantsCtaUrl, beyondGrantsIntro, beyondGrantsItems,
     partnersIntro, partnersCtaLabel, partnersCtaUrl
