@@ -44,7 +44,9 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          # sanity@latest (and its groq dependency) require Node >= 22.12;
+          # on Node 20 the CLI aborts with a core dump.
+          node-version: '22'
 
       - name: Install Sanity CLI + studio runtime
         working-directory: sanity
