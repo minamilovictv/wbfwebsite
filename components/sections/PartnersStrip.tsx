@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getImageUrl } from "@/lib/sanity/client";
+import { dedupePartners, donorSlug } from "@/lib/utils/partners";
 import type { Partner } from "@/types";
 
 const FALLBACK_DONORS = [
@@ -11,34 +12,6 @@ const FALLBACK_DONORS = [
   { name: "🔷 Visegrad Fund", slug: "visegrad-fund" },
   { name: "◆ Open Society Foundations", slug: "open-society-foundations" },
 ];
-
-function donorSlug(partner: Partner): string {
-  return (
-    partner.slug?.current ??
-    partner.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "")
-  );
-}
-
-// The CMS contains near-duplicate partner entries (e.g. "European Union" and
-// "European Union — IPA III"); keep one per organization, preferring the
-// entry that has a logo.
-function dedupePartners(partners: Partner[]): Partner[] {
-  const byKey = new Map<string, Partner>();
-  for (const partner of partners) {
-    const key = partner.name
-      .toLowerCase()
-      .split(/[—–-]/)[0]
-      .trim();
-    const existing = byKey.get(key);
-    if (!existing || (!existing.logo && partner.logo)) {
-      byKey.set(key, partner);
-    }
-  }
-  return [...byKey.values()];
-}
 
 interface PartnersStripProps {
   partners?: Partner[];

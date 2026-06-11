@@ -14,6 +14,10 @@ import { jobOpeningSchema } from "./jobOpening";
 import { awardSchema } from "./award";
 import { storySchema } from "./story";
 import { siteSettingsSchema } from "./siteSettings";
+import { aboutPageSchema } from "./aboutPage";
+import { grantProgrammeSchema } from "./grantProgramme";
+import { beneficiaryCategorySchema } from "./beneficiaryCategory";
+import { objectiveSchema } from "./objective";
 
 export const schemaTypes = [
   programSchema,
@@ -32,4 +36,8 @@ export const schemaTypes = [
   awardSchema,
   storySchema,
   siteSettingsSchema,
+  aboutPageSchema,
+  grantProgrammeSchema,
+  beneficiaryCategorySchema,
+  objectiveSchema,
 ];

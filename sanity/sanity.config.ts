@@ -49,8 +49,15 @@ export default defineConfig({
             S.divider(),
 
             // ── About WBF supporting content ───────────────────────────────
+            S.listItem()
+              .title("About Page")
+              .schemaType("aboutPage")
+              .child(S.documentTypeList("aboutPage").title("About Page")),
             S.listItem().title("Member States").schemaType("memberState").child(S.documentTypeList("memberState")),
             S.listItem().title("Milestones").schemaType("milestone").child(S.documentTypeList("milestone")),
+            S.listItem().title("Grant Programmes (About)").schemaType("grantProgramme").child(S.documentTypeList("grantProgramme")),
+            S.listItem().title("Beneficiary Categories").schemaType("beneficiaryCategory").child(S.documentTypeList("beneficiaryCategory")),
+            S.listItem().title("Objectives").schemaType("objective").child(S.documentTypeList("objective")),
             S.listItem().title("Strategic Pillars").schemaType("strategicPillar").child(S.documentTypeList("strategicPillar")),
             S.listItem().title("Reports & Publications").schemaType("report").child(S.documentTypeList("report")),
             S.listItem().title("Job Openings").schemaType("jobOpening").child(S.documentTypeList("jobOpening")),
