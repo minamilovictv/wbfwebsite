@@ -284,8 +284,38 @@ export const memberStatesQuery = groq`
 `;
 
 export const milestonesQuery = groq`
-  *[_type == "milestone" && !(_id in path("drafts.**"))]
-    | order(order asc, year asc) { _id, year, event }
+  *[_type == "milestone" && defined(title) && !(_id in path("drafts.**"))]
+    | order(order asc, date asc) {
+      _id, title, date, description, ctaLabel, ctaUrl, order,
+      image { ${imageFragment} }
+    }
+`;
+
+// ─── About page (singleton + supporting collections) ──────────────────────
+export const aboutPageQuery = groq`
+{
+  "content": *[_type == "aboutPage" && _id == "aboutPage"][0] {
+    mandateBody, mandateFootnote, missionBody, valuesBody, objectivesIntro,
+    grantsCtaLabel, grantsCtaUrl, beyondGrantsIntro, beyondGrantsItems,
+    partnersIntro, partnersCtaLabel, partnersCtaUrl
+  },
+  "milestones": *[_type == "milestone" && defined(title) && !(_id in path("drafts.**"))]
+    | order(order asc, date asc) {
+      _id, title, date, description, ctaLabel, ctaUrl, order,
+      image { ${imageFragment} }
+    },
+  "beneficiaries": *[_type == "beneficiaryCategory" && !(_id in path("drafts.**"))]
+    | order(order asc, name asc) { _id, name, group, order },
+  "objectives": *[_type == "objective" && !(_id in path("drafts.**"))]
+    | order(order asc, title asc) { _id, title, description, icon, order },
+  "grantProgrammes": *[_type == "grantProgramme" && !(_id in path("drafts.**"))]
+    | order(order asc, name asc) { _id, name, description, url, order },
+  "partners": *[_type == "partner" && !(_id in path("drafts.**"))]
+    | order(order asc, name asc) {
+      _id, name, slug { ${slugFragment} }, type, website, description,
+      featured, order, logo { ${imageFragment} }
+    }
+}
 `;
 
 export const strategicPillarsQuery = groq`

@@ -713,8 +713,51 @@ export interface MemberState {
 
 export interface Milestone {
   _id: string;
-  year: string;
-  event: string;
+  title: string;
+  date: string;
+  description?: string;
+  image?: SanityImage;
+  ctaLabel?: string;
+  ctaUrl?: string;
+  order?: number;
+}
+
+export interface GrantProgramme {
+  _id: string;
+  name: string;
+  description?: string;
+  url?: string;
+  order?: number;
+}
+
+export interface BeneficiaryCategory {
+  _id: string;
+  name: string;
+  group: string;
+  order?: number;
+}
+
+export interface Objective {
+  _id: string;
+  title: string;
+  description?: string;
+  icon?: string;
+  order?: number;
+}
+
+export interface AboutPageContent {
+  mandateBody?: string;
+  mandateFootnote?: string;
+  missionBody?: string;
+  valuesBody?: string;
+  objectivesIntro?: string;
+  grantsCtaLabel?: string;
+  grantsCtaUrl?: string;
+  beyondGrantsIntro?: string;
+  beyondGrantsItems?: string[];
+  partnersIntro?: string;
+  partnersCtaLabel?: string;
+  partnersCtaUrl?: string;
 }
 
 export interface StrategicPillar {

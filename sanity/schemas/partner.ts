@@ -14,7 +14,7 @@ export const partnerSchema = defineType({
       { value: "network-member", title: "Network Member" },
       { value: "observer", title: "Observer" },
     ] }, validation: (r) => r.required() }),
-    defineField({ name: "logo", type: "image", options: { hotspot: true }, validation: (r) => r.required() }),
+    defineField({ name: "logo", type: "image", options: { hotspot: true } }),
     defineField({ name: "website", type: "url" }),
     defineField({ name: "country", type: "string" }),
     defineField({ name: "description", type: "text", rows: 3 }),
