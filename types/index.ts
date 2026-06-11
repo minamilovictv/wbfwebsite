@@ -425,17 +425,65 @@ export type PartnerType =
   | "network-member"
   | "observer";
 
+export interface PartnerLink {
+  _key?: string;
+  label: string;
+  url: string;
+}
+
+export interface PartnerMetric {
+  _key?: string;
+  value: string;
+  label: string;
+}
+
+export interface PartnerPublication {
+  _key?: string;
+  title: string;
+  url?: string;
+}
+
+export interface PartnerDownload {
+  _key?: string;
+  title: string;
+  fileUrl?: string;
+}
+
 export interface Partner {
   _id: string;
   name: string;
+  shortName?: string;
   slug: Slug;
-  type: PartnerType;
-  logo: SanityImage;
+  type: PartnerType | string;
+  logo?: SanityImage;
+  altLogo?: SanityImage;
+  partnerColor?: string;
   website?: string;
+  partnershipPageUrl?: string;
+  externalResources?: PartnerLink[];
   country?: string;
   description?: string;
+  longDescription?: string;
+  startYear?: number;
+  status?: "active" | "concluded" | "paused";
+  isFundingPartner?: boolean;
+  isImplementingPartner?: boolean;
+  isStrategicPartner?: boolean;
+  partnershipOverview?: string;
+  keyAchievements?: string[];
+  supportedProgrammes?: { _id: string; title: string; slug?: Slug }[];
+  supportedCalls?: string[];
+  supportedEvents?: { _id: string; title: string; slug?: Slug }[];
+  impactMetrics?: PartnerMetric[];
+  beneficiaryInfo?: string;
+  fundingInfo?: string;
+  successStories?: { _id: string; title: string; slug?: Slug }[];
+  publications?: PartnerPublication[];
+  downloads?: PartnerDownload[];
   programs?: Program[];
   featured?: boolean;
+  featuredOnHomepage?: boolean;
+  featuredOnAboutPage?: boolean;
   order?: number;
 }
 

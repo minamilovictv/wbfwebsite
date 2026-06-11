@@ -29,7 +29,7 @@ import {
   CalendarDays,
   MapPin,
 } from "lucide-react";
-import { sanityFetch, getImageUrl } from "@/lib/sanity/client";
+import { sanityFetch, getLogoUrl } from "@/lib/sanity/client";
 import { aboutPageQuery } from "@/lib/sanity/queries";
 import { dedupePartners, donorSlug } from "@/lib/utils/partners";
 import {
@@ -455,26 +455,28 @@ export default async function AboutPage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-10">
             {partners.length > 0
               ? partners.map((partner) => {
-                  const logoUrl = getImageUrl(partner.logo, { width: 320, height: 160 });
+                  const logoUrl = getLogoUrl(partner.logo, 320);
                   return (
                     <Link
                       key={partner._id}
                       href={`/donors/${donorSlug(partner)}`}
-                      className="group card p-6 flex flex-col items-center justify-center text-center gap-3 min-h-[120px] hover:shadow-card-hover transition-shadow"
+                      className="group card p-6 flex flex-col items-center justify-center text-center gap-3 min-h-[140px] hover:shadow-card-hover transition-shadow"
                     >
-                      {logoUrl ? (
-                        <Image
-                          src={logoUrl}
-                          alt={partner.name}
-                          width={140}
-                          height={70}
-                          className="object-contain max-h-12 w-auto"
-                        />
-                      ) : (
-                        <div className="w-11 h-11 bg-brand-50 rounded-full flex items-center justify-center">
-                          <Handshake className="w-5 h-5 text-brand-600" />
-                        </div>
-                      )}
+                      <div className="flex items-center justify-center h-14 w-full">
+                        {logoUrl ? (
+                          <Image
+                            src={logoUrl}
+                            alt={partner.name}
+                            width={160}
+                            height={56}
+                            className="max-h-12 max-w-[80%] w-auto h-auto object-contain"
+                          />
+                        ) : (
+                          <div className="w-11 h-11 bg-brand-50 rounded-full flex items-center justify-center">
+                            <Handshake className="w-5 h-5 text-brand-600" />
+                          </div>
+                        )}
+                      </div>
                       <span className="text-[13px] font-semibold text-slate-700 group-hover:text-brand-700 transition-colors leading-snug">
                         {partner.name}
                       </span>
