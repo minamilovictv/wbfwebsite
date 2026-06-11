@@ -30,13 +30,13 @@ const contacts = [
   {
     icon: Phone,
     label: "Phone",
-    value: "+381 11 222 2333",
-    href: "tel:+381112222333",
+    value: "+355 42 400420",
+    href: "tel:+35542400420",
   },
   {
     icon: MapPin,
     label: "Address",
-    value: "Vladimira Popovića 6, 11070 Belgrade, Serbia",
+    value: "Rruga “Skënderbeg” No. 8, Kati IV, Ap. 35/36, Tirana, Albania",
     href: null,
   },
   {
@@ -95,7 +95,7 @@ export default function ContactPage() {
                 <div className="text-center text-slate-400">
                   <MapPin className="w-8 h-8 mx-auto mb-2" />
                   <p className="text-sm">Interactive map</p>
-                  <p className="text-xs">Belgrade, Serbia</p>
+                  <p className="text-xs">Tirana, Albania</p>
                 </div>
               </div>
             </div>

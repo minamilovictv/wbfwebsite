@@ -147,8 +147,8 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <a href="mailto:info@westernbalkansfund.org" className="block hover:text-brand-600">
               info@westernbalkansfund.org
             </a>
-            <a href="tel:+381112222333" className="block hover:text-brand-600">
-              +381 11 222 2333
+            <a href="tel:+35542400420" className="block hover:text-brand-600">
+              +355 42 400420
             </a>
           </div>
           <div className="flex gap-2 mt-4 text-xs text-slate-400">

@@ -137,15 +137,21 @@ export function Footer() {
             <h4 className="text-[10px] font-bold uppercase tracking-[0.14em] text-white/30 mb-3.5 mt-4">
               Contact
             </h4>
+            <span className="block text-[13px] text-white/55 mb-2">
+              Rruga “Skënderbeg” No. 8, Kati IV, Ap. 35/36, Tirana, Albania
+            </span>
+            <a
+              href="tel:+35542400420"
+              className="block text-[13px] text-white/55 hover:text-white mb-2 transition-colors"
+            >
+              +355 42 400420
+            </a>
             <a
               href="mailto:info@westernbalkansfund.org"
-              className="block text-[13px] text-white/55 hover:text-white mb-2 transition-colors"
+              className="block text-[13px] text-white/55 hover:text-white transition-colors"
             >
               info@westernbalkansfund.org
             </a>
-            <span className="block text-[13px] text-white/55">
-              Skopje, North Macedonia
-            </span>
           </div>
         </div>
 
