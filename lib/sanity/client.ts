@@ -27,10 +27,16 @@ export function getImageUrl(
   options: { width?: number; height?: number; quality?: number } = {}
 ): string | null {
   if (!source) return null;
-  const { width = 800, height, quality = 80 } = options;
-  let img = builder.image(source).width(width).quality(quality).format("webp");
-  if (height) img = img.height(height);
-  return img.url();
+  try {
+    const { width = 800, height, quality = 80 } = options;
+    let img = builder.image(source).width(width).quality(quality).format("webp");
+    if (height) img = img.height(height);
+    return img.url();
+  } catch {
+    // Malformed or incomplete image reference from the CMS — render
+    // without an image rather than crashing the page.
+    return null;
+  }
 }
 
 // Logos must never be cropped: constrain by width only and use fit("max"),
@@ -40,7 +46,11 @@ export function getLogoUrl(
   width = 400
 ): string | null {
   if (!source) return null;
-  return builder.image(source).width(width).fit("max").quality(90).format("webp").url();
+  try {
+    return builder.image(source).width(width).fit("max").quality(90).format("webp").url();
+  } catch {
+    return null;
+  }
 }
 
 export async function sanityFetch<T>(
