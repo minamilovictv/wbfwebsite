@@ -21,6 +21,10 @@ import { objectiveSchema } from "./objective";
 import { governanceBodySchema } from "./governanceBody";
 import { governanceDocumentSchema } from "./governanceDocument";
 import { governancePrincipleSchema } from "./governancePrinciple";
+import { learningPathSchema } from "./learningPath";
+import { resourceSchema } from "./resource";
+import { downloadSchema } from "./download";
+import { caseStudySchema } from "./caseStudy";
 
 export const schemaTypes = [
   programSchema,
@@ -46,4 +50,8 @@ export const schemaTypes = [
   governanceBodySchema,
   governanceDocumentSchema,
   governancePrincipleSchema,
+  learningPathSchema,
+  resourceSchema,
+  downloadSchema,
+  caseStudySchema,
 ];

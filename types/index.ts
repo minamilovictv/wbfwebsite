@@ -942,3 +942,94 @@ export interface SiteSettings {
   }[];
   euCoFundingNote?: string;
 }
+
+// ─── Knowledge Hub ─────────────────────────────────────────────────────────
+
+export type LearningLevel = "beginner" | "intermediate" | "advanced";
+
+export type ResourceType =
+  | "guide"
+  | "toolkit"
+  | "template"
+  | "video"
+  | "webinar"
+  | "article"
+  | "report";
+
+export type ResourceTopic =
+  | "applying"
+  | "project-management"
+  | "reporting"
+  | "communications"
+  | "partnerships"
+  | "policy";
+
+export interface LearningPathModule {
+  _key?: string;
+  title: string;
+  description?: string;
+  duration?: string;
+}
+
+export interface LearningPath {
+  _id: string;
+  title: string;
+  slug: string;
+  summary?: string;
+  level?: LearningLevel;
+  icon?: string;
+  color?: "brand" | "teal" | "emerald" | "amber" | "rose";
+  estimatedDuration?: string;
+  modules?: LearningPathModule[];
+  audience?: string;
+  coverImage?: SanityImage;
+  featured?: boolean;
+  order?: number;
+}
+
+export interface KnowledgeResource {
+  _id: string;
+  title: string;
+  slug: string;
+  summary?: string;
+  type: ResourceType;
+  topic?: ResourceTopic;
+  level?: LearningLevel;
+  externalUrl?: string;
+  download?: KnowledgeDownload | null;
+  duration?: string;
+  language?: string;
+  coverImage?: SanityImage;
+  featured?: boolean;
+  publishedAt?: string;
+  order?: number;
+}
+
+export interface KnowledgeDownload {
+  _id: string;
+  title: string;
+  description?: string;
+  category?: "application" | "reporting" | "visibility" | "guidelines" | "other";
+  fileUrl?: string | null;
+  externalUrl?: string;
+  fileType?: string;
+  fileSize?: string;
+  language?: string;
+  order?: number;
+}
+
+export interface CaseStudy {
+  _id: string;
+  title: string;
+  slug: string;
+  summary?: string;
+  organization?: string;
+  programTitle?: string;
+  countries?: string[];
+  theme?: "culture" | "education" | "environment" | "governance" | "social-inclusion";
+  keyResults?: { _key?: string; value?: string; label?: string }[];
+  coverImage?: SanityImage;
+  featured?: boolean;
+  publishedAt?: string;
+  order?: number;
+}

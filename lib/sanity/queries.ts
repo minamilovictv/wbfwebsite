@@ -433,3 +433,44 @@ export const siteSettingsQuery = groq`
   }
 `;
 
+
+// ─── Knowledge Hub ─────────────────────────────────────────────────────────
+export const learningPathsQuery = groq`
+  *[_type == "learningPath" && !(_id in path("drafts.**"))]
+    | order(order asc, title asc) {
+      _id, title, "slug": slug.current, summary, level, icon, color,
+      estimatedDuration, audience, featured, order,
+      "modules": modules[] { _key, title, description, duration }
+    }
+`;
+
+export const knowledgeResourcesQuery = groq`
+  *[_type == "resource" && !(_id in path("drafts.**"))]
+    | order(order asc, publishedAt desc) {
+      _id, title, "slug": slug.current, summary, type, topic, level,
+      externalUrl, duration, language, featured, publishedAt, order,
+      download-> {
+        _id, title, description, category,
+        "fileUrl": file.asset->url,
+        externalUrl, fileType, fileSize, language, order
+      }
+    }
+`;
+
+export const knowledgeDownloadsQuery = groq`
+  *[_type == "download" && !(_id in path("drafts.**"))]
+    | order(order asc, title asc) {
+      _id, title, description, category,
+      "fileUrl": file.asset->url,
+      externalUrl, fileType, fileSize, language, order
+    }
+`;
+
+export const caseStudiesQuery = groq`
+  *[_type == "caseStudy" && !(_id in path("drafts.**"))]
+    | order(order asc, publishedAt desc) {
+      _id, title, "slug": slug.current, summary, organization,
+      "programTitle": program->title,
+      countries, theme, keyResults, featured, publishedAt, order
+    }
+`;
