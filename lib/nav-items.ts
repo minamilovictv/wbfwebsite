@@ -1,5 +1,41 @@
 // Navigation structure — plain data, no client/server boundary
 
+import type { NavGroup, NavProgram, NavStatusKey, Status } from "@/types";
+
+// ── Mega menu groups (Our Programs) ─────────────────────────────────────────
+export const NAV_GROUPS: { key: NavGroup; label: string }[] = [
+  { key: "funding", label: "Funding Opportunities" },
+  { key: "conferences", label: "Conferences & Networking" },
+  { key: "capacity", label: "Capacity Building" },
+];
+
+// Status dot colours for the mega menu
+export const statusDot: Record<NavStatusKey, string> = {
+  open:    "bg-emerald-500",
+  review:  "bg-amber-400",
+  soon:    "bg-slate-400",
+  results: "bg-brand-600",
+};
+
+// Map Sanity status → mega-menu status-dot key
+export function deriveNavStatus(p: { navStatus?: NavStatusKey; status?: Status }): NavStatusKey {
+  if (p.navStatus) return p.navStatus;
+  switch (p.status) {
+    case "active":   return "open";
+    case "upcoming": return "soon";
+    case "closed":   return "results";
+    case "archived": return "soon";
+    default:         return "soon";
+  }
+}
+
+export function groupNavPrograms(navPrograms: NavProgram[]) {
+  return NAV_GROUPS.map((group) => ({
+    ...group,
+    items: navPrograms.filter((p) => (p.navGroup ?? "funding") === group.key),
+  })).filter((group) => group.items.length > 0);
+}
+
 export interface DropdownItem {
   label: string;
   href: string;

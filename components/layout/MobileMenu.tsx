@@ -3,16 +3,19 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { X, ChevronDown } from "lucide-react";
+import { X, ChevronDown, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
-import { NAV_ITEMS } from "@/lib/nav-items";
+import { NAV_ITEMS, statusDot, deriveNavStatus, groupNavPrograms } from "@/lib/nav-items";
+import type { NavProgram } from "@/types";
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  navPrograms?: NavProgram[];
 }
 
-export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
+export function MobileMenu({ isOpen, onClose, navPrograms = [] }: MobileMenuProps) {
+  const programGroups = groupNavPrograms(navPrograms);
   const pathname = usePathname();
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
@@ -79,7 +82,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         {/* Nav items */}
         <nav className="px-3 py-4 space-y-0.5" aria-label="Mobile navigation">
           {NAV_ITEMS.map((item) => {
-            const hasChildren = item.dropdown && item.dropdown.length > 0;
+            const hasChildren = (item.dropdown && item.dropdown.length > 0) || item.mega;
             const isExpanded = expandedItem === item.label;
             const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
 
@@ -104,7 +107,35 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         )}
                       />
                     </button>
-                    {isExpanded && item.dropdown && (
+                    {isExpanded && item.mega && (
+                      <div className="ml-3 mt-0.5 space-y-3 border-l-2 border-slate-100 pl-3 py-1">
+                        {programGroups.map((group) => (
+                          <div key={group.key}>
+                            <div className="px-3 text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-1.5 mb-0.5 border-b border-slate-100">
+                              {group.label}
+                            </div>
+                            {group.items.map((p) => (
+                              <Link
+                                key={p._id}
+                                href={`/programs/${p.slug}`}
+                                className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                              >
+                                <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot[deriveNavStatus(p)]}`} />
+                                {p.title}
+                              </Link>
+                            ))}
+                          </div>
+                        ))}
+                        <Link
+                          href="/knowledge-hub"
+                          className="flex items-center justify-center gap-1.5 mx-3 px-3 py-2 bg-brand-800 text-white text-sm font-semibold rounded-sm hover:bg-brand-700 active:bg-brand-900 transition-colors"
+                        >
+                          <BookOpen className="w-3.5 h-3.5" />
+                          Knowledge Hub
+                        </Link>
+                      </div>
+                    )}
+                    {isExpanded && !item.mega && item.dropdown && (
                       <div className="ml-3 mt-0.5 space-y-0.5 border-l-2 border-slate-100 pl-3">
                         {item.dropdown.map((child) => (
                           <Link

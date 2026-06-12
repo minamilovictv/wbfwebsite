@@ -3,31 +3,11 @@
 import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
-import { NAV_ITEMS } from "@/lib/nav-items";
+import { NAV_ITEMS, statusDot, deriveNavStatus, groupNavPrograms } from "@/lib/nav-items";
 import type { NavItem, DropdownItem } from "@/lib/nav-items";
 import type { NavProgram, NavStatusKey } from "@/types";
-
-// ── Status dot colours ─────────────────────────────────────────────────────
-const statusDot: Record<string, string> = {
-  open:    "bg-emerald-500",
-  review:  "bg-amber-400",
-  soon:    "bg-slate-400",
-  results: "bg-brand-600",
-};
-
-// Map Sanity status → mega-menu status-dot key
-function deriveNavStatus(p: NavProgram): NavStatusKey {
-  if (p.navStatus) return p.navStatus;
-  switch (p.status) {
-    case "active":   return "open";
-    case "upcoming": return "soon";
-    case "closed":   return "results";
-    case "archived": return "soon";
-    default:         return "soon";
-  }
-}
 
 // Programs are loaded from Sanity and passed via props.
 
@@ -67,33 +47,18 @@ function SimpleDropdown({ items }: { items: DropdownItem[] }) {
 
 // ── Mega dropdown ──────────────────────────────────────────────────────────
 function MegaDropdown({ navPrograms }: { navPrograms: NavProgram[] }) {
-  const funding = navPrograms.filter((p) => (p.navGroup ?? "funding") === "funding");
-  const capacity = navPrograms.filter((p) => p.navGroup === "capacity");
+  const groups = groupNavPrograms(navPrograms);
 
   return (
     <div className="absolute top-full left-0 pt-2 z-50">
       <div className="w-[560px] bg-white border border-slate-200 rounded-lg shadow-lg grid grid-cols-2 p-3.5">
         <div className="pr-4">
-          <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-2 mb-1.5 border-b border-slate-100">
-            Funding Opportunities
-          </div>
-          {funding.map((p) => (
-            <Link
-              key={p._id}
-              href={`/programs/${p.slug}`}
-              className="flex items-center gap-2 px-2 py-1.5 rounded-sm text-[13px] text-slate-600 hover:bg-slate-50 hover:text-brand-700 transition-colors"
-            >
-              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${statusDot[deriveNavStatus(p)]}`} />
-              {p.title}
-            </Link>
-          ))}
-          {capacity.length > 0 && (
-            <>
-              <div className="h-3" />
+          {groups.map((group, i) => (
+            <div key={group.key} className={i > 0 ? "mt-3" : undefined}>
               <div className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400 pb-2 mb-1.5 border-b border-slate-100">
-                Capacity & Networking
+                {group.label}
               </div>
-              {capacity.map((p) => (
+              {group.items.map((p) => (
                 <Link
                   key={p._id}
                   href={`/programs/${p.slug}`}
@@ -103,8 +68,8 @@ function MegaDropdown({ navPrograms }: { navPrograms: NavProgram[] }) {
                   {p.title}
                 </Link>
               ))}
-            </>
-          )}
+            </div>
+          ))}
         </div>
 
         <div className="border-l border-slate-100 pl-4">
@@ -142,11 +107,19 @@ function MegaDropdown({ navPrograms }: { navPrograms: NavProgram[] }) {
                 ["soon",    "Coming Soon"],
               ].map(([s, label]) => (
                 <span key={s} className="flex items-center gap-2">
-                  <span className={`w-1.5 h-1.5 rounded-full inline-block shrink-0 ${statusDot[s]}`} />
+                  <span className={`w-1.5 h-1.5 rounded-full inline-block shrink-0 ${statusDot[s as NavStatusKey]}`} />
                   {label}
                 </span>
               ))}
             </div>
+
+            <Link
+              href="/knowledge-hub"
+              className="mt-3 flex items-center justify-center gap-1.5 px-3 py-2 bg-brand-800 text-white text-[12.5px] font-semibold rounded-sm hover:bg-brand-700 active:bg-brand-900 transition-colors"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              Knowledge Hub
+            </Link>
           </div>
         </div>
       </div>

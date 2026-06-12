@@ -308,8 +308,8 @@ export const navProgramsQuery = groq`
   *[_type == "program"
       && !(_id in path("drafts.**"))
       && showInNav != false]
-    | order(navGroup asc, order asc, title asc) {
-      _id, title, "slug": slug.current, navGroup, status, navStatus
+    | order(navGroup asc, navOrder asc, title asc) {
+      _id, title, "slug": slug.current, navGroup, navOrder, status, navStatus
     }
 `;
 

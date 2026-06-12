@@ -700,7 +700,7 @@ export interface NewsFilters {
 
 // ─── Mega menu ─────────────────────────────────────────────────────────────
 
-export type NavGroup = "funding" | "capacity";
+export type NavGroup = "funding" | "conferences" | "capacity";
 export type NavStatusKey = "open" | "review" | "results" | "soon";
 
 export interface NavProgram {
@@ -708,6 +708,7 @@ export interface NavProgram {
   title: string;
   slug: string;
   navGroup?: NavGroup;
+  navOrder?: number;
   status?: Status;
   navStatus?: NavStatusKey;
 }

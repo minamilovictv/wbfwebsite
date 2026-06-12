@@ -488,11 +488,20 @@ export const programSchema = defineType({
       options: {
         list: [
           { value: "funding", title: "Funding Opportunities" },
-          { value: "capacity", title: "Capacity & Networking" },
+          { value: "conferences", title: "Conferences & Networking" },
+          { value: "capacity", title: "Capacity Building" },
         ],
         layout: "radio",
       },
       initialValue: "funding",
+    }),
+    defineField({
+      name: "navOrder",
+      title: "Mega menu order",
+      type: "number",
+      group: "settings",
+      description: "Sort order within the mega menu group (lower first). Independent of the main programs list order.",
+      initialValue: 1,
     }),
     defineField({
       name: "navStatus",

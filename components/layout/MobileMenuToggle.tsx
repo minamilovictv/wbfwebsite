@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { Menu } from "lucide-react";
 import { MobileMenu } from "./MobileMenu";
+import type { NavProgram } from "@/types";
 
-export function MobileMenuToggle() {
+export function MobileMenuToggle({ navPrograms = [] }: { navPrograms?: NavProgram[] }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -16,7 +17,7 @@ export function MobileMenuToggle() {
       >
         <Menu className="w-6 h-6" />
       </button>
-      <MobileMenu isOpen={open} onClose={() => setOpen(false)} />
+      <MobileMenu isOpen={open} onClose={() => setOpen(false)} navPrograms={navPrograms} />
     </>
   );
 }

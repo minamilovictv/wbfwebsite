@@ -66,7 +66,7 @@ export async function Header() {
             </a>
 
             {/* Mobile toggle + drawer (client component) */}
-            <MobileMenuToggle />
+            <MobileMenuToggle navPrograms={navPrograms} />
           </div>
         </div>
       </div>
