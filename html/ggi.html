@@ -5,14 +5,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GGI Grants — Good Governance and Integration | Western Balkans Fund</title>
 <meta name="description" content="The Good Governance and Integration (GGI) grants scheme is the Western Balkans Fund's flagship programme, funding cross-border cooperation projects led by civil society, cultural institutions and grassroots organisations across all six Contracting Parties.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  /* ============================================================
+     DESIGN TOKENS  —  reusable across all WBF programme pages
+     ============================================================ */
+  :root {
+    --navy:        #1A3668;   /* WBF primary */
+    --navy-900:    #0f2044;   /* deep navy (footer / dark sections) */
+    --navy-700:    #2a4a85;
+
+    /* Programmatic accents (areas of intervention) */
+    --amber:       #C2841C;   /* Heritage Amber */
+    --amber-tint:  #fbf2e2;
+    --teal:        #0E8C84;   /* Exchange Teal */
+    --teal-tint:   #e6f4f3;
+    --green:       #2F9E63;   /* Growth Green */
+    --green-tint:  #e9f5ee;
+
+    --ink:         #0f172a;
+    --ink-soft:    #475569;
+    --muted:       #64748b;
+    --faint:       #94a3b8;
+    --line:        #e2e8f0;
+    --line-soft:   #f1f5f9;
+    --surface:     #ffffff;
+    --surface-alt: #f8fafc;
+
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
   /* ============================================================
      RESET & BASE
      ============================================================ */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font);
     color: #1a1e2e; background: #fff;
     line-height: 1.5; -webkit-font-smoothing: antialiased;
   }
@@ -22,8 +53,10 @@
   .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
   .container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
 
+  h1, h2, h3, .display { font-family: var(--font); letter-spacing: -0.018em; }
+
   /* ============================================================
-     NAVBAR
+     NAVBAR  (unchanged)
      ============================================================ */
   .nb { background: #1A3668; width: 100%; position: sticky; top: 0; z-index: 1000; }
   .nb-inner { display: flex; align-items: center; height: 56px; padding: 0 20px; max-width: 1400px; margin: 0 auto; gap: 4px; }
@@ -84,7 +117,7 @@
     position: relative;
     background: linear-gradient(135deg, #0a1830 0%, #1A3668 60%, #0f5a5e 100%);
     overflow: hidden;
-    padding: 64px 0 56px;
+    padding: 64px 0 92px;
   }
   .prog-hero::before {
     content: ""; position: absolute; inset: 0;
@@ -107,629 +140,295 @@
   .breadcrumb span { margin: 0 8px; opacity: 0.5; }
 
   .status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
-    padding: 6px 14px;
-    border-radius: 999px;
-    background: rgba(245,158,11,0.15);
-    border: 1px solid rgba(245,158,11,0.3);
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 20px; padding: 6px 14px; border-radius: 999px;
+    background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3);
   }
-  .status-pill-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #fbbf24;
-    box-shadow: 0 0 0 3px rgba(251,191,36,0.2);
-    flex-shrink: 0;
-  }
-  .status-pill-text {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: #fcd34d;
-  }
+  .status-pill-dot { width: 8px; height: 8px; border-radius: 50%; background: #fbbf24; box-shadow: 0 0 0 3px rgba(251,191,36,0.2); flex-shrink: 0; }
+  .status-pill-text { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #fcd34d; }
 
   .prog-hero h1 {
-    font-family: Georgia, 'Times New Roman', serif;
     font-size: clamp(32px, 4.4vw, 52px);
-    font-weight: 700; color: #fff; line-height: 1.05;
-    letter-spacing: -0.01em; margin-bottom: 20px; max-width: 18ch;
+    font-weight: 800; color: #fff; line-height: 1.06;
+    letter-spacing: -0.025em; margin-bottom: 20px; max-width: 18ch;
   }
-  .tagline {
-    font-size: 17px;
-    color: rgba(255,255,255,0.8);
-    line-height: 1.6;
-    max-width: 64ch;
-    margin-bottom: 12px;
-  }
-  .footnote {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 32px;
-  }
+  .tagline { font-size: 17px; color: rgba(255,255,255,0.8); line-height: 1.6; max-width: 64ch; margin-bottom: 12px; }
+  .footnote { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 32px; }
 
-  .hero-ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 44px;
-  }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
   .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 22px;
-    background: #fff;
-    color: #1A3668;
-    font-weight: 600; font-size: 14px;
-    border-radius: 6px; text-decoration: none;
-    transition: background 0.15s;
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+    background: #fff; color: #1A3668; font-weight: 600; font-size: 14px;
+    border-radius: 6px; text-decoration: none; transition: background 0.15s;
   }
   .btn-primary:hover { background: #e8eef8; }
   .btn-primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .btn-ghost {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 22px;
-    color: rgba(255,255,255,0.85);
-    border: 1px solid rgba(255,255,255,0.25);
-    font-weight: 600; font-size: 14px;
-    border-radius: 6px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+    color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.25);
+    font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none;
     transition: background 0.15s, border-color 0.15s, color 0.15s;
   }
   .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); color: #fff; }
   .btn-ghost svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-  .meta-facts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 36px;
-    padding-top: 28px;
-    border-top: 1px solid rgba(255,255,255,0.16);
-  }
-  .meta-fact-key {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 6px;
-  }
-  .meta-fact-value {
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-  }
+  .meta-facts { display: flex; flex-wrap: wrap; gap: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.16); }
+  .meta-fact-key { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+  .meta-fact-value { font-size: 16px; font-weight: 600; color: #fff; }
 
   /* ============================================================
      SECTION SHARED
      ============================================================ */
   .section { padding: 72px 0; }
-  .section-alt { background: #f8fafc; }
-  .section-dark { background: #0f2044; color: #fff; }
+  .section-alt { background: var(--surface-alt); }
+  .section-dark { background: var(--navy-900); color: #fff; }
 
   .sec-head { margin-bottom: 40px; }
   .sec-head.center { text-align: center; }
   .sec-head .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #1A3668; margin-bottom: 12px; }
-  .sec-head h2 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(24px, 2.8vw, 32px);
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.2;
-    margin-bottom: 14px;
-  }
-  .sec-head p {
-    font-size: 16px; color: #64748b;
-    line-height: 1.65; max-width: 64ch;
-  }
+  .sec-head h2 { font-size: clamp(24px, 2.8vw, 33px); font-weight: 700; color: var(--ink); line-height: 1.18; margin-bottom: 14px; }
+  .sec-head p { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 64ch; }
   .sec-head.center p { margin-left: auto; margin-right: auto; }
   .section-dark .sec-head .overline { color: #5eead4; }
   .section-dark .sec-head h2 { color: #fff; }
   .section-dark .sec-head p { color: rgba(255,255,255,0.7); }
 
   /* ============================================================
-     CALL INFO STRIP (key facts + timeline)
+     QUICK FACTS  —  Eligibility · Core Requirements · Timeline
+     (3 boxes lifted over the hero edge — the page signature)
      ============================================================ */
-  .info-strip {
-    margin-top: -36px;
-    position: relative;
-    z-index: 3;
+  .quickfacts { margin-top: -64px; position: relative; z-index: 5; padding-bottom: 8px; }
+  .qf-grid {
+    max-width: 1400px; margin: 0 auto; padding: 0 40px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
   }
-  .info-inner {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-  }
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    background: #fff;
-    border: 1px solid #e2e8f0;
+  .qf-card {
+    --accent: var(--navy);
+    --accent-tint: #eef2f8;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
     border-radius: 12px;
+    padding: 26px 26px 22px;
     box-shadow: 0 16px 40px rgba(15,32,68,0.12);
-    overflow: hidden;
+    display: flex; flex-direction: column;
   }
-  .info-cell {
-    padding: 22px 24px;
-    border-right: 1px solid #e2e8f0;
-  }
-  .info-cell:last-child { border-right: none; }
-  .info-cell .icon {
-    width: 32px; height: 32px;
-    background: #eef2f8;
-    color: #1A3668;
-    border-radius: 6px;
+  .qf-card.is-amber { --accent: var(--amber); --accent-tint: var(--amber-tint); }
+  .qf-card.is-teal  { --accent: var(--teal);  --accent-tint: var(--teal-tint); }
+  .qf-card.is-green { --accent: var(--green); --accent-tint: var(--green-tint); }
+
+  .qf-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .qf-ico {
+    width: 40px; height: 40px; border-radius: 9px; flex-shrink: 0;
+    background: var(--accent-tint); color: var(--accent);
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 10px;
   }
-  .info-cell .icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .info-cell .label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; margin-bottom: 4px; }
-  .info-cell .value { font-size: 16px; font-weight: 700; color: #0f172a; line-height: 1.25; }
-  .info-cell .sub { font-size: 12.5px; color: #64748b; margin-top: 2px; }
+  .qf-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .qf-title { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+  .qf-kicker { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 2px; }
+
+  .qf-list { list-style: none; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+  .qf-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+  .qf-list li svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .qf-list li strong { color: var(--ink); font-weight: 600; }
+
+  /* compact timeline inside the third box */
+  .qf-tl { list-style: none; display: flex; flex-direction: column; flex: 1; }
+  .qf-tl li { position: relative; padding: 0 0 16px 22px; }
+  .qf-tl li:last-child { padding-bottom: 0; }
+  .qf-tl li::before { content: ""; position: absolute; left: 3px; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .qf-tl li::after  { content: ""; position: absolute; left: 7px; top: 13px; bottom: 0; width: 1.5px; background: var(--line); }
+  .qf-tl li:last-child::after { display: none; }
+  .qf-tl li.is-now::before { box-shadow: 0 0 0 4px var(--accent-tint); }
+  .qf-tl li.is-done::before { background: var(--faint); }
+  .qf-tl-date { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; }
+  .qf-tl li.is-done .qf-tl-date { color: var(--faint); }
+  .qf-tl-label { font-size: 13px; color: var(--ink-soft); line-height: 1.4; margin-top: 1px; }
+
+  .qf-foot { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+  .qf-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 600; color: var(--accent); text-decoration: none; }
+  .qf-link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .qf-link:hover svg { transform: translateX(3px); }
 
   /* ============================================================
      ABOUT SECTION
      ============================================================ */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 64px;
-    align-items: flex-start;
-  }
-  .about-text p {
-    font-size: 16px;
-    color: #475569;
-    line-height: 1.75;
-    margin-bottom: 16px;
-  }
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: flex-start; }
+  .about-text p { font-size: 16px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
   .about-text p:last-child { margin-bottom: 0; }
-  .about-text strong { color: #0f172a; font-weight: 600; }
+  .about-text strong { color: var(--ink); font-weight: 600; }
 
-  .coverage-card {
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 24px;
-  }
-  .coverage-head {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 16px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid #f1f5f9;
-  }
-  .coverage-head .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #94a3b8; }
-  .coverage-head .count { font-family: Georgia, serif; font-size: 24px; font-weight: 700; color: #1A3668; }
+  .coverage-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+  .coverage-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line-soft); }
+  .coverage-head .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); }
+  .coverage-head .count { font-size: 26px; font-weight: 800; color: #1A3668; letter-spacing: -0.02em; }
   .coverage-list { display: flex; flex-direction: column; gap: 6px; }
-  .coverage-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 10px;
-    border-radius: 6px;
-    font-size: 13.5px;
-    color: #334155;
-    background: #f8fafc;
-  }
+  .coverage-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; font-size: 13.5px; color: #334155; background: var(--surface-alt); }
   .coverage-row .flag { font-size: 18px; }
   .coverage-row .name { font-weight: 500; }
 
   /* ============================================================
      INTERVENTION AREAS
      ============================================================ */
-  .ia-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-  }
-  .ia-card {
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 26px;
-    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
-  }
-  .ia-card:hover {
-    box-shadow: 0 12px 28px rgba(15,32,68,0.08);
-    transform: translateY(-2px);
-    border-color: #cbd5e1;
-  }
-  .ia-icon {
-    width: 44px; height: 44px;
-    background: #1A3668;
-    color: #5eead4;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 16px;
-  }
+  .ia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .ia-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 26px; transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s; }
+  .ia-card:hover { box-shadow: 0 12px 28px rgba(15,32,68,0.08); transform: translateY(-2px); border-color: #cbd5e1; }
+  .ia-icon { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; background: var(--navy); color: #5eead4; }
+  .ia-card:nth-child(3n+1) .ia-icon { background: var(--teal-tint);  color: var(--teal); }
+  .ia-card:nth-child(3n+2) .ia-icon { background: var(--amber-tint); color: var(--amber); }
+  .ia-card:nth-child(3n+3) .ia-icon { background: var(--green-tint); color: var(--green); }
   .ia-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .ia-title {
-    font-family: Georgia, serif;
-    font-size: 17px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 8px;
-  }
-  .ia-desc {
-    font-size: 13.5px;
-    color: #64748b;
-    line-height: 1.65;
-  }
+  .ia-title { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.01em; }
+  .ia-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
 
   /* ============================================================
-     ELIGIBILITY
+     CARD GRID (stories / news)
      ============================================================ */
-  .elig-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-  .elig-card {
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 32px;
-  }
-  .elig-card h3 {
-    font-family: Georgia, serif;
-    font-size: 19px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 18px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid #f1f5f9;
-  }
-  .elig-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .elig-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    font-size: 14.5px;
-    color: #334155;
-    line-height: 1.55;
-  }
-  .elig-list li svg {
-    width: 18px; height: 18px;
-    color: #0d9488;
-    flex-shrink: 0;
-    margin-top: 2px;
-    fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
-  }
-  .elig-list li strong { color: #0f172a; font-weight: 600; display: block; margin-bottom: 2px; }
-
-  .sectors-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .sector-tag {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 11px 14px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    font-size: 13px;
-    color: #334155;
-    font-weight: 500;
-  }
-  .sector-tag svg {
-    width: 14px; height: 14px;
-    color: #1A3668;
-    fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
-  }
-
-  /* ============================================================
-     TIMELINE
-     ============================================================ */
-  .timeline-section {
-    margin-top: 56px;
-  }
-  .timeline-section h3 {
-    font-family: Georgia, serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 24px;
-  }
-  .tl {
-    position: relative;
-    padding-left: 8px;
-  }
-  .tl::before {
-    content: "";
-    position: absolute;
-    left: 96px;
-    top: 8px;
-    bottom: 8px;
-    width: 2px;
-    background: #cbd5e1;
-  }
-  .tl-item {
-    display: grid;
-    grid-template-columns: 96px 1fr;
-    gap: 32px;
-    padding: 12px 0;
-    position: relative;
-  }
-  .tl-date {
-    text-align: right;
-    font-size: 13px;
-    font-weight: 700;
-    color: #1A3668;
-    padding-right: 12px;
-    padding-top: 4px;
-  }
-  .tl-item::before {
-    content: "";
-    position: absolute;
-    left: 89px;
-    top: 16px;
-    width: 14px; height: 14px;
-    border-radius: 50%;
-    background: #0d9488;
-    border: 3px solid #fff;
-    box-shadow: 0 0 0 1px #cbd5e1;
-    z-index: 1;
-  }
-  .tl-item.done::before { background: #94a3b8; }
-  .tl-item.current::before { background: #f59e0b; box-shadow: 0 0 0 1px #f59e0b, 0 0 0 5px rgba(245,158,11,0.18); }
-  .tl-body {
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 14px 18px;
-  }
-  .tl-title { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 3px; }
-  .tl-desc { font-size: 12.5px; color: #64748b; line-height: 1.55; }
-
-  /* ============================================================
-     STORIES + NEWS
-     ============================================================ */
-  .cards-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
+  .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .story-card, .news-card {
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: inherit;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    overflow: hidden; display: flex; flex-direction: column; text-decoration: none; color: inherit;
     transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
   }
-  .story-card:hover, .news-card:hover {
-    box-shadow: 0 12px 28px rgba(15,32,68,0.08);
-    transform: translateY(-2px);
-    border-color: #cbd5e1;
+  .story-card { cursor: pointer; text-align: left; font-family: inherit; padding: 0; width: 100%; }
+  .story-card:hover, .news-card:hover { box-shadow: 0 12px 28px rgba(15,32,68,0.08); transform: translateY(-2px); border-color: #cbd5e1; }
+  .story-card:focus-visible, .news-card:focus-visible { outline: 2px solid var(--navy); outline-offset: 2px; }
+  .card-img { height: 180px; background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%); background-size: cover; background-position: center; position: relative; }
+  .card-play {
+    position: absolute; left: 14px; bottom: 14px;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(15,32,68,0.82); color: #fff; backdrop-filter: blur(2px);
+    font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 999px;
   }
-  .card-img {
-    height: 180px;
-    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%);
-    background-size: cover;
-    background-position: center;
-  }
+  .card-play svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .card-body { padding: 20px 22px; display: flex; flex-direction: column; flex: 1; }
-  .card-meta {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 11px;
-    margin-bottom: 10px;
-  }
-  .badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 3px 9px;
-    border-radius: 999px;
-    background: #eef2f8;
-    color: #1A3668;
-  }
-  .card-date {
-    font-size: 11.5px;
-    color: #94a3b8;
-    margin-left: auto;
-  }
-  .card-title {
-    font-family: Georgia, serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.35;
-    margin-bottom: 8px;
-  }
+  .card-meta { display: flex; align-items: center; gap: 8px; font-size: 11px; margin-bottom: 10px; }
+  .badge { display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 9px; border-radius: 999px; background: #eef2f8; color: #1A3668; }
+  .badge.amber { background: var(--amber-tint); color: var(--amber); }
+  .badge.teal  { background: var(--teal-tint);  color: var(--teal); }
+  .badge.green { background: var(--green-tint); color: var(--green); }
+  .card-date { font-size: 11.5px; color: var(--faint); margin-left: auto; }
+  .card-title { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 8px; letter-spacing: -0.01em; }
   .story-card:hover .card-title, .news-card:hover .card-title { color: #1A3668; }
-  .card-desc {
-    font-size: 13px;
-    color: #64748b;
-    line-height: 1.6;
-    margin-bottom: 12px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    flex: 1;
-  }
-  .card-link {
-    font-size: 12.5px;
-    font-weight: 600;
-    color: #1A3668;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-  }
+  .card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex: 1; }
+  .card-link { font-size: 12.5px; font-weight: 600; color: #1A3668; display: inline-flex; align-items: center; gap: 4px; }
   .card-link svg { width: 13px; height: 13px; transition: transform 0.15s; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .story-card:hover .card-link svg, .news-card:hover .card-link svg { transform: translateX(3px); }
 
-  .see-all {
-    text-align: center;
-    margin-top: 36px;
-  }
-  .see-all a {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 11px 22px;
-    color: #1A3668;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    font-size: 13.5px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: border-color 0.15s, background 0.15s;
-  }
-  .see-all a:hover { border-color: #1A3668; background: #f8fafc; }
+  .see-all { text-align: center; margin-top: 36px; }
+  .see-all a { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; color: #1A3668; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13.5px; font-weight: 600; text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+  .see-all a:hover { border-color: #1A3668; background: var(--surface-alt); }
   .see-all svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .empty-note { text-align: center; padding: 40px; color: var(--faint); font-size: 14px; }
+
+  /* ============================================================
+     STORY MODAL
+     ============================================================ */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(10,18,38,0.62); backdrop-filter: blur(3px);
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 48px 20px; overflow-y: auto;
+    opacity: 0; visibility: hidden; transition: opacity 0.2s, visibility 0.2s;
+  }
+  .modal-overlay.open { opacity: 1; visibility: visible; }
+  .modal {
+    background: #fff; border-radius: 16px; max-width: 720px; width: 100%;
+    overflow: hidden; box-shadow: 0 30px 80px rgba(10,18,38,0.5);
+    transform: translateY(12px) scale(0.99); transition: transform 0.2s ease;
+    margin: auto;
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+  .modal-hero { height: 220px; background-size: cover; background-position: center; position: relative; }
+  .modal-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(15,32,68,0.55) 100%); }
+  .modal-close {
+    position: absolute; top: 14px; right: 14px; z-index: 2;
+    width: 36px; height: 36px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(255,255,255,0.92); color: var(--navy-900);
+    display: flex; align-items: center; justify-content: center; transition: background 0.15s;
+  }
+  .modal-close:hover { background: #fff; }
+  .modal-close svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .modal-badges { position: absolute; left: 22px; bottom: 16px; z-index: 2; display: flex; gap: 8px; }
+  .modal-body { padding: 26px 30px 30px; }
+  .modal-body h3 { font-size: 24px; font-weight: 800; color: var(--ink); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .modal-facts { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-bottom: 20px; }
+  .modal-chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-soft); background: var(--surface-alt); border: 1px solid var(--line); padding: 5px 11px; border-radius: 999px; }
+  .modal-body p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 14px; }
+  .modal-sub { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); margin: 22px 0 12px; }
+  .modal-outcomes { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
+  .modal-outcomes li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+  .modal-outcomes li svg { width: 17px; height: 17px; color: var(--teal); flex-shrink: 0; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .modal-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--line-soft); }
+  .modal-cta a { display: inline-flex; align-items: center; gap: 7px; padding: 11px 20px; border-radius: 6px; font-size: 13.5px; font-weight: 600; text-decoration: none; transition: 0.15s; }
+  .modal-cta .primary { background: var(--navy); color: #fff; }
+  .modal-cta .primary:hover { background: var(--navy-900); }
+  .modal-cta .primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  body.modal-open { overflow: hidden; }
+
+  /* ============================================================
+     EVENTS
+     ============================================================ */
+  .events-list { display: flex; flex-direction: column; gap: 14px; }
+  .event-card {
+    display: grid; grid-template-columns: 84px 1fr auto; align-items: center; gap: 22px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 24px; text-decoration: none; color: inherit;
+    transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
+  }
+  .event-card:hover { box-shadow: 0 10px 26px rgba(15,32,68,0.07); border-color: #cbd5e1; transform: translateY(-1px); }
+  .event-date { text-align: center; border-radius: 10px; padding: 10px 6px; background: var(--navy); color: #fff; }
+  .event-date .d { font-size: 22px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
+  .event-date .m { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; color: #a9c0e8; }
+  .event-main { min-width: 0; }
+  .event-tags { display: flex; gap: 8px; margin-bottom: 7px; flex-wrap: wrap; }
+  .event-title { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .event-card:hover .event-title { color: var(--navy); }
+  .event-meta { display: flex; flex-wrap: wrap; gap: 16px; font-size: 12.5px; color: var(--muted); }
+  .event-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .event-meta svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; color: var(--faint); }
+  .event-go { color: var(--navy); flex-shrink: 0; }
+  .event-go svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+  .event-card:hover .event-go svg { transform: translateX(3px); }
 
   /* ============================================================
      DOCUMENTS
      ============================================================ */
-  .docs-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-  .doc-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 18px 22px;
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    text-decoration: none;
-    color: inherit;
-    transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
-  }
-  .doc-card[href]:hover {
-    box-shadow: 0 8px 20px rgba(15,32,68,0.06);
-    transform: translateY(-1px);
-    border-color: #cbd5e1;
-  }
+  .docs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .doc-card { display: flex; align-items: center; gap: 16px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: inherit; transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s; }
+  .doc-card[href]:hover { box-shadow: 0 8px 20px rgba(15,32,68,0.06); transform: translateY(-1px); border-color: #cbd5e1; }
   .doc-card.unavailable { opacity: 0.7; }
-  .doc-icon {
-    width: 44px; height: 44px;
-    background: #eef2f8;
-    color: #1A3668;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
+  .doc-icon { width: 44px; height: 44px; background: #eef2f8; color: #1A3668; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .doc-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .doc-body { flex: 1; min-width: 0; }
-  .doc-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #0f172a;
-    margin-bottom: 3px;
-    line-height: 1.3;
-  }
+  .doc-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
   .doc-card[href]:hover .doc-title { color: #1A3668; }
-  .doc-meta { font-size: 11.5px; color: #94a3b8; }
-  .doc-action {
-    color: #1A3668;
-    flex-shrink: 0;
-  }
+  .doc-meta { font-size: 11.5px; color: var(--faint); }
+  .doc-action { color: #1A3668; flex-shrink: 0; }
   .doc-action svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .doc-soon {
-    font-size: 10px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.06em;
-    padding: 4px 9px; border-radius: 999px;
-    background: #f1f5f9; color: #64748b;
-    flex-shrink: 0;
-  }
+  .doc-soon { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 9px; border-radius: 999px; background: var(--line-soft); color: var(--muted); flex-shrink: 0; }
 
   /* ============================================================
      SUBSCRIBE CTA
      ============================================================ */
-  .subscribe {
-    background: linear-gradient(135deg, #0f2044 0%, #1A3668 60%, #0f5a5e 100%);
-    padding: 72px 0;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-  .subscribe::before {
-    content: ""; position: absolute; top: -100px; right: -60px;
-    width: 380px; height: 380px; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,168,152,0.18) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .subscribe-inner {
-    position: relative; z-index: 1;
-    max-width: 920px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0 40px;
-  }
-  .subscribe-icon {
-    width: 56px; height: 56px;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
-    color: #5eead4;
-  }
+  .subscribe { background: linear-gradient(135deg, #0f2044 0%, #1A3668 60%, #0f5a5e 100%); padding: 72px 0; color: #fff; position: relative; overflow: hidden; }
+  .subscribe::before { content: ""; position: absolute; top: -100px; right: -60px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(0,168,152,0.18) 0%, transparent 70%); pointer-events: none; }
+  .subscribe-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; text-align: center; padding: 0 40px; }
+  .subscribe-icon { width: 56px; height: 56px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: #5eead4; }
   .subscribe-icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-  .subscribe .overline {
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.16em; color: #5eead4; margin-bottom: 12px;
-  }
-  .subscribe h2 {
-    font-family: Georgia, serif;
-    font-size: clamp(24px, 2.8vw, 30px);
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 16px;
-  }
-  .subscribe p {
-    font-size: 15.5px;
-    color: rgba(255,255,255,0.75);
-    line-height: 1.65;
-    max-width: 60ch;
-    margin: 0 auto 28px;
-  }
+  .subscribe .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #5eead4; margin-bottom: 12px; }
+  .subscribe h2 { font-size: clamp(24px, 2.8vw, 30px); font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em; }
+  .subscribe p { font-size: 15.5px; color: rgba(255,255,255,0.75); line-height: 1.65; max-width: 60ch; margin: 0 auto 28px; }
   .subscribe-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn-white {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 22px;
-    background: #fff; color: #1A3668;
-    font-weight: 600; font-size: 14px;
-    border-radius: 6px; text-decoration: none;
-    transition: background 0.15s;
-  }
+  .btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: #fff; color: #1A3668; font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none; transition: background 0.15s; }
   .btn-white:hover { background: #e8eef8; }
   .btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .btn-ghost-white {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 22px;
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.4);
-    font-weight: 600; font-size: 14px;
-    border-radius: 6px; text-decoration: none;
-    transition: background 0.15s, border-color 0.15s;
-  }
+  .btn-ghost-white { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; color: #fff; border: 1px solid rgba(255,255,255,0.4); font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none; transition: background 0.15s, border-color 0.15s; }
   .btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
 
   /* ============================================================
-     FOOTER
+     FOOTER  (unchanged)
      ============================================================ */
   .footer { background: #0f2044; color: rgba(255,255,255,0.75); padding: 56px 40px 0; }
   .footer-inner { max-width: 1400px; margin: 0 auto; }
@@ -765,13 +464,11 @@
      RESPONSIVE
      ============================================================ */
   @media (max-width: 1024px) {
-    .container, .container-narrow, .prog-hero-inner, .info-inner { padding-left: 24px; padding-right: 24px; }
-    .info-grid { grid-template-columns: repeat(2, 1fr); }
-    .info-cell:nth-child(2) { border-right: none; }
-    .info-cell:nth-child(1), .info-cell:nth-child(2) { border-bottom: 1px solid #e2e8f0; }
+    .container, .container-narrow, .prog-hero-inner, .qf-grid { padding-left: 24px; padding-right: 24px; }
+    .quickfacts { margin-top: -56px; }
+    .qf-grid { grid-template-columns: 1fr; gap: 16px; }
     .about-grid { grid-template-columns: 1fr; gap: 32px; }
     .ia-grid { grid-template-columns: repeat(2, 1fr); }
-    .elig-grid { grid-template-columns: 1fr; gap: 20px; }
     .cards-3 { grid-template-columns: repeat(2, 1fr); }
     .docs-grid { grid-template-columns: 1fr; }
     .footer { padding: 48px 24px 0; }
@@ -780,20 +477,18 @@
   }
   @media (max-width: 768px) {
     .nav-items, .btn-partners { display: none; }
-    .prog-hero { padding: 48px 0 40px; }
+    .prog-hero { padding: 48px 0 76px; }
     .section { padding: 56px 0; }
     .meta-facts { gap: 24px; }
-    .info-grid { grid-template-columns: 1fr; }
-    .info-cell { border-right: none; border-bottom: 1px solid #e2e8f0; }
-    .info-cell:last-child { border-bottom: none; }
     .ia-grid { grid-template-columns: 1fr; }
     .cards-3 { grid-template-columns: 1fr; }
-    .sectors-grid { grid-template-columns: 1fr; }
-    .elig-card { padding: 24px; }
-    .tl::before { left: 70px; }
-    .tl-item { grid-template-columns: 70px 1fr; gap: 24px; }
-    .tl-item::before { left: 63px; }
+    .event-card { grid-template-columns: 64px 1fr; gap: 16px; }
+    .event-go { display: none; }
+    .modal-body { padding: 22px 22px 26px; }
     .footer-bottom { flex-direction: column; gap: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   }
 </style>
 </head>
@@ -932,7 +627,7 @@
         Download Call Text
         <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       </a>
-      <a class="btn-ghost" href="#eligibility">
+      <a class="btn-ghost" href="#facts">
         Check Eligibility
         <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
       </a>
@@ -964,43 +659,80 @@
 </section>
 
 <!-- ============================================================
-     CALL INFO STRIP
+     QUICK FACTS — Eligibility · Core Requirements · Timeline
+     (3 boxes lifted over the hero edge)
      ============================================================ -->
-<div class="info-strip">
-  <div class="info-inner">
-    <div class="info-grid">
-      <div class="info-cell">
-        <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-        <div class="label">Current Status</div>
-        <div class="value">Call No. 8</div>
-        <div class="sub">Under evaluation</div>
+<section class="quickfacts" id="facts" aria-label="At a glance">
+  <div class="qf-grid">
+
+    <!-- Box 1 — Eligibility -->
+    <div class="qf-card is-teal">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <div class="qf-kicker">Who can apply</div>
+          <div class="qf-title">Eligibility</div>
+        </div>
       </div>
-      <div class="info-cell">
-        <div class="icon"><svg viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>
-        <div class="label">Applications Received</div>
-        <div class="value">263</div>
-        <div class="sub">A record for the scheme</div>
-      </div>
-      <div class="info-cell">
-        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
-        <div class="label">Results</div>
-        <div class="value">June 2026</div>
-        <div class="sub">Decisions announced</div>
-      </div>
-      <div class="info-cell">
-        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
-        <div class="label">Next Call</div>
-        <div class="value">Call No. 9</div>
-        <div class="sub">Anticipated Autumn 2026</div>
+      <ul class="qf-list">
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Civil society organisations &amp; NGOs</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Cultural institutions, museums &amp; libraries</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Universities, schools &amp; research centres</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Local authorities &amp; foundations</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Registered non-profits in one of the WB6</span></li>
+      </ul>
+      <div class="qf-foot">
+        <a class="qf-link" href="#about">Eligible region — all six Contracting Parties <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
       </div>
     </div>
+
+    <!-- Box 2 — Core Requirements -->
+    <div class="qf-card is-amber">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div>
+          <div class="qf-kicker">What counts</div>
+          <div class="qf-title">Core Requirements</div>
+        </div>
+      </div>
+      <ul class="qf-list">
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Min. 3 Contracting Parties</strong> — lead plus 2 partners from different countries</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Duration 6–12 months</strong>, starting after contracting</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Co-financing ≥ 10%</strong>, in cash or in kind</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Regional outputs</strong> across at least 3 countries</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Compliance</strong> with EU funding &amp; WBF rules</span></li>
+      </ul>
+      <div class="qf-foot">
+        <a class="qf-link" href="#documents">Full eligibility checklist <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Box 3 — Timeline -->
+    <div class="qf-card is-green">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
+        <div>
+          <div class="qf-kicker">Call No. 8</div>
+          <div class="qf-title">Timeline</div>
+        </div>
+      </div>
+      <ul class="qf-tl">
+        <li class="is-done"><div class="qf-tl-date">Aug 2025</div><div class="qf-tl-label">Call launched on OGMS</div></li>
+        <li class="is-done"><div class="qf-tl-date">Nov 2025</div><div class="qf-tl-label">Applications closed — 263 received</div></li>
+        <li class="is-now"><div class="qf-tl-date">Dec 2025 – May 2026</div><div class="qf-tl-label">Evaluation in progress</div></li>
+        <li><div class="qf-tl-date">Jun 2026</div><div class="qf-tl-label">Results announcement</div></li>
+        <li><div class="qf-tl-date">Jul 2026</div><div class="qf-tl-label">Contracting &amp; project start</div></li>
+        <li><div class="qf-tl-date">Autumn 2026</div><div class="qf-tl-label">Call No. 9 launched</div></li>
+      </ul>
+    </div>
+
   </div>
-</div>
+</section>
 
 <!-- ============================================================
-     ABOUT
+     ABOUT — what the fund is about
      ============================================================ -->
-<section class="section">
+<section class="section" id="about">
   <div class="container-narrow">
     <div class="sec-head">
       <div class="overline">About the Programme</div>
@@ -1034,7 +766,7 @@
 </section>
 
 <!-- ============================================================
-     INTERVENTION AREAS
+     INTERVENTION AREAS — what GGI funds
      ============================================================ -->
 <section class="section section-alt">
   <div class="container-narrow">
@@ -1080,163 +812,18 @@
 </section>
 
 <!-- ============================================================
-     ELIGIBILITY
+     FEATURED GRANTEE STORIES — open as modal windows
      ============================================================ -->
-<section class="section" id="eligibility">
-  <div class="container-narrow">
-    <div class="sec-head">
-      <div class="overline">Eligibility</div>
-      <h2>Who can apply and what counts</h2>
-      <p>GGI is open to a wide range of non-profit organisations and institutions across the WB6 — but every application must meet a few core criteria.</p>
-    </div>
-
-    <div class="elig-grid">
-
-      <div class="elig-card">
-        <h3>Eligible applicants</h3>
-        <div class="sectors-grid">
-          <div class="sector-tag"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Civil society organisations</div>
-          <div class="sector-tag"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>Cultural institutions</div>
-          <div class="sector-tag"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Universities &amp; schools</div>
-          <div class="sector-tag"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>Libraries &amp; museums</div>
-          <div class="sector-tag"><svg viewBox="0 0 24 24"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>Local authorities</div>
-          <div class="sector-tag"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>Research centres</div>
-          <div class="sector-tag"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Foundations</div>
-          <div class="sector-tag"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Regional networks</div>
-        </div>
-      </div>
-
-      <div class="elig-card">
-        <h3>Core requirements</h3>
-        <ul class="elig-list">
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-            <span><strong>Registered non-profit entity</strong> based in one of the six Contracting Parties</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-            <span><strong>Minimum 3 Contracting Parties</strong> represented in the partnership — lead applicant plus at least 2 partners from different countries</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-            <span><strong>Project duration 6–12 months</strong>, starting after grant contracting</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-            <span><strong>Co-financing of at least 10%</strong> from own or third-party sources (in cash or in kind)</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-            <span><strong>Regional outputs</strong> — measurable benefits across at least 3 of the participating countries</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-            <span><strong>Compliance with EU funding rules</strong> and WBF financial regulations</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- TIMELINE -->
-    <div class="timeline-section">
-      <h3>Call No. 8 — Timeline</h3>
-      <div class="tl">
-        <div class="tl-item done">
-          <div class="tl-date">Aug 2025</div>
-          <div class="tl-body">
-            <div class="tl-title">Call launched</div>
-            <div class="tl-desc">GGI Call No. 8 opens for applications via the OGMS platform.</div>
-          </div>
-        </div>
-        <div class="tl-item done">
-          <div class="tl-date">Oct 2025</div>
-          <div class="tl-body">
-            <div class="tl-title">Info sessions</div>
-            <div class="tl-desc">Online application webinars delivered in English and regional languages.</div>
-          </div>
-        </div>
-        <div class="tl-item done">
-          <div class="tl-date">Nov 2025</div>
-          <div class="tl-body">
-            <div class="tl-title">Applications closed</div>
-            <div class="tl-desc">263 applications received — a record for the GGI scheme.</div>
-          </div>
-        </div>
-        <div class="tl-item current">
-          <div class="tl-date">Dec 2025 – May 2026</div>
-          <div class="tl-body">
-            <div class="tl-title">Evaluation in progress</div>
-            <div class="tl-desc">Independent evaluation panels review applications against published criteria.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">Jun 2026</div>
-          <div class="tl-body">
-            <div class="tl-title">Results announcement</div>
-            <div class="tl-desc">Awarded projects notified; full list published on the WBF website.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">Jul 2026</div>
-          <div class="tl-body">
-            <div class="tl-title">Contracting &amp; project start</div>
-            <div class="tl-desc">Grant agreements signed and implementation begins.</div>
-          </div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-date">Autumn 2026</div>
-          <div class="tl-body">
-            <div class="tl-title">Call No. 9 launched</div>
-            <div class="tl-desc">The next call opens — sign up to be notified.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     FEATURED GRANTEE STORIES
-     ============================================================ -->
-<section class="section section-alt">
+<section class="section" id="stories">
   <div class="container-narrow">
     <div class="sec-head">
       <div class="overline">Featured Grantee Stories</div>
-      <h2>Projects funded under GGI</h2>
-      <p>A small selection of recent GGI-funded projects illustrating the variety of partnerships and outputs the scheme supports.</p>
+      <h2>Highlighted projects funded under GGI</h2>
+      <p>A selection of recent GGI-funded projects. Select any story to read the full highlight — partners, outcomes and lessons — without leaving the page.</p>
     </div>
 
-    <div class="cards-3">
-      <a class="story-card" href="projects.html?project=youth-bridges-balkans">
-        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80')"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="badge">Ongoing</span><span class="card-date">2025–2026</span></div>
-          <div class="card-title">Youth Bridges Across the Balkans</div>
-          <div class="card-desc">A regional youth-led initiative connecting three Western Balkans cities through workshops, exchanges and a shared media platform.</div>
-          <span class="card-link">Read project <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </div>
-      </a>
-
-      <a class="story-card" href="projects.html?project=heritage-trails">
-        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1473625247510-8ceb1760943f?w=800&q=80')"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="badge">Completed</span><span class="card-date">2024–2025</span></div>
-          <div class="card-title">Heritage Trails: Common Roots, Shared Futures</div>
-          <div class="card-desc">Three-country project mapping shared cultural heritage along historic routes and publishing the first regional Heritage Trails guide.</div>
-          <span class="card-link">Read project <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </div>
-      </a>
-
-      <a class="story-card" href="projects.html?project=green-classrooms">
-        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=800&q=80')"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="badge">Ongoing</span><span class="card-date">2026</span></div>
-          <div class="card-title">Green Classrooms — Climate Education Network</div>
-          <div class="card-desc">Teacher training and curriculum co-design on climate change adaptation for secondary schools across three countries.</div>
-          <span class="card-link">Read project <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </div>
-      </a>
-    </div>
+    <!-- Cards are buttons that open a modal. Data lives in the `stories` object below. -->
+    <div class="cards-3" id="storiesGrid"></div>
 
     <div class="see-all">
       <a href="projects.html?programme=GGI+Grants">All GGI-funded projects <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
@@ -1245,50 +832,39 @@
 </section>
 
 <!-- ============================================================
-     PROGRAM NEWS
+     PROGRAMME NEWS — generated from latest news tagged "GGI"
      ============================================================ -->
-<section class="section">
+<section class="section section-alt" id="news">
   <div class="container-narrow">
     <div class="sec-head">
       <div class="overline">Programme News</div>
       <h2>Latest from GGI</h2>
-      <p>Announcements, evaluation updates and grantee stories from the GGI programme.</p>
+      <p>Announcements and evaluation updates, pulled automatically from the newsroom and filtered to items tagged <strong>GGI</strong>.</p>
     </div>
 
-    <div class="cards-3">
-      <a class="news-card" href="news.html?article=ggi-call-9-opens">
-        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80')"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="badge">Open Call</span><span class="card-date">14 Jun 2026</span></div>
-          <div class="card-title">GGI Call No. 9 opens for applications — €15,000 grants for regional cooperation</div>
-          <div class="card-desc">WBF announces the opening of the ninth call under the GGI scheme, supporting CSOs, cultural and educational projects across WB6.</div>
-          <span class="card-link">Read more <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </div>
-      </a>
-
-      <a class="news-card" href="news.html?article=cross-border-youth-network">
-        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80')"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="badge">Story</span><span class="card-date">5 Jun 2026</span></div>
-          <div class="card-title">How a cross-border youth network reconnected three Balkan cities</div>
-          <div class="card-desc">A grantee story from GGI Call No. 7 — three CSOs share lessons from a year of regional cooperation.</div>
-          <span class="card-link">Read more <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </div>
-      </a>
-
-      <a class="news-card" href="news.html">
-        <div class="card-img" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80')"></div>
-        <div class="card-body">
-          <div class="card-meta"><span class="badge">Announcement</span><span class="card-date">15 Apr 2026</span></div>
-          <div class="card-title">GGI Call No. 8 — Evaluation panels at work on 263 applications</div>
-          <div class="card-desc">An update on the evaluation process for the record-breaking GGI Call No. 8 with results expected in June 2026.</div>
-          <span class="card-link">Read more <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>
-        </div>
-      </a>
-    </div>
+    <div class="cards-3" id="newsGrid"></div>
 
     <div class="see-all">
       <a href="news.html?programme=GGI+Grants">All GGI news <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EVENTS — upcoming events tagged "GGI"
+     ============================================================ -->
+<section class="section" id="events">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Programme Events</div>
+      <h2>Info sessions &amp; ceremonies</h2>
+      <p>Upcoming GGI events — application webinars, partner-matching meetups and award ceremonies across the region.</p>
+    </div>
+
+    <div class="events-list" id="eventsList"></div>
+
+    <div class="see-all">
+      <a href="events.html?programme=GGI+Grants">All GGI events <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
     </div>
   </div>
 </section>
@@ -1481,6 +1057,268 @@
     </div>
   </div>
 </footer>
+
+<!-- ============================================================
+     STORY MODAL  (single reusable container, filled by JS)
+     ============================================================ -->
+<div class="modal-overlay" id="storyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" role="document">
+    <div class="modal-hero" id="modalHero">
+      <button class="modal-close" id="modalClose" aria-label="Close story">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-badges" id="modalBadges"></div>
+    </div>
+    <div class="modal-body">
+      <h3 id="modalTitle"></h3>
+      <div class="modal-facts" id="modalFacts"></div>
+      <div id="modalText"></div>
+      <div class="modal-sub" id="modalOutcomesLabel" style="display:none">Key outcomes</div>
+      <ul class="modal-outcomes" id="modalOutcomes"></ul>
+      <div class="modal-cta" id="modalCta"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   CONTENT DATA
+   On the live Sanity + Next.js build, these three arrays map to GROQ
+   queries: stories -> project (featured, programme == "GGI"),
+   newsItems -> news (programme == "GGI", ordered by date desc),
+   events -> event (programme == "GGI", date >= now). Here they are
+   inline so the template renders standalone and is easy to clone
+   for other programme pages.
+   ================================================================ */
+
+/* ---- Featured grantee stories (open in a modal) ---- */
+const stories = [
+  {
+    id: "youth-bridges-balkans",
+    title: "Youth Bridges Across the Balkans",
+    img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1000&q=80",
+    badges: [{label:"Ongoing", cls:"teal"}, {label:"GGI Call No. 7", cls:""}],
+    facts: ["🗓 2025–2026", "💶 €15,000 grant", "🌍 3 countries"],
+    countries: "Serbia · Montenegro · Bosnia and Herzegovina",
+    lead: "Lead partner: Centre for Youth Initiative (Novi Sad)",
+    body: [
+      "Youth Bridges connected youth-led organisations in three Western Balkans cities through a year-long programme of exchanges, joint workshops and a shared digital media platform run entirely by young people.",
+      "The partnership was built around a simple idea: that the fastest way to rebuild trust across the region is to give young people real reasons to work together. Teams met monthly — alternating host cities — to co-produce content, run civic-education sessions and plan a closing regional forum."
+    ],
+    outcomes: [
+      "120+ young people directly involved across the three partner cities",
+      "A shared multilingual media platform with 40 published youth stories",
+      "A regional youth forum that fed recommendations into local councils"
+    ],
+    url: "projects.html?project=youth-bridges-balkans"
+  },
+  {
+    id: "heritage-trails",
+    title: "Heritage Trails: Common Roots, Shared Futures",
+    img: "https://images.unsplash.com/photo-1473625247510-8ceb1760943f?w=1000&q=80",
+    badges: [{label:"Completed", cls:"amber"}, {label:"GGI Call No. 6", cls:""}],
+    facts: ["🗓 2024–2025", "💶 €14,200 grant", "🌍 3 countries"],
+    countries: "Albania · North Macedonia · Kosovo*",
+    lead: "Lead partner: Cultural Heritage Without Borders",
+    body: [
+      "Heritage Trails mapped shared cultural heritage along historic routes that cross today's borders, producing the first regional Heritage Trails guide and a set of open-access walking itineraries.",
+      "Local historians, museums and tourism boards from three countries documented sites, recorded oral histories and trained guides — turning a fragmented heritage into a connected, visitable regional asset."
+    ],
+    outcomes: [
+      "First cross-border Heritage Trails guide published in 4 languages",
+      "18 heritage sites documented with shared signage standards",
+      "24 local guides trained to deliver the new itineraries"
+    ],
+    url: "projects.html?project=heritage-trails"
+  },
+  {
+    id: "green-classrooms",
+    title: "Green Classrooms — Climate Education Network",
+    img: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1000&q=80",
+    badges: [{label:"Ongoing", cls:"green"}, {label:"GGI Call No. 7", cls:""}],
+    facts: ["🗓 2026", "💶 €15,000 grant", "🌍 3 countries"],
+    countries: "Montenegro · Serbia · Albania",
+    lead: "Lead partner: Green Schools Network",
+    body: [
+      "Green Classrooms brings teachers from three countries together to co-design a shared climate-adaptation curriculum for secondary schools, paired with hands-on training and a pool of open teaching materials.",
+      "Rather than each country building its own materials in isolation, the project pools expertise into one regional curriculum that any school can adopt — with local examples kept front and centre."
+    ],
+    outcomes: [
+      "Shared climate curriculum piloted in 9 secondary schools",
+      "60 teachers trained in cross-border co-teaching methods",
+      "An open library of localisable lesson plans"
+    ],
+    url: "projects.html?project=green-classrooms"
+  }
+];
+
+/* ---- Newsroom (filtered to GGI, newest first) ---- */
+const newsItems = [
+  { programme:"GGI", tag:"Open Call",    tagCls:"green", date:"2026-06-14", title:"GGI Call No. 9 opens for applications — €15,000 grants for regional cooperation", desc:"WBF announces the opening of the ninth call under the GGI scheme, supporting CSOs, cultural and educational projects across the WB6.", img:"https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&q=80", url:"news.html?article=ggi-call-9-opens" },
+  { programme:"GEFund", tag:"Announcement", tagCls:"", date:"2026-06-10", title:"Gender Equality Fund announces 2026 grantees", desc:"Twelve organisations selected under the latest GEFund call.", img:"https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80", url:"news.html?article=gefund-2026" },
+  { programme:"GGI", tag:"Story",        tagCls:"teal",  date:"2026-06-05", title:"How a cross-border youth network reconnected three Balkan cities", desc:"A grantee story from GGI Call No. 7 — three CSOs share lessons from a year of regional cooperation.", img:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80", url:"news.html?article=cross-border-youth-network" },
+  { programme:"GGI", tag:"Announcement", tagCls:"amber", date:"2026-04-15", title:"GGI Call No. 8 — Evaluation panels at work on 263 applications", desc:"An update on the evaluation process for the record-breaking GGI Call No. 8, with results expected in June 2026.", img:"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80", url:"news.html?article=ggi-call-8-evaluation" },
+  { programme:"GGI", tag:"Story",        tagCls:"teal",  date:"2026-03-02", title:"Heritage Trails guide reaches 10,000 downloads", desc:"The first cross-border Heritage Trails guide, funded under GGI, passes a milestone.", img:"https://images.unsplash.com/photo-1473625247510-8ceb1760943f?w=800&q=80", url:"news.html?article=heritage-trails-milestone" }
+];
+
+/* ---- Events (filtered to GGI, upcoming first) ---- */
+const events = [
+  { programme:"GGI", date:"2026-09-15", type:"Info Session", typeCls:"green", title:"GGI Call No. 9 — Application Webinar", location:"Online (Zoom)", time:"11:00 CET", url:"events.html?event=ggi-9-webinar" },
+  { programme:"GGI", date:"2026-09-24", type:"Partner Matching", typeCls:"teal", title:"Find Your Partners — Regional Meetup", location:"Skopje, North Macedonia", time:"Full day", url:"events.html?event=ggi-9-partner-matching" },
+  { programme:"GGI", date:"2026-07-08", type:"Ceremony", typeCls:"amber", title:"GGI Call No. 8 — Award & Contracting Ceremony", location:"Tirana, Albania", time:"10:00 CET", url:"events.html?event=ggi-8-award" }
+];
+
+/* ================================================================
+   RENDER — STORIES
+   ================================================================ */
+const arrow = '<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>';
+
+function renderStories() {
+  const grid = document.getElementById("storiesGrid");
+  grid.innerHTML = stories.map((s, i) => `
+    <button class="story-card" type="button" data-story="${i}" aria-haspopup="dialog">
+      <div class="card-img" style="background-image:url('${s.img}')">
+        <span class="card-play">
+          <svg viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          Read story
+        </span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="badge ${s.badges[0].cls}">${s.badges[0].label}</span>
+          <span class="card-date">${s.facts[0].replace('🗓 ','')}</span>
+        </div>
+        <div class="card-title">${s.title}</div>
+        <div class="card-desc">${s.body[0]}</div>
+        <span class="card-link">Read project ${arrow}</span>
+      </div>
+    </button>
+  `).join("");
+
+  grid.querySelectorAll("[data-story]").forEach(btn => {
+    btn.addEventListener("click", () => openStory(+btn.dataset.story));
+  });
+}
+
+/* ================================================================
+   MODAL LOGIC
+   ================================================================ */
+const overlay   = document.getElementById("storyModal");
+const closeBtn  = document.getElementById("modalClose");
+let lastFocused = null;
+
+function openStory(i) {
+  const s = stories[i];
+  lastFocused = document.activeElement;
+
+  document.getElementById("modalHero").style.backgroundImage = `url('${s.img}')`;
+  document.getElementById("modalBadges").innerHTML = s.badges
+    .map(b => `<span class="badge ${b.cls}">${b.label}</span>`).join("");
+  document.getElementById("modalTitle").textContent = s.title;
+
+  const facts = [...s.facts, s.countries, s.lead].filter(Boolean);
+  document.getElementById("modalFacts").innerHTML = facts
+    .map(f => `<span class="modal-chip">${f}</span>`).join("");
+  document.getElementById("modalText").innerHTML = s.body.map(p => `<p>${p}</p>`).join("");
+
+  const oc = document.getElementById("modalOutcomes");
+  const ocLabel = document.getElementById("modalOutcomesLabel");
+  if (s.outcomes && s.outcomes.length) {
+    ocLabel.style.display = "block";
+    oc.innerHTML = s.outcomes.map(o =>
+      `<li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>${o}</span></li>`).join("");
+  } else { ocLabel.style.display = "none"; oc.innerHTML = ""; }
+
+  document.getElementById("modalCta").innerHTML =
+    `<a class="primary" href="${s.url}">View full project ${arrow}</a>`;
+
+  overlay.classList.add("open");
+  document.body.classList.add("modal-open");
+  closeBtn.focus();
+}
+
+function closeStory() {
+  overlay.classList.remove("open");
+  document.body.classList.remove("modal-open");
+  if (lastFocused) lastFocused.focus();
+}
+
+closeBtn.addEventListener("click", closeStory);
+overlay.addEventListener("click", e => { if (e.target === overlay) closeStory(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && overlay.classList.contains("open")) closeStory(); });
+
+/* ================================================================
+   RENDER — NEWS (latest GGI items)
+   ================================================================ */
+function fmtDate(iso) {
+  return new Date(iso).toLocaleDateString("en-GB", { day:"numeric", month:"short", year:"numeric" });
+}
+
+function renderNews() {
+  const grid = document.getElementById("newsGrid");
+  const items = newsItems
+    .filter(n => n.programme === "GGI")
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3);
+
+  if (!items.length) {
+    grid.innerHTML = `<div class="empty-note">No GGI news yet — check back soon.</div>`;
+    return;
+  }
+
+  grid.innerHTML = items.map(n => `
+    <a class="news-card" href="${n.url}">
+      <div class="card-img" style="background-image:url('${n.img}')"></div>
+      <div class="card-body">
+        <div class="card-meta"><span class="badge ${n.tagCls}">${n.tag}</span><span class="card-date">${fmtDate(n.date)}</span></div>
+        <div class="card-title">${n.title}</div>
+        <div class="card-desc">${n.desc}</div>
+        <span class="card-link">Read more ${arrow}</span>
+      </div>
+    </a>
+  `).join("");
+}
+
+/* ================================================================
+   RENDER — EVENTS (upcoming GGI events)
+   ================================================================ */
+function renderEvents() {
+  const list = document.getElementById("eventsList");
+  const items = events
+    .filter(e => e.programme === "GGI")
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  if (!items.length) {
+    list.innerHTML = `<div class="empty-note">No upcoming GGI events scheduled.</div>`;
+    return;
+  }
+
+  list.innerHTML = items.map(ev => {
+    const d = new Date(ev.date);
+    const day = d.toLocaleDateString("en-GB", { day:"2-digit" });
+    const mon = d.toLocaleDateString("en-GB", { month:"short" }).toUpperCase();
+    return `
+      <a class="event-card" href="${ev.url}">
+        <div class="event-date"><div class="d">${day}</div><div class="m">${mon}</div></div>
+        <div class="event-main">
+          <div class="event-tags"><span class="badge ${ev.typeCls}">${ev.type}</span></div>
+          <div class="event-title">${ev.title}</div>
+          <div class="event-meta">
+            <span><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${ev.location}</span>
+            <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>${ev.time}</span>
+          </div>
+        </div>
+        <span class="event-go">${arrow}</span>
+      </a>
+    `;
+  }).join("");
+}
+
+/* ---- init ---- */
+renderStories();
+renderNews();
+renderEvents();
+</script>
 
 </body>
 </html>
