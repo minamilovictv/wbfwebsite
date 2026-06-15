@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers — Western Balkans Fund</title>
+<meta name="description" content="Join the Western Balkans Fund Secretariat in Tirana — open positions, internships and consultancy opportunities.">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1e2e; background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button, input { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .container-narrow { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+  /* ============================================================
+     NAVBAR
+     ============================================================ */
+  .nb { background: #1A3668; width: 100%; position: sticky; top: 0; z-index: 1000; }
+  .nb-inner { display: flex; align-items: center; height: 56px; padding: 0 20px; max-width: 1400px; margin: 0 auto; gap: 4px; }
+  .logo { display: flex; align-items: center; gap: 9px; margin-right: 16px; flex-shrink: 0; text-decoration: none; }
+  .logo-icon { width: 34px; height: 34px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; color: #1A3668; }
+  .logo-text { line-height: 1.15; }
+  .logo-name { font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .logo-sub  { font-size: 10px; color: rgba(255,255,255,0.6); white-space: nowrap; }
+  .nav-items { display: flex; align-items: center; gap: 2px; flex: 1; }
+  .nav-btn { background: none; border: none; color: rgba(255,255,255,0.88); font-size: 13px; padding: 6px 10px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 4px; white-space: nowrap; font-family: inherit; text-decoration: none; transition: background 0.15s, color 0.15s; }
+  .nav-btn:hover, .nav-btn:focus-visible, .dropdown-wrap:hover > .nav-btn { background: rgba(255,255,255,0.13); color: #fff; outline: none; }
+  .chevron { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; transition: transform 0.2s; }
+  .dropdown-wrap:hover .chevron { transform: rotate(180deg); }
+  .dropdown-wrap { position: relative; }
+  .dropdown, .mega { display: none; position: absolute; top: calc(100% + 2px); left: 0; background: #fff; border: 0.5px solid #d1d9e6; border-radius: 8px; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.13); animation: fadeIn 0.12s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .dropdown-wrap:hover .dropdown, .dropdown-wrap:hover .mega { display: block; }
+  .dropdown { min-width: 230px; padding: 6px 0; }
+  .dd-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 16px; cursor: pointer; text-decoration: none; color: inherit; transition: background 0.1s; }
+  .dd-item:hover { background: #f4f7fb; }
+  .dd-title { font-size: 13.5px; color: #1a1e2e; font-weight: 500; line-height: 1.3; }
+  .dd-sub   { font-size: 11.5px; color: #6b7280; line-height: 1.35; margin-top: 2px; }
+  .mega { left: -160px; width: 680px; padding: 18px; }
+  .dropdown-wrap:hover .mega { display: grid; grid-template-columns: 1fr 1fr 190px; gap: 0; }
+  .mega-col { padding: 0 14px; }
+  .mega-col:not(:last-child) { border-right: 0.5px solid #e8ecf2; }
+  .mega-col:first-child { padding-left: 0; }
+  .mega-head { font-size: 10px; font-weight: 600; color: #9ca3af; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 10px; }
+  .mega-section { margin-top: 14px; }
+  .mega-item { display: flex; align-items: flex-start; gap: 7px; padding: 0; cursor: pointer; text-decoration: none; color: inherit; }
+  .mega-item:hover .m-title { color: #1A3668; text-decoration: underline; }
+  .m-dot { width: 6px; height: 6px; border-radius: 50%; background: #1A3668; margin-top: 6px; flex-shrink: 0; }
+  .m-title { font-size: 13px; color: #1a1e2e; line-height: 1.4; padding: 4px 0; display: block; }
+  .mega-right { padding: 0 0 0 14px; }
+  .qa-link { display: block; padding: 5px 0; cursor: pointer; text-decoration: none; }
+  .qa-link:hover .qa-label { color: #1A3668; text-decoration: underline; }
+  .qa-label { font-size: 13px; color: #1a1e2e; font-weight: 500; }
+  .qa-sub   { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+  .status-block { margin-top: 14px; }
+  .status-item { display: flex; align-items: center; gap: 7px; padding: 3px 0; }
+  .s-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .s-dot.green { background: #22a05a; } .s-dot.amber { background: #d4870a; }
+  .s-dot.dark  { background: #4b5563; } .s-dot.light { background: #c4c9d4; }
+  .s-label { font-size: 11.5px; color: #374151; }
+  .kb-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #1A3668; color: #fff; border: none; border-radius: 5px; padding: 7px 10px; font-size: 12px; font-weight: 500; margin-top: 12px; cursor: pointer; font-family: inherit; transition: background 0.15s; }
+  .kb-btn:hover { background: #122650; }
+  .nav-right { display: flex; align-items: center; gap: 7px; margin-left: auto; flex-shrink: 0; }
+  .btn-partners { background: none; border: 1px solid rgba(255,255,255,0.38); color: #fff; font-size: 12.5px; padding: 5px 13px; border-radius: 5px; cursor: pointer; font-family: inherit; text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+  .btn-partners:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); }
+  .btn-apply { background: #fff; border: none; color: #1A3668; font-size: 12.5px; font-weight: 600; padding: 5px 13px; border-radius: 5px; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: inherit; text-decoration: none; transition: background 0.15s; }
+  .btn-apply:hover { background: #e8eef8; }
+  .btn-apply svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+  /* ============================================================
+     PAGE HERO
+     ============================================================ */
+  .page-hero {
+    position: relative;
+    background: linear-gradient(135deg, #0f2044 0%, #1A3668 60%, #0f5a5e 100%);
+    overflow: hidden;
+    padding: 72px 0 64px;
+  }
+  .page-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px);
+    pointer-events: none;
+  }
+  .page-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+  .page-hero h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700; color: #fff; line-height: 1.1;
+    letter-spacing: -0.01em; margin-bottom: 16px; max-width: 22ch;
+  }
+  .page-hero p {
+    font-size: 16px; color: rgba(255,255,255,0.7);
+    line-height: 1.65; max-width: 62ch;
+  }
+
+  /* ============================================================
+     WHY JOIN STRIP
+     ============================================================ */
+  .why {
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 56px 0;
+  }
+  .why-header { text-align: center; margin-bottom: 36px; }
+  .why-header .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #1A3668; margin-bottom: 10px; }
+  .why-header h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(22px, 2.6vw, 28px);
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .why-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 22px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .why-icon {
+    width: 40px; height: 40px;
+    background: #eef2f8;
+    color: #1A3668;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .why-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .why-title { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
+  .why-desc { font-size: 12.5px; color: #64748b; line-height: 1.55; }
+
+  /* ============================================================
+     OPEN POSITIONS
+     ============================================================ */
+  .positions { padding: 72px 0 64px; background: #f8fafc; }
+
+  .positions-head {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .positions-head h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(24px, 2.8vw, 30px);
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+  .positions-head .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #1A3668; margin-bottom: 8px; }
+  .positions-head p { color: #64748b; font-size: 14.5px; max-width: 56ch; }
+
+  .filter-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .chip:hover { border-color: #1A3668; color: #1A3668; }
+  .chip.active { background: #1A3668; color: #fff; border-color: #1A3668; }
+  .chip-count { display: inline-block; margin-left: 6px; font-size: 10px; color: #94a3b8; font-weight: 600; }
+  .chip.active .chip-count { color: rgba(255,255,255,0.6); }
+
+  .results-meta {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    font-size: 13px;
+    color: #64748b;
+  }
+  .results-meta strong { color: #0f172a; font-weight: 600; }
+
+  .jobs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .job-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 28px 32px;
+    transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+  }
+  .job-card:hover {
+    box-shadow: 0 12px 28px rgba(15,32,68,0.08);
+    transform: translateY(-2px);
+    border-color: #cbd5e1;
+  }
+  .job-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    font-size: 12px;
+    color: #64748b;
+  }
+  .job-type {
+    background: #eef2f8;
+    color: #1A3668;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 11px;
+    border-radius: 999px;
+  }
+  .job-type.consultant { background: #ede9fe; color: #5b21b6; }
+  .job-type.internship { background: #d1faf3; color: #0d6e62; }
+  .job-type.part-time  { background: #fef3c7; color: #92400e; }
+  .job-meta-item { display: inline-flex; align-items: center; gap: 5px; }
+  .job-meta-item svg { width: 13px; height: 13px; opacity: 0.7; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .job-meta-item.deadline-soon { color: #b45309; font-weight: 600; }
+
+  .job-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .job-summary {
+    font-size: 14.5px;
+    color: #475569;
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .job-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .job-apply {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    background: #1A3668;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .job-apply:hover { background: #0f2044; }
+  .job-apply svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .job-details {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    color: #1A3668;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #fff;
+    transition: border-color 0.15s;
+    cursor: pointer;
+  }
+  .job-details:hover { border-color: #1A3668; }
+
+  /* No jobs state */
+  .no-jobs {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 56px 40px;
+    text-align: center;
+  }
+  .no-jobs-icon {
+    width: 64px; height: 64px;
+    background: #eef2f8;
+    color: #1A3668;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+  }
+  .no-jobs-icon svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .no-jobs h3 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+  }
+  .no-jobs p {
+    font-size: 14.5px;
+    color: #64748b;
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .no-jobs .mail {
+    color: #1A3668;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid #1A3668;
+  }
+  .no-jobs .mail:hover { color: #0f2044; border-bottom-color: #0f2044; }
+
+  /* ============================================================
+     MODAL (job details)
+     ============================================================ */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(15,23,42,0.75);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    overflow-y: auto;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  body.modal-open { overflow: hidden; }
+  .modal {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 760px;
+    width: 100%;
+    margin: auto;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.25s;
+    position: relative;
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+    transition: background 0.15s, color 0.15s;
+  }
+  .modal-close:hover { background: #fff; color: #0f172a; }
+
+  .modal-body { padding: 44px; }
+  .modal-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; font-size: 12px; color: #64748b; }
+  .modal-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .modal-summary {
+    font-size: 15.5px;
+    color: #475569;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .modal-desc {
+    font-size: 15px;
+    color: #334155;
+    line-height: 1.75;
+  }
+  .modal-desc p { margin-bottom: 14px; }
+  .modal-desc h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 22px 0 10px;
+  }
+  .modal-desc ul, .modal-desc ol { padding-left: 22px; margin-bottom: 14px; }
+  .modal-desc li { margin-bottom: 6px; }
+  .modal-desc strong { color: #0f172a; font-weight: 600; }
+  .modal-desc a { color: #1A3668; text-decoration: underline; }
+  .modal-actions {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ============================================================
+     SPECULATIVE CTA
+     ============================================================ */
+  .spec-section {
+    background: linear-gradient(135deg, #0f2044 0%, #1A3668 60%, #0f5a5e 100%);
+    padding: 72px 0;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .spec-section::before {
+    content: ""; position: absolute; top: -100px; right: -80px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,168,152,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .spec-card {
+    position: relative; z-index: 1;
+    max-width: 920px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .spec-card .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #5eead4; margin-bottom: 14px; }
+  .spec-card h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+  .spec-card p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    max-width: 60ch;
+    margin: 0 auto 28px;
+  }
+  .spec-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #fff;
+    color: #1A3668;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .btn-white:hover { background: #e8eef8; }
+  .btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .btn-ghost-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.7); }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .footer { background: #0f2044; color: rgba(255,255,255,0.75); padding: 56px 40px 0; }
+  .footer-inner { max-width: 1400px; margin: 0 auto; }
+  .footer-top { display: flex; justify-content: space-between; gap: 0; padding-bottom: 48px; border-bottom: 0.5px solid rgba(255,255,255,0.12); }
+  .ft-brand { max-width: 260px; flex-shrink: 0; }
+  .ft-cols-right { display: flex; gap: 40px; justify-content: flex-end; }
+  .ft-logo { display: block; margin-bottom: 16px; text-decoration: none; }
+  .ft-logo img { height: 36px; width: auto; display: block; filter: brightness(0) invert(1); }
+  .ft-logo-fallback { display: inline-flex; align-items: center; gap: 8px; }
+  .ft-logo-icon { width: 34px; height: 34px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #1A3668; flex-shrink: 0; }
+  .ft-logo-name { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.2; }
+  .ft-logo-sub  { font-size: 10px; color: rgba(255,255,255,0.55); }
+  .ft-tagline { font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+  .ft-social { display: flex; gap: 10px; }
+  .ft-social a { width: 34px; height: 34px; border-radius: 6px; border: 0.5px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); text-decoration: none; transition: border-color 0.15s, color 0.15s, background 0.15s; }
+  .ft-social a:hover { border-color: rgba(255,255,255,0.6); color: #fff; background: rgba(255,255,255,0.08); }
+  .ft-social svg { width: 16px; height: 16px; fill: currentColor; }
+  .ft-col-head { font-size: 11px; font-weight: 600; color: #fff; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 14px; }
+  .ft-section-head { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 0.07em; text-transform: uppercase; margin-top: 18px; margin-bottom: 8px; }
+  .ft-link { display: block; padding: 4px 0; font-size: 12.5px; color: rgba(255,255,255,0.65); text-decoration: none; line-height: 1.4; transition: color 0.12s; }
+  .ft-link:hover { color: #fff; }
+  .ft-contact-item { display: flex; align-items: flex-start; gap: 9px; padding: 5px 0; font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+  .ft-contact-item a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.12s; }
+  .ft-contact-item a:hover { color: #fff; }
+  .ft-contact-icon { margin-top: 2px; flex-shrink: 0; opacity: 0.5; }
+  .ft-contact-icon svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .footer-bottom-wrap { border-top: 0.5px solid rgba(255,255,255,0.1); }
+  .footer-bottom { max-width: 1400px; margin: 0 auto; padding: 18px 0; display: flex; align-items: center; justify-content: space-between; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+  .footer-copy span { margin: 0 6px; opacity: 0.4; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .container-narrow, .page-hero-inner, .positions-head, .results-meta, .jobs-list { padding-left: 24px; padding-right: 24px; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .positions-head { flex-direction: column; align-items: flex-start; }
+    .modal-body { padding: 28px; }
+    .footer { padding: 48px 24px 0; }
+    .footer-top { flex-direction: column; gap: 40px; }
+    .ft-cols-right { justify-content: flex-start; flex-wrap: wrap; }
+  }
+  @media (max-width: 768px) {
+    .nav-items, .btn-partners { display: none; }
+    .page-hero { padding: 56px 0 48px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .job-card { padding: 22px; }
+    .modal-overlay { padding: 0; }
+    .modal { border-radius: 0; min-height: 100vh; }
+    .modal-body { padding: 24px 20px 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="nb" role="navigation" aria-label="Main navigation">
+  <div class="nb-inner">
+    <a class="logo" href="index.html">
+      <img src="/logo.png" alt="Western Balkans Fund" style="height:34px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-icon" style="display:none">WBF</div>
+      <div class="logo-text">
+        <div class="logo-name">Western Balkans Fund</div>
+        <div class="logo-sub">Building Regional Cooperation</div>
+      </div>
+    </a>
+    <div class="nav-items">
+      <a class="nav-btn" href="index.html">Home</a>
+      <div class="dropdown-wrap">
+        <button class="nav-btn" aria-haspopup="true">About WBF
+          <svg class="chevron" viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <a class="dd-item" href="about.html"><div><div class="dd-title">Who We Are</div><div class="dd-sub">Mission, mandate and history</div></div></a>
+          <a class="dd-item" href="about-governance.html"><div><div class="dd-title">Structure &amp; Governance</div><div class="dd-sub">Board, secretariat, statutes</div></div></a>
+          <a class="dd-item" href="about-team.html"><div><div class="dd-title">Our Team</div><div class="dd-sub">Secretariat and contacts</div></div></a>
+          <a class="dd-item" href="partners.html"><div><div class="dd-title">Donors &amp; Partners</div><div class="dd-sub">EU, Switzerland, Japan, Germany...</div></div></a>
+          <a class="dd-item" href="about-accountability.html"><div><div class="dd-title">Accountability</div><div class="dd-sub">Reports and financial statements</div></div></a>
+        </div>
+      </div>
+      <div class="dropdown-wrap">
+        <button class="nav-btn" aria-haspopup="true">Our Programs
+          <svg class="chevron" viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="mega" role="menu">
+          <div class="mega-col">
+            <div class="mega-head">Funding Opportunities</div>
+            <a class="mega-item" href="programs.html#ggi"><div class="m-dot"></div><div class="m-title">Good Governance and Integration (GGI)</div></a>
+            <a class="mega-item" href="programs.html#gefund"><div class="m-dot"></div><div class="m-title">Gender Equality Fund (GEFund)</div></a>
+            <a class="mega-item" href="programs.html#erc"><div class="m-dot"></div><div class="m-title">ERC</div></a>
+            <a class="mega-item" href="programs.html#move"><div class="m-dot"></div><div class="m-title">MOVE</div></a>
+            <a class="mega-item" href="programs.html#matching"><div class="m-dot"></div><div class="m-title">Matching Grants</div></a>
+            <a class="mega-item" href="programs.html#visegrad"><div class="m-dot"></div><div class="m-title">Visegrad Fellowship</div></a>
+            <div class="mega-section">
+              <div class="mega-head">Conferences &amp; Networking</div>
+              <a class="mega-item" href="events.html#leadbalkans"><div class="m-dot"></div><div class="m-title">LeadBalkans</div></a>
+              <a class="mega-item" href="events.html#past"><div class="m-dot"></div><div class="m-title">See past events</div></a>
+            </div>
+          </div>
+          <div class="mega-col">
+            <div class="mega-head">Capacity Building</div>
+            <a class="mega-item" href="programs.html#academy"><div class="m-dot"></div><div class="m-title">WBF Regional Academy</div></a>
+            <a class="mega-item" href="programs.html#p2p"><div class="m-dot"></div><div class="m-title">Peer to Peer</div></a>
+          </div>
+          <div class="mega-right">
+            <div class="mega-head">Quick Access</div>
+            <a class="qa-link" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">
+              <div class="qa-label">Apply Now via OGMS →</div>
+              <div class="qa-sub">Online Grant Management System</div>
+            </a>
+            <a class="qa-link" href="https://wbfpartnership.com/" target="_blank" rel="noopener" style="margin-top:8px">
+              <div class="qa-label">Find Partners →</div>
+              <div class="qa-sub">WBF Partnership Platform</div>
+            </a>
+            <div class="status-block">
+              <div class="mega-head" style="margin-top:14px">Status Guide</div>
+              <div class="status-item"><div class="s-dot green"></div><span class="s-label">Open — accepting applications</span></div>
+              <div class="status-item"><div class="s-dot amber"></div><span class="s-label">Under Review</span></div>
+              <div class="status-item"><div class="s-dot dark"></div><span class="s-label">Results Announced</span></div>
+              <div class="status-item"><div class="s-dot light"></div><span class="s-label">Coming Soon</span></div>
+              <a href="grants-how-to-apply.html" class="kb-btn" style="text-decoration:none">📚 Knowledge Hub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown-wrap">
+        <button class="nav-btn" aria-haspopup="true">Our Impact
+          <svg class="chevron" viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <a class="dd-item" href="impact.html"><div><div class="dd-title">Impact Overview</div><div class="dd-sub">Numbers, geography, reach</div></div></a>
+          <a class="dd-item" href="impact-stories.html"><div><div class="dd-title">Grantee Stories</div><div class="dd-sub">In-depth project highlights</div></div></a>
+          <a class="dd-item" href="impact-awards.html"><div><div class="dd-title">WBF Champion Awards</div><div class="dd-sub">Annual recognition program</div></div></a>
+        </div>
+      </div>
+      <a class="nav-btn" href="projects.html">Our Grantees</a>
+      <div class="dropdown-wrap">
+        <button class="nav-btn" aria-haspopup="true">News &amp; Events
+          <svg class="chevron" viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <a class="dd-item" href="news.html"><div><div class="dd-title">News</div><div class="dd-sub">Stories, announcements, updates</div></div></a>
+          <a class="dd-item" href="events.html"><div><div class="dd-title">Events</div><div class="dd-sub">Info sessions, ceremonies, networking</div></div></a>
+        </div>
+      </div>
+      <a class="nav-btn" href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-partners" href="https://wbfpartnership.com/" target="_blank" rel="noopener">Find Partners</a>
+      <a class="btn-apply" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">
+        Apply Now
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3,9 9,3"/><polyline points="3,3 9,3 9,9"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>›</span><a href="about.html">About</a><span>›</span>Careers
+    </nav>
+    <div class="page-hero-overline">About</div>
+    <h1>Careers</h1>
+    <p>Join our team and help build a more connected Western Balkans. The WBF Secretariat is based in Tirana, with colleagues from across the region working in a multilingual, mission-driven environment.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     WHY JOIN
+     ============================================================ -->
+<section class="why">
+  <div class="container">
+    <div class="why-header">
+      <div class="overline">Why join WBF</div>
+      <h2>Mission-driven work at a regional scale</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div>
+          <div class="why-title">Regional Mission</div>
+          <div class="why-desc">Work on cross-border cooperation projects spanning all six Contracting Parties.</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div>
+          <div class="why-title">Diverse Regional Team</div>
+          <div class="why-desc">Colleagues from across the Western Balkans bringing diverse perspectives to every project.</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg></div>
+        <div>
+          <div class="why-title">Multilingual Environment</div>
+          <div class="why-desc">Daily work in English plus the working languages of the WB6 region.</div>
+        </div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div>
+          <div class="why-title">Growth &amp; Learning</div>
+          <div class="why-desc">Training, conferences and exposure to EU institutions, donors and regional networks.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OPEN POSITIONS
+     ============================================================ -->
+<section class="positions">
+  <div class="positions-head">
+    <div>
+      <div class="overline">Open Positions</div>
+      <h2 id="positions-title">Current Vacancies</h2>
+      <p>Browse the open positions, internships and consultancies below. Click "View details" to read the full description before applying.</p>
+    </div>
+    <div class="filter-chips" id="type-filters" role="group" aria-label="Filter by job type">
+      <button class="chip active" data-type="all">All</button>
+      <!-- Type chips injected dynamically by JS -->
+    </div>
+  </div>
+
+  <div class="results-meta" id="results-meta" aria-live="polite"></div>
+
+  <div class="jobs-list" id="jobs-list" aria-live="polite">
+    <div class="no-jobs">
+      <div class="no-jobs-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 7h-3V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM9 5h6v2H9V5z"/></svg>
+      </div>
+      <h3>Loading positions…</h3>
+      <p>Hold on a moment while we fetch the latest vacancies.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<!-- ============================================================
+     SPECULATIVE APPLICATION
+     ============================================================ -->
+<section class="spec-section">
+  <div class="container">
+    <div class="spec-card">
+      <div class="overline">Don't see the right role?</div>
+      <h2>We're always happy to hear from talented people</h2>
+      <p>Even when there are no open vacancies, the Secretariat welcomes speculative applications from professionals with experience in regional cooperation, grant management, EU integration, communications, finance, or programme delivery in the Western Balkans.</p>
+      <div class="spec-btns">
+        <a class="btn-white" href="mailto:info@westernbalkansfund.org?subject=Speculative%20application">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Send a speculative application
+        </a>
+        <a class="btn-ghost-white" href="contact.html">
+          Contact the Secretariat
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="ft-brand">
+        <a class="ft-logo" href="index.html">
+          <img src="/logo.png" alt="Western Balkans Fund" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">
+          <span class="ft-logo-fallback" style="display:none">
+            <span class="ft-logo-icon">WBF</span>
+            <span><span class="ft-logo-name">Western Balkans Fund</span><br><span class="ft-logo-sub">Building Regional Cooperation</span></span>
+          </span>
+        </a>
+        <p class="ft-tagline">Dedicated to promoting reconciliation, strengthening regional cooperation, and fostering closer ties among the Contracting Parties of the Western Balkans.</p>
+        <div class="ft-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0f2044"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-cols-right">
+        <div class="ft-col">
+          <div class="ft-col-head">Programs</div>
+          <div class="ft-section-head">Funding Opportunities</div>
+          <a class="ft-link" href="programs/ggi-grants.html">Good Governance and Integration (GGI)</a>
+          <a class="ft-link" href="programs/gefund.html">Gender Equality Fund (GEFund)</a>
+          <a class="ft-link" href="programs/erc-grants.html">ERC</a>
+          <a class="ft-link" href="programs/move-grants.html">MOVE</a>
+          <a class="ft-link" href="programs/matching-grants.html">Matching Grants</a>
+          <a class="ft-link" href="programs/visegrad-fellowship.html">Visegrad Fellowship</a>
+          <div class="ft-section-head">Conferences &amp; Networking</div>
+          <a class="ft-link" href="events.html#leadbalkans">LeadBalkans</a>
+          <a class="ft-link" href="events.html#past">See past events</a>
+          <div class="ft-section-head">Capacity Building</div>
+          <a class="ft-link" href="programs.html#academy">WBF Regional Academy</a>
+          <a class="ft-link" href="programs.html#p2p">Peer to Peer</a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-head">About WBF</div>
+          <a class="ft-link" href="about.html">Who We Are</a>
+          <a class="ft-link" href="about-governance.html">Structure &amp; Governance</a>
+          <a class="ft-link" href="about-team.html">Our Team</a>
+          <a class="ft-link" href="partners.html">Donors &amp; Partners</a>
+          <a class="ft-link" href="about-accountability.html">Accountability</a>
+          <a class="ft-link" href="about-careers.html">Careers</a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-head">Resources</div>
+          <a class="ft-link" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">OGMS — Apply Online</a>
+          <a class="ft-link" href="https://wbfpartnership.com/" target="_blank" rel="noopener">Partnership Platform</a>
+          <div class="ft-col-head" style="margin-top:28px">Contact</div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span>Rruga "Skënderbeg" No. 8, Kati IV, Ap. 35/36, Tirana, Albania</span>
+          </div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <a href="tel:+35542400420">+355 42 400420</a>
+          </div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <a href="mailto:info@westernbalkansfund.org">info@westernbalkansfund.org</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom-wrap">
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Western Balkans Fund<span>·</span>All rights reserved</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPT — CSV CMS, FILTERS, MODAL
+     ============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ──────────────────────────────────────────────────────────
+     CONFIG
+     Set CSV_URL to your published Google Sheet CSV.
+     Columns: id, title, type, location, department, deadline,
+              salaryRange, summary, description, applicationUrl,
+              applicationEmail, postedDate, status
+     Type values: full-time, part-time, consultant, internship
+     status: published (or draft to hide)
+     If the sheet is empty, the page shows a friendly
+     "no positions" panel.
+     ────────────────────────────────────────────────────────── */
+  const CSV_URL = '';
+
+  const TYPE_LABELS = {
+    'full-time':  'Full-time',
+    'part-time':  'Part-time',
+    'consultant': 'Consultant',
+    'internship': 'Internship'
+  };
+  const TYPE_ORDER = ['full-time', 'part-time', 'consultant', 'internship'];
+
+  // Empty by default — shows the "no positions" state. Add to your
+  // Google Sheet to populate. Sample data shown only if you uncomment.
+  const SAMPLE_DATA = [];
+
+  const STATE = { items: [], type: 'all' };
+
+  /* ──────────────────────────────────────────────────────────
+     UTILITIES
+     ────────────────────────────────────────────────────────── */
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.from((c || document).querySelectorAll(s)); }
+  function escapeHtml(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+  function escapeAttr(s) { return escapeHtml(s); }
+  function normalizeType(t) {
+    const k = String(t || '').trim().toLowerCase().replace(/\s+/g, '-');
+    return TYPE_LABELS[k] ? k : k;
+  }
+  function formatDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    if (isNaN(d)) return iso;
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+  function daysUntil(iso) {
+    if (!iso) return null;
+    const d = new Date(iso);
+    if (isNaN(d)) return null;
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    return Math.ceil((d - today) / (1000 * 60 * 60 * 24));
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     CSV PARSER
+     ────────────────────────────────────────────────────────── */
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQuotes) {
+        if (c === '"') { if (text[i+1] === '"') { field += '"'; i++; } else { inQuotes = false; } }
+        else { field += c; }
+      } else {
+        if (c === '"') inQuotes = true;
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+        else if (c === '\r') {/*skip*/}
+        else field += c;
+      }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    if (!rows.length) return [];
+    const headers = rows[0].map(h => h.trim());
+    return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => {
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = (r[i] || '').trim());
+      return obj;
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     DATA
+     ────────────────────────────────────────────────────────── */
+  async function loadData() {
+    if (!CSV_URL) { STATE.items = SAMPLE_DATA.slice(); return; }
+    try {
+      const res = await fetch(CSV_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      STATE.items = parseCSV(await res.text())
+        .filter(i => (i.status || 'published').toLowerCase() !== 'draft');
+    } catch (err) {
+      console.warn('CSV load failed, using sample data:', err);
+      STATE.items = SAMPLE_DATA.slice();
+    }
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     FILTERS
+     ────────────────────────────────────────────────────────── */
+  function buildTypeFilters() {
+    const wrap = $('#type-filters');
+    $$('button[data-type]:not([data-type="all"])', wrap).forEach(b => b.remove());
+    const counts = {};
+    STATE.items.forEach(i => {
+      const k = normalizeType(i.type);
+      counts[k] = (counts[k] || 0) + 1;
+    });
+    TYPE_ORDER.forEach(t => {
+      if (!counts[t]) return;
+      const btn = document.createElement('button');
+      btn.className = 'chip';
+      btn.dataset.type = t;
+      btn.innerHTML = escapeHtml(TYPE_LABELS[t]) + ' <span class="chip-count">' + counts[t] + '</span>';
+      wrap.appendChild(btn);
+    });
+  }
+
+  function getFiltered() {
+    return STATE.items
+      .filter(i => STATE.type === 'all' ? true : normalizeType(i.type) === STATE.type)
+      .sort((a, b) => {
+        const ad = new Date(a.deadline || a.postedDate || 0).getTime();
+        const bd = new Date(b.deadline || b.postedDate || 0).getTime();
+        return ad - bd; // soonest deadline first
+      });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     RENDER
+     ────────────────────────────────────────────────────────── */
+  function renderCard(job) {
+    const type = normalizeType(job.type);
+    const typeLabel = TYPE_LABELS[type] || job.type || '';
+    const days = daysUntil(job.deadline);
+    const deadlineSoon = days != null && days <= 14 && days >= 0;
+    const deadlineLabel = job.deadline
+      ? (days != null && days < 0 ? 'Closed: ' : 'Deadline: ') + formatDate(job.deadline)
+      : '';
+
+    const apply = job.applicationUrl
+      ? '<a class="job-apply" href="' + escapeAttr(job.applicationUrl) + '" target="_blank" rel="noopener">Apply now <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>'
+      : (job.applicationEmail
+          ? '<a class="job-apply" href="mailto:' + escapeAttr(job.applicationEmail) + '?subject=' + escapeAttr('Application: ' + (job.title || '')) + '">Apply via email <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>'
+          : '');
+
+    return (
+      '<article class="job-card" data-id="' + escapeAttr(job.id) + '">' +
+        '<div class="job-meta">' +
+          (typeLabel ? '<span class="job-type ' + escapeAttr(type) + '">' + escapeHtml(typeLabel) + '</span>' : '') +
+          (job.location ? '<span class="job-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' + escapeHtml(job.location) + '</span>' : '') +
+          (job.department ? '<span class="job-meta-item"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>' + escapeHtml(job.department) + '</span>' : '') +
+          (deadlineLabel ? '<span class="job-meta-item' + (deadlineSoon ? ' deadline-soon' : '') + '"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' + escapeHtml(deadlineLabel) + (deadlineSoon ? ' · ' + days + ' days left' : '') + '</span>' : '') +
+        '</div>' +
+        '<h3 class="job-title">' + escapeHtml(job.title) + '</h3>' +
+        (job.summary ? '<p class="job-summary">' + escapeHtml(job.summary) + '</p>' : '') +
+        '<div class="job-actions">' +
+          apply +
+          (job.description ? '<button type="button" class="job-details" data-open>View details</button>' : '') +
+        '</div>' +
+      '</article>'
+    );
+  }
+
+  function renderNoJobs() {
+    const root = $('#jobs-list');
+    root.innerHTML =
+      '<div class="no-jobs">' +
+        '<div class="no-jobs-icon">' +
+          '<svg viewBox="0 0 24 24"><path d="M20 7h-3V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM9 5h6v2H9V5z"/></svg>' +
+        '</div>' +
+        '<h3>No open positions at the moment</h3>' +
+        '<p>Check back regularly or send a speculative application to <a class="mail" href="mailto:info@westernbalkansfund.org">info@westernbalkansfund.org</a>.</p>' +
+      '</div>';
+    $('#results-meta').innerHTML = '';
+  }
+
+  function render() {
+    const list = getFiltered();
+    const root = $('#jobs-list');
+    const meta = $('#results-meta');
+
+    if (!STATE.items.length) { renderNoJobs(); return; }
+
+    meta.innerHTML = '<strong>' + list.length + '</strong> ' +
+      (list.length === 1 ? 'open position' : 'open positions') +
+      (STATE.type !== 'all' ? ' matching your filter' : '');
+
+    if (!list.length) {
+      root.innerHTML =
+        '<div class="no-jobs">' +
+          '<div class="no-jobs-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>' +
+          '<h3>No positions match this filter</h3>' +
+          '<p>Try a different position type, or browse all open positions.</p>' +
+        '</div>';
+      return;
+    }
+
+    root.innerHTML = list.map(renderCard).join('');
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     MODAL
+     ────────────────────────────────────────────────────────── */
+  const Modal = (function () {
+    const overlay = $('#modal');
+    const content = $('#modal-content');
+
+    function open(job) {
+      const type = normalizeType(job.type);
+      const typeLabel = TYPE_LABELS[type] || job.type || '';
+      const deadlineLabel = job.deadline ? 'Deadline: ' + formatDate(job.deadline) : '';
+      const apply = job.applicationUrl
+        ? '<a class="job-apply" href="' + escapeAttr(job.applicationUrl) + '" target="_blank" rel="noopener">Apply now <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>'
+        : (job.applicationEmail
+            ? '<a class="job-apply" href="mailto:' + escapeAttr(job.applicationEmail) + '?subject=' + escapeAttr('Application: ' + (job.title || '')) + '">Apply via email <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>'
+            : '');
+
+      content.innerHTML =
+        '<button type="button" class="modal-close" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg></button>' +
+        '<div class="modal-body">' +
+          '<div class="modal-meta">' +
+            (typeLabel ? '<span class="job-type ' + escapeAttr(type) + '">' + escapeHtml(typeLabel) + '</span>' : '') +
+            (job.location ? '<span class="job-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' + escapeHtml(job.location) + '</span>' : '') +
+            (deadlineLabel ? '<span class="job-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' + escapeHtml(deadlineLabel) + '</span>' : '') +
+          '</div>' +
+          '<h2 id="modal-title" class="modal-title">' + escapeHtml(job.title) + '</h2>' +
+          (job.summary ? '<p class="modal-summary">' + escapeHtml(job.summary) + '</p>' : '') +
+          '<div class="modal-desc">' + (job.description || '') + '</div>' +
+          (apply ? '<div class="modal-actions">' + apply + '</div>' : '') +
+        '</div>';
+
+      overlay.hidden = false;
+      requestAnimationFrame(() => overlay.classList.add('open'));
+      document.body.classList.add('modal-open');
+
+      const url = new URL(window.location);
+      if (url.searchParams.get('job') !== job.id) {
+        url.searchParams.set('job', job.id);
+        history.pushState({ job: job.id }, '', url);
+      }
+
+      content.querySelector('.modal-close').addEventListener('click', () => close(true));
+      content.querySelector('.modal-close').focus();
+    }
+
+    function close(updateHistory) {
+      overlay.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      setTimeout(() => { overlay.hidden = true; content.innerHTML = ''; }, 200);
+      if (updateHistory !== false) {
+        const url = new URL(window.location);
+        if (url.searchParams.has('job')) {
+          url.searchParams.delete('job');
+          history.pushState({}, '', url);
+        }
+      }
+    }
+
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(true); });
+    document.addEventListener('keydown', (e) => { if (overlay.hidden) return; if (e.key === 'Escape') close(true); });
+    return { open, close };
+  })();
+
+  /* ──────────────────────────────────────────────────────────
+     EVENTS
+     ────────────────────────────────────────────────────────── */
+  function bindFilters() {
+    $('#type-filters').addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-type]'); if (!btn) return;
+      STATE.type = btn.dataset.type;
+      $$('#type-filters button').forEach(b => b.classList.toggle('active', b === btn));
+      render();
+    });
+  }
+
+  function bindJobClicks() {
+    $('#jobs-list').addEventListener('click', (e) => {
+      const detail = e.target.closest('button[data-open]');
+      if (!detail) return;
+      const card = e.target.closest('.job-card');
+      if (!card) return;
+      const job = STATE.items.find(j => String(j.id) === String(card.dataset.id));
+      if (job) Modal.open(job);
+    });
+  }
+
+  function bindHistory() {
+    window.addEventListener('popstate', () => {
+      const id = new URL(window.location).searchParams.get('job');
+      if (id) {
+        const j = STATE.items.find(x => String(x.id) === String(id));
+        if (j) Modal.open(j);
+      } else { Modal.close(false); }
+    });
+  }
+
+  function maybeOpenFromUrl() {
+    const id = new URL(window.location).searchParams.get('job');
+    if (!id) return;
+    const j = STATE.items.find(x => String(x.id) === String(id));
+    if (j) Modal.open(j);
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     INIT
+     ────────────────────────────────────────────────────────── */
+  async function init() {
+    bindFilters();
+    bindJobClicks();
+    bindHistory();
+    try {
+      await loadData();
+      // Hide type filter row when no items
+      if (!STATE.items.length) $('#type-filters').style.display = 'none';
+      buildTypeFilters();
+      render();
+      maybeOpenFromUrl();
+    } catch (err) {
+      console.error(err);
+      renderNoJobs();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</body>
+</html>
