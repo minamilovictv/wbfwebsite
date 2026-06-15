@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Programmes — Western Balkans Fund</title>
+<meta name="description" content="Explore the Western Balkans Fund's full programme portfolio — from grassroots grants to fellowships, mobility and capacity-building schemes.">
+<style>
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1a1e2e; background: #fff;
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  button, input, select { font-family: inherit; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+  /* ============================================================
+     NAVBAR
+     ============================================================ */
+  .nb { background: #1A3668; width: 100%; position: sticky; top: 0; z-index: 1000; }
+  .nb-inner { display: flex; align-items: center; height: 56px; padding: 0 20px; max-width: 1400px; margin: 0 auto; gap: 4px; }
+  .logo { display: flex; align-items: center; gap: 9px; margin-right: 16px; flex-shrink: 0; text-decoration: none; }
+  .logo-icon { width: 34px; height: 34px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; color: #1A3668; }
+  .logo-text { line-height: 1.15; }
+  .logo-name { font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .logo-sub  { font-size: 10px; color: rgba(255,255,255,0.6); white-space: nowrap; }
+  .nav-items { display: flex; align-items: center; gap: 2px; flex: 1; }
+  .nav-btn { background: none; border: none; color: rgba(255,255,255,0.88); font-size: 13px; padding: 6px 10px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 4px; white-space: nowrap; font-family: inherit; text-decoration: none; transition: background 0.15s, color 0.15s; }
+  .nav-btn:hover, .nav-btn:focus-visible, .dropdown-wrap:hover > .nav-btn { background: rgba(255,255,255,0.13); color: #fff; outline: none; }
+  .chevron { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; transition: transform 0.2s; }
+  .dropdown-wrap:hover .chevron { transform: rotate(180deg); }
+  .dropdown-wrap { position: relative; }
+  .dropdown, .mega { display: none; position: absolute; top: calc(100% + 2px); left: 0; background: #fff; border: 0.5px solid #d1d9e6; border-radius: 8px; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.13); animation: fadeIn 0.12s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .dropdown-wrap:hover .dropdown, .dropdown-wrap:hover .mega { display: block; }
+  .dropdown { min-width: 230px; padding: 6px 0; }
+  .dd-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 16px; cursor: pointer; text-decoration: none; color: inherit; transition: background 0.1s; }
+  .dd-item:hover { background: #f4f7fb; }
+  .dd-title { font-size: 13.5px; color: #1a1e2e; font-weight: 500; line-height: 1.3; }
+  .dd-sub   { font-size: 11.5px; color: #6b7280; line-height: 1.35; margin-top: 2px; }
+  .mega { left: -160px; width: 680px; padding: 18px; }
+  .dropdown-wrap:hover .mega { display: grid; grid-template-columns: 1fr 1fr 190px; gap: 0; }
+  .mega-col { padding: 0 14px; }
+  .mega-col:not(:last-child) { border-right: 0.5px solid #e8ecf2; }
+  .mega-col:first-child { padding-left: 0; }
+  .mega-head { font-size: 10px; font-weight: 600; color: #9ca3af; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 10px; }
+  .mega-section { margin-top: 14px; }
+  .mega-item { display: flex; align-items: flex-start; gap: 7px; padding: 0; cursor: pointer; text-decoration: none; color: inherit; }
+  .mega-item:hover .m-title { color: #1A3668; text-decoration: underline; }
+  .m-dot { width: 6px; height: 6px; border-radius: 50%; background: #1A3668; margin-top: 6px; flex-shrink: 0; }
+  .m-title { font-size: 13px; color: #1a1e2e; line-height: 1.4; padding: 4px 0; display: block; }
+  .mega-right { padding: 0 0 0 14px; }
+  .qa-link { display: block; padding: 5px 0; cursor: pointer; text-decoration: none; }
+  .qa-link:hover .qa-label { color: #1A3668; text-decoration: underline; }
+  .qa-label { font-size: 13px; color: #1a1e2e; font-weight: 500; }
+  .qa-sub   { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+  .status-block { margin-top: 14px; }
+  .status-item { display: flex; align-items: center; gap: 7px; padding: 3px 0; }
+  .s-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .s-dot.green { background: #22a05a; } .s-dot.amber { background: #d4870a; }
+  .s-dot.dark  { background: #4b5563; } .s-dot.light { background: #c4c9d4; }
+  .s-label { font-size: 11.5px; color: #374151; }
+  .kb-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #1A3668; color: #fff; border: none; border-radius: 5px; padding: 7px 10px; font-size: 12px; font-weight: 500; margin-top: 12px; cursor: pointer; font-family: inherit; transition: background 0.15s; }
+  .kb-btn:hover { background: #122650; }
+  .nav-right { display: flex; align-items: center; gap: 7px; margin-left: auto; flex-shrink: 0; }
+  .btn-partners { background: none; border: 1px solid rgba(255,255,255,0.38); color: #fff; font-size: 12.5px; padding: 5px 13px; border-radius: 5px; cursor: pointer; font-family: inherit; text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+  .btn-partners:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); }
+  .btn-apply { background: #fff; border: none; color: #1A3668; font-size: 12.5px; font-weight: 600; padding: 5px 13px; border-radius: 5px; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: inherit; text-decoration: none; transition: background 0.15s; }
+  .btn-apply:hover { background: #e8eef8; }
+  .btn-apply svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+  /* ============================================================
+     PAGE HERO
+     ============================================================ */
+  .page-hero {
+    position: relative;
+    background: linear-gradient(135deg, #0f2044 0%, #1A3668 60%, #0f5a5e 100%);
+    overflow: hidden;
+    padding: 72px 0 64px;
+  }
+  .page-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.018) 60px, rgba(255,255,255,0.018) 61px);
+    pointer-events: none;
+  }
+  .page-hero::after {
+    content: ""; position: absolute; top: -120px; right: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(75,101,132,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .page-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+  .breadcrumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 16px; letter-spacing: 0.02em; }
+  .breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+  .breadcrumb a:hover { color: #fff; }
+  .breadcrumb span { margin: 0 8px; opacity: 0.5; }
+  .page-hero-overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+  .page-hero h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 700; color: #fff; line-height: 1.1;
+    letter-spacing: -0.01em; margin-bottom: 16px; max-width: 22ch;
+  }
+  .page-hero p {
+    font-size: 16px; color: rgba(255,255,255,0.7);
+    line-height: 1.65; max-width: 62ch;
+  }
+  .hero-stats {
+    position: relative; z-index: 2;
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 28px;
+  }
+  .hero-stat { padding-right: 20px; border-right: 1px solid rgba(255,255,255,0.08); }
+  .hero-stat:last-child { border-right: none; padding-right: 0; }
+  .hero-stat-num {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 28px; font-weight: 700;
+    color: #fff; line-height: 1; margin-bottom: 4px;
+  }
+  .hero-stat-label { font-size: 12.5px; color: rgba(255,255,255,0.55); }
+
+  /* ============================================================
+     FILTERS
+     ============================================================ */
+  .filters-wrap {
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 56px;
+    z-index: 100;
+  }
+  .filters-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .filter-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #94a3b8;
+    margin-right: 4px;
+    flex-shrink: 0;
+    width: 80px;
+  }
+  .filter-chips { display: flex; gap: 6px; flex-wrap: wrap; flex: 1; }
+  .chip {
+    background: #f1f5f9;
+    border: 1px solid transparent;
+    color: #475569;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .chip:hover { background: #e2e8f0; color: #1A3668; }
+  .chip.active { background: #1A3668; color: #fff; border-color: #1A3668; }
+  .chip-count {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 10px;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+  .chip.active .chip-count { color: rgba(255,255,255,0.6); }
+
+  .filter-search {
+    flex: 1;
+    min-width: 220px;
+    position: relative;
+  }
+  .filter-search input {
+    width: 100%;
+    padding: 8px 14px 8px 36px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #0f172a;
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .filter-search input:focus {
+    outline: none;
+    border-color: #1A3668;
+    box-shadow: 0 0 0 3px rgba(26,54,104,0.12);
+  }
+  .filter-search svg {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    width: 14px; height: 14px;
+    color: #94a3b8;
+    fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+  .filter-clear {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 4px;
+  }
+  .filter-clear:hover { color: #1A3668; background: #f1f5f9; }
+
+  .results-meta {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px 0;
+    font-size: 13px;
+    color: #64748b;
+  }
+  .results-meta strong { color: #0f172a; font-weight: 600; }
+
+  /* ============================================================
+     PROGRAM GRID
+     ============================================================ */
+  .programs-section { padding: 32px 0 88px; background: #fff; }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .program-card {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+  }
+  .program-card:hover {
+    box-shadow: 0 16px 32px rgba(15,32,68,0.10);
+    transform: translateY(-3px);
+    border-color: #d1d9e6;
+  }
+  .program-card:focus-visible {
+    outline: 2px solid #1A3668;
+    outline-offset: 2px;
+  }
+
+  .card-img {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+  .card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s;
+  }
+  .program-card:hover .card-img img { transform: scale(1.04); }
+  .card-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(15,32,68,0.55), transparent 60%);
+  }
+  .pillar-badge {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    background: rgba(255,255,255,0.95);
+    color: #1A3668;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+  }
+  .status-badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 4px 11px 4px 22px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    display: inline-flex;
+    align-items: center;
+  }
+  .status-badge::before {
+    content: "";
+    position: absolute;
+    left: 10px; top: 50%;
+    transform: translateY(-50%);
+    width: 7px; height: 7px;
+    border-radius: 50%;
+  }
+  .status-badge.open      { background: rgba(220,252,231,0.95); color: #065f46; }
+  .status-badge.open::before { background: #10b981; box-shadow: 0 0 0 3px rgba(16,185,129,0.18); }
+  .status-badge.upcoming  { background: rgba(255,255,255,0.95); color: #475569; }
+  .status-badge.upcoming::before { background: #94a3b8; }
+  .status-badge.review    { background: rgba(254,243,199,0.95); color: #92400e; }
+  .status-badge.review::before { background: #f59e0b; box-shadow: 0 0 0 3px rgba(245,158,11,0.18); }
+  .status-badge.closed    { background: rgba(241,245,249,0.95); color: #64748b; }
+  .status-badge.closed::before { background: #94a3b8; }
+  .status-badge.rolling   { background: rgba(209,250,243,0.95); color: #0d6e62; }
+  .status-badge.rolling::before { background: #0d9488; box-shadow: 0 0 0 3px rgba(13,148,136,0.18); }
+
+  .card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+
+  .card-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .program-card:hover .card-title { color: #1A3668; }
+
+  .card-desc {
+    font-size: 13.5px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-keymeta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 14px 0;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 16px;
+  }
+  .km { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .km-label {
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+  }
+  .km-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.3;
+  }
+
+  .card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .card-flags { display: flex; gap: 2px; align-items: center; font-size: 13px; color: #64748b; }
+  .card-flags svg { width: 12px; height: 12px; color: #94a3b8; margin-right: 4px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .card-flag-more { margin-left: 4px; font-size: 11px; color: #94a3b8; font-weight: 600; }
+
+  .card-view {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #1A3668;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-view svg { width: 14px; height: 14px; transition: transform 0.15s; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .program-card:hover .card-view svg { transform: translateX(3px); }
+
+  /* States */
+  .state-msg {
+    grid-column: 1 / -1;
+    padding: 64px 24px;
+    text-align: center;
+    color: #64748b;
+    font-size: 15px;
+    background: #f8fafc;
+    border-radius: 10px;
+  }
+  .state-msg svg { width: 40px; height: 40px; color: #cbd5e1; margin: 0 auto 16px; display: block; }
+  .state-msg h3 { font-size: 17px; color: #0f172a; margin-bottom: 6px; font-weight: 600; }
+
+  .skeleton-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+  .sk { background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 4px; }
+  .sk-img { height: 200px; border-radius: 0; }
+  .sk-line { height: 12px; margin: 12px 22px; }
+  .sk-line.short { width: 40%; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* ============================================================
+     MODAL
+     ============================================================ */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(15,23,42,0.75);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    overflow-y: auto;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: auto; }
+  body.modal-open { overflow: hidden; }
+
+  .modal {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 920px;
+    width: 100%;
+    margin: auto;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.25s;
+    position: relative;
+  }
+  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+    transition: background 0.15s, color 0.15s;
+  }
+  .modal-close:hover { background: #fff; color: #0f172a; }
+
+  .modal-header-img {
+    height: 320px;
+    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%);
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px 12px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .modal-header-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(15,32,68,0.85));
+  }
+  .modal-header-text {
+    position: absolute;
+    bottom: 28px; left: 32px; right: 32px;
+    color: #fff;
+  }
+  .modal-header-text .pillar-badge,
+  .modal-header-text .status-badge { position: static; margin-right: 8px; margin-bottom: 12px; display: inline-flex; }
+  .modal-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 4px;
+  }
+
+  .modal-body { padding: 32px 44px 44px; }
+
+  .modal-facts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .fact { display: flex; align-items: flex-start; gap: 10px; }
+  .fact-icon {
+    width: 32px; height: 32px;
+    border-radius: 5px;
+    background: #eef2f8;
+    color: #1A3668;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .fact-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .fact-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 2px; }
+  .fact-value { font-size: 13.5px; color: #0f172a; font-weight: 600; line-height: 1.4; }
+
+  .section-h {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+    margin: 24px 0 12px;
+  }
+  .section-h:first-child { margin-top: 0; }
+
+  .modal-description {
+    font-size: 15.5px;
+    color: #334155;
+    line-height: 1.75;
+  }
+  .modal-description p { margin-bottom: 14px; }
+  .modal-description p:last-child { margin-bottom: 0; }
+  .modal-description ul, .modal-description ol { padding-left: 22px; margin-bottom: 14px; }
+  .modal-description li { margin-bottom: 6px; }
+  .modal-description strong { color: #0f172a; font-weight: 600; }
+  .modal-description a { color: #1A3668; text-decoration: underline; }
+  .modal-description h3 { font-size: 17px; font-weight: 600; color: #0f172a; margin: 22px 0 10px; }
+
+  .countries-list {
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .country-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #334155;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+  .country-chip .flag { font-size: 15px; }
+
+  .docs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .doc-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #334155;
+    font-size: 13.5px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .doc-link:hover { background: #eef2f8; border-color: #1A3668; color: #0f2044; }
+  .doc-link svg { width: 16px; height: 16px; color: #1A3668; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .doc-link .ext { width: 14px; height: 14px; color: #94a3b8; margin-left: auto; }
+
+  .modal-actions {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .action-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 22px;
+    border-radius: 6px;
+    font-size: 13.5px; font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    font-family: inherit;
+  }
+  .action-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .action-primary { background: #1A3668; color: #fff; }
+  .action-primary:hover { background: #0f2044; }
+  .action-secondary { background: #fff; color: #1A3668; border-color: #cbd5e1; }
+  .action-secondary:hover { border-color: #1A3668; }
+  .action-ghost {
+    background: transparent; color: #64748b;
+    margin-left: auto;
+  }
+  .action-ghost:hover { color: #1A3668; }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .footer { background: #0f2044; color: rgba(255,255,255,0.75); padding: 56px 40px 0; }
+  .footer-inner { max-width: 1400px; margin: 0 auto; }
+  .footer-top { display: flex; justify-content: space-between; gap: 0; padding-bottom: 48px; border-bottom: 0.5px solid rgba(255,255,255,0.12); }
+  .ft-brand { max-width: 260px; flex-shrink: 0; }
+  .ft-cols-right { display: flex; gap: 40px; justify-content: flex-end; }
+  .ft-logo { display: block; margin-bottom: 16px; text-decoration: none; }
+  .ft-logo img { height: 36px; width: auto; display: block; filter: brightness(0) invert(1); }
+  .ft-logo-fallback { display: inline-flex; align-items: center; gap: 8px; }
+  .ft-logo-icon { width: 34px; height: 34px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #1A3668; flex-shrink: 0; }
+  .ft-logo-name { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.2; }
+  .ft-logo-sub  { font-size: 10px; color: rgba(255,255,255,0.55); }
+  .ft-tagline { font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+  .ft-social { display: flex; gap: 10px; }
+  .ft-social a { width: 34px; height: 34px; border-radius: 6px; border: 0.5px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); text-decoration: none; transition: border-color 0.15s, color 0.15s, background 0.15s; }
+  .ft-social a:hover { border-color: rgba(255,255,255,0.6); color: #fff; background: rgba(255,255,255,0.08); }
+  .ft-social svg { width: 16px; height: 16px; fill: currentColor; }
+  .ft-col-head { font-size: 11px; font-weight: 600; color: #fff; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 14px; }
+  .ft-section-head { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 0.07em; text-transform: uppercase; margin-top: 18px; margin-bottom: 8px; }
+  .ft-link { display: block; padding: 4px 0; font-size: 12.5px; color: rgba(255,255,255,0.65); text-decoration: none; line-height: 1.4; transition: color 0.12s; }
+  .ft-link:hover { color: #fff; }
+  .ft-contact-item { display: flex; align-items: flex-start; gap: 9px; padding: 5px 0; font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+  .ft-contact-item a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.12s; }
+  .ft-contact-item a:hover { color: #fff; }
+  .ft-contact-icon { margin-top: 2px; flex-shrink: 0; opacity: 0.5; }
+  .ft-contact-icon svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .footer-bottom-wrap { border-top: 0.5px solid rgba(255,255,255,0.1); }
+  .footer-bottom { max-width: 1400px; margin: 0 auto; padding: 18px 0; display: flex; align-items: center; justify-content: space-between; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+  .footer-copy span { margin: 0 6px; opacity: 0.4; }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    .container, .filters-inner, .page-hero-inner, .results-meta { padding-left: 24px; padding-right: 24px; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .hero-stat:nth-child(2) { border-right: none; }
+    .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .modal-facts { grid-template-columns: repeat(2, 1fr); }
+    .modal-body { padding: 28px 28px 36px; }
+    .modal-header-img { height: 260px; }
+    .footer { padding: 48px 24px 0; }
+    .footer-top { flex-direction: column; gap: 40px; }
+    .ft-cols-right { justify-content: flex-start; flex-wrap: wrap; }
+  }
+  @media (max-width: 768px) {
+    .nav-items, .btn-partners { display: none; }
+    .page-hero { padding: 56px 0 48px; }
+    .filters-wrap { position: static; }
+    .filter-label { width: auto; }
+    .hero-stats { grid-template-columns: 1fr; }
+    .hero-stat { border-right: none; padding-right: 0; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .modal-overlay { padding: 0; }
+    .modal { border-radius: 0; min-height: 100vh; }
+    .modal-header-img { border-radius: 0; height: 220px; }
+    .modal-header-text { left: 20px; right: 20px; bottom: 20px; }
+    .modal-body { padding: 24px 20px 32px; }
+    .modal-facts { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="nb" role="navigation" aria-label="Main navigation">
+  <div class="nb-inner">
+    <a class="logo" href="index.html">
+      <img src="/logo.png" alt="Western Balkans Fund" style="height:34px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-icon" style="display:none">WBF</div>
+      <div class="logo-text">
+        <div class="logo-name">Western Balkans Fund</div>
+        <div class="logo-sub">Building Regional Cooperation</div>
+      </div>
+    </a>
+    <div class="nav-items">
+      <a class="nav-btn" href="index.html">Home</a>
+      <div class="dropdown-wrap">
+        <button class="nav-btn" aria-haspopup="true">About WBF
+          <svg class="chevron" viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <a class="dd-item" href="about.html"><div><div class="dd-title">Who We Are</div><div class="dd-sub">Mission, mandate and history</div></div></a>
+          <a class="dd-item" href="about-governance.html"><div><div class="dd-title">Structure &amp; Governance</div><div class="dd-sub">Board, secretariat, statutes</div></div></a>
+          <a class="dd-item" href="about-team.html"><div><div class="dd-title">Our Team</div><div class="dd-sub">Secretariat and contacts</div></div></a>
+          <a class="dd-item" href="partners.html"><div><div class="dd-title">Donors &amp; Partners</div><div class="dd-sub">EU, Switzerland, Japan, Germany...</div></div></a>
+          <a class="dd-item" href="about-accountability.html"><div><div class="dd-title">Accountability</div><div class="dd-sub">Reports and financial statements</div></div></a>
+        </div>
+      </div>
+      <div class="dropdown-wrap">
+        <button class="nav-btn" aria-haspopup="true">Our Programs
+          <svg class="chevron" viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="mega" role="menu">
+          <div class="mega-col">
+            <div class="mega-head">Funding Opportunities</div>
+            <a class="mega-item" href="programs.html#ggi"><div class="m-dot"></div><div class="m-title">Good Governance and Integration (GGI)</div></a>
+            <a class="mega-item" href="programs.html#gefund"><div class="m-dot"></div><div class="m-title">Gender Equality Fund (GEFund)</div></a>
+            <a class="mega-item" href="programs.html#erc"><div class="m-dot"></div><div class="m-title">ERC</div></a>
+            <a class="mega-item" href="programs.html#move"><div class="m-dot"></div><div class="m-title">MOVE</div></a>
+            <a class="mega-item" href="programs.html#matching"><div class="m-dot"></div><div class="m-title">Matching Grants</div></a>
+            <a class="mega-item" href="programs.html#visegrad"><div class="m-dot"></div><div class="m-title">Visegrad Fellowship</div></a>
+            <div class="mega-section">
+              <div class="mega-head">Conferences &amp; Networking</div>
+              <a class="mega-item" href="events.html#leadbalkans"><div class="m-dot"></div><div class="m-title">LeadBalkans</div></a>
+              <a class="mega-item" href="events.html#past"><div class="m-dot"></div><div class="m-title">See past events</div></a>
+            </div>
+          </div>
+          <div class="mega-col">
+            <div class="mega-head">Capacity Building</div>
+            <a class="mega-item" href="programs.html#academy"><div class="m-dot"></div><div class="m-title">WBF Regional Academy</div></a>
+            <a class="mega-item" href="programs.html#p2p"><div class="m-dot"></div><div class="m-title">Peer to Peer</div></a>
+          </div>
+          <div class="mega-right">
+            <div class="mega-head">Quick Access</div>
+            <a class="qa-link" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">
+              <div class="qa-label">Apply Now via OGMS →</div>
+              <div class="qa-sub">Online Grant Management System</div>
+            </a>
+            <a class="qa-link" href="https://wbfpartnership.com/" target="_blank" rel="noopener" style="margin-top:8px">
+              <div class="qa-label">Find Partners →</div>
+              <div class="qa-sub">WBF Partnership Platform</div>
+            </a>
+            <div class="status-block">
+              <div class="mega-head" style="margin-top:14px">Status Guide</div>
+              <div class="status-item"><div class="s-dot green"></div><span class="s-label">Open — accepting applications</span></div>
+              <div class="status-item"><div class="s-dot amber"></div><span class="s-label">Under Review</span></div>
+              <div class="status-item"><div class="s-dot dark"></div><span class="s-label">Results Announced</span></div>
+              <div class="status-item"><div class="s-dot light"></div><span class="s-label">Coming Soon</span></div>
+              <a href="grants-how-to-apply.html" class="kb-btn" style="text-decoration:none">📚 Knowledge Hub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dropdown-wrap">
+        <button class="nav-btn" aria-haspopup="true">Our Impact
+          <svg class="chevron" viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <a class="dd-item" href="impact.html"><div><div class="dd-title">Impact Overview</div><div class="dd-sub">Numbers, geography, reach</div></div></a>
+          <a class="dd-item" href="impact-stories.html"><div><div class="dd-title">Grantee Stories</div><div class="dd-sub">In-depth project highlights</div></div></a>
+          <a class="dd-item" href="impact-awards.html"><div><div class="dd-title">WBF Champion Awards</div><div class="dd-sub">Annual recognition program</div></div></a>
+        </div>
+      </div>
+      <a class="nav-btn" href="projects.html">Our Grantees</a>
+      <div class="dropdown-wrap">
+        <button class="nav-btn" aria-haspopup="true">News &amp; Events
+          <svg class="chevron" viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <a class="dd-item" href="news.html"><div><div class="dd-title">News</div><div class="dd-sub">Stories, announcements, updates</div></div></a>
+          <a class="dd-item" href="events.html"><div><div class="dd-title">Events</div><div class="dd-sub">Info sessions, ceremonies, networking</div></div></a>
+        </div>
+      </div>
+      <a class="nav-btn" href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="btn-partners" href="https://wbfpartnership.com/" target="_blank" rel="noopener">Find Partners</a>
+      <a class="btn-apply" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">
+        Apply Now
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3,9 9,3"/><polyline points="3,3 9,3 9,9"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>›</span>Our Programmes
+    </nav>
+    <div class="page-hero-overline">Programmes</div>
+    <h1>Our Programme Portfolio</h1>
+    <p>WBF programmes span regional cooperation, youth mobility, civil society, cultural heritage, gender equality, environment and more — filter by status or pillar to find the right opportunity.</p>
+
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num" id="stat-total">—</div><div class="hero-stat-label">Active programmes</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" id="stat-open">—</div><div class="hero-stat-label">Open or rolling now</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" id="stat-pillars">—</div><div class="hero-stat-label">Thematic pillars</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">Contracting Parties</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FILTERS
+     ============================================================ -->
+<div class="filters-wrap" role="region" aria-label="Filter programmes">
+  <div class="filters-inner">
+    <div class="filter-row">
+      <div class="filter-label">Status</div>
+      <div class="filter-chips" id="status-filters" role="group" aria-label="Filter by status">
+        <button class="chip active" data-status="all">All</button>
+        <button class="chip" data-status="open">Open</button>
+        <button class="chip" data-status="rolling">Rolling</button>
+        <button class="chip" data-status="upcoming">Coming Soon</button>
+        <button class="chip" data-status="review">Under Review</button>
+        <button class="chip" data-status="closed">Closed</button>
+      </div>
+    </div>
+    <div class="filter-row">
+      <div class="filter-label">Pillar</div>
+      <div class="filter-chips" id="pillar-filters" role="group" aria-label="Filter by pillar">
+        <button class="chip active" data-pillar="all">All Pillars</button>
+        <!-- Pillar chips injected dynamically -->
+      </div>
+    </div>
+    <div class="filter-row">
+      <div class="filter-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="search-input" type="search" placeholder="Search programmes by name or description…" aria-label="Search programmes">
+      </div>
+      <button class="filter-clear" id="filter-clear" type="button">Reset filters</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     RESULTS META + GRID
+     ============================================================ -->
+<div class="results-meta" id="results-meta" aria-live="polite"></div>
+
+<section class="programs-section">
+  <div class="container">
+    <div class="cards-grid" id="cards-grid" aria-live="polite">
+      <div class="skeleton-card"><div class="sk sk-img"></div><div class="sk sk-line short"></div><div class="sk sk-line"></div><div class="sk sk-line"></div></div>
+      <div class="skeleton-card"><div class="sk sk-img"></div><div class="sk sk-line short"></div><div class="sk sk-line"></div><div class="sk sk-line"></div></div>
+      <div class="skeleton-card"><div class="sk sk-img"></div><div class="sk sk-line short"></div><div class="sk sk-line"></div><div class="sk sk-line"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+  <div class="modal" id="modal-content"></div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="ft-brand">
+        <a class="ft-logo" href="index.html">
+          <img src="/logo.png" alt="Western Balkans Fund" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">
+          <span class="ft-logo-fallback" style="display:none">
+            <span class="ft-logo-icon">WBF</span>
+            <span><span class="ft-logo-name">Western Balkans Fund</span><br><span class="ft-logo-sub">Building Regional Cooperation</span></span>
+          </span>
+        </a>
+        <p class="ft-tagline">Dedicated to promoting reconciliation, strengthening regional cooperation, and fostering closer ties among the Contracting Parties of the Western Balkans.</p>
+        <div class="ft-social">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0f2044"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-cols-right">
+        <div class="ft-col">
+          <div class="ft-col-head">Programs</div>
+          <div class="ft-section-head">Funding Opportunities</div>
+          <a class="ft-link" href="programs/ggi-grants.html">Good Governance and Integration (GGI)</a>
+          <a class="ft-link" href="programs/gefund.html">Gender Equality Fund (GEFund)</a>
+          <a class="ft-link" href="programs/erc-grants.html">ERC</a>
+          <a class="ft-link" href="programs/move-grants.html">MOVE</a>
+          <a class="ft-link" href="programs/matching-grants.html">Matching Grants</a>
+          <a class="ft-link" href="programs/visegrad-fellowship.html">Visegrad Fellowship</a>
+          <div class="ft-section-head">Conferences &amp; Networking</div>
+          <a class="ft-link" href="events.html#leadbalkans">LeadBalkans</a>
+          <a class="ft-link" href="events.html#past">See past events</a>
+          <div class="ft-section-head">Capacity Building</div>
+          <a class="ft-link" href="programs.html#academy">WBF Regional Academy</a>
+          <a class="ft-link" href="programs.html#p2p">Peer to Peer</a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-head">About WBF</div>
+          <a class="ft-link" href="about.html">Who We Are</a>
+          <a class="ft-link" href="about-governance.html">Structure &amp; Governance</a>
+          <a class="ft-link" href="about-team.html">Our Team</a>
+          <a class="ft-link" href="partners.html">Donors &amp; Partners</a>
+          <a class="ft-link" href="about-accountability.html">Accountability</a>
+          <a class="ft-link" href="about-careers.html">Careers</a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-head">Resources</div>
+          <a class="ft-link" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">OGMS — Apply Online</a>
+          <a class="ft-link" href="https://wbfpartnership.com/" target="_blank" rel="noopener">Partnership Platform</a>
+          <div class="ft-col-head" style="margin-top:28px">Contact</div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span>Rruga "Skënderbeg" No. 8, Kati IV, Ap. 35/36, Tirana, Albania</span>
+          </div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <a href="tel:+35542400420">+355 42 400420</a>
+          </div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <a href="mailto:info@westernbalkansfund.org">info@westernbalkansfund.org</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom-wrap">
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Western Balkans Fund<span>·</span>All rights reserved</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPT — CSV CMS, FILTERS, MODAL
+     ============================================================ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ──────────────────────────────────────────────────────────
+     CONFIG
+     Set CSV_URL to your published Google Sheet CSV.
+     Columns: id, title, status, pillar, shortDescription,
+              fullDescription, coverImage, countries,
+              maxGrant, currency, totalBudget, deadline,
+              nextCall, eligibility, applyUrl, documents,
+              externalUrl, donor, callRound, statusColumn
+     Status values: open, rolling, upcoming, review, closed
+     Multi-value cells (countries, documents): pipe-separated
+     documents format: Label|URL|Label|URL pairs OR URL|URL...
+     ────────────────────────────────────────────────────────── */
+  const CSV_URL = '';
+
+  const COUNTRY_LABELS = {
+    AL: { name: 'Albania', flag: '🇦🇱' },
+    BA: { name: 'Bosnia and Herzegovina', flag: '🇧🇦' },
+    XK: { name: 'Kosovo*', flag: '🇽🇰' },
+    MK: { name: 'North Macedonia', flag: '🇲🇰' },
+    ME: { name: 'Montenegro', flag: '🇲🇪' },
+    RS: { name: 'Serbia', flag: '🇷🇸' }
+  };
+
+  const STATUS_LABELS = {
+    open:     'Open',
+    rolling:  'Rolling',
+    upcoming: 'Coming Soon',
+    review:   'Under Review',
+    closed:   'Closed'
+  };
+
+  const PILLAR_LABELS = {
+    'regional-cooperation': 'Regional Cooperation',
+    'youth-mobility':       'Youth & Mobility',
+    'civil-society':        'Civil Society',
+    'governance':           'Governance',
+    'cultural-heritage':    'Cultural Heritage',
+    'economic-development': 'Economic Development',
+    'environment':          'Environment',
+    'digitalization':       'Digital & Innovation',
+    'science-research':     'Science & Research',
+    'gender-equality':      'Gender Equality',
+    'capacity-building':    'Capacity Building'
+  };
+  const PILLAR_ORDER = Object.keys(PILLAR_LABELS);
+
+  const SAMPLE_DATA = [
+    {
+      id: 'ggi-grants',
+      title: 'GGI Grants — Good Governance and Integration',
+      status: 'review',
+      pillar: 'civil-society',
+      shortDescription: 'Funds regional cooperation projects led by civil society, cultural institutions, education bodies and grassroots organisations across the WB6.',
+      fullDescription: '<p>The Good Governance and Integration (GGI) grants scheme is WBF\'s flagship programme, funding cross-border cooperation projects led by civil society and partner organisations across all six Contracting Parties.</p><h3>Key features</h3><ul><li>Maximum grant of €15,000 per project</li><li>Minimum partnership: 3 Contracting Parties</li><li>Duration: 6–12 months</li><li>Annual call cycle</li></ul><p>Call No. 8 received 263 applications — a record for the scheme — and is currently under evaluation. Results expected June 2026.</p>',
+      coverImage: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80',
+      countries: 'AL|BA|XK|MK|ME|RS',
+      maxGrant: '15000', currency: 'EUR',
+      totalBudget: '1200000',
+      deadline: '',
+      nextCall: 'Results: June 2026 · Next call: Autumn 2026',
+      eligibility: 'CSOs, cultural institutions, universities, local authorities',
+      applyUrl: 'https://ogms.westernbalkansfund.org/',
+      documents: 'GGI Call Guidelines|#|Application Template|#|Eligibility Criteria|#',
+      donor: 'EU IPA III · WB6 Contributions'
+    },
+    {
+      id: 'matching-grants',
+      title: 'Matching Grants',
+      status: 'rolling',
+      pillar: 'regional-cooperation',
+      shortDescription: 'Supports organisations that have secured co-funding from another source, amplifying impact through matched WBF support. Rolling basis, no deadline.',
+      fullDescription: '<p>Matching Grants amplify projects that have already secured co-funding from another donor, foundation, or partner. WBF matches up to €10,000 to extend regional reach and impact.</p><h3>Eligibility</h3><ul><li>Confirmed co-funding from at least one other source</li><li>Regional dimension — minimum 2 Contracting Parties</li><li>Open to civil society, public bodies, academia and the private sector</li></ul><p>Applications accepted on a rolling basis throughout the year. Funds allocated until the annual envelope is exhausted.</p>',
+      coverImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
+      countries: 'AL|BA|XK|MK|ME|RS',
+      maxGrant: '10000', currency: 'EUR',
+      totalBudget: '300000',
+      deadline: '',
+      nextCall: 'Open — apply any time',
+      eligibility: 'Any eligible organisation with confirmed co-funding',
+      applyUrl: 'https://ogms.westernbalkansfund.org/',
+      documents: 'Matching Grants Guidelines|#',
+      donor: 'WB6 Contributions'
+    },
+    {
+      id: 'visegrad-fellowship',
+      title: 'Western Balkans–Visegrad Fellowship',
+      status: 'open',
+      pillar: 'science-research',
+      shortDescription: 'Supports doctoral students and recent graduates from WB6 connecting with Czech Republic, Hungary, Poland and Slovakia. In partnership with the International Visegrad Fund.',
+      fullDescription: '<p>The Western Balkans–Visegrad Fellowship is a partnership with the International Visegrad Fund supporting mobility for doctoral students and recent graduates from the WB6 to host institutions in the Czech Republic, Hungary, Poland and Slovakia.</p><h3>What it covers</h3><ul><li>Monthly stipend</li><li>Travel costs</li><li>Research budget</li><li>Health insurance</li></ul><p>The 3rd edition call is open until 30 June 2026.</p>',
+      coverImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80',
+      countries: 'AL|BA|XK|MK|ME|RS',
+      maxGrant: '',
+      currency: 'EUR',
+      totalBudget: '500000',
+      deadline: '2026-06-30',
+      nextCall: 'Deadline: 30 June 2026',
+      eligibility: 'Doctoral students and graduates from WB6 institutions',
+      applyUrl: 'https://www.visegradfund.org/',
+      documents: 'Fellowship Call Text|#|How to Apply|#',
+      donor: 'International Visegrad Fund · WBF'
+    },
+    {
+      id: 'erc-grants',
+      title: 'ERC Grants — Empowering Regional Cooperation',
+      status: 'upcoming',
+      pillar: 'regional-cooperation',
+      shortDescription: 'Larger EU co-funded grants for established organisations driving regional cooperation. Autumn 2026 opening — register your organisation to be notified.',
+      fullDescription: '<p>Empowering Regional Cooperation (ERC) Grants are larger, EU co-funded awards targeted at established organisations with proven regional cooperation track records.</p><h3>Key features</h3><ul><li>Maximum grant of €30,000 per project</li><li>Minimum partnership: 4 Contracting Parties</li><li>Duration: 12–18 months</li><li>EU IPA III co-funded</li></ul><p>The next ERC call is expected to open in Autumn 2026. Sign up for the WBF newsletter to receive notification.</p>',
+      coverImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80',
+      countries: 'AL|BA|XK|MK|ME|RS',
+      maxGrant: '30000', currency: 'EUR',
+      totalBudget: '900000',
+      deadline: '',
+      nextCall: 'Opening: Autumn 2026',
+      eligibility: 'Established CSOs, networks and institutions',
+      applyUrl: '',
+      documents: '',
+      donor: 'EU IPA III · WB6 Contributions'
+    },
+    {
+      id: 'move-grants',
+      title: 'WBF Move Grants',
+      status: 'upcoming',
+      pillar: 'youth-mobility',
+      shortDescription: 'Mobility grants supporting individuals creating new regional connections — framed around purpose and output, not just travel. New call anticipated.',
+      fullDescription: '<p>WBF Move Grants are mobility grants for individuals — researchers, activists, artists, professionals — creating new regional connections in the Western Balkans.</p><h3>Five calls completed since 2023</h3><p>The Move Grants scheme launched its first call in March 2023 and has run a total of five rounds. The 4th call closed in March 2024 and a sixth round is anticipated.</p><h3>Typical activities</h3><ul><li>Cross-border research visits</li><li>Skills exchange and shadowing</li><li>Joint creative or media projects</li><li>Conferences and networking with output</li></ul>',
+      coverImage: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80',
+      countries: 'AL|BA|XK|MK|ME|RS',
+      maxGrant: '',
+      currency: 'EUR',
+      totalBudget: '',
+      deadline: '',
+      nextCall: 'Next call: TBC',
+      eligibility: 'Individuals from WB6 with a specific purpose / output',
+      applyUrl: '',
+      documents: 'Past Call Text|#',
+      donor: 'WB6 Contributions'
+    },
+    {
+      id: 'gefund',
+      title: 'Gender Equality Fund (GEFund)',
+      status: 'open',
+      pillar: 'gender-equality',
+      shortDescription: 'Dedicated funding for initiatives advancing gender equality across the Western Balkans through cross-border cooperation.',
+      fullDescription: '<p>The Gender Equality Fund (GEFund) is WBF\'s dedicated grant programme advancing gender equality in the Western Balkans through cross-border projects.</p><h3>Priority themes</h3><ul><li>Women in leadership and decision-making</li><li>Combating gender-based violence</li><li>Women\'s economic empowerment</li><li>Gender mainstreaming in public policy</li></ul><p>Open call closes 15 September 2026.</p>',
+      coverImage: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80',
+      countries: 'AL|BA|XK|MK|ME|RS',
+      maxGrant: '12000', currency: 'EUR',
+      totalBudget: '240000',
+      deadline: '2026-09-15',
+      nextCall: 'Deadline: 15 September 2026',
+      eligibility: 'CSOs and institutions working on gender equality',
+      applyUrl: 'https://ogms.westernbalkansfund.org/',
+      documents: 'GEFund Call Guidelines|#|Application Template|#',
+      donor: 'WB6 Contributions · EU IPA III'
+    },
+    {
+      id: 'advocacy-networking',
+      title: 'Advocacy &amp; Networking Events — LeadBalkans',
+      status: 'open',
+      pillar: 'civil-society',
+      shortDescription: 'Seven annual events connecting CSOs, governmental instances and LeadBalkans platform participants. Japan-funded, focused on regional advocacy.',
+      fullDescription: '<p>The Advocacy &amp; Networking Events programme runs seven annual events under the LeadBalkans regional platform.</p><h3>Events include</h3><ul><li>LeadBalkans Annual Forum</li><li>FIRE Conference</li><li>VerityCon (media literacy)</li><li>Regional Networking &amp; Dialogue Sessions</li><li>Civil Society Summit</li></ul><p>Funded by the Government of Japan, the programme strengthens advocacy capacity across the WB6.</p>',
+      coverImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80',
+      countries: 'AL|BA|XK|MK|ME|RS',
+      maxGrant: '',
+      currency: '',
+      totalBudget: '',
+      deadline: '',
+      nextCall: '7 events annually · LeadBalkans Platform',
+      eligibility: 'Open to CSOs, public institutions and platform members',
+      applyUrl: 'events.html',
+      documents: '',
+      donor: 'Government of Japan'
+    },
+    {
+      id: 'regional-academy',
+      title: 'WBF Regional Academy',
+      status: 'open',
+      pillar: 'capacity-building',
+      shortDescription: 'Training and capacity-building programme for grantees and civil society leaders across the region — grant management, EU integration, advocacy and M&E.',
+      fullDescription: '<p>The WBF Regional Academy is a capacity-building programme open to grantees, partner organisations and civil society leaders from across the Western Balkans.</p><h3>Curriculum modules</h3><ul><li>Project &amp; grant management</li><li>EU integration and IPA III navigation</li><li>Advocacy and policy engagement</li><li>Monitoring, evaluation and learning (MEL)</li><li>Financial management and reporting</li></ul><p>Cohorts run twice annually with both online and in-person components.</p>',
+      coverImage: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1200&q=80',
+      countries: 'AL|BA|XK|MK|ME|RS',
+      maxGrant: '',
+      currency: '',
+      totalBudget: '',
+      deadline: '',
+      nextCall: 'Two cohorts annually',
+      eligibility: 'Grantees, partners and CSO professionals',
+      applyUrl: '',
+      documents: 'Academy Programme Outline|#',
+      donor: 'WBF · Multiple Donors'
+    },
+    {
+      id: 'peer-to-peer',
+      title: 'Peer to Peer',
+      status: 'open',
+      pillar: 'capacity-building',
+      shortDescription: 'Peer learning exchanges between grantees and civil society organisations across the region — sharing practice, building networks.',
+      fullDescription: '<p>The Peer to Peer programme facilitates structured learning exchanges between WBF grantees and partner organisations across the WB6.</p><h3>Formats</h3><ul><li>Peer mentoring pairs</li><li>Thematic learning circles</li><li>Cross-organisation shadowing</li></ul><p>Designed to complement grant-making with long-term capacity development and network building.</p>',
+      coverImage: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80',
+      countries: 'AL|BA|XK|MK|ME|RS',
+      maxGrant: '',
+      currency: '',
+      totalBudget: '',
+      deadline: '',
+      nextCall: 'Open — rolling enrolment',
+      eligibility: 'WBF grantees and partner CSOs',
+      applyUrl: 'contact.html',
+      documents: '',
+      donor: 'WBF'
+    }
+  ];
+
+  const STATE = {
+    items: [],
+    status: 'all',
+    pillar: 'all',
+    search: ''
+  };
+
+  /* ──────────────────────────────────────────────────────────
+     UTILITIES
+     ────────────────────────────────────────────────────────── */
+  function $(s, c) { return (c || document).querySelector(s); }
+  function $$(s, c) { return Array.from((c || document).querySelectorAll(s)); }
+  function escapeHtml(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+  function escapeAttr(s) { return escapeHtml(s); }
+  function pipeSplit(v) { return !v ? [] : String(v).split('|').map(s => s.trim()).filter(Boolean); }
+
+  function normalizeStatus(s) {
+    const k = String(s || '').trim().toLowerCase();
+    return STATUS_LABELS[k] ? k : 'closed';
+  }
+  function normalizePillar(p) {
+    if (!p) return 'other';
+    const k = String(p).trim().toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'and');
+    return PILLAR_LABELS[k] ? k : k;
+  }
+
+  function formatCurrency(amount, currency) {
+    const n = parseFloat(amount);
+    if (!n) return '—';
+    const c = (currency || 'EUR').toUpperCase();
+    const symbol = c === 'EUR' ? '€' : c === 'USD' ? '$' : c + ' ';
+    return symbol + n.toLocaleString('en-US');
+  }
+  function formatCurrencyShort(amount, currency) {
+    const n = parseFloat(amount);
+    if (!n) return '—';
+    const c = (currency || 'EUR').toUpperCase();
+    const symbol = c === 'EUR' ? '€' : c === 'USD' ? '$' : c + ' ';
+    if (n >= 1_000_000) return symbol + (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1_000) return symbol + Math.round(n / 1000) + 'K';
+    return symbol + n.toLocaleString('en-US');
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     CSV PARSER
+     ────────────────────────────────────────────────────────── */
+  function parseCSV(text) {
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQuotes) {
+        if (c === '"') { if (text[i+1] === '"') { field += '"'; i++; } else { inQuotes = false; } }
+        else { field += c; }
+      } else {
+        if (c === '"') inQuotes = true;
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+        else if (c === '\r') {/*skip*/}
+        else field += c;
+      }
+    }
+    if (field.length || row.length) { row.push(field); rows.push(row); }
+    if (!rows.length) return [];
+    const headers = rows[0].map(h => h.trim());
+    return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => {
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = (r[i] || '').trim());
+      return obj;
+    });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     DATA
+     ────────────────────────────────────────────────────────── */
+  async function loadData() {
+    if (!CSV_URL) { STATE.items = SAMPLE_DATA.slice(); return; }
+    try {
+      const res = await fetch(CSV_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      STATE.items = parseCSV(await res.text());
+    } catch (err) {
+      console.warn('CSV load failed, using sample data:', err);
+      STATE.items = SAMPLE_DATA.slice();
+    }
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     FILTERS
+     ────────────────────────────────────────────────────────── */
+  function buildPillarFilters() {
+    const wrap = $('#pillar-filters');
+    $$('button[data-pillar]:not([data-pillar="all"])', wrap).forEach(b => b.remove());
+    const counts = {};
+    STATE.items.forEach(i => {
+      const p = normalizePillar(i.pillar);
+      counts[p] = (counts[p] || 0) + 1;
+    });
+    // Preserve canonical order, then any unknown pillars alphabetically
+    const ordered = [];
+    PILLAR_ORDER.forEach(p => { if (counts[p]) { ordered.push(p); delete counts[p]; } });
+    Object.keys(counts).sort().forEach(p => ordered.push(p));
+
+    ordered.forEach(p => {
+      const label = PILLAR_LABELS[p] || p.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      const count = (STATE.items.filter(i => normalizePillar(i.pillar) === p)).length;
+      const btn = document.createElement('button');
+      btn.className = 'chip';
+      btn.dataset.pillar = p;
+      btn.innerHTML = escapeHtml(label) + ' <span class="chip-count">' + count + '</span>';
+      wrap.appendChild(btn);
+    });
+  }
+
+  function getFiltered() {
+    return STATE.items
+      .filter(i => STATE.status === 'all' ? true : normalizeStatus(i.status) === STATE.status)
+      .filter(i => STATE.pillar === 'all' ? true : normalizePillar(i.pillar) === STATE.pillar)
+      .filter(i => {
+        if (!STATE.search) return true;
+        const q = STATE.search.toLowerCase();
+        return (i.title || '').toLowerCase().includes(q) ||
+               (i.shortDescription || '').toLowerCase().includes(q) ||
+               (i.donor || '').toLowerCase().includes(q);
+      })
+      .sort((a, b) => {
+        // Open and rolling first, then upcoming, then review, then closed
+        const order = { open: 0, rolling: 1, upcoming: 2, review: 3, closed: 4 };
+        const sa = order[normalizeStatus(a.status)] ?? 5;
+        const sb = order[normalizeStatus(b.status)] ?? 5;
+        if (sa !== sb) return sa - sb;
+        return (a.title || '').localeCompare(b.title || '');
+      });
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     HERO STATS
+     ────────────────────────────────────────────────────────── */
+  function renderHeroStats() {
+    const total = STATE.items.length;
+    const open = STATE.items.filter(i => {
+      const s = normalizeStatus(i.status);
+      return s === 'open' || s === 'rolling';
+    }).length;
+    const pillars = new Set(STATE.items.map(i => normalizePillar(i.pillar))).size;
+    $('#stat-total').textContent = total;
+    $('#stat-open').textContent = open;
+    $('#stat-pillars').textContent = pillars;
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     CARDS
+     ────────────────────────────────────────────────────────── */
+  function renderCard(p) {
+    const cover = p.coverImage;
+    const coverStyle = cover ? 'background-image:url(' + JSON.stringify(cover).slice(1, -1) + ')' : '';
+    const status = normalizeStatus(p.status);
+    const pillar = normalizePillar(p.pillar);
+    const statusLabel = STATUS_LABELS[status] || p.status || '';
+    const pillarLabel = PILLAR_LABELS[pillar] || pillar.replace(/-/g, ' ');
+    const countries = pipeSplit(p.countries).map(c => c.toUpperCase());
+    const flags = countries.slice(0, 4).map(c => COUNTRY_LABELS[c]?.flag || '').filter(Boolean).join('');
+    const more = Math.max(0, countries.length - 4);
+
+    return (
+      '<button type="button" class="program-card" data-id="' + escapeAttr(p.id) + '">' +
+        '<div class="card-img" style="' + coverStyle + '">' +
+          '<div class="card-img-overlay"></div>' +
+          (statusLabel ? '<span class="status-badge ' + escapeAttr(status) + '">' + escapeHtml(statusLabel) + '</span>' : '') +
+          (pillarLabel ? '<span class="pillar-badge">' + escapeHtml(pillarLabel) + '</span>' : '') +
+        '</div>' +
+        '<div class="card-body">' +
+          '<h3 class="card-title">' + escapeHtml(p.title) + '</h3>' +
+          '<p class="card-desc">' + escapeHtml(p.shortDescription || '') + '</p>' +
+          '<div class="card-keymeta">' +
+            (p.maxGrant
+              ? '<div class="km"><div class="km-label">Max grant</div><div class="km-value">' + formatCurrency(p.maxGrant, p.currency) + '</div></div>'
+              : (p.totalBudget
+                  ? '<div class="km"><div class="km-label">Budget</div><div class="km-value">' + formatCurrencyShort(p.totalBudget, p.currency) + '</div></div>'
+                  : '')) +
+            (p.nextCall ? '<div class="km"><div class="km-label">Next</div><div class="km-value">' + escapeHtml(p.nextCall) + '</div></div>' : '') +
+          '</div>' +
+          '<div class="card-foot">' +
+            '<span class="card-flags">' +
+              '<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
+              (flags || '—') +
+              (more ? '<span class="card-flag-more">+' + more + '</span>' : '') +
+            '</span>' +
+            '<span class="card-view">Explore <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></span>' +
+          '</div>' +
+        '</div>' +
+      '</button>'
+    );
+  }
+
+  function renderGrid() {
+    const grid = $('#cards-grid');
+    const meta = $('#results-meta');
+    const list = getFiltered();
+    const hasFilters = STATE.status !== 'all' || STATE.pillar !== 'all' || STATE.search;
+
+    meta.innerHTML = '<strong>' + list.length + '</strong> ' +
+      (list.length === 1 ? 'programme' : 'programmes') +
+      (hasFilters ? ' matching your filters' : '');
+
+    if (!list.length) {
+      grid.innerHTML =
+        '<div class="state-msg">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+          '<h3>No programmes found</h3>' +
+          '<p>Try a different combination of filters.</p>' +
+        '</div>';
+      return;
+    }
+    grid.innerHTML = list.map(renderCard).join('');
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     MODAL
+     ────────────────────────────────────────────────────────── */
+  const Modal = (function () {
+    const overlay = $('#modal');
+    const content = $('#modal-content');
+
+    function renderDocs(spec) {
+      const parts = pipeSplit(spec);
+      if (!parts.length) return '';
+      const items = [];
+      // Detect Label|URL pairs vs bare URLs
+      const looksLikePairs = parts.length >= 2 && parts.length % 2 === 0 &&
+        parts.some((s, i) => i % 2 === 1 && (s.startsWith('http') || s.startsWith('/') || s.startsWith('#')));
+      if (looksLikePairs) {
+        for (let i = 0; i < parts.length; i += 2) {
+          items.push({ label: parts[i], url: parts[i+1] || '#' });
+        }
+      } else {
+        parts.forEach(url => {
+          const name = url.split('/').pop() || 'Document';
+          items.push({ label: decodeURIComponent(name), url });
+        });
+      }
+      return '<h3 class="section-h">Programme Documents</h3>' +
+        '<div class="docs-list">' +
+          items.map(d =>
+            '<a class="doc-link" href="' + escapeAttr(d.url) + '" target="_blank" rel="noopener">' +
+              '<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>' +
+              '<span>' + escapeHtml(d.label) + '</span>' +
+              '<svg class="ext" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
+            '</a>'
+          ).join('') +
+        '</div>';
+    }
+
+    function open(p) {
+      const cover = p.coverImage;
+      const status = normalizeStatus(p.status);
+      const pillar = normalizePillar(p.pillar);
+      const statusLabel = STATUS_LABELS[status] || p.status || '';
+      const pillarLabel = PILLAR_LABELS[pillar] || pillar.replace(/-/g, ' ');
+      const countries = pipeSplit(p.countries).map(c => c.toUpperCase());
+
+      const facts =
+        (p.maxGrant ?
+          '<div class="fact"><div class="fact-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>' +
+          '<div><div class="fact-label">Max Grant</div><div class="fact-value">' + formatCurrency(p.maxGrant, p.currency) + '</div></div></div>'
+        : '') +
+        (p.totalBudget ?
+          '<div class="fact"><div class="fact-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>' +
+          '<div><div class="fact-label">Programme Budget</div><div class="fact-value">' + formatCurrencyShort(p.totalBudget, p.currency) + '</div></div></div>'
+        : '') +
+        (p.nextCall ?
+          '<div class="fact"><div class="fact-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>' +
+          '<div><div class="fact-label">Status</div><div class="fact-value">' + escapeHtml(p.nextCall) + '</div></div></div>'
+        : '') +
+        (p.donor ?
+          '<div class="fact"><div class="fact-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>' +
+          '<div><div class="fact-label">Funded by</div><div class="fact-value">' + escapeHtml(p.donor) + '</div></div></div>'
+        : '');
+
+      const eligibilityBlock = p.eligibility
+        ? '<h3 class="section-h">Who can apply</h3>' +
+          '<p style="font-size:14.5px;color:#334155;line-height:1.7">' + escapeHtml(p.eligibility) + '</p>'
+        : '';
+
+      const countryBlock = countries.length
+        ? '<h3 class="section-h">Eligible Countries</h3>' +
+          '<div class="countries-list">' +
+            countries.map(c => {
+              const info = COUNTRY_LABELS[c] || { flag: '', name: c };
+              return '<span class="country-chip"><span class="flag">' + info.flag + '</span>' + escapeHtml(info.name) + '</span>';
+            }).join('') +
+          '</div>'
+        : '';
+
+      const docsBlock = renderDocs(p.documents);
+
+      const actions =
+        (p.applyUrl || p.externalUrl) ?
+          '<div class="modal-actions">' +
+            (p.applyUrl ?
+              '<a class="action-btn action-primary" href="' + escapeAttr(p.applyUrl) + '" target="_blank" rel="noopener">' +
+                '<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>' +
+                'Apply / Learn more' +
+              '</a>' : '') +
+            (p.externalUrl ?
+              '<a class="action-btn action-secondary" href="' + escapeAttr(p.externalUrl) + '" target="_blank" rel="noopener">' +
+                '<svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
+                'External page' +
+              '</a>' : '') +
+            '<button type="button" class="action-btn action-ghost" data-share>' +
+              '<svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>' +
+              'Share' +
+            '</button>' +
+          '</div>'
+        : '';
+
+      content.innerHTML =
+        '<button type="button" class="modal-close" aria-label="Close">' +
+          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>' +
+        '</button>' +
+        '<div class="modal-header-img"' + (cover ? ' style="background-image:url(' + JSON.stringify(cover).slice(1,-1) + ')"' : '') + '>' +
+          '<div class="modal-header-overlay"></div>' +
+          '<div class="modal-header-text">' +
+            (statusLabel ? '<span class="status-badge ' + escapeAttr(status) + '">' + escapeHtml(statusLabel) + '</span>' : '') +
+            (pillarLabel ? '<span class="pillar-badge">' + escapeHtml(pillarLabel) + '</span>' : '') +
+            '<h2 id="modal-title" class="modal-title">' + escapeHtml(p.title) + '</h2>' +
+          '</div>' +
+        '</div>' +
+        '<div class="modal-body">' +
+          (facts ? '<div class="modal-facts">' + facts + '</div>' : '') +
+          '<h3 class="section-h">About the programme</h3>' +
+          '<div class="modal-description">' + (p.fullDescription || ('<p>' + escapeHtml(p.shortDescription || '') + '</p>')) + '</div>' +
+          eligibilityBlock +
+          countryBlock +
+          docsBlock +
+          actions +
+        '</div>';
+
+      overlay.hidden = false;
+      requestAnimationFrame(() => overlay.classList.add('open'));
+      document.body.classList.add('modal-open');
+
+      const url = new URL(window.location);
+      if (url.searchParams.get('programme') !== p.id) {
+        url.searchParams.set('programme', p.id);
+        history.pushState({ programme: p.id }, '', url);
+      }
+
+      bindModalEvents();
+      content.querySelector('.modal-close').focus();
+    }
+
+    function close(updateHistory) {
+      overlay.classList.remove('open');
+      document.body.classList.remove('modal-open');
+      setTimeout(() => { overlay.hidden = true; content.innerHTML = ''; }, 200);
+      if (updateHistory !== false) {
+        const url = new URL(window.location);
+        if (url.searchParams.has('programme')) {
+          url.searchParams.delete('programme');
+          history.pushState({}, '', url);
+        }
+      }
+    }
+
+    function bindModalEvents() {
+      content.querySelector('.modal-close').addEventListener('click', () => close(true));
+      const shareBtn = content.querySelector('[data-share]');
+      if (shareBtn) {
+        shareBtn.addEventListener('click', async () => {
+          const url = window.location.href;
+          const title = content.querySelector('.modal-title')?.textContent || document.title;
+          if (navigator.share) { try { await navigator.share({ title, url }); } catch (_) {} }
+          else if (navigator.clipboard) {
+            try {
+              await navigator.clipboard.writeText(url);
+              const last = shareBtn.lastChild; if (last) { last.textContent = ' Link copied!'; setTimeout(() => { last.textContent = ' Share'; }, 1800); }
+            } catch (_) {}
+          }
+        });
+      }
+    }
+
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(true); });
+    document.addEventListener('keydown', (e) => { if (overlay.hidden) return; if (e.key === 'Escape') close(true); });
+    return { open, close };
+  })();
+
+  /* ──────────────────────────────────────────────────────────
+     EVENT WIRING
+     ────────────────────────────────────────────────────────── */
+  function bindFilterChips() {
+    $('#status-filters').addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-status]'); if (!btn) return;
+      STATE.status = btn.dataset.status;
+      $$('#status-filters button').forEach(b => b.classList.toggle('active', b === btn));
+      renderGrid();
+    });
+    $('#pillar-filters').addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-pillar]'); if (!btn) return;
+      STATE.pillar = btn.dataset.pillar;
+      $$('#pillar-filters button').forEach(b => b.classList.toggle('active', b === btn));
+      renderGrid();
+    });
+    let searchTimer;
+    $('#search-input').addEventListener('input', (e) => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => { STATE.search = e.target.value.trim(); renderGrid(); }, 150);
+    });
+    $('#filter-clear').addEventListener('click', () => {
+      STATE.status = 'all'; STATE.pillar = 'all'; STATE.search = '';
+      $('#search-input').value = '';
+      $$('#status-filters button').forEach(b => b.classList.toggle('active', b.dataset.status === 'all'));
+      $$('#pillar-filters button').forEach(b => b.classList.toggle('active', b.dataset.pillar === 'all'));
+      renderGrid();
+    });
+  }
+
+  function bindCardClicks() {
+    $('#cards-grid').addEventListener('click', (e) => {
+      const card = e.target.closest('.program-card');
+      if (!card) return;
+      const p = STATE.items.find(x => String(x.id) === String(card.dataset.id));
+      if (p) Modal.open(p);
+    });
+  }
+
+  function bindHistory() {
+    window.addEventListener('popstate', () => {
+      const id = new URL(window.location).searchParams.get('programme');
+      if (id) {
+        const p = STATE.items.find(x => String(x.id) === String(id));
+        if (p) Modal.open(p);
+      } else { Modal.close(false); }
+    });
+  }
+
+  function maybeOpenFromUrl() {
+    const id = new URL(window.location).searchParams.get('programme');
+    if (!id) return;
+    const p = STATE.items.find(x => String(x.id) === String(id));
+    if (p) Modal.open(p);
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     INIT
+     ────────────────────────────────────────────────────────── */
+  async function init() {
+    bindFilterChips();
+    bindCardClicks();
+    bindHistory();
+    try {
+      await loadData();
+      buildPillarFilters();
+      renderHeroStats();
+      renderGrid();
+      maybeOpenFromUrl();
+    } catch (err) {
+      console.error(err);
+      $('#cards-grid').innerHTML =
+        '<div class="state-msg"><h3>Unable to load programmes</h3><p>Please try again in a few moments.</p></div>';
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</body>
+</html>
