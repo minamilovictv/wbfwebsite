@@ -1,0 +1,214 @@
+<!--
+  ============================================================
+  _MASTER_navbar.html  ·  Canonical site navigation
+  ============================================================
+
+  Source of truth for the global header / primary navigation.
+  Every page under /html/ should render this markup verbatim
+  (minus the visual-only changes flagged in the TODOs below).
+
+  Usage
+  -----
+  This is a static HTML fragment, not a full document.
+  Until a templating step exists, paste the <nav class="nb">
+  block as the FIRST element of <body>, immediately after the
+  optional skip-link.
+
+  Recommended companion markup (paste once on each page,
+  above this navbar, to satisfy WCAG 2.4.1 "Bypass Blocks"):
+
+      <a class="skip-link" href="#main">Skip to main content</a>
+
+  …and on every page wrap the primary content in <main id="main">.
+
+  Marking the current page (active state)
+  ---------------------------------------
+  Set ONE of these attributes on the matching link/button.
+  CSS/JS can hook on either; screen readers benefit from
+  aria-current="page" specifically.
+
+      <a … data-page-key="home" aria-current="page">Home</a>
+
+  Recommended page keys (match the filename root):
+      home · about · about-governance · about-team · about-accountability
+      about-careers · about-strategic-plan · about-member-states
+      programs · ggi · projects · impact · impact-stories · impact-awards
+      news · events · knowledge-hub · partners · contact
+
+  Outstanding TODOs (tracked in the audit)
+  ----------------------------------------
+  - [P0] No mobile navigation. The .nav-items container is
+         display:none below 768px. A hamburger trigger and
+         off-canvas drawer must be added (design TBD).
+  - [P1] Dropdowns are hover-triggered only. Add click/Esc
+         keyboard behaviour and toggle aria-expanded from JS.
+  - [P1] Mega menu items should have aria-haspopup="menu".
+  - [P2] Footer link target /programs/ggi-grants.html etc. do
+         not exist (see _MASTER_footer.html note). The mega-menu
+         here correctly uses /programs.html#anchor pattern.
+  - [P2] "Knowledge Hub" is reachable only via the mega-menu
+         "Status Guide" block — promote to top-level nav in v2.
+  ============================================================
+-->
+<nav class="nb" role="navigation" aria-label="Main navigation">
+  <div class="nb-inner">
+
+    <a class="logo" href="/" data-page-key="home">
+      <img src="/logo.png" alt="Western Balkans Fund" style="height:34px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-icon" style="display:none">WBF</div>
+      <div class="logo-text">
+        <div class="logo-name">Western Balkans Fund</div>
+        <div class="logo-sub">Building Regional Cooperation</div>
+      </div>
+    </a>
+
+    <div class="nav-items" id="primary-nav">
+
+      <a class="nav-btn" href="index.html" data-page-key="home">Home</a>
+
+      <div class="dropdown-wrap">
+        <button class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="dd-about">
+          About WBF
+          <svg class="chevron" viewBox="0 0 10 10" aria-hidden="true" focusable="false"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" id="dd-about" role="menu">
+          <a class="dd-item" href="about.html" role="menuitem" data-page-key="about">
+            <div><div class="dd-title">Who We Are</div><div class="dd-sub">Mission, mandate and history</div></div>
+          </a>
+          <a class="dd-item" href="about-governance.html" role="menuitem" data-page-key="about-governance">
+            <div><div class="dd-title">Structure &amp; Governance</div><div class="dd-sub">Board, secretariat, statutes</div></div>
+          </a>
+          <a class="dd-item" href="about-team.html" role="menuitem" data-page-key="about-team">
+            <div><div class="dd-title">Our Team</div><div class="dd-sub">Secretariat and contacts</div></div>
+          </a>
+          <a class="dd-item" href="partners.html" role="menuitem" data-page-key="partners">
+            <div><div class="dd-title">Donors &amp; Partners</div><div class="dd-sub">EU, Switzerland, Japan, Germany...</div></div>
+          </a>
+          <a class="dd-item" href="about-accountability.html" role="menuitem" data-page-key="about-accountability">
+            <div><div class="dd-title">Accountability</div><div class="dd-sub">Reports and financial statements</div></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="dropdown-wrap">
+        <button class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="dd-programs">
+          Our Programs
+          <svg class="chevron" viewBox="0 0 10 10" aria-hidden="true" focusable="false"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="mega" id="dd-programs" role="menu">
+
+          <div class="mega-col">
+            <div class="mega-head">Funding Opportunities</div>
+            <a class="mega-item" href="programs.html#ggi" role="menuitem"><div class="m-dot" aria-hidden="true"></div><div class="m-title">Good Governance and Integration (GGI)</div></a>
+            <a class="mega-item" href="programs.html#gefund" role="menuitem"><div class="m-dot" aria-hidden="true"></div><div class="m-title">Gender Equality Fund (GEFund)</div></a>
+            <a class="mega-item" href="programs.html#erc" role="menuitem"><div class="m-dot" aria-hidden="true"></div><div class="m-title">ERC</div></a>
+            <a class="mega-item" href="programs.html#move" role="menuitem"><div class="m-dot" aria-hidden="true"></div><div class="m-title">MOVE</div></a>
+            <a class="mega-item" href="programs.html#matching" role="menuitem"><div class="m-dot" aria-hidden="true"></div><div class="m-title">Matching Grants</div></a>
+            <a class="mega-item" href="programs.html#visegrad" role="menuitem"><div class="m-dot" aria-hidden="true"></div><div class="m-title">Visegrad Fellowship</div></a>
+
+            <div class="mega-section">
+              <div class="mega-head">Conferences &amp; Networking</div>
+              <a class="mega-item" href="events.html#leadbalkans" role="menuitem"><div class="m-dot" aria-hidden="true"></div><div class="m-title">LeadBalkans</div></a>
+              <a class="mega-item" href="events.html#past" role="menuitem"><div class="m-dot" aria-hidden="true"></div><div class="m-title">See past events</div></a>
+            </div>
+          </div>
+
+          <div class="mega-col">
+            <div class="mega-head">Capacity Building</div>
+            <a class="mega-item" href="programs.html#academy" role="menuitem"><div class="m-dot" aria-hidden="true"></div><div class="m-title">WBF Regional Academy</div></a>
+            <a class="mega-item" href="programs.html#p2p" role="menuitem"><div class="m-dot" aria-hidden="true"></div><div class="m-title">Peer to Peer</div></a>
+          </div>
+
+          <div class="mega-right">
+            <div class="mega-head">Quick Access</div>
+            <a class="qa-link" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener" role="menuitem">
+              <div class="qa-label">Apply Now via OGMS →</div>
+              <div class="qa-sub">Online Grant Management System</div>
+            </a>
+            <a class="qa-link" href="https://wbfpartnership.com/" target="_blank" rel="noopener" role="menuitem" style="margin-top:8px">
+              <div class="qa-label">Find Partners →</div>
+              <div class="qa-sub">WBF Partnership Platform</div>
+            </a>
+
+            <div class="status-block">
+              <div class="mega-head" style="margin-top:14px">Status Guide</div>
+              <div class="status-item"><div class="s-dot green" aria-hidden="true"></div><span class="s-label">Open — accepting applications</span></div>
+              <div class="status-item"><div class="s-dot amber" aria-hidden="true"></div><span class="s-label">Under Review</span></div>
+              <div class="status-item"><div class="s-dot dark" aria-hidden="true"></div><span class="s-label">Results Announced</span></div>
+              <div class="status-item"><div class="s-dot light" aria-hidden="true"></div><span class="s-label">Coming Soon</span></div>
+              <!-- TODO [P1]: target page is knowledge-hub.html, not grants-how-to-apply.html -->
+              <a href="knowledge-hub.html" class="kb-btn" style="text-decoration:none" data-page-key="knowledge-hub">📚 Knowledge Hub</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="dropdown-wrap">
+        <button class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="dd-impact">
+          Our Impact
+          <svg class="chevron" viewBox="0 0 10 10" aria-hidden="true" focusable="false"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" id="dd-impact" role="menu">
+          <a class="dd-item" href="impact.html" role="menuitem" data-page-key="impact">
+            <div><div class="dd-title">Impact Overview</div><div class="dd-sub">Numbers, geography, reach</div></div>
+          </a>
+          <a class="dd-item" href="impact-stories.html" role="menuitem" data-page-key="impact-stories">
+            <div><div class="dd-title">Grantee Stories</div><div class="dd-sub">In-depth project highlights</div></div>
+          </a>
+          <a class="dd-item" href="impact-awards.html" role="menuitem" data-page-key="impact-awards">
+            <div><div class="dd-title">WBF Champion Awards</div><div class="dd-sub">Annual recognition program</div></div>
+          </a>
+        </div>
+      </div>
+
+      <a class="nav-btn" href="projects.html" data-page-key="projects">Our Grantees</a>
+
+      <div class="dropdown-wrap">
+        <button class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="dd-news">
+          News &amp; Events
+          <svg class="chevron" viewBox="0 0 10 10" aria-hidden="true" focusable="false"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" id="dd-news" role="menu">
+          <a class="dd-item" href="news.html" role="menuitem" data-page-key="news">
+            <div><div class="dd-title">News</div><div class="dd-sub">Stories, announcements, updates</div></div>
+          </a>
+          <a class="dd-item" href="events.html" role="menuitem" data-page-key="events">
+            <div><div class="dd-title">Events</div><div class="dd-sub">Info sessions, ceremonies, networking</div></div>
+          </a>
+        </div>
+      </div>
+
+      <a class="nav-btn" href="contact.html" data-page-key="contact">Contact</a>
+
+    </div>
+
+    <div class="nav-right">
+      <a class="btn-partners" href="https://wbfpartnership.com/" target="_blank" rel="noopener">Find Partners</a>
+      <a class="btn-apply" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">
+        Apply Now
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <polyline points="3,9 9,3"/>
+          <polyline points="3,3 9,3 9,9"/>
+        </svg>
+      </a>
+
+      <!--
+        TODO [P0] Mobile navigation toggle.
+        Add a button here that is shown only below 768px and that
+        opens an off-canvas drawer containing the same nav items.
+        Suggested markup:
+
+          <button class="nav-toggle" type="button"
+                  aria-controls="primary-nav"
+                  aria-expanded="false"
+                  aria-label="Open navigation menu">
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+            <span class="nav-toggle-bar" aria-hidden="true"></span>
+          </button>
+      -->
+    </div>
+
+  </div>
+</nav>
