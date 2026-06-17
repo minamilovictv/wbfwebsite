@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOVE Grants — Individual Mobility | Western Balkans Fund</title>
+<meta name="description" content="MOVE Grants support individual mobility, exchange and people-to-people cooperation across the Western Balkans — up to €3,000 for artists, researchers, journalists, students and activists from the WB6.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --navy:      #1A3668;
+  --navy-900:  #0f2044;
+  --navy-700:  #2a4a85;
+
+  /* MOVE accent — warm teal-to-orange movement palette */
+  --move:        #0E8C84;   /* Exchange Teal — primary */
+  --move-deep:   #076b64;
+  --move-tint:   #e6f4f3;
+  --move-border: #99d6d2;
+  --move-orange: #E07B2A;   /* energy accent */
+  --move-orange-tint: #fdf0e6;
+
+  /* WBF shared */
+  --amber:     #C2841C;
+  --amber-tint:#fbf2e2;
+  --green:     #2F9E63;
+  --green-tint:#e9f5ee;
+
+  --ink:       #0f172a;
+  --ink-soft:  #475569;
+  --muted:     #64748b;
+  --faint:     #94a3b8;
+  --line:      #e2e8f0;
+  --line-soft: #f1f5f9;
+  --surface:   #ffffff;
+  --surface-alt:#f8fafc;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: #1a1e2e; background: #fff; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font-family: inherit; }
+.container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+.container-narrow { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+h1, h2, h3 { font-family: var(--font); letter-spacing: -0.018em; }
+
+/* ============================================================
+   NAVBAR — _MASTER_navbar.html verbatim
+   ============================================================ */
+.nb { background: #1A3668; width: 100%; position: sticky; top: 0; z-index: 1000; }
+.nb-inner { display: flex; align-items: center; height: 56px; padding: 0 20px; max-width: 1400px; margin: 0 auto; gap: 4px; }
+.logo { display: flex; align-items: center; gap: 9px; margin-right: 16px; flex-shrink: 0; text-decoration: none; }
+.logo-icon { width: 34px; height: 34px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; color: #1A3668; }
+.logo-text { line-height: 1.15; }
+.logo-name { font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; }
+.logo-sub { font-size: 10px; color: rgba(255,255,255,0.6); white-space: nowrap; }
+.nav-items { display: flex; align-items: center; gap: 2px; flex: 1; }
+.nav-btn { background: none; border: none; color: rgba(255,255,255,0.88); font-size: 13px; padding: 6px 10px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; gap: 4px; white-space: nowrap; font-family: inherit; text-decoration: none; transition: background 0.15s, color 0.15s; }
+.nav-btn:hover, .dropdown-wrap:hover > .nav-btn { background: rgba(255,255,255,0.13); color: #fff; }
+.chevron { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; transition: transform 0.2s; }
+.dropdown-wrap:hover .chevron { transform: rotate(180deg); }
+.dropdown-wrap { position: relative; }
+.dropdown, .mega { display: none; position: absolute; top: calc(100% + 2px); left: 0; background: #fff; border: 0.5px solid #d1d9e6; border-radius: 8px; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.13); animation: fadeIn 0.12s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+.dropdown-wrap:hover .dropdown, .dropdown-wrap:hover .mega { display: block; }
+.dropdown { min-width: 230px; padding: 6px 0; }
+.dd-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 16px; cursor: pointer; text-decoration: none; color: inherit; transition: background 0.1s; }
+.dd-item:hover { background: #f4f7fb; }
+.dd-title { font-size: 13.5px; color: #1a1e2e; font-weight: 500; line-height: 1.3; }
+.dd-sub { font-size: 11.5px; color: #6b7280; margin-top: 2px; }
+.mega { left: -160px; width: 680px; padding: 18px; }
+.dropdown-wrap:hover .mega { display: grid; grid-template-columns: 1fr 1fr 190px; gap: 0; }
+.mega-col { padding: 0 14px; }
+.mega-col:not(:last-child) { border-right: 0.5px solid #e8ecf2; }
+.mega-col:first-child { padding-left: 0; }
+.mega-head { font-size: 10px; font-weight: 600; color: #9ca3af; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 10px; }
+.mega-section { margin-top: 14px; }
+.mega-item { display: flex; align-items: flex-start; gap: 7px; padding: 0; text-decoration: none; color: inherit; }
+.mega-item:hover .m-title { color: #1A3668; text-decoration: underline; }
+.m-dot { width: 6px; height: 6px; border-radius: 50%; background: #1A3668; margin-top: 6px; flex-shrink: 0; }
+.m-title { font-size: 13px; color: #1a1e2e; line-height: 1.4; padding: 4px 0; display: block; }
+.mega-right { padding: 0 0 0 14px; }
+.qa-link { display: block; padding: 5px 0; text-decoration: none; }
+.qa-link:hover .qa-label { color: #1A3668; text-decoration: underline; }
+.qa-label { font-size: 13px; color: #1a1e2e; font-weight: 500; }
+.qa-sub { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+.status-block { margin-top: 14px; }
+.status-item { display: flex; align-items: center; gap: 7px; padding: 3px 0; }
+.s-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.s-dot.green { background: #22a05a; } .s-dot.amber { background: #d4870a; }
+.s-dot.dark  { background: #4b5563; } .s-dot.light { background: #c4c9d4; }
+.s-label { font-size: 11.5px; color: #374151; }
+.kb-btn { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; background: #1A3668; color: #fff; border: none; border-radius: 5px; padding: 7px 10px; font-size: 12px; font-weight: 500; margin-top: 12px; cursor: pointer; font-family: inherit; text-decoration: none; transition: background 0.15s; }
+.kb-btn:hover { background: #122650; }
+.nav-right { display: flex; align-items: center; gap: 7px; margin-left: auto; flex-shrink: 0; }
+.btn-partners { background: none; border: 1px solid rgba(255,255,255,0.38); color: #fff; font-size: 12.5px; padding: 5px 13px; border-radius: 5px; text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+.btn-partners:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); }
+.btn-apply { background: #fff; border: none; color: #1A3668; font-size: 12.5px; font-weight: 600; padding: 5px 13px; border-radius: 5px; display: flex; align-items: center; gap: 5px; text-decoration: none; transition: background 0.15s; }
+.btn-apply:hover { background: #e8eef8; }
+.btn-apply svg { width: 11px; height: 11px; }
+
+/* ============================================================
+   PROGRAM HERO — MOVE edition
+   Deep teal-to-navy gradient, movement energy
+   ============================================================ */
+.prog-hero {
+  position: relative;
+  background: linear-gradient(135deg, #031a18 0%, #0a3d38 55%, #0f5a5e 85%, #0E3668 100%);
+  overflow: hidden;
+  padding: 64px 0 92px;
+}
+.prog-hero::before {
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(255,255,255,0.016) 60px, rgba(255,255,255,0.016) 61px),
+    repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.016) 60px, rgba(255,255,255,0.016) 61px);
+  pointer-events: none;
+}
+/* Teal glow orb top-right */
+.prog-hero::after {
+  content: ""; position: absolute; top: -140px; right: -80px;
+  width: 480px; height: 480px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,140,132,0.5) 0%, rgba(224,123,42,0.12) 55%, transparent 70%);
+  pointer-events: none;
+}
+/* Second orb — orange warmth bottom-left */
+.hero-orb-2 {
+  position: absolute; bottom: -180px; left: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(224,123,42,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.prog-hero-inner { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+.breadcrumb { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 24px; letter-spacing: 0.02em; }
+.breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; }
+.breadcrumb a:hover { color: #fff; }
+.breadcrumb span { margin: 0 8px; opacity: 0.5; }
+
+/* MOVE opens twice a year — show "Open" state with green */
+.status-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-bottom: 20px; padding: 6px 14px; border-radius: 999px;
+  background: rgba(34,160,90,0.12); border: 1px solid rgba(34,160,90,0.3);
+}
+.status-pill-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #22a05a; box-shadow: 0 0 0 3px rgba(34,160,90,0.22);
+  flex-shrink: 0;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(34,160,90,0.4); }
+  50%      { box-shadow: 0 0 0 6px rgba(34,160,90,0); }
+}
+.status-pill-text { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #6ee7b7; }
+
+.prog-hero h1 {
+  font-size: clamp(32px, 4.4vw, 52px);
+  font-weight: 800; color: #fff; line-height: 1.06;
+  letter-spacing: -0.025em; margin-bottom: 20px; max-width: 20ch;
+}
+.tagline { font-size: 17px; color: rgba(255,255,255,0.78); line-height: 1.65; max-width: 64ch; margin-bottom: 12px; }
+.footnote { font-size: 13px; color: rgba(255,255,255,0.48); margin-bottom: 32px; }
+
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+  background: #fff; color: var(--navy); font-weight: 600; font-size: 14px;
+  border-radius: 6px; text-decoration: none; transition: background 0.15s;
+}
+.btn-primary:hover { background: #e8f8f6; }
+.btn-primary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+  color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.25);
+  font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+.btn-ghost svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.meta-facts { display: flex; flex-wrap: wrap; gap: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.14); }
+.meta-fact-key { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+.meta-fact-value { font-size: 16px; font-weight: 600; color: #fff; }
+
+/* ============================================================
+   QUICK FACTS — 3 lifted cards
+   ============================================================ */
+.quickfacts { margin-top: -64px; position: relative; z-index: 5; padding-bottom: 8px; }
+.qf-grid {
+  max-width: 1400px; margin: 0 auto; padding: 0 40px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.qf-card {
+  --accent: var(--move);
+  --accent-tint: var(--move-tint);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  border-radius: 12px; padding: 26px 26px 22px;
+  box-shadow: 0 16px 40px rgba(15,32,68,0.12);
+  display: flex; flex-direction: column;
+}
+.qf-card.is-teal   { --accent: var(--move);   --accent-tint: var(--move-tint); }
+.qf-card.is-orange { --accent: var(--move-orange); --accent-tint: var(--move-orange-tint); }
+.qf-card.is-green  { --accent: var(--green);  --accent-tint: var(--green-tint); }
+
+.qf-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.qf-ico { width: 40px; height: 40px; border-radius: 9px; flex-shrink: 0; background: var(--accent-tint); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+.qf-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.qf-title  { font-size: 16px; font-weight: 700; color: var(--ink); line-height: 1.2; }
+.qf-kicker { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 2px; }
+.qf-list { list-style: none; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+.qf-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+.qf-list li svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.qf-list li strong { color: var(--ink); font-weight: 600; }
+
+.qf-tl { list-style: none; display: flex; flex-direction: column; flex: 1; }
+.qf-tl li { position: relative; padding: 0 0 16px 22px; }
+.qf-tl li:last-child { padding-bottom: 0; }
+.qf-tl li::before { content: ""; position: absolute; left: 3px; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+.qf-tl li::after  { content: ""; position: absolute; left: 7px; top: 13px; bottom: 0; width: 1.5px; background: var(--line); }
+.qf-tl li:last-child::after { display: none; }
+.qf-tl li.is-now::before { box-shadow: 0 0 0 4px var(--accent-tint); }
+.qf-tl li.is-done::before { background: var(--faint); }
+.qf-tl-date  { font-size: 11px; font-weight: 700; color: var(--accent); }
+.qf-tl li.is-done .qf-tl-date { color: var(--faint); }
+.qf-tl-label { font-size: 13px; color: var(--ink-soft); line-height: 1.4; margin-top: 1px; }
+
+.qf-foot { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line-soft); }
+.qf-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 600; color: var(--accent); text-decoration: none; }
+.qf-link svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s; }
+.qf-link:hover svg { transform: translateX(3px); }
+
+/* ============================================================
+   SECTION SHARED
+   ============================================================ */
+.section { padding: 72px 0; }
+.section-alt { background: var(--surface-alt); }
+.section-dark { background: var(--navy-900); }
+
+.sec-head { margin-bottom: 40px; }
+.sec-head.center { text-align: center; }
+.sec-head .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: var(--move); margin-bottom: 12px; }
+.sec-head h2 { font-size: clamp(24px, 2.8vw, 33px); font-weight: 700; color: var(--ink); line-height: 1.18; margin-bottom: 14px; }
+.sec-head p { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 64ch; }
+
+/* ============================================================
+   ABOUT — two-column
+   ============================================================ */
+.about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: flex-start; }
+.about-text p { font-size: 16px; color: var(--ink-soft); line-height: 1.75; margin-bottom: 16px; }
+.about-text p:last-child { margin-bottom: 0; }
+.about-text strong { color: var(--ink); font-weight: 600; }
+
+/* Who is MOVE for — persona cards */
+.persona-grid { display: flex; flex-direction: column; gap: 12px; }
+.persona-card {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--move);
+  border-radius: 10px;
+}
+.persona-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--move-tint); color: var(--move); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.persona-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.persona-label { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.persona-desc { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+/* ============================================================
+   AREAS OF INTERVENTION — 3 cards
+   ============================================================ */
+.ia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.ia-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 28px 26px;
+  transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+}
+.ia-card:hover { box-shadow: 0 12px 28px rgba(15,32,68,0.08); transform: translateY(-2px); border-color: #cbd5e1; }
+.ia-icon { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.ia-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ia-card:nth-child(1) .ia-icon { background: var(--move-tint); color: var(--move); }
+.ia-card:nth-child(2) .ia-icon { background: var(--amber-tint); color: var(--amber); }
+.ia-card:nth-child(3) .ia-icon { background: var(--green-tint); color: var(--green); }
+.ia-title { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
+.ia-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+.ia-examples { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.ia-examples li { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+.ia-examples li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--faint); flex-shrink: 0; margin-top: 7px; }
+
+/* ============================================================
+   ELIGIBILITY — individual focus
+   ============================================================ */
+.elig-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+.elig-checklist {
+  background: var(--move-tint);
+  border: 1px solid var(--move-border);
+  border-radius: 14px;
+  padding: 28px 30px;
+}
+.elig-checklist h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 18px; }
+.elig-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.elig-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--ink-soft); line-height: 1.5; }
+.elig-list li svg { width: 17px; height: 17px; color: var(--move); flex-shrink: 0; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.elig-list li strong { color: var(--ink); font-weight: 600; }
+
+.elig-rules {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px 30px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.elig-rules h3 { font-size: 16px; font-weight: 700; color: var(--ink); }
+.rule-item { display: flex; align-items: flex-start; gap: 12px; }
+.rule-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--move-orange); flex-shrink: 0; margin-top: 6px; }
+.rule-text { font-size: 13.5px; color: var(--ink-soft); line-height: 1.6; }
+.rule-text strong { color: var(--ink); font-weight: 600; }
+
+/* Individual vs group callout */
+.individual-callout {
+  display: flex; align-items: flex-start; gap: 18px;
+  background: #fff8f0;
+  border: 1px solid #fed7aa;
+  border-left: 4px solid var(--move-orange);
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin-top: 24px;
+}
+.individual-callout svg { width: 22px; height: 22px; color: var(--move-orange); flex-shrink: 0; margin-top: 2px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.individual-callout strong { font-weight: 700; color: var(--ink); }
+.individual-callout p { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ============================================================
+   BUDGET / ELIGIBLE COSTS
+   ============================================================ */
+.budget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.budget-feature {
+  background: linear-gradient(135deg, #031a18 0%, #0a3d38 100%);
+  border-radius: 14px; padding: 32px;
+  grid-column: span 1;
+}
+.budget-feature .bl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.45); margin-bottom: 12px; }
+.budget-feature .bv { font-size: 48px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: #5eead4; margin-bottom: 8px; }
+.budget-feature .bsub { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 22px; }
+.budget-feature .blist { list-style: none; border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; overflow: hidden; }
+.budget-feature .blist li { display: flex; justify-content: space-between; padding: 11px 16px; font-size: 13px; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.07); }
+.budget-feature .blist li:last-child { border-bottom: none; }
+.budget-feature .blist li span:last-child { font-weight: 700; color: #fff; }
+
+.cost-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px;
+}
+.cost-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.cost-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--move); background: var(--move-tint); border-radius: 4px; padding: 3px 8px; flex-shrink: 0; }
+.cost-title { font-size: 14px; font-weight: 700; color: var(--ink); }
+.cost-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+.cost-limit { display: inline-block; font-size: 11.5px; font-weight: 600; color: var(--move-orange); margin-top: 6px; background: var(--move-orange-tint); padding: 2px 8px; border-radius: 4px; }
+
+.ineligible-box {
+  background: #fef2f2; border: 1px solid #fecaca; border-radius: 12px;
+  padding: 24px 28px; grid-column: span 2;
+}
+.ineligible-box h4 { font-size: 13px; font-weight: 700; color: #dc2626; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.08em; }
+.ineligible-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 24px; }
+.ineligible-list li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.ineligible-list li::before { content: "✕"; font-size: 11px; color: #dc2626; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+/* ============================================================
+   EVALUATION PROCESS — step flow
+   ============================================================ */
+.eval-steps { display: flex; flex-direction: column; gap: 0; }
+.eval-step {
+  display: grid; grid-template-columns: 80px 1fr; gap: 24px;
+  padding: 28px 0; border-bottom: 1px solid var(--line);
+  align-items: flex-start;
+}
+.eval-step:last-child { border-bottom: none; }
+.eval-step-num {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--move-tint); color: var(--move);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 800; flex-shrink: 0;
+}
+.eval-step-body h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.eval-step-body p { font-size: 14px; color: var(--ink-soft); line-height: 1.65; }
+.eval-step-body ul { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 7px; }
+.eval-step-body ul li { display: flex; align-items: flex-start; gap: 9px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+.eval-step-body ul li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--move); flex-shrink: 0; margin-top: 7px; }
+
+/* Evaluation grid table */
+.eval-grid-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 13.5px; }
+.eval-grid-table th { background: var(--navy); color: #fff; padding: 11px 14px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; }
+.eval-grid-table th:last-child { text-align: center; }
+.eval-grid-table td { padding: 11px 14px; border-bottom: 1px solid var(--line); color: var(--ink-soft); line-height: 1.5; vertical-align: top; }
+.eval-grid-table tr:last-child td { border-bottom: none; }
+.eval-grid-table tr:hover td { background: var(--surface-alt); }
+.eval-grid-table td:last-child { text-align: center; font-weight: 700; color: var(--move); white-space: nowrap; }
+.eval-section-row td { background: var(--surface-alt); font-weight: 700; color: var(--ink); font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; }
+.eval-section-row td:last-child { color: var(--move); }
+.score-threshold {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 14px; padding: 10px 16px; border-radius: 8px;
+  background: var(--move-orange-tint); border: 1px solid #fed7aa;
+  font-size: 13px; color: var(--ink-soft); line-height: 1.5;
+}
+.score-threshold strong { color: var(--move-orange); font-weight: 700; }
+
+/* ============================================================
+   TIMELINE — dark section
+   ============================================================ */
+.section-timeline { background: var(--navy-900); padding: 72px 0; }
+.section-timeline .sec-head .overline { color: #5eead4; }
+.section-timeline .sec-head h2 { color: #fff; }
+
+.timeline-list { display: flex; flex-direction: column; }
+.tl-row {
+  display: grid; grid-template-columns: 200px 1fr 180px;
+  align-items: center; gap: 24px; padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.tl-row:last-child { border-bottom: none; }
+.tl-date { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.55); }
+.tl-event { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.9); line-height: 1.35; }
+.tl-time { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.55); text-align: center; white-space: nowrap; }
+.tl-time.is-done  { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.28); }
+.tl-time.is-green { background: rgba(34,160,90,0.15); border-color: rgba(34,160,90,0.35); color: #6ee7b7; }
+
+/* ============================================================
+   HOW TO APPLY
+   ============================================================ */
+.apply-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.apply-step {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 12px; padding: 26px 24px;
+  position: relative;
+}
+.apply-step-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--move); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 800; margin-bottom: 16px;
+}
+.apply-step h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+.apply-step p { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+.apply-step a { color: var(--move); font-weight: 600; text-decoration: none; }
+.apply-step a:hover { text-decoration: underline; }
+
+.apply-note {
+  display: flex; align-items: flex-start; gap: 14px;
+  background: var(--surface-alt); border: 1px solid var(--line);
+  border-radius: 10px; padding: 18px 22px; margin-top: 24px;
+  font-size: 13.5px; color: var(--ink-soft); line-height: 1.6;
+}
+.apply-note svg { width: 20px; height: 20px; color: var(--move); flex-shrink: 0; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ============================================================
+   SUBSCRIBE / CTA
+   ============================================================ */
+.subscribe {
+  background: linear-gradient(135deg, #031a18 0%, #0a3d38 60%, #0E3668 100%);
+  padding: 72px 0; color: #fff; position: relative; overflow: hidden;
+}
+.subscribe::before {
+  content: ""; position: absolute; top: -100px; right: -60px;
+  width: 380px; height: 380px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(14,140,132,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+.subscribe-inner { position: relative; z-index: 1; max-width: 920px; margin: 0 auto; text-align: center; padding: 0 40px; }
+.subscribe .overline { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; color: #5eead4; margin-bottom: 12px; }
+.subscribe h2 { font-size: clamp(24px, 2.8vw, 30px); font-weight: 800; color: #fff; margin-bottom: 16px; letter-spacing: -0.02em; }
+.subscribe p { font-size: 15.5px; color: rgba(255,255,255,0.72); line-height: 1.65; max-width: 60ch; margin: 0 auto 28px; }
+.subscribe-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-white { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; background: #fff; color: var(--navy); font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none; transition: background 0.15s; }
+.btn-white:hover { background: #e8f8f6; }
+.btn-white svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-ghost-white { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; color: #fff; border: 1px solid rgba(255,255,255,0.35); font-weight: 600; font-size: 14px; border-radius: 6px; text-decoration: none; transition: background 0.15s, border-color 0.15s; }
+.btn-ghost-white:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.65); }
+
+/* ============================================================
+   FOOTER — _MASTER_footer.html verbatim
+   ============================================================ */
+.footer { background: #0f2044; color: rgba(255,255,255,0.75); padding: 56px 40px 0; }
+.footer-inner { max-width: 1400px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; gap: 0; padding-bottom: 48px; border-bottom: 0.5px solid rgba(255,255,255,0.12); }
+.ft-brand { max-width: 260px; flex-shrink: 0; }
+.ft-cols-right { display: flex; gap: 40px; justify-content: flex-end; }
+.ft-logo { display: block; margin-bottom: 16px; text-decoration: none; }
+.ft-logo-fallback { display: inline-flex; align-items: center; gap: 8px; }
+.ft-logo-icon { width: 34px; height: 34px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: #1A3668; flex-shrink: 0; }
+.ft-logo-name { font-size: 13px; font-weight: 600; color: #fff; line-height: 1.2; }
+.ft-logo-sub { font-size: 10px; color: rgba(255,255,255,0.55); }
+.ft-tagline { font-size: 12.5px; line-height: 1.7; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+.ft-social { display: flex; gap: 10px; }
+.ft-social a { width: 34px; height: 34px; border-radius: 6px; border: 0.5px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.7); text-decoration: none; transition: border-color 0.15s, background 0.15s; }
+.ft-social a:hover { border-color: rgba(255,255,255,0.6); color: #fff; background: rgba(255,255,255,0.08); }
+.ft-social svg { width: 16px; height: 16px; fill: currentColor; }
+.ft-col-head { font-size: 11px; font-weight: 600; color: #fff; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 14px; }
+.ft-section-head { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 0.07em; text-transform: uppercase; margin-top: 18px; margin-bottom: 8px; }
+.ft-link { display: block; padding: 4px 0; font-size: 12.5px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.12s; }
+.ft-link:hover { color: #fff; }
+.ft-contact-item { display: flex; align-items: flex-start; gap: 9px; padding: 5px 0; font-size: 12.5px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+.ft-contact-item a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.12s; }
+.ft-contact-item a:hover { color: #fff; }
+.ft-contact-icon { margin-top: 2px; flex-shrink: 0; opacity: 0.5; }
+.ft-contact-icon svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.footer-bottom-wrap { border-top: 0.5px solid rgba(255,255,255,0.1); }
+.footer-bottom { max-width: 1400px; margin: 0 auto; padding: 18px 40px; display: flex; align-items: center; justify-content: space-between; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+.footer-copy span { margin: 0 6px; opacity: 0.4; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .container, .container-narrow, .prog-hero-inner, .qf-grid { padding-left: 24px; padding-right: 24px; }
+  .quickfacts { margin-top: -56px; }
+  .qf-grid { grid-template-columns: 1fr; gap: 16px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .ia-grid { grid-template-columns: repeat(2, 1fr); }
+  .elig-layout { grid-template-columns: 1fr; }
+  .budget-grid { grid-template-columns: 1fr; }
+  .ineligible-box { grid-column: span 1; }
+  .apply-steps { grid-template-columns: repeat(2, 1fr); }
+  .tl-row { grid-template-columns: 160px 1fr; }
+  .tl-time { display: none; }
+  .footer { padding: 48px 24px 0; }
+  .footer-top { flex-direction: column; gap: 40px; }
+  .ft-cols-right { justify-content: flex-start; flex-wrap: wrap; }
+  .ineligible-list { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-items, .btn-partners { display: none; }
+  .prog-hero { padding: 48px 0 76px; }
+  .section { padding: 56px 0; }
+  .meta-facts { gap: 24px; }
+  .ia-grid { grid-template-columns: 1fr; }
+  .apply-steps { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 10px; }
+  .tl-row { grid-template-columns: 1fr; gap: 4px; border-left: 2px solid rgba(255,255,255,0.1); padding-left: 16px; border-bottom: none; padding-bottom: 20px; margin-left: 12px; }
+  .eval-step { grid-template-columns: 48px 1fr; gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main" style="position:absolute;left:-999px;top:0;z-index:9999;background:#0E8C84;color:#fff;padding:8px 16px;font-size:13px;font-weight:600;text-decoration:none">Skip to main content</a>
+
+<!-- ============================================================
+     NAVBAR — _MASTER_navbar.html verbatim
+     ============================================================ -->
+<nav class="nb" role="navigation" aria-label="Main navigation">
+  <div class="nb-inner">
+    <a class="logo" href="/" data-page-key="home">
+      <img src="/logo.png" alt="Western Balkans Fund" style="height:34px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="logo-icon" style="display:none">WBF</div>
+      <div class="logo-text">
+        <div class="logo-name">Western Balkans Fund</div>
+        <div class="logo-sub">Building Regional Cooperation</div>
+      </div>
+    </a>
+
+    <div class="nav-items" id="primary-nav">
+      <a class="nav-btn" href="index.html" data-page-key="home">Home</a>
+
+      <div class="dropdown-wrap">
+        <button class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="dd-about">
+          About WBF <svg class="chevron" viewBox="0 0 10 10" aria-hidden="true"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" id="dd-about" role="menu">
+          <a class="dd-item" href="about.html" role="menuitem"><div><div class="dd-title">Who We Are</div><div class="dd-sub">Mission, mandate and history</div></div></a>
+          <a class="dd-item" href="about-governance.html" role="menuitem"><div><div class="dd-title">Structure &amp; Governance</div><div class="dd-sub">Board, secretariat, statutes</div></div></a>
+          <a class="dd-item" href="about-team.html" role="menuitem"><div><div class="dd-title">Our Team</div><div class="dd-sub">Secretariat and contacts</div></div></a>
+          <a class="dd-item" href="partners.html" role="menuitem"><div><div class="dd-title">Donors &amp; Partners</div><div class="dd-sub">EU, Switzerland, Japan, Germany...</div></div></a>
+          <a class="dd-item" href="about-accountability.html" role="menuitem"><div><div class="dd-title">Accountability</div><div class="dd-sub">Reports and financial statements</div></div></a>
+        </div>
+      </div>
+
+      <div class="dropdown-wrap">
+        <button class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="dd-programs">
+          Our Programs <svg class="chevron" viewBox="0 0 10 10" aria-hidden="true"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="mega" id="dd-programs" role="menu">
+          <div class="mega-col">
+            <div class="mega-head">Funding Opportunities</div>
+            <a class="mega-item" href="programs/ggi-grants.html" role="menuitem"><div class="m-dot"></div><div class="m-title">Good Governance and Integration (GGI)</div></a>
+            <a class="mega-item" href="programs/gefund.html" role="menuitem"><div class="m-dot"></div><div class="m-title">Gender Equality Fund (GEFund)</div></a>
+            <a class="mega-item" href="programs/erc-grants.html" role="menuitem"><div class="m-dot"></div><div class="m-title">ERC</div></a>
+            <a class="mega-item" href="programs/move-grants.html" role="menuitem" aria-current="page"><div class="m-dot" style="background:#0E8C84"></div><div class="m-title" style="color:#0E8C84;font-weight:600">MOVE Grants</div></a>
+            <a class="mega-item" href="programs/matching-grants.html" role="menuitem"><div class="m-dot"></div><div class="m-title">Matching Grants</div></a>
+            <a class="mega-item" href="programs/visegrad-fellowship.html" role="menuitem"><div class="m-dot"></div><div class="m-title">Visegrad Fellowship</div></a>
+            <div class="mega-section">
+              <div class="mega-head">Conferences &amp; Networking</div>
+              <a class="mega-item" href="events.html#leadbalkans" role="menuitem"><div class="m-dot"></div><div class="m-title">LeadBalkans</div></a>
+            </div>
+          </div>
+          <div class="mega-col">
+            <div class="mega-head">Capacity Building</div>
+            <a class="mega-item" href="programs.html#academy" role="menuitem"><div class="m-dot"></div><div class="m-title">WBF Regional Academy</div></a>
+            <a class="mega-item" href="programs.html#p2p" role="menuitem"><div class="m-dot"></div><div class="m-title">Peer to Peer</div></a>
+          </div>
+          <div class="mega-right">
+            <div class="mega-head">Quick Access</div>
+            <a class="qa-link" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener"><div class="qa-label">Apply Now via OGMS →</div><div class="qa-sub">Online Grant Management System</div></a>
+            <a class="qa-link" href="https://wbfpartnership.com/" target="_blank" rel="noopener" style="margin-top:8px"><div class="qa-label">Find Partners →</div><div class="qa-sub">WBF Partnership Platform</div></a>
+            <div class="status-block">
+              <div class="mega-head" style="margin-top:14px">Status Guide</div>
+              <div class="status-item"><div class="s-dot green"></div><span class="s-label">Open — accepting applications</span></div>
+              <div class="status-item"><div class="s-dot amber"></div><span class="s-label">Under Review</span></div>
+              <div class="status-item"><div class="s-dot dark"></div><span class="s-label">Results Announced</span></div>
+              <div class="status-item"><div class="s-dot light"></div><span class="s-label">Coming Soon</span></div>
+              <a href="knowledge-hub.html" class="kb-btn" style="text-decoration:none">📚 Knowledge Hub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dropdown-wrap">
+        <button class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="dd-impact">
+          Our Impact <svg class="chevron" viewBox="0 0 10 10" aria-hidden="true"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" id="dd-impact" role="menu">
+          <a class="dd-item" href="impact.html" role="menuitem"><div><div class="dd-title">Impact Overview</div><div class="dd-sub">Numbers, geography, reach</div></div></a>
+          <a class="dd-item" href="impact-stories.html" role="menuitem"><div><div class="dd-title">Grantee Stories</div><div class="dd-sub">In-depth project highlights</div></div></a>
+          <a class="dd-item" href="impact-awards.html" role="menuitem"><div><div class="dd-title">WBF Champion Awards</div><div class="dd-sub">Annual recognition program</div></div></a>
+        </div>
+      </div>
+
+      <a class="nav-btn" href="projects.html">Our Grantees</a>
+
+      <div class="dropdown-wrap">
+        <button class="nav-btn" type="button" aria-haspopup="true" aria-expanded="false">
+          News &amp; Events <svg class="chevron" viewBox="0 0 10 10" aria-hidden="true"><polyline points="1,3 5,7 9,3"/></svg>
+        </button>
+        <div class="dropdown" role="menu">
+          <a class="dd-item" href="news.html" role="menuitem"><div><div class="dd-title">News</div><div class="dd-sub">Stories, announcements, updates</div></div></a>
+          <a class="dd-item" href="events.html" role="menuitem"><div><div class="dd-title">Events</div><div class="dd-sub">Info sessions, ceremonies, networking</div></div></a>
+        </div>
+      </div>
+
+      <a class="nav-btn" href="contact.html">Contact</a>
+    </div>
+
+    <div class="nav-right">
+      <a class="btn-partners" href="https://wbfpartnership.com/" target="_blank" rel="noopener">Find Partners</a>
+      <a class="btn-apply" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">
+        Apply Now
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="3,9 9,3"/><polyline points="3,3 9,3 9,9"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- ============================================================
+     PROGRAM HERO
+     ============================================================ -->
+<section class="prog-hero">
+  <div class="hero-orb-2"></div>
+  <div class="prog-hero-inner">
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>›</span><a href="programs.html">Our Programs</a><span>›</span>MOVE Grants
+    </nav>
+
+    <div class="status-pill">
+      <span class="status-pill-dot"></span>
+      <span class="status-pill-text">Call 7 — Opens February 2026</span>
+    </div>
+
+    <h1>MOVE Grants — Individual Mobility Across the Western Balkans</h1>
+    <p class="tagline">Short-term, people-to-people funding for artists, researchers, journalists, students and activists. Up to €3,000 to cross a border, connect with peers, and bring something back home.</p>
+    <p class="footnote">MOVE Grants open twice a year — typically February and October. Call 6 closed November 2025. Next call opens February 2026.</p>
+
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Apply via OGMS
+      </a>
+      <a class="btn-ghost" href="Application_Guidelines_of_MOVE_6th_CfP_FINAL.pdf" download>
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Guidelines
+      </a>
+      <a class="btn-ghost" href="#eligibility">
+        <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+        Check Eligibility
+      </a>
+    </div>
+
+    <div class="meta-facts">
+      <div>
+        <div class="meta-fact-key">Maximum Grant</div>
+        <div class="meta-fact-value">€3,000</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">WBF Co-financing</div>
+        <div class="meta-fact-value">Up to 100%</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Grant Range</div>
+        <div class="meta-fact-value">€500 – €3,000</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Applicant Type</div>
+        <div class="meta-fact-value">Individuals only</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Minimum countries</div>
+        <div class="meta-fact-value">2 Contracting Parties</div>
+      </div>
+      <div>
+        <div class="meta-fact-key">Calls per year</div>
+        <div class="meta-fact-value">Twice (Feb &amp; Oct)</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     QUICK FACTS
+     ============================================================ -->
+<section class="quickfacts" id="facts" aria-label="At a glance">
+  <div class="qf-grid">
+
+    <!-- Who can apply -->
+    <div class="qf-card is-teal">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg></div>
+        <div>
+          <div class="qf-kicker">Individuals only</div>
+          <div class="qf-title">Who Can Apply</div>
+        </div>
+      </div>
+      <ul class="qf-list">
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Age 18+ on the application deadline</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Citizen of one of the WB6 Contracting Parties</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Established professional, employed/affiliated individual, <em>or</em> enrolled student</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>No criminal record</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Good command of English</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Formal invitation or acceptance from a host institution in another WB6 CP</span></li>
+      </ul>
+      <div class="qf-foot">
+        <a class="qf-link" href="#eligibility">Full eligibility criteria <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Eligible costs at a glance -->
+    <div class="qf-card is-orange">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+        <div>
+          <div class="qf-kicker">What gets funded</div>
+          <div class="qf-title">Eligible Costs</div>
+        </div>
+      </div>
+      <ul class="qf-list">
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Travel</strong> — flights, trains, buses, car (≤€0.30/km via Michelin)</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Accommodation</strong> — max €65/night in WB region, €80 outside</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Daily allowance</strong> — €40/day for meals &amp; incidentals</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Registration fees</strong> — conferences, workshops, residencies</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Health insurance</strong> &amp; visa costs (if applicable)</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span><strong>Visibility</strong> — up to 7% of total budget</span></li>
+      </ul>
+      <div class="qf-foot">
+        <a class="qf-link" href="#budget">Full budget rules <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Call timeline -->
+    <div class="qf-card is-green">
+      <div class="qf-head">
+        <div class="qf-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
+        <div>
+          <div class="qf-kicker">Call 6 · Oct 2025</div>
+          <div class="qf-title">Timeline</div>
+        </div>
+      </div>
+      <ul class="qf-tl">
+        <li class="is-done"><div class="qf-tl-date">10 Oct 2025</div><div class="qf-tl-label">Call 6 published on OGMS</div></li>
+        <li class="is-done"><div class="qf-tl-date">24 Oct 2025</div><div class="qf-tl-label">Deadline for clarification questions</div></li>
+        <li class="is-done"><div class="qf-tl-date">28 Oct 2025</div><div class="qf-tl-label">Clarifications published on WBF website</div></li>
+        <li class="is-done"><div class="qf-tl-date">9 Nov 2025</div><div class="qf-tl-label">Application deadline — Call 6 closed</div></li>
+        <li class="is-now"><div class="qf-tl-date">Within 40 working days</div><div class="qf-tl-label">Evaluation &amp; results notification</div></li>
+        <li><div class="qf-tl-date">30 Apr 2026</div><div class="qf-tl-label">Implementation cut-off date — all activities must be completed</div></li>
+        <li><div class="qf-tl-date">Feb 2026</div><div class="qf-tl-label">Call 7 expected to open</div></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section class="section" id="about">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">About the Programme</div>
+      <h2>People-to-people connections at the heart of regional cooperation</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>MOVE Grants are WBF's dedicated mobility mechanism — part of the <strong>Diversified Grant Portfolio (DGP)</strong> — designed for the individual changemaker who wants to cross a border, learn something, collaborate, and bring it back home.</p>
+        <p>Unlike WBF's larger calls for organisational proposals, MOVE is built around the belief that <strong>direct, in-person exchange</strong> — academic, artistic, professional — is irreplaceable for building trust across the Western Balkans. A researcher visiting a lab in another country, a journalist attending a regional media forum, an activist participating in a residency: these are the connections that accumulate into something larger.</p>
+        <p>Each MOVE grantee commits to a structured mobility activity with a formal host institution in another WB6 Contracting Party. After the visit, they share their experience — in their networks, on social media, through WBF's platforms — becoming <strong>ambassadors for regional cooperation</strong>.</p>
+        <p>The scheme opens <strong>twice a year</strong> — typically February and October — with a 30-day application window and results within 40 working days. Grants range from €500 to €3,000 and cover up to 100% of eligible costs.</p>
+      </div>
+
+      <div class="persona-grid">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--faint);margin-bottom:4px">MOVE is for</div>
+        <div class="persona-card">
+          <div class="persona-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div><div class="persona-label">Researchers &amp; Academics</div><div class="persona-desc">Study exchanges, field research, conference presentations, joint publications</div></div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
+          <div><div class="persona-label">Journalists</div><div class="persona-desc">Reporting trips, regional media forums, editorial exchange</div></div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+          <div><div class="persona-label">Artists &amp; Cultural Professionals</div><div class="persona-desc">Residencies, joint productions, festivals, cultural documentation</div></div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><div class="persona-label">CSO Activists &amp; Youth Workers</div><div class="persona-desc">Capacity exchanges, regional advocacy events, peer learning</div></div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <div><div class="persona-label">Students</div><div class="persona-desc">Currently enrolled at any higher education institution in the WB6</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     AREAS OF INTERVENTION
+     ============================================================ -->
+<section class="section section-alt" id="areas">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Areas of Intervention</div>
+      <h2>Three areas. Unlimited forms of mobility.</h2>
+      <p>Your mobility initiative must align with at least one area and address one or more cross-cutting issues: gender equality, human rights &amp; rule of law, environmental sustainability, inclusion of minorities, or digitalisation &amp; innovation.</p>
+    </div>
+
+    <div class="ia-grid">
+
+      <div class="ia-card">
+        <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
+        <div class="ia-title">Cultural Cooperation</div>
+        <div class="ia-desc">Enhancing regional cultural identity and intercultural dialogue through exchange, heritage preservation and mutual understanding.</div>
+        <ul class="ia-examples">
+          <li>Regional cultural festivals, exhibitions &amp; performances</li>
+          <li>Joint artistic productions — theatre, film, music, visual arts</li>
+          <li>Artist residencies and immersive creative programs</li>
+          <li>Cultural heritage preservation and documentation projects</li>
+          <li>Intercultural dialogue workshops and youth forums</li>
+          <li>Digital cultural platforms and multimedia projects</li>
+        </ul>
+      </div>
+
+      <div class="ia-card">
+        <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <div class="ia-title">Education &amp; Scientific Exchange</div>
+        <div class="ia-desc">Supporting capacity building, academic and professional mobility, joint research and scientific collaboration across the WB6.</div>
+        <ul class="ia-examples">
+          <li>Study and research exchanges at universities and labs</li>
+          <li>Workshops, seminars and professional development programs</li>
+          <li>Academic and professional internships or work placements</li>
+          <li>Conferences, symposiums and academic presentations</li>
+          <li>Joint research projects and scientific publications</li>
+          <li>Field research and data collection across the region</li>
+        </ul>
+      </div>
+
+      <div class="ia-card">
+        <div class="ia-icon"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div>
+        <div class="ia-title">Sustainable Development</div>
+        <div class="ia-desc">Advancing regional cohesion through partnerships on sustainable economic development, environmental protection and social inclusion.</div>
+        <ul class="ia-examples">
+          <li>Environmental research — climate, biodiversity, resources</li>
+          <li>Sustainability training, workshops and capacity-building</li>
+          <li>Study visits to green economy organisations</li>
+          <li>Social inclusion programs for marginalised communities</li>
+          <li>Policy dialogues on sustainable development</li>
+          <li>Collaborative advocacy projects for sustainable practices</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ELIGIBILITY
+     ============================================================ -->
+<section class="section" id="eligibility">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Eligibility</div>
+      <h2>Built for individuals, not organisations</h2>
+      <p>MOVE is the only WBF grant scheme designed for individual applicants. Each person applies alone and is personally responsible for their mobility initiative and its reporting.</p>
+    </div>
+
+    <div class="elig-layout">
+      <div class="elig-checklist">
+        <h3>You qualify if…</h3>
+        <ul class="elig-list">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>You are <strong>at least 18 years old</strong> on the application deadline</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>You are a <strong>citizen of one of the WB6</strong> Contracting Parties (Albania, BiH, Kosovo, Montenegro, North Macedonia, Serbia)</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>You are an <strong>established professional</strong> (artist, researcher, journalist, activist, etc.), employed/affiliated with a legal organisation, <em>or</em> currently enrolled as a student</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>You have <strong>no criminal record</strong></span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>You have a <strong>good command of English</strong></span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>Your mobility crosses into <strong>at least one other WB6 Contracting Party</strong> (not your home country)</span></li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg><span>You do <strong>not hold an active MOVE Grant</strong> at the time of application</span></li>
+        </ul>
+      </div>
+
+      <div class="elig-rules">
+        <h3>Partnership with host institution</h3>
+        <div class="rule-item">
+          <div class="rule-dot"></div>
+          <div class="rule-text">You must establish a <strong>formal partnership with the host institution</strong> in another WB6 CP — the mobility must be grounded in a structured, mutually agreed framework, not an informal visit.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-dot"></div>
+          <div class="rule-text">If shortlisted, you will need to provide an <strong>official invitation letter</strong> from the host institution, or a <strong>confirmed registration or acceptance</strong> into a program, course, residency or workshop.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-dot"></div>
+          <div class="rule-text"><strong>One application per Call.</strong> An applicant cannot hold more than one active MOVE Grant at the same time. A previous grant must be completed or formally closed before applying again.</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-dot"></div>
+          <div class="rule-text">Activities should primarily take place <strong>within the Western Balkans region</strong>. Activities outside the region (e.g. in the EU) may be considered in exceptional, justified cases if they promote the WB6 as a cooperative region.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="individual-callout">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <div>
+        <p><strong>Only individual applications are eligible.</strong> Applications to support the mobility of a group of individuals travelling together will not be supported. If you are planning a group initiative, consider the <a href="programs/ggi-grants.html" style="color:var(--move-orange);font-weight:600">GGI Grants scheme</a> instead.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BUDGET & ELIGIBLE COSTS
+     ============================================================ -->
+<section class="section section-alt" id="budget">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Budget &amp; Eligible Costs</div>
+      <h2>What the grant covers</h2>
+      <p>WBF funds up to 100% of eligible costs. The budget must be simple, realistic and based on actual market prices. Only costs presented in the budget will be considered for financing.</p>
+    </div>
+
+    <div class="budget-grid">
+
+      <div class="budget-feature">
+        <div class="bl">Maximum grant</div>
+        <div class="bv">€3,000</div>
+        <div class="bsub">WBF covers up to <strong style="color:#fff">100%</strong> of total eligible costs. No co-financing required.</div>
+        <ul class="blist">
+          <li><span>Minimum grant</span><span>€500</span></li>
+          <li><span>Maximum grant</span><span>€3,000</span></li>
+          <li><span>First instalment (on signing)</span><span>60%</span></li>
+          <li><span>Final payment (on report approval)</span><span>40%</span></li>
+          <li><span>Implementation cut-off</span><span>30 Apr 2026</span></li>
+        </ul>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <div class="cost-card">
+          <div class="cost-card-head"><span class="cost-tag">BH1</span><span class="cost-title">Travel Costs</span></div>
+          <div class="cost-desc">Flights, trains, buses, and local transport directly related to the mobility. Must use the most cost-effective and environmentally considerate option.</div>
+          <span class="cost-limit">Personal car: ≤ €0.30/km (via Michelin)</span>
+        </div>
+
+        <div class="cost-card">
+          <div class="cost-card-head"><span class="cost-tag">BH2</span><span class="cost-title">Health Insurance &amp; Visa</span></div>
+          <div class="cost-desc">Medical/travel insurance for the duration of the stay. Visa fees for cross-border mobility within the Western Balkans region.</div>
+        </div>
+
+        <div class="cost-card">
+          <div class="cost-card-head"><span class="cost-tag">BH3</span><span class="cost-title">Accommodation</span></div>
+          <div class="cost-desc">Hotels, hostels, rental apartments or other lodging. Must reflect local market rates.</div>
+          <span class="cost-limit">Max €65/night in WB region · €80/night outside</span>
+        </div>
+
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <div class="cost-card">
+          <div class="cost-card-head"><span class="cost-tag">BH4</span><span class="cost-title">Daily Allowance</span></div>
+          <div class="cost-desc">Covers meals, local transport and incidental expenses. Calculated only for activity and travel days. Half-day travel (&lt;6 hours) = half the daily rate.</div>
+          <span class="cost-limit">€40/day flat rate</span>
+        </div>
+
+        <div class="cost-card">
+          <div class="cost-card-head"><span class="cost-tag">BH5</span><span class="cost-title">Registration Fees</span></div>
+          <div class="cost-desc">Fees for conferences, training programs, workshops, residencies and other eligible activities that charge a participation fee.</div>
+        </div>
+
+        <div class="cost-card">
+          <div class="cost-card-head"><span class="cost-tag">BH6–8</span><span class="cost-title">Special Needs · Visibility · Postal</span></div>
+          <div class="cost-desc">Accessibility support for applicants with disabilities. Visibility materials and communications to promote the mobility.</div>
+          <span class="cost-limit">Visibility: max 7% of total budget</span>
+        </div>
+
+      </div>
+
+      <div class="ineligible-box" style="grid-column:span 2">
+        <h4>Ineligible costs — not covered under MOVE</h4>
+        <ul class="ineligible-list">
+          <li>Costs incurred before signing the grant contract</li>
+          <li>Salaries, fees or consultancy payments (HR costs)</li>
+          <li>Indirect / overhead costs</li>
+          <li>Double-funded expenses (already covered elsewhere)</li>
+          <li>Personal expenses &amp; entertainment</li>
+          <li>Luxury or extravagant purchases</li>
+          <li>Debt payments or interest charges</li>
+          <li>Profit-making or political/religious activities</li>
+          <li>Land or building purchases</li>
+          <li>Currency exchange losses</li>
+          <li>Fines, penalties or legal charges</li>
+          <li>Provisions for future losses or liabilities</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EVALUATION PROCESS
+     ============================================================ -->
+<section class="section" id="evaluation">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Evaluation Process</div>
+      <h2>How applications are assessed</h2>
+      <p>All applications are evaluated in four steps. Results are communicated within 40 working days of the call deadline.</p>
+    </div>
+
+    <div class="eval-steps">
+
+      <div class="eval-step">
+        <div class="eval-step-num">1</div>
+        <div class="eval-step-body">
+          <h3>Administrative &amp; Eligibility Check</h3>
+          <p>Applications are screened against formal eligibility criteria before any quality assessment. Missing or incorrect information can lead to rejection at this stage.</p>
+          <ul>
+            <li>Applicant is 18+ and a WB6 citizen</li>
+            <li>Application submitted within the deadline (in English)</li>
+            <li>No active WBF grant held at time of application</li>
+            <li>Mobility involves at least two Contracting Parties</li>
+            <li>Budget does not exceed €3,000</li>
+            <li>Declaration by the Applicant (Annex C) filled in and signed</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="eval-step">
+        <div class="eval-step-num">2</div>
+        <div class="eval-step-body">
+          <h3>Technical Evaluation — Scoring Grid (100 points)</h3>
+          <p>Applications passing Step 1 are scored on relevance, quality and operational feasibility. A minimum of 55 points is required to proceed.</p>
+
+          <table class="eval-grid-table">
+            <thead>
+              <tr>
+                <th style="width:120px">Section</th>
+                <th>Criterion</th>
+                <th>Guiding principle</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="eval-section-row">
+                <td colspan="3">A — Project Description &amp; Coherence</td>
+                <td>25 pts</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Project description</td>
+                <td>Addresses a well-defined topic and explains it clearly</td>
+                <td>1–10</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Duration justification &amp; realistic activities</td>
+                <td>Activities are proportionate and achievable within the timeframe</td>
+                <td>1–5</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Defined roles</td>
+                <td>Applicant's and host institution's roles are clearly defined and justified</td>
+                <td>1–10</td>
+              </tr>
+              <tr class="eval-section-row">
+                <td colspan="3">B — Regional Relevance &amp; Call Objective</td>
+                <td>50 pts</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Regional relevance &amp; dimension</td>
+                <td>Addresses common regional challenges; mobility dimension is clear and significant</td>
+                <td>1–20</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Contribution to MOVE</td>
+                <td>Main objective contributes to WBF MOVE Programme within a chosen area of intervention</td>
+                <td>1–10</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Personal growth potential</td>
+                <td>Project allows personal growth to explore, create, learn, participate or connect regionally</td>
+                <td>1–10</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Sustainability &amp; follow-up</td>
+                <td>Proposal includes follow-up activity and sustainability elements</td>
+                <td>1–5</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Introduction of new practices</td>
+                <td>Project introduces new practices, relevant topics and/or innovative solutions</td>
+                <td>1–5</td>
+              </tr>
+              <tr class="eval-section-row">
+                <td colspan="3">C — Operational</td>
+                <td>15 pts</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Financial planning &amp; efficiency</td>
+                <td>Financial plan reflects value for money, transparency and efficient use of resources</td>
+                <td>1–10</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Communication &amp; visibility</td>
+                <td>Communication approach is appropriate to reach visibility objectives</td>
+                <td>1–5</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="score-threshold">
+            <svg viewBox="0 0 24 24" style="width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Applications scoring <strong>below 55 points</strong> will not be recommended to the Evaluation Panel.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="eval-step">
+        <div class="eval-step-num">3</div>
+        <div class="eval-step-body">
+          <h3>Evaluation Panel</h3>
+          <p>The WBF Evaluation Panel reviews high-ranking proposals per Contracting Party and votes on the most successful applications. A shortlist and reserve list are endorsed by the WBF Council of Senior Officials and the Conference of Ministers of Foreign Affairs.</p>
+        </div>
+      </div>
+
+      <div class="eval-step">
+        <div class="eval-step-num">4</div>
+        <div class="eval-step-body">
+          <h3>Verification of Supporting Documents</h3>
+          <p>Provisionally selected applicants must submit:</p>
+          <ul>
+            <li>Government-issued ID (passport or ID card)</li>
+            <li>Criminal record clearance from a government agency</li>
+            <li>Employment/enrolment confirmation letter (if applicable)</li>
+            <li>Official invitation letter from the host institution in a WB6 CP</li>
+            <li>Partnership agreement between home and host (if applicable)</li>
+          </ul>
+          <p style="margin-top:12px">Any inconsistency between submitted documents and declarations may result in rejection. The next best-placed application on the reserve list would then be awarded.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TIMELINE — dark
+     ============================================================ -->
+<section class="section-timeline" id="timeline">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">Indicative Timetable</div>
+      <h2>Call 6 — October 2025</h2>
+    </div>
+
+    <div class="timeline-list">
+      <div class="tl-row">
+        <div class="tl-date">10 Oct 2025</div>
+        <div class="tl-event">Call 6 published — OGMS portal opens for applications</div>
+        <div class="tl-time is-done">Done</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">24 Oct 2025</div>
+        <div class="tl-event">Deadline for clarification questions to WBF</div>
+        <div class="tl-time is-done">Done</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">28 Oct 2025</div>
+        <div class="tl-event">WBF publishes replies to all questions on website</div>
+        <div class="tl-time is-done">Done</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">9 Nov 2025 · midnight CET</div>
+        <div class="tl-event">Application deadline — Call 6 closed</div>
+        <div class="tl-time is-done">Closed</div>
+      </div>
+      <div class="tl-row active" style="background:rgba(14,140,132,0.07);border-radius:8px;padding-left:12px;padding-right:12px;margin:0 -12px">
+        <div class="tl-date" style="color:#5eead4">Within 40 working days</div>
+        <div class="tl-event">Evaluation, panel review &amp; results notification</div>
+        <div class="tl-time is-green">In Progress</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Within 20 working days of award</div>
+        <div class="tl-event">Grant contract signed — implementation may begin</div>
+        <div class="tl-time">Contracting</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">30 Apr 2026</div>
+        <div class="tl-event">Implementation cut-off — all activities must be completed</div>
+        <div class="tl-time">Deadline</div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-date">Feb 2026</div>
+        <div class="tl-event">Call 7 expected to open — next application window</div>
+        <div class="tl-time is-green">Upcoming</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW TO APPLY
+     ============================================================ -->
+<section class="section" id="apply">
+  <div class="container-narrow">
+    <div class="sec-head">
+      <div class="overline">How to Apply</div>
+      <h2>Three steps to submit your application</h2>
+      <p>All applications are submitted in English through the WBF Online Grant Management System (OGMS). Incomplete or handwritten applications will not be accepted.</p>
+    </div>
+
+    <div class="apply-steps">
+      <div class="apply-step">
+        <div class="apply-step-num">1</div>
+        <h3>Register on OGMS</h3>
+        <p>Create your account on the WBF portal at <a href="https://wbfportal.org/applicant" target="_blank" rel="noopener">wbfportal.org/applicant</a>. Once registered, open a new MOVE Grant application to see all required fields — you can save progress at any time.</p>
+      </div>
+      <div class="apply-step">
+        <div class="apply-step-num">2</div>
+        <h3>Complete your application</h3>
+        <p><strong>Annex A</strong> (Application Form) and <strong>Annex B</strong> (Budget) are completed directly in OGMS. <strong>Annex C</strong> (Declaration by the Applicant) is downloaded from OGMS, signed, scanned and re-uploaded. Draft your content offline first, then transfer to OGMS before the deadline.</p>
+      </div>
+      <div class="apply-step">
+        <div class="apply-step-num">3</div>
+        <h3>Submit &amp; confirm</h3>
+        <p>Submit before the deadline (midnight CET). You will receive an automatic confirmation email with a protocol number and a short survey link that must be completed. If no email arrives within 48 hours, contact <a href="mailto:info@westernbalkansfund.org">info@westernbalkansfund.org</a>.</p>
+      </div>
+    </div>
+
+    <div class="apply-note">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <div>
+        <strong>Planning ahead:</strong> if you require a visa for your destination country, WBF strongly encourages you to schedule your mobility start at least two months after receiving the official award notification, to allow sufficient time for administrative preparations. The call opens twice a year — applicants not selected may apply again in future calls.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA BANNER
+     ============================================================ -->
+<section class="subscribe">
+  <div class="subscribe-inner">
+    <div class="overline">Next call — February 2026</div>
+    <h2>Ready to move?</h2>
+    <p>Subscribe to WBF updates and we'll notify you the moment Call 7 opens — along with the application guidelines and any info session dates. Applicants who are not selected may apply again in the next call.</p>
+    <div class="subscribe-btns">
+      <a class="btn-white" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Apply via OGMS
+      </a>
+      <a class="btn-ghost-white" href="contact.html">Subscribe to updates</a>
+      <a class="btn-ghost-white" href="programs.html">All WBF programmes →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER — _MASTER_footer.html verbatim
+     ============================================================ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="ft-brand">
+        <a class="ft-logo" href="/">
+          <img src="/logo.png" alt="Western Balkans Fund" style="height:36px;width:auto;filter:brightness(0) invert(1)"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">
+          <span class="ft-logo-fallback" style="display:none">
+            <span class="ft-logo-icon">WBF</span>
+            <span><span class="ft-logo-name">Western Balkans Fund</span><br><span class="ft-logo-sub">Building Regional Cooperation</span></span>
+          </span>
+        </a>
+        <p class="ft-tagline">Dedicated to promoting reconciliation, strengthening regional cooperation, and fostering closer ties among the Contracting Parties of the Western Balkans.</p>
+        <div class="ft-social">
+          <a href="https://www.facebook.com/WesternBalkansFund/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/westernbalkansfund/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/westernbalkansfund/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@westernbalkansfundwbf5212" target="_blank" rel="noopener" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#0f2044"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="ft-cols-right">
+        <div class="ft-col">
+          <div class="ft-col-head">Programs</div>
+          <div class="ft-section-head">Funding Opportunities</div>
+          <a class="ft-link" href="programs/ggi-grants.html">Good Governance and Integration (GGI)</a>
+          <a class="ft-link" href="programs/gefund.html">Gender Equality Fund (GEFund)</a>
+          <a class="ft-link" href="programs/erc-grants.html">ERC</a>
+          <a class="ft-link" href="programs/move-grants.html" style="color:#5eead4">MOVE Grants ←</a>
+          <a class="ft-link" href="programs/matching-grants.html">Matching Grants</a>
+          <a class="ft-link" href="programs/visegrad-fellowship.html">Visegrad Fellowship</a>
+          <div class="ft-section-head">Capacity Building</div>
+          <a class="ft-link" href="programs.html#academy">WBF Regional Academy</a>
+          <a class="ft-link" href="programs.html#p2p">Peer to Peer</a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-head">About WBF</div>
+          <a class="ft-link" href="about.html">Who We Are</a>
+          <a class="ft-link" href="about-governance.html">Structure &amp; Governance</a>
+          <a class="ft-link" href="about-team.html">Our Team</a>
+          <a class="ft-link" href="partners.html">Donors &amp; Partners</a>
+          <a class="ft-link" href="about-accountability.html">Accountability</a>
+          <a class="ft-link" href="about-careers.html">Careers</a>
+        </div>
+        <div class="ft-col">
+          <div class="ft-col-head">Resources</div>
+          <a class="ft-link" href="https://ogms.westernbalkansfund.org/" target="_blank" rel="noopener">OGMS — Apply Online</a>
+          <a class="ft-link" href="https://wbfpartnership.com/" target="_blank" rel="noopener">Partnership Platform</a>
+          <a class="ft-link" href="knowledge-hub.html">Knowledge Hub</a>
+          <div class="ft-col-head" style="margin-top:28px">Contact</div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span>Rruga "Skënderbeg" No. 8, Kati IV, Ap. 35/36, Tirana, Albania</span>
+          </div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.91.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <a href="tel:+35542400420">+355 42 400420</a>
+          </div>
+          <div class="ft-contact-item">
+            <span class="ft-contact-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <a href="mailto:info@westernbalkansfund.org">info@westernbalkansfund.org</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom-wrap">
+    <div class="footer-bottom">
+      <span class="footer-copy">© <span id="ft-year">2026</span> Western Balkans Fund<span>·</span>All rights reserved</span>
+      <span style="font-size:12px;color:rgba(255,255,255,0.3)">MOVE Grants · Diversified Grant Portfolio</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Navbar keyboard support */
+document.querySelectorAll('.dropdown-wrap > .nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('.dropdown-wrap > .nav-btn').forEach(b => b.setAttribute('aria-expanded','false'));
+    btn.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.dropdown-wrap > .nav-btn').forEach(b => b.setAttribute('aria-expanded','false'));
+});
+
+/* Footer year */
+document.getElementById('ft-year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
