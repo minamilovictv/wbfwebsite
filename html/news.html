@@ -215,448 +215,10 @@
   .results-meta strong { color: #0f172a; font-weight: 600; }
 
   /* ============================================================
-     NEWS GRID
+     NEWS SECTION (grid container only — card styles live in
+     components/news-card.html)
      ============================================================ */
   .news-section { padding: 32px 0 88px; background: #fff; }
-
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .news-card {
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
-    text-align: left;
-    border: 1px solid #e2e8f0;
-    font: inherit;
-    color: inherit;
-    padding: 0;
-  }
-  .news-card:hover {
-    box-shadow: 0 16px 32px rgba(15,32,68,0.10);
-    transform: translateY(-3px);
-    border-color: #d1d9e6;
-  }
-  .news-card:focus-visible {
-    outline: 2px solid #1A3668;
-    outline-offset: 2px;
-  }
-
-  .card-img {
-    position: relative;
-    height: 200px;
-    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%);
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-  }
-  .card-img img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.5s;
-  }
-  .news-card:hover .card-img img { transform: scale(1.04); }
-  .card-img-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: rgba(15,32,68,0.85);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 4px 10px;
-    border-radius: 999px;
-    backdrop-filter: blur(4px);
-  }
-  .card-img-media-count {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    background: rgba(15,32,68,0.85);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    backdrop-filter: blur(4px);
-  }
-  .card-img-media-count svg { width: 12px; height: 12px; }
-
-  .card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
-  .card-meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
-    font-size: 11px;
-  }
-  .badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 3px 9px;
-    border-radius: 999px;
-  }
-  .badge-prog { background: #eef2f8; color: #1A3668; }
-  .card-date {
-    font-size: 11.5px;
-    color: #94a3b8;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-left: auto;
-  }
-  .card-date svg { width: 12px; height: 12px; opacity: 0.7; }
-
-  .card-title {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.3;
-    margin-bottom: 10px;
-  }
-  .news-card:hover .card-title { color: #1A3668; }
-
-  .card-excerpt {
-    font-size: 13.5px;
-    color: #64748b;
-    line-height: 1.6;
-    margin-bottom: 18px;
-    flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .card-read {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #1A3668;
-    margin-top: auto;
-  }
-  .news-card:hover .card-read { color: #0f2044; }
-  .card-read svg { width: 14px; height: 14px; transition: transform 0.15s; }
-  .news-card:hover .card-read svg { transform: translateX(3px); }
-
-  /* States */
-  .state-msg {
-    grid-column: 1 / -1;
-    padding: 64px 24px;
-    text-align: center;
-    color: #64748b;
-    font-size: 15px;
-    background: #f8fafc;
-    border-radius: 10px;
-  }
-  .state-msg svg { width: 40px; height: 40px; color: #cbd5e1; margin: 0 auto 16px; display: block; }
-  .state-msg h3 { font-size: 17px; color: #0f172a; margin-bottom: 6px; font-weight: 600; }
-
-  .skeleton-card {
-    background: #fff;
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .sk { background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: 4px; }
-  .sk-img { height: 200px; border-radius: 0; }
-  .sk-line { height: 12px; margin: 12px 22px; }
-  .sk-line.short { width: 40%; }
-  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-  /* ============================================================
-     MODAL
-     ============================================================ */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(15,23,42,0.75);
-    backdrop-filter: blur(4px);
-    z-index: 2000;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 40px 20px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
-    overflow-y: auto;
-  }
-  .modal-overlay.open {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  body.modal-open { overflow: hidden; }
-
-  .modal {
-    background: #fff;
-    border-radius: 12px;
-    max-width: 900px;
-    width: 100%;
-    margin: auto;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.4);
-    transform: translateY(20px) scale(0.98);
-    transition: transform 0.25s;
-    position: relative;
-  }
-  .modal-overlay.open .modal { transform: translateY(0) scale(1); }
-
-  .modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.95);
-    border: 1px solid #e2e8f0;
-    color: #475569;
-    font-size: 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    transition: background 0.15s, color 0.15s;
-  }
-  .modal-close:hover { background: #fff; color: #0f172a; }
-
-  .modal-header-img {
-    height: 320px;
-    background: linear-gradient(135deg, #1A3668 0%, #2a4a85 100%);
-    background-size: cover;
-    background-position: center;
-    border-radius: 12px 12px 0 0;
-    position: relative;
-    overflow: hidden;
-  }
-  .modal-header-img img { width: 100%; height: 100%; object-fit: cover; }
-  .modal-header-img video { width: 100%; height: 100%; object-fit: cover; }
-
-  .modal-body { padding: 36px 44px 44px; }
-
-  .modal-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; font-size: 11px; }
-  .modal-meta .badge { font-size: 10px; }
-  .modal-date { font-size: 12.5px; color: #64748b; margin-left: 6px; }
-
-  .modal-title {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(22px, 3vw, 32px);
-    font-weight: 700;
-    color: #0f172a;
-    line-height: 1.2;
-    margin-bottom: 24px;
-  }
-
-  /* Carousel */
-  .carousel {
-    position: relative;
-    background: #0f172a;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 28px;
-  }
-  .carousel-viewport {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-  }
-  .carousel-slide {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-    background: #0f172a;
-  }
-  .carousel-slide.active { opacity: 1; z-index: 2; }
-  .carousel-slide img { width: 100%; height: 100%; object-fit: contain; }
-  .carousel-slide video { width: 100%; height: 100%; object-fit: contain; background: #000; }
-  .carousel-slide iframe { width: 100%; height: 100%; border: 0; }
-
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(15,23,42,0.7);
-    border: none;
-    color: #fff;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
-  }
-  .carousel-btn:hover { background: rgba(15,23,42,0.95); }
-  .carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-  .carousel-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-  .carousel-prev { left: 12px; }
-  .carousel-next { right: 12px; }
-
-  .carousel-counter {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(15,23,42,0.7);
-    color: #fff;
-    font-size: 12px;
-    padding: 4px 10px;
-    border-radius: 999px;
-    z-index: 5;
-  }
-
-  .carousel-thumbs {
-    display: flex;
-    gap: 6px;
-    padding: 10px;
-    background: #1e293b;
-    overflow-x: auto;
-    scrollbar-width: thin;
-  }
-  .thumb {
-    width: 72px;
-    height: 44px;
-    border-radius: 4px;
-    overflow: hidden;
-    cursor: pointer;
-    flex-shrink: 0;
-    border: 2px solid transparent;
-    background: #0f172a;
-    position: relative;
-    opacity: 0.55;
-    transition: opacity 0.15s, border-color 0.15s;
-    padding: 0;
-  }
-  .thumb:hover { opacity: 0.9; }
-  .thumb.active { opacity: 1; border-color: #fff; }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .thumb-video-marker {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.4);
-    color: #fff;
-  }
-  .thumb-video-marker svg { width: 14px; height: 14px; fill: currentColor; }
-
-  /* Article body */
-  .article-body {
-    font-size: 15.5px;
-    color: #334155;
-    line-height: 1.75;
-  }
-  .article-body p { margin-bottom: 16px; }
-  .article-body h2 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 22px;
-    color: #0f172a;
-    margin: 28px 0 12px;
-  }
-  .article-body h3 {
-    font-size: 17px;
-    font-weight: 600;
-    color: #0f172a;
-    margin: 24px 0 10px;
-  }
-  .article-body a { color: #1A3668; text-decoration: underline; text-underline-offset: 2px; }
-  .article-body a:hover { color: #0f2044; }
-  .article-body ul, .article-body ol { padding-left: 22px; margin-bottom: 16px; }
-  .article-body li { margin-bottom: 6px; }
-  .article-body strong { color: #0f172a; font-weight: 600; }
-  .article-body blockquote {
-    border-left: 3px solid #1A3668;
-    padding: 6px 0 6px 20px;
-    margin: 20px 0;
-    color: #475569;
-    font-style: italic;
-  }
-
-  /* Actions */
-  .modal-actions {
-    margin-top: 32px;
-    padding-top: 24px;
-    border-top: 1px solid #e2e8f0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-  }
-  .action-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    border-radius: 4px;
-    font-size: 13.5px;
-    font-weight: 600;
-    text-decoration: none;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
-    font-family: inherit;
-  }
-  .action-btn svg { width: 14px; height: 14px; }
-  .action-primary { background: #1A3668; color: #fff; }
-  .action-primary:hover { background: #0f2044; }
-  .action-secondary {
-    background: #fff;
-    color: #1A3668;
-    border-color: #cbd5e1;
-  }
-  .action-secondary:hover { border-color: #1A3668; }
-  .action-ghost {
-    background: transparent;
-    color: #64748b;
-    margin-left: auto;
-  }
-  .action-ghost:hover { color: #1A3668; }
-
-  .attachments-list { margin-top: 16px; }
-  .attachment {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #334155;
-    font-size: 13.5px;
-    margin-bottom: 6px;
-    transition: background 0.15s, border-color 0.15s;
-  }
-  .attachment:hover { background: #eef2f8; border-color: #1A3668; color: #0f2044; }
-  .attachment svg { width: 16px; height: 16px; color: #1A3668; flex-shrink: 0; }
-  .attachment-name { flex: 1; font-weight: 500; }
 
   /* ============================================================
      FOOTER  (identical to index.html)
@@ -696,9 +258,6 @@
      ============================================================ */
   @media (max-width: 1024px) {
     .container, .filters-inner, .page-hero-inner, .results-meta { padding-left: 24px; padding-right: 24px; }
-    .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .modal-body { padding: 28px 28px 36px; }
-    .modal-header-img { height: 260px; }
     .footer { padding: 48px 24px 0; }
     .footer-top { flex-direction: column; gap: 40px; }
     .ft-cols-right { justify-content: flex-start; flex-wrap: wrap; }
@@ -710,12 +269,6 @@
     .page-hero { padding: 56px 0 48px; }
     .filters-wrap { position: static; }
     .filter-label { width: auto; }
-    .cards-grid { grid-template-columns: 1fr; }
-    .modal-overlay { padding: 0; }
-    .modal { border-radius: 0; min-height: 100vh; }
-    .modal-header-img { border-radius: 0; height: 220px; }
-    .modal-body { padding: 24px 20px 32px; }
-    .carousel-btn { width: 36px; height: 36px; }
     .footer-bottom { flex-direction: column; gap: 8px; }
   }
 </style>
@@ -880,26 +433,22 @@
 
 <!-- ============================================================
      RESULTS META + GRID
+     The grid container is shared markup; the cards are rendered
+     by the reusable component (components/news-card.html).
      ============================================================ -->
 <div class="results-meta" id="results-meta" aria-live="polite"></div>
 
 <section class="news-section">
   <div class="container">
-    <div class="cards-grid" id="cards-grid" aria-live="polite">
-      <!-- Loading skeletons -->
-      <div class="skeleton-card"><div class="sk sk-img"></div><div class="sk sk-line short"></div><div class="sk sk-line"></div><div class="sk sk-line"></div></div>
-      <div class="skeleton-card"><div class="sk sk-img"></div><div class="sk sk-line short"></div><div class="sk sk-line"></div><div class="sk sk-line"></div></div>
-      <div class="skeleton-card"><div class="sk sk-img"></div><div class="sk sk-line short"></div><div class="sk sk-line"></div><div class="sk sk-line"></div></div>
-    </div>
+    <div class="cards-grid" id="cards-grid" aria-live="polite"></div>
   </div>
 </section>
 
 <!-- ============================================================
      MODAL
+     Mount point + CSS are injected at runtime from
+     components/news-modal.html.
      ============================================================ -->
-<div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
-  <div class="modal" id="modal-content"></div>
-</div>
 
 <!-- ============================================================
      FOOTER
@@ -978,7 +527,10 @@
 </footer>
 
 <!-- ============================================================
-     SCRIPT — CSV CMS, FILTERS, MODAL, CAROUSEL
+     PAGE SCRIPT
+     Loads the reusable card + modal components, fetches the news
+     dataset (CSV or sample fallback), and wires filters → grid →
+     modal. All news-specific markup is owned by the components.
      ============================================================ -->
 <script>
 (function () {
@@ -986,136 +538,126 @@
 
   /* ──────────────────────────────────────────────────────────
      CONFIG
-     Set CSV_URL to your published Google Sheet CSV.
-     If left blank, the page falls back to the SAMPLE_DATA below.
-     Publishing a sheet: File → Share → Publish to web → CSV.
+     CSV_URL — published Google Sheet CSV. Leave blank to fall
+     back to the inline SAMPLE_DATA below.
+     COMPONENTS_BASE — relative path to the components/ folder
+     from this page.
      ────────────────────────────────────────────────────────── */
   const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ13GJKPShUi8FZlRGKmj821e1YrCeLrnHJ0BDMdFmGTeVZa8iX0DKZJwQiKdHrW_gk0PApvqf3WhVl/pub?output=csv";
+  const COMPONENTS_BASE = "../components/";
 
-  /* Sample fallback data so the page works out of the box */
+  /* Sample fallback data so the page works out of the box.
+     Field names follow the recommended news-item schema; legacy
+     `coverImage` is accepted as an alias for `featuredImage`. */
   const SAMPLE_DATA = [
     {
       id: 'ggi-call-9-opens',
       title: 'GGI Call No. 9 opens for applications — €15,000 grants for regional cooperation',
+      slug: 'ggi-call-9-opens',
       type: 'open-call',
       programme: 'GGI Grants',
       date: '2026-06-14',
       excerpt: 'The Western Balkans Fund announces the opening of the ninth call under the Good Governance and Integration scheme, supporting civil society, cultural and educational projects across WB6.',
       content: '<p>The Western Balkans Fund is pleased to announce the opening of <strong>GGI Call No. 9</strong> — the ninth call under the Good Governance and Integration grants scheme.</p><h3>Who can apply</h3><ul><li>Registered civil society organizations</li><li>Cultural institutions and museums</li><li>Universities and research institutes</li><li>Local government bodies (in partnership)</li></ul><h3>Key dates</h3><p>The call opens on <strong>14 June 2026</strong> and closes on <strong>15 September 2026</strong> at 17:00 CET.</p><p>For full eligibility criteria, partnership requirements and application guidelines, please consult the <a href="grants-how-to-apply.html">How to Apply</a> page or download the call documentation below.</p>',
-      featured: 'true',
-      status: 'published',
-      coverImage: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80',
       galleryImages: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80|https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80|https://images.unsplash.com/photo-1573164574511-73c773193279?w=1200&q=80',
       galleryVideos: '',
       attachments: 'GGI-Call-9-Guidelines.pdf|Application-Form-2026.docx',
       downloadUrl: '#',
-      externalUrl: 'https://ogms.westernbalkansfund.org/'
+      externalUrl: 'https://ogms.westernbalkansfund.org/',
+      status: 'published'
     },
     {
       id: 'visegrad-fellowship-3rd',
       title: 'Visegrad Fellowship — 3rd Edition opens to WB6 researchers',
+      slug: 'visegrad-fellowship-3rd',
       type: 'announcement',
       programme: 'Visegrad Fellowship',
       date: '2026-06-10',
       excerpt: 'Doctoral students and graduates invited to apply for mobility grants in partnership with the International Visegrad Fund.',
       content: '<p>In partnership with the International Visegrad Fund, WBF is launching the third edition of the Visegrad Fellowship — supporting doctoral students and recent graduates from the Western Balkans connecting with V4 countries.</p><p>Fellows will spend up to 12 months at a host institution in the Czech Republic, Hungary, Poland, or Slovakia.</p>',
-      featured: '',
-      status: 'published',
-      coverImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80',
       galleryImages: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80',
       galleryVideos: '',
       attachments: '',
       downloadUrl: '',
-      externalUrl: ''
+      externalUrl: '',
+      status: 'published'
     },
     {
       id: 'cross-border-youth-network',
       title: 'How a cross-border youth network reconnected three Balkan cities',
+      slug: 'cross-border-youth-network',
       type: 'story',
       programme: 'GGI Grants',
       date: '2026-06-05',
       excerpt: 'A grantee story from GGI Call No. 7 — three CSOs share lessons from a year of regional cooperation.',
       content: '<p>When three organizations from Sarajevo, Pristina and Skopje came together in 2024, none of them had collaborated across borders before. One year later, they have built a youth exchange network reaching more than 400 young people.</p><h3>Lessons learned</h3><ul><li>Start with shared values, not shared budgets</li><li>Invest in trust-building before activities</li><li>Document everything for future cohorts</li></ul>',
-      featured: '',
-      status: 'published',
-      coverImage: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80',
       galleryImages: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80|https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80',
       galleryVideos: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
       attachments: '',
       downloadUrl: '',
-      externalUrl: ''
+      externalUrl: '',
+      status: 'published'
     },
     {
       id: 'leadbalkans-2026-highlights',
       title: 'LeadBalkans 2026: Highlights from the regional advocacy forum',
+      slug: 'leadbalkans-2026-highlights',
       type: 'event-recap',
       programme: 'LeadBalkans',
       date: '2026-05-28',
       excerpt: 'Photos, speakers and key takeaways from the third edition of the LeadBalkans platform in Tirana.',
       content: '<p>More than 200 civil society leaders, policymakers and donors gathered in Tirana for the third edition of LeadBalkans.</p><h3>Key takeaways</h3><ol><li>Regional cooperation needs predictable, multi-year funding</li><li>Youth-led organizations remain under-resourced</li><li>Donors should align reporting requirements</li></ol>',
-      featured: '',
-      status: 'published',
-      coverImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80',
       galleryImages: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80|https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&q=80|https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=80|https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80',
       galleryVideos: '',
       attachments: 'LeadBalkans-2026-Report.pdf',
       downloadUrl: '#',
-      externalUrl: ''
+      externalUrl: '',
+      status: 'published'
     },
     {
       id: 'annual-report-2025',
       title: 'WBF Annual Report 2025 — Now available',
+      slug: 'annual-report-2025',
       type: 'publication',
       programme: 'Institutional',
       date: '2026-05-20',
       excerpt: 'Our full account of grants disbursed, projects supported, and regional impact achieved in 2025 is now available for download.',
       content: '<p>The Western Balkans Fund Annual Report 2025 is now available. The report covers all grants disbursed, projects supported, partner activities and financial statements for the past year.</p>',
-      featured: '',
-      status: 'published',
-      coverImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
       galleryImages: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
       galleryVideos: '',
       attachments: 'WBF-Annual-Report-2025.pdf|Financial-Statements-2025.pdf',
       downloadUrl: '#',
-      externalUrl: ''
+      externalUrl: '',
+      status: 'published'
     },
     {
       id: 'press-eu-renewal-2026',
       title: 'Joint statement: EU renews multi-year support for WBF through IPA III',
+      slug: 'press-eu-renewal-2026',
       type: 'press-release',
       programme: 'Institutional',
       date: '2026-05-12',
       excerpt: 'The European Union and the Western Balkans Fund have signed a renewed cooperation agreement under IPA III, ensuring continuity of regional grants through 2028.',
       content: '<p>Tirana — The European Union and the Western Balkans Fund today signed a renewed multi-year cooperation agreement under the Instrument for Pre-accession Assistance (IPA III), securing continuity of regional grants through 2028.</p><blockquote>This renewal is a vote of confidence in regional ownership of cooperation in the Western Balkans.</blockquote>',
-      featured: '',
-      status: 'published',
-      coverImage: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1200&q=80',
+      featuredImage: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1200&q=80',
       galleryImages: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1200&q=80',
       galleryVideos: '',
       attachments: '',
       downloadUrl: '',
-      externalUrl: 'https://ec.europa.eu/'
+      externalUrl: 'https://ec.europa.eu/',
+      status: 'published'
     }
   ];
-
-  /* ──────────────────────────────────────────────────────────
-     TYPE METADATA
-     ────────────────────────────────────────────────────────── */
-  const TYPE_LABELS = {
-    'announcement': 'Announcement',
-    'press-release': 'Press Release',
-    'publication': 'Publication',
-    'story': 'Story',
-    'open-call': 'Open Call',
-    'call-for-applications': 'Open Call',
-    'event-recap': 'Event Recap'
-  };
 
   const STATE = {
     items: [],
     activeType: 'all',
-    activeProgramme: 'all',
-    loaded: false
+    activeProgramme: 'all'
   };
 
   /* ──────────────────────────────────────────────────────────
@@ -1130,20 +672,6 @@
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
-  function escapeAttr(s) { return escapeHtml(s); }
-
-  function formatDate(iso) {
-    if (!iso) return '';
-    const d = new Date(iso);
-    if (isNaN(d)) return iso;
-    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-  }
-
-  function pipeSplit(value) {
-    if (!value) return [];
-    return String(value).split('|').map(s => s.trim()).filter(Boolean);
-  }
-
   function normalizeType(t) {
     if (!t) return '';
     const k = String(t).trim().toLowerCase().replace(/\s+/g, '-');
@@ -1151,25 +679,37 @@
     return k;
   }
 
-  function getYouTubeId(url) {
-    if (!url) return null;
-    const m = String(url).match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/);
-    return m ? m[1] : null;
-  }
+  /* ──────────────────────────────────────────────────────────
+     COMPONENT LOADER
+     Fetches a component HTML fragment and injects its <style>,
+     markup, and <script> nodes into the host document so the
+     embedded scripts execute. Returns a promise.
+     ────────────────────────────────────────────────────────── */
+  async function loadComponent(url) {
+    const res = await fetch(url, { cache: 'no-cache' });
+    if (!res.ok) throw new Error('Component load failed: ' + url + ' → HTTP ' + res.status);
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
 
-  function isVideoUrl(url) {
-    return /\.(mp4|webm|ogv|mov)(\?|$)/i.test(url) || getYouTubeId(url) != null;
-  }
+    /* Styles → <head> (cloned so they apply immediately) */
+    doc.querySelectorAll('style[data-wbf-component]').forEach(s => {
+      document.head.appendChild(s.cloneNode(true));
+    });
 
-  function fileNameFromUrl(url) {
-    if (!url) return '';
-    try {
-      const u = new URL(url, window.location.href);
-      const parts = u.pathname.split('/').filter(Boolean);
-      return decodeURIComponent(parts[parts.length - 1] || url);
-    } catch (e) {
-      return url.split('/').pop() || url;
-    }
+    /* Non-script body markup → <body> end (e.g. modal mount) */
+    Array.from(doc.body.childNodes).forEach(node => {
+      if (node.nodeType === 1 && node.tagName === 'SCRIPT') return;
+      if (node.nodeType === 1 && node.tagName === 'STYLE') return;
+      document.body.appendChild(node.cloneNode(true));
+    });
+
+    /* Scripts → recreated so they actually execute */
+    doc.querySelectorAll('script[data-wbf-component]').forEach(orig => {
+      const s = document.createElement('script');
+      for (const attr of orig.attributes) s.setAttribute(attr.name, attr.value);
+      s.textContent = orig.textContent;
+      document.body.appendChild(s);
+    });
   }
 
   /* ──────────────────────────────────────────────────────────
@@ -1203,14 +743,8 @@
     });
   }
 
-  /* ──────────────────────────────────────────────────────────
-     DATA LOADING
-     ────────────────────────────────────────────────────────── */
   async function loadData() {
-    if (!CSV_URL) {
-      STATE.items = SAMPLE_DATA.slice();
-      return;
-    }
+    if (!CSV_URL) { STATE.items = SAMPLE_DATA.slice(); return; }
     try {
       const res = await fetch(CSV_URL, { cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -1231,9 +765,7 @@
       STATE.items.map(i => (i.programme || '').trim()).filter(Boolean)
     )).sort();
 
-    const existing = $$('button[data-programme]:not([data-programme="all"])', wrap);
-    existing.forEach(b => b.remove());
-
+    $$('button[data-programme]:not([data-programme="all"])', wrap).forEach(b => b.remove());
     programmes.forEach(p => {
       const count = STATE.items.filter(i => (i.programme || '').trim() === p).length;
       const btn = document.createElement('button');
@@ -1249,70 +781,7 @@
       .filter(i => (i.status || 'published').toLowerCase() !== 'draft')
       .filter(i => STATE.activeType === 'all' ? true : normalizeType(i.type) === STATE.activeType)
       .filter(i => STATE.activeProgramme === 'all' ? true : (i.programme || '').trim() === STATE.activeProgramme)
-      .sort((a, b) => {
-        const ad = new Date(a.date || 0).getTime();
-        const bd = new Date(b.date || 0).getTime();
-        return bd - ad;
-      });
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     CARD RENDERING
-     ────────────────────────────────────────────────────────── */
-  function buildMediaList(item) {
-    const images = pipeSplit(item.galleryImages);
-    const videos = pipeSplit(item.galleryVideos);
-    const list = [];
-    if (item.coverImage) list.push({ type: 'image', url: item.coverImage, isCover: true });
-    images.forEach(url => {
-      if (item.coverImage && url === item.coverImage) return;
-      list.push({ type: 'image', url });
-    });
-    videos.forEach(url => {
-      const yt = getYouTubeId(url);
-      if (yt) list.push({ type: 'youtube', id: yt, url });
-      else list.push({ type: 'video', url });
-    });
-    return list;
-  }
-
-  function renderCard(item) {
-    const media = buildMediaList(item);
-    const cover = media.find(m => m.type === 'image');
-    const coverStyle = cover
-      ? 'background-image:url(' + JSON.stringify(cover.url).slice(1, -1) + ')'
-      : '';
-
-    const typeKey = normalizeType(item.type);
-    const typeLabel = TYPE_LABELS[typeKey] || (item.type || '');
-
-    return (
-      '<button type="button" class="news-card" data-id="' + escapeAttr(item.id) + '">' +
-        '<div class="card-img" style="' + coverStyle + '">' +
-          (typeLabel ? '<span class="card-img-badge">' + escapeHtml(typeLabel) + '</span>' : '') +
-          (media.length > 1 ?
-            '<span class="card-img-media-count" aria-label="' + media.length + ' media items">' +
-              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>' +
-              media.length +
-            '</span>'
-          : '') +
-        '</div>' +
-        '<div class="card-body">' +
-          '<div class="card-meta">' +
-            (item.programme ? '<span class="badge badge-prog">' + escapeHtml(item.programme) + '</span>' : '') +
-            '<span class="card-date">' +
-              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>' +
-              formatDate(item.date) +
-            '</span>' +
-          '</div>' +
-          '<h3 class="card-title">' + escapeHtml(item.title) + '</h3>' +
-          '<p class="card-excerpt">' + escapeHtml(item.excerpt || '') + '</p>' +
-          '<span class="card-read">Read more ' +
-            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13,5 19,12 13,19"/></svg>' +
-          '</span>' +
-        '</div>' +
-      '</button>'
-    );
+      .sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
   }
 
   function renderGrid() {
@@ -1324,264 +793,9 @@
       (list.length === 1 ? 'article' : 'articles') +
       (STATE.activeType !== 'all' || STATE.activeProgramme !== 'all' ? ' matching your filters' : '');
 
-    if (!list.length) {
-      grid.innerHTML =
-        '<div class="state-msg">' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
-          '<h3>No articles found</h3>' +
-          '<p>Try a different combination of filters.</p>' +
-        '</div>';
-      return;
-    }
-    grid.innerHTML = list.map(renderCard).join('');
+    if (!list.length) { window.WBFNewsCard.renderEmpty(grid); return; }
+    window.WBFNewsCard.renderGrid(list, grid);
   }
-
-  function renderEmptyError() {
-    $('#cards-grid').innerHTML =
-      '<div class="state-msg">' +
-        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
-        '<h3>Unable to load news</h3>' +
-        '<p>Please try again in a few moments.</p>' +
-      '</div>';
-  }
-
-  /* ──────────────────────────────────────────────────────────
-     MODAL + CAROUSEL
-     ────────────────────────────────────────────────────────── */
-  const Modal = (function () {
-    const overlay = $('#modal');
-    const content = $('#modal-content');
-    let currentMedia = [];
-    let currentIndex = 0;
-    let touchStartX = 0;
-
-    function renderSlide(m, i, active) {
-      if (m.type === 'image') {
-        return '<div class="carousel-slide' + (active ? ' active' : '') + '" data-i="' + i + '">' +
-          '<img src="' + escapeAttr(m.url) + '" alt="" loading="lazy">' +
-        '</div>';
-      }
-      if (m.type === 'video') {
-        return '<div class="carousel-slide' + (active ? ' active' : '') + '" data-i="' + i + '" data-video-src="' + escapeAttr(m.url) + '">' +
-          (active ? '<video controls preload="metadata" src="' + escapeAttr(m.url) + '"></video>' : '') +
-        '</div>';
-      }
-      if (m.type === 'youtube') {
-        return '<div class="carousel-slide' + (active ? ' active' : '') + '" data-i="' + i + '" data-yt="' + escapeAttr(m.id) + '">' +
-          (active ? '<iframe src="https://www.youtube.com/embed/' + encodeURIComponent(m.id) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' : '') +
-        '</div>';
-      }
-      return '';
-    }
-
-    function renderThumb(m, i) {
-      const isVideo = m.type !== 'image';
-      const src = m.type === 'youtube'
-        ? 'https://img.youtube.com/vi/' + encodeURIComponent(m.id) + '/mqdefault.jpg'
-        : (m.type === 'image' ? m.url : '');
-      return '<button type="button" class="thumb' + (i === 0 ? ' active' : '') + '" data-i="' + i + '" aria-label="Show item ' + (i + 1) + '">' +
-        (src ? '<img src="' + escapeAttr(src) + '" alt="" loading="lazy">' : '<div style="width:100%;height:100%;background:#0f172a"></div>') +
-        (isVideo ? '<span class="thumb-video-marker"><svg viewBox="0 0 24 24"><polygon points="8,5 19,12 8,19"/></svg></span>' : '') +
-      '</button>';
-    }
-
-    function activateSlide(i) {
-      if (i < 0 || i >= currentMedia.length) return;
-      currentIndex = i;
-      $$('.carousel-slide', content).forEach(s => {
-        const idx = parseInt(s.dataset.i, 10);
-        const wasActive = s.classList.contains('active');
-        const willBeActive = idx === i;
-        s.classList.toggle('active', willBeActive);
-        // Lazy-load videos / youtube only when becoming active
-        if (willBeActive && !wasActive) {
-          if (s.dataset.videoSrc && !$('video', s)) {
-            const v = document.createElement('video');
-            v.src = s.dataset.videoSrc; v.controls = true; v.preload = 'metadata';
-            s.appendChild(v);
-          }
-          if (s.dataset.yt && !$('iframe', s)) {
-            const f = document.createElement('iframe');
-            f.src = 'https://www.youtube.com/embed/' + encodeURIComponent(s.dataset.yt);
-            f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-            f.allowFullscreen = true;
-            s.appendChild(f);
-          }
-        }
-        // Pause/stop departing videos
-        if (wasActive && !willBeActive) {
-          const v = $('video', s); if (v) { try { v.pause(); } catch (_) {} }
-          const f = $('iframe', s); if (f) f.remove();
-        }
-      });
-      $$('.thumb', content).forEach(t => t.classList.toggle('active', parseInt(t.dataset.i, 10) === i));
-      const counter = $('.carousel-counter', content);
-      if (counter) counter.textContent = (i + 1) + ' / ' + currentMedia.length;
-      const prev = $('.carousel-prev', content);
-      const next = $('.carousel-next', content);
-      if (prev) prev.disabled = (i === 0);
-      if (next) next.disabled = (i === currentMedia.length - 1);
-    }
-
-    function renderCarousel(media) {
-      if (!media.length) return '';
-      const slides = media.map((m, i) => renderSlide(m, i, i === 0)).join('');
-      const thumbs = media.length > 1 ? '<div class="carousel-thumbs">' + media.map(renderThumb).join('') + '</div>' : '';
-      const controls = media.length > 1 ? (
-        '<button type="button" class="carousel-btn carousel-prev" aria-label="Previous"><svg viewBox="0 0 24 24"><polyline points="15,6 9,12 15,18"/></svg></button>' +
-        '<button type="button" class="carousel-btn carousel-next" aria-label="Next"><svg viewBox="0 0 24 24"><polyline points="9,6 15,12 9,18"/></svg></button>' +
-        '<span class="carousel-counter">1 / ' + media.length + '</span>'
-      ) : '';
-      return '<div class="carousel" aria-roledescription="carousel">' +
-        '<div class="carousel-viewport">' + slides + controls + '</div>' +
-        thumbs +
-      '</div>';
-    }
-
-    function renderAttachments(att) {
-      if (!att.length) return '';
-      return '<div class="attachments-list">' + att.map(url => {
-        return '<a class="attachment" href="' + escapeAttr(url) + '" target="_blank" rel="noopener">' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>' +
-          '<span class="attachment-name">' + escapeHtml(fileNameFromUrl(url)) + '</span>' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:#94a3b8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' +
-        '</a>';
-      }).join('') + '</div>';
-    }
-
-    function open(item) {
-      currentMedia = buildMediaList(item);
-      currentIndex = 0;
-
-      const typeKey = normalizeType(item.type);
-      const typeLabel = TYPE_LABELS[typeKey] || (item.type || '');
-      const attachments = pipeSplit(item.attachments);
-
-      content.innerHTML =
-        '<button type="button" class="modal-close" aria-label="Close">' +
-          '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>' +
-        '</button>' +
-        (item.coverImage ? '<div class="modal-header-img" style="background-image:url(' + JSON.stringify(item.coverImage).slice(1,-1) + ')"></div>' : '') +
-        '<div class="modal-body">' +
-          '<div class="modal-meta">' +
-            (typeLabel ? '<span class="badge badge-prog" style="background:#1A3668;color:#fff">' + escapeHtml(typeLabel) + '</span>' : '') +
-            (item.programme ? '<span class="badge badge-prog">' + escapeHtml(item.programme) + '</span>' : '') +
-            '<span class="modal-date">' + escapeHtml(formatDate(item.date)) + '</span>' +
-          '</div>' +
-          '<h2 id="modal-title" class="modal-title">' + escapeHtml(item.title) + '</h2>' +
-          renderCarousel(currentMedia) +
-          '<div class="article-body">' + (item.content || ('<p>' + escapeHtml(item.excerpt || '') + '</p>')) + '</div>' +
-          renderAttachments(attachments) +
-          ((item.downloadUrl || item.externalUrl) ?
-            '<div class="modal-actions">' +
-              (item.downloadUrl ?
-                '<a class="action-btn action-primary" href="' + escapeAttr(item.downloadUrl) + '" target="_blank" rel="noopener">' +
-                  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' +
-                  'Download' +
-                '</a>' : ''
-              ) +
-              (item.externalUrl ?
-                '<a class="action-btn action-secondary" href="' + escapeAttr(item.externalUrl) + '" target="_blank" rel="noopener">' +
-                  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>' +
-                  'Open external link' +
-                '</a>' : ''
-              ) +
-              '<button type="button" class="action-btn action-ghost" data-share>' +
-                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>' +
-                'Share' +
-              '</button>' +
-            '</div>' : ''
-          ) +
-        '</div>';
-
-      overlay.hidden = false;
-      requestAnimationFrame(() => overlay.classList.add('open'));
-      document.body.classList.add('modal-open');
-      activateSlide(0);
-
-      // Deep link
-      const url = new URL(window.location);
-      if (url.searchParams.get('article') !== item.id) {
-        url.searchParams.set('article', item.id);
-        history.pushState({ article: item.id }, '', url);
-      }
-
-      bindModalEvents();
-      content.querySelector('.modal-close').focus();
-    }
-
-    function close(updateHistory) {
-      overlay.classList.remove('open');
-      document.body.classList.remove('modal-open');
-      setTimeout(() => {
-        overlay.hidden = true;
-        content.innerHTML = '';
-        currentMedia = [];
-      }, 200);
-      if (updateHistory !== false) {
-        const url = new URL(window.location);
-        if (url.searchParams.has('article')) {
-          url.searchParams.delete('article');
-          history.pushState({}, '', url);
-        }
-      }
-    }
-
-    function bindModalEvents() {
-      content.querySelector('.modal-close').addEventListener('click', () => close(true));
-
-      const prev = $('.carousel-prev', content);
-      const next = $('.carousel-next', content);
-      if (prev) prev.addEventListener('click', () => activateSlide(currentIndex - 1));
-      if (next) next.addEventListener('click', () => activateSlide(currentIndex + 1));
-
-      $$('.thumb', content).forEach(t => {
-        t.addEventListener('click', () => activateSlide(parseInt(t.dataset.i, 10)));
-      });
-
-      // Swipe
-      const viewport = $('.carousel-viewport', content);
-      if (viewport) {
-        viewport.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-        viewport.addEventListener('touchend', e => {
-          const dx = e.changedTouches[0].clientX - touchStartX;
-          if (Math.abs(dx) > 40) {
-            if (dx < 0) activateSlide(currentIndex + 1);
-            else activateSlide(currentIndex - 1);
-          }
-        });
-      }
-
-      const shareBtn = content.querySelector('[data-share]');
-      if (shareBtn) {
-        shareBtn.addEventListener('click', async () => {
-          const url = window.location.href;
-          const title = content.querySelector('.modal-title')?.textContent || document.title;
-          if (navigator.share) {
-            try { await navigator.share({ title, url }); } catch (_) {}
-          } else if (navigator.clipboard) {
-            try {
-              await navigator.clipboard.writeText(url);
-              shareBtn.lastChild && (shareBtn.lastChild.textContent = ' Link copied!');
-              setTimeout(() => { shareBtn.lastChild && (shareBtn.lastChild.textContent = ' Share'); }, 1800);
-            } catch (_) {}
-          }
-        });
-      }
-    }
-
-    // Global listeners
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(true); });
-
-    document.addEventListener('keydown', (e) => {
-      if (overlay.hidden) return;
-      if (e.key === 'Escape') close(true);
-      else if (e.key === 'ArrowLeft' && currentMedia.length > 1) activateSlide(currentIndex - 1);
-      else if (e.key === 'ArrowRight' && currentMedia.length > 1) activateSlide(currentIndex + 1);
-    });
-
-    return { open, close };
-  })();
 
   /* ──────────────────────────────────────────────────────────
      EVENT WIRING
@@ -1604,50 +818,53 @@
     });
   }
 
-  function bindCardClicks() {
-    $('#cards-grid').addEventListener('click', (e) => {
-      const card = e.target.closest('.news-card');
-      if (!card) return;
-      const item = STATE.items.find(i => String(i.id) === String(card.dataset.id));
-      if (item) Modal.open(item);
-    });
-  }
-
-  function bindHistory() {
-    window.addEventListener('popstate', () => {
-      const id = new URL(window.location).searchParams.get('article');
-      if (id) {
-        const item = STATE.items.find(i => String(i.id) === String(id));
-        if (item) Modal.open(item);
-      } else {
-        Modal.close(false);
-      }
-    });
-  }
-
-  function maybeOpenFromUrl() {
-    const id = new URL(window.location).searchParams.get('article');
-    if (!id) return;
-    const item = STATE.items.find(i => String(i.id) === String(id));
-    if (item) Modal.open(item);
-  }
-
   /* ──────────────────────────────────────────────────────────
      INIT
      ────────────────────────────────────────────────────────── */
   async function init() {
+    const grid = $('#cards-grid');
+
+    /* Initial skeleton — uses inline shimmer until the card
+       component CSS loads. */
+    grid.innerHTML =
+      '<div class="skeleton-card"><div class="sk sk-img" style="height:200px;background:#e2e8f0;border-radius:0"></div></div>'.repeat(3);
+
+    /* Load the reusable components first (CSS + JS API). If they
+       fail to load (e.g. opened from file:// without an HTTP
+       server) the page still renders a clear error state. */
+    try {
+      await loadComponent(COMPONENTS_BASE + 'news-card.html');
+      await loadComponent(COMPONENTS_BASE + 'news-modal.html');
+    } catch (err) {
+      console.error('Component load failed:', err);
+      grid.innerHTML =
+        '<div style="grid-column:1/-1;padding:48px;text-align:center;color:#64748b;background:#f8fafc;border-radius:10px">' +
+          '<h3 style="color:#0f172a;font-size:17px;margin-bottom:6px">Components could not be loaded</h3>' +
+          '<p>Open this page through a local web server (e.g. <code>python -m http.server</code>) ' +
+          'rather than directly via <code>file://</code>.</p>' +
+        '</div>';
+      return;
+    }
+
+    if (!window.WBFNewsCard.renderSkeletons || !window.WBFNewsModal) {
+      console.error('Component API missing after load');
+      return;
+    }
+
+    window.WBFNewsCard.renderSkeletons(grid, 6);
     bindFilterChips();
-    bindCardClicks();
-    bindHistory();
+
     try {
       await loadData();
-      STATE.loaded = true;
       buildProgrammeFilters();
       renderGrid();
-      maybeOpenFromUrl();
+
+      /* Wire card clicks → modal open, and ?article=ID deep links. */
+      window.WBFNewsCard.bindClicks(grid, STATE.items, item => window.WBFNewsModal.open(item));
+      window.WBFNewsModal.enableDeepLink(STATE.items, 'id');
     } catch (err) {
       console.error(err);
-      renderEmptyError();
+      window.WBFNewsCard.renderError(grid);
     }
   }
 
