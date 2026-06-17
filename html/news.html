@@ -528,131 +528,22 @@
 
 <!-- ============================================================
      PAGE SCRIPT
-     Loads the reusable card + modal components, fetches the news
-     dataset (CSV or sample fallback), and wires filters → grid →
-     modal. All news-specific markup is owned by the components.
+     Data comes from the shared data service (js/data-service.js,
+     loaded just above). The page only owns: hero, filter state,
+     grid container, and wiring components → modal.
      ============================================================ -->
+<script src="../js/data-service.js"></script>
 <script>
 (function () {
   'use strict';
 
   /* ──────────────────────────────────────────────────────────
      CONFIG
-     CSV_URL — published Google Sheet CSV. Leave blank to fall
-     back to the inline SAMPLE_DATA below.
      COMPONENTS_BASE — relative path to the components/ folder
-     from this page.
+     from this page. The news data source itself lives in
+     js/data-service.js.
      ────────────────────────────────────────────────────────── */
-  const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ13GJKPShUi8FZlRGKmj821e1YrCeLrnHJ0BDMdFmGTeVZa8iX0DKZJwQiKdHrW_gk0PApvqf3WhVl/pub?output=csv";
   const COMPONENTS_BASE = "../components/";
-
-  /* Sample fallback data so the page works out of the box.
-     Field names follow the recommended news-item schema; legacy
-     `coverImage` is accepted as an alias for `featuredImage`. */
-  const SAMPLE_DATA = [
-    {
-      id: 'ggi-call-9-opens',
-      title: 'GGI Call No. 9 opens for applications — €15,000 grants for regional cooperation',
-      slug: 'ggi-call-9-opens',
-      type: 'open-call',
-      programme: 'GGI Grants',
-      date: '2026-06-14',
-      excerpt: 'The Western Balkans Fund announces the opening of the ninth call under the Good Governance and Integration scheme, supporting civil society, cultural and educational projects across WB6.',
-      content: '<p>The Western Balkans Fund is pleased to announce the opening of <strong>GGI Call No. 9</strong> — the ninth call under the Good Governance and Integration grants scheme.</p><h3>Who can apply</h3><ul><li>Registered civil society organizations</li><li>Cultural institutions and museums</li><li>Universities and research institutes</li><li>Local government bodies (in partnership)</li></ul><h3>Key dates</h3><p>The call opens on <strong>14 June 2026</strong> and closes on <strong>15 September 2026</strong> at 17:00 CET.</p><p>For full eligibility criteria, partnership requirements and application guidelines, please consult the <a href="grants-how-to-apply.html">How to Apply</a> page or download the call documentation below.</p>',
-      featuredImage: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80',
-      galleryImages: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1200&q=80|https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80|https://images.unsplash.com/photo-1573164574511-73c773193279?w=1200&q=80',
-      galleryVideos: '',
-      attachments: 'GGI-Call-9-Guidelines.pdf|Application-Form-2026.docx',
-      downloadUrl: '#',
-      externalUrl: 'https://ogms.westernbalkansfund.org/',
-      status: 'published'
-    },
-    {
-      id: 'visegrad-fellowship-3rd',
-      title: 'Visegrad Fellowship — 3rd Edition opens to WB6 researchers',
-      slug: 'visegrad-fellowship-3rd',
-      type: 'announcement',
-      programme: 'Visegrad Fellowship',
-      date: '2026-06-10',
-      excerpt: 'Doctoral students and graduates invited to apply for mobility grants in partnership with the International Visegrad Fund.',
-      content: '<p>In partnership with the International Visegrad Fund, WBF is launching the third edition of the Visegrad Fellowship — supporting doctoral students and recent graduates from the Western Balkans connecting with V4 countries.</p><p>Fellows will spend up to 12 months at a host institution in the Czech Republic, Hungary, Poland, or Slovakia.</p>',
-      featuredImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80',
-      galleryImages: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80',
-      galleryVideos: '',
-      attachments: '',
-      downloadUrl: '',
-      externalUrl: '',
-      status: 'published'
-    },
-    {
-      id: 'cross-border-youth-network',
-      title: 'How a cross-border youth network reconnected three Balkan cities',
-      slug: 'cross-border-youth-network',
-      type: 'story',
-      programme: 'GGI Grants',
-      date: '2026-06-05',
-      excerpt: 'A grantee story from GGI Call No. 7 — three CSOs share lessons from a year of regional cooperation.',
-      content: '<p>When three organizations from Sarajevo, Pristina and Skopje came together in 2024, none of them had collaborated across borders before. One year later, they have built a youth exchange network reaching more than 400 young people.</p><h3>Lessons learned</h3><ul><li>Start with shared values, not shared budgets</li><li>Invest in trust-building before activities</li><li>Document everything for future cohorts</li></ul>',
-      featuredImage: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80',
-      galleryImages: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80|https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&q=80',
-      galleryVideos: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      attachments: '',
-      downloadUrl: '',
-      externalUrl: '',
-      status: 'published'
-    },
-    {
-      id: 'leadbalkans-2026-highlights',
-      title: 'LeadBalkans 2026: Highlights from the regional advocacy forum',
-      slug: 'leadbalkans-2026-highlights',
-      type: 'event-recap',
-      programme: 'LeadBalkans',
-      date: '2026-05-28',
-      excerpt: 'Photos, speakers and key takeaways from the third edition of the LeadBalkans platform in Tirana.',
-      content: '<p>More than 200 civil society leaders, policymakers and donors gathered in Tirana for the third edition of LeadBalkans.</p><h3>Key takeaways</h3><ol><li>Regional cooperation needs predictable, multi-year funding</li><li>Youth-led organizations remain under-resourced</li><li>Donors should align reporting requirements</li></ol>',
-      featuredImage: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80',
-      galleryImages: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80|https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&q=80|https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=80|https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&q=80',
-      galleryVideos: '',
-      attachments: 'LeadBalkans-2026-Report.pdf',
-      downloadUrl: '#',
-      externalUrl: '',
-      status: 'published'
-    },
-    {
-      id: 'annual-report-2025',
-      title: 'WBF Annual Report 2025 — Now available',
-      slug: 'annual-report-2025',
-      type: 'publication',
-      programme: 'Institutional',
-      date: '2026-05-20',
-      excerpt: 'Our full account of grants disbursed, projects supported, and regional impact achieved in 2025 is now available for download.',
-      content: '<p>The Western Balkans Fund Annual Report 2025 is now available. The report covers all grants disbursed, projects supported, partner activities and financial statements for the past year.</p>',
-      featuredImage: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
-      galleryImages: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&q=80',
-      galleryVideos: '',
-      attachments: 'WBF-Annual-Report-2025.pdf|Financial-Statements-2025.pdf',
-      downloadUrl: '#',
-      externalUrl: '',
-      status: 'published'
-    },
-    {
-      id: 'press-eu-renewal-2026',
-      title: 'Joint statement: EU renews multi-year support for WBF through IPA III',
-      slug: 'press-eu-renewal-2026',
-      type: 'press-release',
-      programme: 'Institutional',
-      date: '2026-05-12',
-      excerpt: 'The European Union and the Western Balkans Fund have signed a renewed cooperation agreement under IPA III, ensuring continuity of regional grants through 2028.',
-      content: '<p>Tirana — The European Union and the Western Balkans Fund today signed a renewed multi-year cooperation agreement under the Instrument for Pre-accession Assistance (IPA III), securing continuity of regional grants through 2028.</p><blockquote>This renewal is a vote of confidence in regional ownership of cooperation in the Western Balkans.</blockquote>',
-      featuredImage: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1200&q=80',
-      galleryImages: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=1200&q=80',
-      galleryVideos: '',
-      attachments: '',
-      downloadUrl: '',
-      externalUrl: 'https://ec.europa.eu/',
-      status: 'published'
-    }
-  ];
 
   const STATE = {
     items: [],
@@ -672,18 +563,11 @@
       .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
-  function normalizeType(t) {
-    if (!t) return '';
-    const k = String(t).trim().toLowerCase().replace(/\s+/g, '-');
-    if (k === 'call-for-applications' || k === 'opencall' || k === 'call') return 'open-call';
-    return k;
-  }
-
   /* ──────────────────────────────────────────────────────────
      COMPONENT LOADER
      Fetches a component HTML fragment and injects its <style>,
      markup, and <script> nodes into the host document so the
-     embedded scripts execute. Returns a promise.
+     embedded scripts execute.
      ────────────────────────────────────────────────────────── */
   async function loadComponent(url) {
     const res = await fetch(url, { cache: 'no-cache' });
@@ -691,19 +575,13 @@
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
 
-    /* Styles → <head> (cloned so they apply immediately) */
     doc.querySelectorAll('style[data-wbf-component]').forEach(s => {
       document.head.appendChild(s.cloneNode(true));
     });
-
-    /* Non-script body markup → <body> end (e.g. modal mount) */
     Array.from(doc.body.childNodes).forEach(node => {
-      if (node.nodeType === 1 && node.tagName === 'SCRIPT') return;
-      if (node.nodeType === 1 && node.tagName === 'STYLE') return;
+      if (node.nodeType === 1 && (node.tagName === 'SCRIPT' || node.tagName === 'STYLE')) return;
       document.body.appendChild(node.cloneNode(true));
     });
-
-    /* Scripts → recreated so they actually execute */
     doc.querySelectorAll('script[data-wbf-component]').forEach(orig => {
       const s = document.createElement('script');
       for (const attr of orig.attributes) s.setAttribute(attr.name, attr.value);
@@ -713,51 +591,10 @@
   }
 
   /* ──────────────────────────────────────────────────────────
-     CSV PARSER  (handles quoted fields with commas and newlines)
-     ────────────────────────────────────────────────────────── */
-  function parseCSV(text) {
-    const rows = [];
-    let row = [], field = '', inQuotes = false;
-    for (let i = 0; i < text.length; i++) {
-      const c = text[i];
-      if (inQuotes) {
-        if (c === '"') {
-          if (text[i + 1] === '"') { field += '"'; i++; }
-          else { inQuotes = false; }
-        } else { field += c; }
-      } else {
-        if (c === '"') { inQuotes = true; }
-        else if (c === ',') { row.push(field); field = ''; }
-        else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
-        else if (c === '\r') { /* ignore */ }
-        else { field += c; }
-      }
-    }
-    if (field.length || row.length) { row.push(field); rows.push(row); }
-    if (!rows.length) return [];
-    const headers = rows[0].map(h => h.trim());
-    return rows.slice(1).filter(r => r.some(v => v && v.trim())).map(r => {
-      const obj = {};
-      headers.forEach((h, i) => obj[h] = (r[i] || '').trim());
-      return obj;
-    });
-  }
-
-  async function loadData() {
-    if (!CSV_URL) { STATE.items = SAMPLE_DATA.slice(); return; }
-    try {
-      const res = await fetch(CSV_URL, { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const text = await res.text();
-      STATE.items = parseCSV(text);
-    } catch (err) {
-      console.warn('CSV load failed, using sample data:', err);
-      STATE.items = SAMPLE_DATA.slice();
-    }
-  }
-
-  /* ──────────────────────────────────────────────────────────
      FILTERS
+     Items returned by WBFData.news.all() are already
+     normalized (type lower-kebab-cased, drafts dropped,
+     sorted by date desc).
      ────────────────────────────────────────────────────────── */
   function buildProgrammeFilters() {
     const wrap = $('#programme-filters');
@@ -778,10 +615,8 @@
 
   function getFiltered() {
     return STATE.items
-      .filter(i => (i.status || 'published').toLowerCase() !== 'draft')
-      .filter(i => STATE.activeType === 'all' ? true : normalizeType(i.type) === STATE.activeType)
-      .filter(i => STATE.activeProgramme === 'all' ? true : (i.programme || '').trim() === STATE.activeProgramme)
-      .sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
+      .filter(i => STATE.activeType === 'all' ? true : i.type === STATE.activeType)
+      .filter(i => STATE.activeProgramme === 'all' ? true : (i.programme || '').trim() === STATE.activeProgramme);
   }
 
   function renderGrid() {
@@ -824,14 +659,10 @@
   async function init() {
     const grid = $('#cards-grid');
 
-    /* Initial skeleton — uses inline shimmer until the card
-       component CSS loads. */
+    /* Inline skeleton until the card component CSS loads. */
     grid.innerHTML =
       '<div class="skeleton-card"><div class="sk sk-img" style="height:200px;background:#e2e8f0;border-radius:0"></div></div>'.repeat(3);
 
-    /* Load the reusable components first (CSS + JS API). If they
-       fail to load (e.g. opened from file:// without an HTTP
-       server) the page still renders a clear error state. */
     try {
       await loadComponent(COMPONENTS_BASE + 'news-card.html');
       await loadComponent(COMPONENTS_BASE + 'news-modal.html');
@@ -846,8 +677,13 @@
       return;
     }
 
-    if (!window.WBFNewsCard.renderSkeletons || !window.WBFNewsModal) {
+    if (!window.WBFNewsCard || !window.WBFNewsModal) {
       console.error('Component API missing after load');
+      return;
+    }
+    if (!window.WBFData || !window.WBFData.news) {
+      console.error('WBFData.news unavailable — is js/data-service.js loaded?');
+      window.WBFNewsCard.renderError(grid);
       return;
     }
 
@@ -855,11 +691,11 @@
     bindFilterChips();
 
     try {
-      await loadData();
+      STATE.items = await window.WBFData.news.all();
       buildProgrammeFilters();
       renderGrid();
 
-      /* Wire card clicks → modal open, and ?article=ID deep links. */
+      /* Cards → modal, plus ?article=ID deep links. */
       window.WBFNewsCard.bindClicks(grid, STATE.items, item => window.WBFNewsModal.open(item));
       window.WBFNewsModal.enableDeepLink(STATE.items, 'id');
     } catch (err) {
